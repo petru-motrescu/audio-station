@@ -2,9 +2,8 @@
 #define AUDIO_STATION_WAVE_RENDERING_TESTS_HPP
 
 namespace audiostation {
-    void test_sine_wave_rendering();
-    void test_square_wave_rendering();
-    void test_next_phase();
+    void run_wave_rendering_tests();
+    void run_audio_rendering_tests();
 }
 
 #endif // AUDIO_STATION_WAVE_RENDERING_TESTS_HPP

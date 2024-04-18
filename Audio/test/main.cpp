@@ -7,16 +7,13 @@
 #include <chrono>
 #include "audio-signal.hpp"
 #include "audio-station.hpp"
-#include "audio-renderer-tests.hpp"
-#include "wave-rendering-tests.hpp"
+#include "tests.hpp"
 using namespace audiostation;
 
 void run_tests() {
     std::cout << "🧪 Running tests" << std::endl;
-    test_sine_wave_rendering();
-    test_square_wave_rendering();
-    test_next_phase();
-    test_audio_renderer();
+    run_wave_rendering_tests();
+    run_audio_rendering_tests();
     std::cout << "✅ All tests done" << std::endl;
 }
 

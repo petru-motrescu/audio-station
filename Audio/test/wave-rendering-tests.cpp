@@ -4,14 +4,14 @@
 #include <list>
 #include <tuple>
 #include "wave-rendering.hpp"
-#include "wave-rendering-tests.hpp"
 #include "asserts.hpp"
+#include "tests.hpp"
 using namespace audiostation;
 
 constexpr double EPSILON = 0.00000000001;
 constexpr double PI = M_PI;
 
-void audiostation::test_sine_wave_rendering() {
+void test_sine_wave_rendering() {
     std::list<std::tuple<double, double, std::string>> triples {
         { 0.00000000000, PI/1, "pi/1" },
         { 1.00000000000, PI/2, "pi/2" },
@@ -34,7 +34,7 @@ void audiostation::test_sine_wave_rendering() {
     }
 }
 
-void audiostation::test_square_wave_rendering() {
+void test_square_wave_rendering() {
     auto x = 0.00000001;
     std::list<std::tuple<double, double, std::string>> triples {
         { +1.0, 0  + x, "0  + x" },
@@ -52,7 +52,7 @@ void audiostation::test_square_wave_rendering() {
     }
 }
 
-void audiostation::test_next_phase() {
+void test_next_phase() {
     constexpr unsigned int frequency = 100;
     constexpr unsigned int sample_rate = 800;
 
@@ -84,4 +84,10 @@ void audiostation::test_next_phase() {
         auto actual = next_phase(current_phase, frequency, sample_rate);
         assert_equal(expected, actual, EPSILON, message);
     }
+}
+
+void audiostation::run_wave_rendering_tests() {
+    test_sine_wave_rendering();
+    test_square_wave_rendering();
+    test_next_phase();
 }
