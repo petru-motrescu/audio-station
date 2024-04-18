@@ -9,6 +9,8 @@ build:
 	src/audio-station.cpp \
 	src/audio-renderer.cpp \
 	src/wave-rendering.cpp \
+	test/asserts.cpp \
+	test/audio-renderer-tests.cpp \
 	test/wave-rendering-tests.cpp \
 	test/main.cpp
 

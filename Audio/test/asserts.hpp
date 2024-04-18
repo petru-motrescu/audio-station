@@ -10,16 +10,8 @@ namespace audiostation {
         double expected, 
         double actual, 
         double epsilon, 
-        std::string message)
-    {
-        if (abs(expected - actual) > epsilon) {
-            std::cout 
-                << "Expected: " << expected 
-                << " Actual: " << actual 
-                << " [" << message << "]" 
-                << std::endl;
-        }
-    }
+        std::string message
+    );
 }
 
 #endif // AUDIO_STATION_TEST_ASSERTS_HPP

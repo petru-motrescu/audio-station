@@ -4,7 +4,7 @@
 #include <list>
 #include <tuple>
 #include "wave-rendering.hpp"
-#include "test-asserts.hpp"
+#include "asserts.hpp"
 #include "tests.hpp"
 using namespace audiostation;
 

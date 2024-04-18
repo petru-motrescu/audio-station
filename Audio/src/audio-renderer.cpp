@@ -26,8 +26,8 @@ audiostation::AudioRenderer::~AudioRenderer() = default;
 
 double audiostation::AudioRenderer::render() {
     auto frequency = 100;
-    auto amplitude = 0.5;
-    double sample = render_wave(Waveform::Sine, impl->phase) * amplitude;
+    auto amplitude = 0.1;
+    double sample = render_wave(Waveform::Square, impl->phase) * amplitude;
     impl->phase = next_phase(impl->phase, frequency, impl->sample_rate);
     return sample;
 }

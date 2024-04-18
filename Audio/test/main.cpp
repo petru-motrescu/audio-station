@@ -13,6 +13,8 @@ void run_tests() {
     std::cout << "🧪 Running tests" << std::endl;
     test_sine_wave_rendering();
     test_square_wave_rendering();
+    test_next_phase();
+    test_audio_renderer();
     std::cout << "✅ All tests done" << std::endl;
 }
 
