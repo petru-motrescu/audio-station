@@ -1,0 +1,13 @@
+#ifndef AUDIO_STATION_WAVE_RENDERING_HPP
+#define AUDIO_STATION_WAVE_RENDERING_HPP
+
+namespace audiostation {
+
+    enum class Waveform : int {
+        Sine = 0
+    };
+
+    double render_wave(Waveform waveform, double phase);
+}
+
+#endif // AUDIO_STATION_WAVE_RENDERING_HPP
