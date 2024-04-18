@@ -51,3 +51,37 @@ void audiostation::test_square_wave_rendering() {
         assert_equal(expected, actual, EPSILON, message);
     }
 }
+
+void audiostation::test_next_phase() {
+    constexpr unsigned int frequency = 100;
+    constexpr unsigned int sample_rate = 800;
+
+    // next_phase = current_phase + 2 * pi * 100 / 800
+    // next_phase = current_phase + pi / 4
+    constexpr double x = PI / 4;
+
+    std::list<std::tuple<double, double, std::string>> triples {
+        { -8 * x, 1 * x, "-8x" },
+        { -7 * x, 2 * x, "-7x" },
+        { -6 * x, 3 * x, "-6x" },
+        { -5 * x, 4 * x, "-5x" },
+        { -4 * x, 5 * x, "-4x" },
+        { -3 * x, 6 * x, "-3x" },
+        { -2 * x, 7 * x, "-2x" },
+        { -1 * x, 0 * x, "-1x" }, // <-- wrap around
+        { 0  * x, 1 * x, "+0x" },
+        { +1 * x, 2 * x, "+1x" },
+        { +2 * x, 3 * x, "+2x" },
+        { +3 * x, 4 * x, "+3x" },
+        { +4 * x, 5 * x, "+4x" },
+        { +5 * x, 6 * x, "+5x" },
+        { +6 * x, 7 * x, "+6x" },
+        { +7 * x, 0 * x, "+7x" }, // <-- wrap around
+        { +8 * x, 1 * x, "+8x" },
+    };
+
+    for (auto [current_phase, expected, message] : triples) {
+        auto actual = next_phase(current_phase, frequency, sample_rate);
+        assert_equal(expected, actual, EPSILON, message);
+    }
+}

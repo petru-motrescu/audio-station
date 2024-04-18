@@ -4,6 +4,7 @@
 namespace audiostation {
     void test_sine_wave_rendering();
     void test_square_wave_rendering();
+    void test_next_phase();
 }
 
-# endif // AUDIO_STATION_TESTS_HPP
+#endif // AUDIO_STATION_TESTS_HPP
