@@ -15,7 +15,7 @@ constexpr double EPSILON = 0.000000000000001;
 void test_audio_renderer_with_no_signals() {
     AudioRenderer renderer(44100);
     for (int i = 0; i < 100; i++) {
-        assert_equal(00, renderer.render(), EPSILON, "");
+        assert_equal(0, renderer.render(), EPSILON, "");
     }
 }
 
