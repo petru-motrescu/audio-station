@@ -4,8 +4,8 @@
 #include <list>
 #include <tuple>
 #include "wave-rendering.hpp"
+#include "wave-rendering-tests.hpp"
 #include "asserts.hpp"
-#include "tests.hpp"
 using namespace audiostation;
 
 constexpr double EPSILON = 0.00000000001;

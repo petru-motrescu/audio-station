@@ -6,8 +6,8 @@
 #include <vector>
 #include "audio-renderer.hpp"
 #include "wave-rendering.hpp"
+#include "audio-renderer-tests.hpp"
 #include "asserts.hpp"
-#include "tests.hpp"
 using namespace audiostation;
 
 constexpr double EPSILON = 0.000000000000001;

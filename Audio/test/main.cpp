@@ -5,8 +5,9 @@
 #include <tuple>
 #include <thread>
 #include <chrono>
-#include "tests.hpp"
 #include "audio-station.hpp"
+#include "audio-renderer-tests.hpp"
+#include "wave-rendering-tests.hpp"
 using namespace audiostation;
 
 void run_tests() {
