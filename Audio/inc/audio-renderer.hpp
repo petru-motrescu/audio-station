@@ -10,12 +10,10 @@ namespace audiostation {
     struct AudioRendererImpl;
 
     struct AudioRenderer {
-        AudioRenderer();
+        AudioRenderer(unsigned sample_rate);
         ~AudioRenderer();
 
-        void init();
-        void play();
-        void stop();
+        double render();
 
     private:
         std::unique_ptr<AudioRendererImpl> impl;

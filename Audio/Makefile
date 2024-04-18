@@ -6,6 +6,7 @@ build:
 	-framework AudioUnit \
 	-framework AudioToolbox \
 	-o audio-station \
+	src/audio-station.cpp \
 	src/audio-renderer.cpp \
 	src/wave-rendering.cpp \
 	test/wave-rendering-tests.cpp \

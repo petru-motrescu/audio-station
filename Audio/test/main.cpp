@@ -6,7 +6,7 @@
 #include <thread>
 #include <chrono>
 #include "tests.hpp"
-#include "audio-renderer.hpp"
+#include "audio-station.hpp"
 using namespace audiostation;
 
 void run_tests() {
@@ -19,11 +19,11 @@ void run_tests() {
 int main() {
     run_tests();
 
-    AudioRenderer renderer;
-    renderer.init();
-    renderer.play();
+    AudioStation station;
+    station.init();
+    station.play();
     std::this_thread::sleep_for(std::chrono::seconds(3));
-    renderer.stop();
+    station.stop();
 
     return 0;
 }
