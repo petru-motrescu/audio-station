@@ -4,7 +4,8 @@
 namespace audiostation {
 
     enum class Waveform : int {
-        Sine = 0
+        Sine = 0,
+        Square = 1,
     };
 
     double render_wave(Waveform waveform, double phase);
