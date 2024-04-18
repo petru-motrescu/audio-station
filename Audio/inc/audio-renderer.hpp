@@ -2,8 +2,7 @@
 #define AUDIO_STATION_AUDIO_RENDERER_HPP
 
 #include <memory>
-#include <vector>
-#include <list>
+#include "audio-signal.hpp"
 
 namespace audiostation {
 
@@ -13,6 +12,7 @@ namespace audiostation {
         AudioRenderer(unsigned sample_rate);
         ~AudioRenderer();
 
+        void add(audiostation::AudioSignal signal);
         double render();
 
     private:

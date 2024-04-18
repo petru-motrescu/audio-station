@@ -4,6 +4,7 @@
 #include <mutex>
 #include <list>
 #include <AudioToolbox/AudioToolbox.h>
+#include "audio-signal.hpp"
 #include "audio-station.hpp"
 #include "audio-renderer.hpp"
 #include "wave-rendering.hpp"
@@ -114,6 +115,10 @@ void audiostation::AudioStation::init() {
 
     AudioUnitInitialize(this->impl->audio_unit);
     std::cout << "🎛️ Audio initialized" << std::endl;
+}
+
+void audiostation::AudioStation::add(AudioSignal signal) {
+    this->impl->audio_renderer.add(signal);
 }
 
 void audiostation::AudioStation::play() {

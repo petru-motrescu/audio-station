@@ -5,6 +5,7 @@
 #include <tuple>
 #include <thread>
 #include <chrono>
+#include "audio-signal.hpp"
 #include "audio-station.hpp"
 #include "audio-renderer-tests.hpp"
 #include "wave-rendering-tests.hpp"
@@ -24,6 +25,9 @@ int main() {
 
     AudioStation station;
     station.init();
+    station.add({ .waveform = Waveform::Square, .frequency = 40, .amplitude = 0.1 });
+    station.add({ .waveform = Waveform::Sine, .frequency = 100, .amplitude = 0.5 });
+    station.add({ .waveform = Waveform::Sine, .frequency = 400, .amplitude = 0.2 });
     station.play();
     std::this_thread::sleep_for(std::chrono::seconds(3));
     station.stop();

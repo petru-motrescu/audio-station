@@ -2,6 +2,7 @@
 #define AUDIO_STATION_HPP
 
 #include <memory>
+#include "audio-signal.hpp"
 
 namespace audiostation {
 
@@ -12,6 +13,7 @@ namespace audiostation {
         ~AudioStation();
 
         void init();
+        void add(audiostation::AudioSignal signal);
         void play();
         void stop();
 
