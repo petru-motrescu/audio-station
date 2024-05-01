@@ -41,25 +41,11 @@ class GameViewController: NSViewController {
     @objc
     func handleClick(_ gestureRecognizer: NSGestureRecognizer) {
         let scnView = self.view as! SCNView
-        
         let p = gestureRecognizer.location(in: scnView)
         let hitResults = scnView.hitTest(p, options: [:])
         if hitResults.count > 0 {
             let result = hitResults[0]
-            
-            let material = result.node.geometry!.firstMaterial!
-            
-            SCNTransaction.begin()
-            SCNTransaction.animationDuration = 0.5
-            SCNTransaction.completionBlock = {
-                SCNTransaction.begin()
-                SCNTransaction.animationDuration = 0.5
-                material.emission.contents = NSColor.black
-                SCNTransaction.commit()
-            }
-            
-            material.emission.contents = NSColor.red
-            SCNTransaction.commit()
+            print(result.node.name)
         }
     }
 }
