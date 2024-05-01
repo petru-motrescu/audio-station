@@ -12,6 +12,7 @@
 		0AF426862BE2D8650028C5B3 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AF426852BE2D8650028C5B3 /* art.scnassets */; };
 		0AF426882BE2D8660028C5B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AF426872BE2D8660028C5B3 /* Assets.xcassets */; };
 		0AF4268B2BE2D8660028C5B3 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 0AF4268A2BE2D8660028C5B3 /* Base */; };
+		0AF71D662BE2E1D700348FDE /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF71D652BE2E1D700348FDE /* Key.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		0AF426872BE2D8660028C5B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0AF4268A2BE2D8660028C5B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0AF4268C2BE2D8670028C5B3 /* AudioStation.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AudioStation.entitlements; sourceTree = "<group>"; };
+		0AF71D652BE2E1D700348FDE /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 		0AF426802BE2D8650028C5B3 /* AudioStation */ = {
 			isa = PBXGroup;
 			children = (
+				0AF71D652BE2E1D700348FDE /* Key.swift */,
 				0AF426812BE2D8650028C5B3 /* AppDelegate.swift */,
 				0AF426832BE2D8650028C5B3 /* ViewController.swift */,
 				0AF426852BE2D8650028C5B3 /* art.scnassets */,
@@ -137,6 +140,7 @@
 			files = (
 				0AF426842BE2D8650028C5B3 /* ViewController.swift in Sources */,
 				0AF426822BE2D8650028C5B3 /* AppDelegate.swift in Sources */,
+				0AF71D662BE2E1D700348FDE /* Key.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -3,6 +3,9 @@ import QuartzCore
 
 class GameViewController: NSViewController {
     
+    private var keys: [String: Key] = [:]
+    private var pressedKey: Key? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,24 +31,62 @@ class GameViewController: NSViewController {
 
         let scnView = self.view as! SCNView
         scnView.scene = scene
-        scnView.allowsCameraControl = true
-        scnView.showsStatistics = true
+        scnView.allowsCameraControl = false
+        scnView.showsStatistics = false
         scnView.backgroundColor = .black
         
-        let clickGesture = NSClickGestureRecognizer(target: self, action: #selector(handleClick(_:)))
+        let gestureRecognizer = NSPressGestureRecognizer(target: self, action: #selector(handleGesture(_:)))
+        gestureRecognizer.minimumPressDuration = 0
         var gestureRecognizers = scnView.gestureRecognizers
-        gestureRecognizers.insert(clickGesture, at: 0)
+        gestureRecognizers.insert(gestureRecognizer, at: 0)
         scnView.gestureRecognizers = gestureRecognizers
+        
+        for index in 1...7 {
+            let keyName = "O1-K\(index)"
+            keys[keyName] = Key(findNode(scene, keyName))
+        }
     }
     
     @objc
-    func handleClick(_ gestureRecognizer: NSGestureRecognizer) {
+    func handleGesture(_ gestureRecognizer: NSGestureRecognizer) {
         let scnView = self.view as! SCNView
-        let p = gestureRecognizer.location(in: scnView)
-        let hitResults = scnView.hitTest(p, options: [:])
+        let location = gestureRecognizer.location(in: scnView)
+        let hitResults = scnView.hitTest(location, options: [:])
         if hitResults.count > 0 {
             let result = hitResults[0]
-            print(result.node.name)
+            if let key = keys[result.node.name!] {
+                if (gestureRecognizer.state == .began || gestureRecognizer.state == .changed) {
+                    pressKey(key)
+                } else {
+                    releaseKey(key)
+                }
+            }
+        } else {
+            releaseAllKeys()
+        }
+    }
+    
+    private func findNode(_ scene: SCNScene, _ name: String) -> SCNNode {
+        return scene.rootNode.childNode(withName: name, recursively: true)!
+    }
+    
+    
+    private func pressKey(_ key: Key) {
+        if (self.pressedKey != nil && self.pressedKey != key) {
+            self.pressedKey?.release()
+        }
+        self.pressedKey = key
+        key.press()
+    }
+    
+    private func releaseKey(_ key: Key) {
+        self.pressedKey = nil
+        key.release()
+    }
+    
+    private func releaseAllKeys() {
+        if (self.pressedKey != nil) {
+            self.pressedKey?.release()
         }
     }
 }
