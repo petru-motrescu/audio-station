@@ -41,9 +41,11 @@ class GameViewController: NSViewController {
         gestureRecognizers.insert(gestureRecognizer, at: 0)
         scnView.gestureRecognizers = gestureRecognizers
         
-        for index in 1...7 {
-            let keyName = "O1-K\(index)"
-            keys[keyName] = Key(findNode(scene, keyName))
+        for octave in 1...2 {
+            for index in 1...7 {
+                let keyName = "O\(octave)-K\(index)"
+                keys[keyName] = Key(findNode(scene, keyName))
+            }
         }
     }
     
