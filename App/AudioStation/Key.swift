@@ -9,7 +9,7 @@ class Key : Equatable {
     }
     
     func press() {
-        node.position.z = -0.5
+        node.position.z = -1.0
     }
     
     func release() {
