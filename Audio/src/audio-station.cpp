@@ -1,8 +1,6 @@
 #include <algorithm>
 #include <iostream>
 #include <cmath>
-#include <mutex>
-#include <list>
 #include <AudioToolbox/AudioToolbox.h>
 #include "audio-signal.hpp"
 #include "audio-station.hpp"

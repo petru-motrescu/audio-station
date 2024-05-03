@@ -12,6 +12,7 @@
 		0ABBE0392BE554B000803057 /* wave-rendering.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0ABBE0312BE554B000803057 /* wave-rendering.cpp */; };
 		0ABBE03C2BE554D100803057 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABBE03B2BE554D100803057 /* AudioToolbox.framework */; };
 		0ABBE03E2BE554D800803057 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABBE03D2BE554D800803057 /* AudioUnit.framework */; };
+		0ABBE0412BE5579900803057 /* audio-station-c.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0ABBE0402BE5579900803057 /* audio-station-c.cpp */; };
 		0AF426822BE2D8650028C5B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF426812BE2D8650028C5B3 /* AppDelegate.swift */; };
 		0AF426842BE2D8650028C5B3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF426832BE2D8650028C5B3 /* ViewController.swift */; };
 		0AF426862BE2D8650028C5B3 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AF426852BE2D8650028C5B3 /* art.scnassets */; };
@@ -31,6 +32,8 @@
 		0ABBE0312BE554B000803057 /* wave-rendering.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "wave-rendering.cpp"; sourceTree = "<group>"; };
 		0ABBE03B2BE554D100803057 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		0ABBE03D2BE554D800803057 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		0ABBE03F2BE556D700803057 /* audio-station-c.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "audio-station-c.h"; sourceTree = "<group>"; };
+		0ABBE0402BE5579900803057 /* audio-station-c.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "audio-station-c.cpp"; sourceTree = "<group>"; };
 		0AF4267E2BE2D8650028C5B3 /* AudioStation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioStation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AF426812BE2D8650028C5B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0AF426832BE2D8650028C5B3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -70,6 +73,7 @@
 				0ABBE0292BE554B000803057 /* audio-renderer.hpp */,
 				0ABBE02A2BE554B000803057 /* audio-signal.hpp */,
 				0ABBE02B2BE554B000803057 /* audio-station.hpp */,
+				0ABBE03F2BE556D700803057 /* audio-station-c.h */,
 				0ABBE02C2BE554B000803057 /* audio-waveform.hpp */,
 				0ABBE02D2BE554B000803057 /* wave-rendering.hpp */,
 			);
@@ -82,6 +86,7 @@
 			children = (
 				0ABBE02F2BE554B000803057 /* audio-renderer.cpp */,
 				0ABBE0302BE554B000803057 /* audio-station.cpp */,
+				0ABBE0402BE5579900803057 /* audio-station-c.cpp */,
 				0ABBE0312BE554B000803057 /* wave-rendering.cpp */,
 			);
 			name = src;
@@ -203,6 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AF426842BE2D8650028C5B3 /* ViewController.swift in Sources */,
+				0ABBE0412BE5579900803057 /* audio-station-c.cpp in Sources */,
 				0ABBE0372BE554B000803057 /* audio-renderer.cpp in Sources */,
 				0AF426822BE2D8650028C5B3 /* AppDelegate.swift in Sources */,
 				0ABBE0392BE554B000803057 /* wave-rendering.cpp in Sources */,

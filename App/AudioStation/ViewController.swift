@@ -5,6 +5,7 @@ class GameViewController: NSViewController {
     
     private var keys: [String: Key] = [:]
     private var pressedKey: Key? = nil
+    private var audioStation: AudioStationHandle? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +48,9 @@ class GameViewController: NSViewController {
                 keys[keyName] = Key(findNode(scene, keyName))
             }
         }
+        
+        let appDelegate = NSApplication.shared.delegate as! AppDelegate
+        self.audioStation = appDelegate.audioStation
     }
     
     @objc
@@ -79,11 +83,13 @@ class GameViewController: NSViewController {
         }
         self.pressedKey = key
         key.press()
+        audio_station_play(self.audioStation!)
     }
     
     private func releaseKey(_ key: Key) {
         self.pressedKey = nil
         key.release()
+        audio_station_stop(self.audioStation!)
     }
     
     private func releaseAllKeys() {
