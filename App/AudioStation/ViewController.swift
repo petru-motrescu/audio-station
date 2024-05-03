@@ -1,7 +1,7 @@
 import SceneKit
 import QuartzCore
 
-class GameViewController: NSViewController {
+class ViewController: NSViewController {
     
     private var keys: [String: Key] = [:]
     private var pressedKey: Key? = nil
