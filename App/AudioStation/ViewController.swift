@@ -99,7 +99,7 @@ class ViewController: NSViewController {
     
     private func releaseAllKeys() {
         if (self.pressedKey != nil) {
-            self.pressedKey?.release()
+            releaseKey(self.pressedKey!)
         }
     }
 }
