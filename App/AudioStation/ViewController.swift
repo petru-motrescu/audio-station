@@ -53,14 +53,15 @@ class ViewController: NSViewController {
         audio_station_play(self.audioStation!)
         
         let keyNames = [
-            "C2", "D2", "E2", "F2", "G2", "A2", "B2",
-            "C3", "D3", "E3", "F3", "G3", "A3", "B3",
+            "C1", "CD1", "D1", "DE1", "E1", "F1", "FG1", "G1", "GA1", "A1", "AB1", "B1",
+            "C2", "CD2", "D2", "DE2", "E2", "F2", "FG2", "G2", "GA2", "A2", "AB2", "B2",
+            "C3", "CD3", "D3", "DE3", "E3", "F3", "FG3", "G3", "GA3", "A3", "AB3", "B3",
         ]
         
         var audioSignalId: Int32 = 0
         for keyName in keyNames {
             let graphicsNode = findNode(scene, keyName)
-            keys[keyName] = Key(self.audioStation!, audioSignalId, graphicsNode)
+            keys[keyName] = Key(keyName, self.audioStation!, audioSignalId, graphicsNode)
             audioSignalId += 1
         }
     }
