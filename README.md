@@ -43,6 +43,7 @@ Audio:
 - [Wiki > Waveform](https://en.wikipedia.org/wiki/Waveform)
 - [Apple > Audio](https://developer.apple.com/audio/)
 - [Apple > Core Audio](https://developer.apple.com/library/archive/documentation/MusicAudio/Conceptual/CoreAudioOverview)
+- [Wiki > Piano key frequencies](https://en.wikipedia.org/wiki/Piano_key_frequencies)
 
 Graphics:
 - [Apple > SceneKit](https://developer.apple.com/documentation/scenekit)

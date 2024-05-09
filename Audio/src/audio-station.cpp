@@ -119,6 +119,10 @@ void audiostation::AudioStation::add(AudioSignal signal) {
     this->impl->audio_renderer.add(signal);
 }
 
+void audiostation::AudioStation::add(std::vector<AudioSignal> signals) {
+    this->impl->audio_renderer.add(signals);
+}
+
 void audiostation::AudioStation::play() {
     AudioOutputUnitStart(this->impl->audio_unit);
     std::cout << "▶️ Audio playing" << std::endl;

@@ -13,6 +13,7 @@ namespace audiostation {
         ~AudioRenderer();
 
         void add(audiostation::AudioSignal signal);
+        void add(std::vector<audiostation::AudioSignal> signals);
         double render();
 
     private:

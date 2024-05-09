@@ -38,3 +38,11 @@ double audiostation::AudioRenderer::render() {
 void audiostation::AudioRenderer::add(audiostation::AudioSignal signal) {
     this->impl->signals.push_back(signal);
 }
+
+void audiostation::AudioRenderer::add(std::vector<audiostation::AudioSignal> signals) {
+    this->impl->signals.insert(
+        std::end(this->impl->signals), 
+        std::begin(signals), 
+        std::end(signals)
+    );
+}
