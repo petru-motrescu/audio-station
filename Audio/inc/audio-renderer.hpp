@@ -12,8 +12,8 @@ namespace audiostation {
         AudioRenderer(unsigned sample_rate);
         ~AudioRenderer();
 
-        void add(audiostation::AudioSignal signal);
-        void add(std::vector<audiostation::AudioSignal> signals);
+        void add_signal(audiostation::AudioSignal signal);
+        void add_signals(std::vector<audiostation::AudioSignal> signals);
         void set_signal_live(int signal_id, bool live);
         double render();
 

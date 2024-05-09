@@ -115,12 +115,12 @@ void audiostation::AudioStation::init() {
     std::cout << "🎛️ Audio initialized" << std::endl;
 }
 
-void audiostation::AudioStation::add(AudioSignal signal) {
-    this->impl->audio_renderer.add(signal);
+void audiostation::AudioStation::add_signal(AudioSignal signal) {
+    this->impl->audio_renderer.add_signal(signal);
 }
 
-void audiostation::AudioStation::add(std::vector<AudioSignal> signals) {
-    this->impl->audio_renderer.add(signals);
+void audiostation::AudioStation::add_signals(std::vector<AudioSignal> signals) {
+    this->impl->audio_renderer.add_signals(signals);
 }
 
 void audiostation::AudioStation::set_signal_live(int signal_id, bool live) {

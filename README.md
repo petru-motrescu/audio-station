@@ -13,11 +13,16 @@ The purpose of the library is to generate and play sounds from any C++ app on Ma
 
 A simple example:
 ```cpp
+std::vector<AudioSignal> signals {
+    { .waveform = Waveform::Sine, .frequency = 65.40639, .amplitude = 0.4, .live = true },
+    { .waveform = Waveform::Sine, .frequency = 261.6256, .amplitude = 0.3, .live = true },
+    { .waveform = Waveform::Sine, .frequency = 349.2282, .amplitude = 0.2, .live = true },
+    { .waveform = Waveform::Square, .frequency = 523.2511, .amplitude = 0.01, .live = true },
+};
+
 AudioStation station;
 station.init();
-station.add({ .waveform = Waveform::Square, .frequency = 40, .amplitude = 0.1 });
-station.add({ .waveform = Waveform::Sine, .frequency = 100, .amplitude = 0.5 });
-station.add({ .waveform = Waveform::Sine, .frequency = 400, .amplitude = 0.2 });
+station.add_signals(signals);
 station.play();
 std::this_thread::sleep_for(std::chrono::seconds(3));
 station.stop();

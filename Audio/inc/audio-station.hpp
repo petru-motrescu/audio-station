@@ -14,9 +14,9 @@ namespace audiostation {
         ~AudioStation();
 
         void init();
-        void add(audiostation::AudioSignal signal);
-        void add(std::vector<audiostation::AudioSignal> signals);
-        void set_signal_live(int id, bool live);
+        void add_signal(audiostation::AudioSignal signal);
+        void add_signals(std::vector<audiostation::AudioSignal> signals);
+        void set_signal_live(int signal_id, bool live);
         void play();
         void stop();
 

@@ -17,9 +17,23 @@ void run_tests() {
     std::cout << "✅ All tests done" << std::endl;
 }
 
-int main() {
-    run_tests();
+void run_readme_demo() {
+    std::vector<AudioSignal> signals {
+        { .waveform = Waveform::Sine, .frequency = 65.40639, .amplitude = 0.4, .live = true },
+        { .waveform = Waveform::Sine, .frequency = 261.6256, .amplitude = 0.3, .live = true },
+        { .waveform = Waveform::Sine, .frequency = 349.2282, .amplitude = 0.2, .live = true },
+        { .waveform = Waveform::Square, .frequency = 523.2511, .amplitude = 0.01, .live = true },
+    };
 
+    AudioStation station;
+    station.init();
+    station.add_signals(signals);
+    station.play();
+    std::this_thread::sleep_for(std::chrono::seconds(3));
+    station.stop();
+}
+
+void run_piano_demo() {
     std::vector<AudioSignal> signals;
     
     // Idealized standard piano keys
@@ -35,7 +49,7 @@ int main() {
 
     AudioStation station;
     station.init();
-    station.add(signals);
+    station.add_signals(signals);
     station.play();
     for (int i = 0; i < signals.size(); i++) {
         station.set_signal_live(i, true);
@@ -43,6 +57,11 @@ int main() {
         station.set_signal_live(i, false);
     }
     station.stop();
+}
 
+int main() {
+    run_tests();
+    run_readme_demo();
+    // run_piano_demo();
     return 0;
 }
