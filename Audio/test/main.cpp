@@ -29,7 +29,7 @@ int main() {
         signals.push_back({ 
             .waveform = Waveform::Sine, 
             .frequency = frequency, 
-            .amplitude = 0.01
+            .amplitude = 0.5
         });
     }
 
@@ -37,7 +37,11 @@ int main() {
     station.init();
     station.add(signals);
     station.play();
-    std::this_thread::sleep_for(std::chrono::seconds(3));
+    for (int i = 0; i < signals.size(); i++) {
+        station.set_signal_live(i, true);
+        std::this_thread::sleep_for(std::chrono::milliseconds(250));
+        station.set_signal_live(i, false);
+    }
     station.stop();
 
     return 0;

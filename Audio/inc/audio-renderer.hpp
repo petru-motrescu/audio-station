@@ -14,6 +14,7 @@ namespace audiostation {
 
         void add(audiostation::AudioSignal signal);
         void add(std::vector<audiostation::AudioSignal> signals);
+        void set_signal_live(int signal_id, bool live);
         double render();
 
     private:

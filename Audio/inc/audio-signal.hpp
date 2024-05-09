@@ -10,6 +10,7 @@ namespace audiostation {
         double frequency;
         double amplitude;
         double phase;
+        bool live;
     };
 }
 

@@ -29,7 +29,10 @@ audiostation::AudioRenderer::~AudioRenderer() = default;
 double audiostation::AudioRenderer::render() {
     double sample = 0;
     for (AudioSignal& signal : this->impl->signals) {
-        sample += render_wave(signal.waveform, signal.phase) * signal.amplitude;
+        if (signal.live) {
+            sample += render_wave(signal.waveform, signal.phase) * signal.amplitude;
+        }
+        // Intentionally advancing the phase of silent signals too.
         signal.phase = next_phase(signal.phase, signal.frequency, this->impl->sample_rate);
     }
     return sample;
@@ -45,4 +48,8 @@ void audiostation::AudioRenderer::add(std::vector<audiostation::AudioSignal> sig
         std::begin(signals), 
         std::end(signals)
     );
+}
+
+void audiostation::AudioRenderer::set_signal_live(int signal_id, bool live) {
+    this->impl->signals[signal_id].live = live;
 }
