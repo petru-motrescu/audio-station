@@ -22,9 +22,7 @@ int main() {
 
     AudioStation station;
     station.init();
-    station.add({ .waveform = Waveform::Square, .frequency = 40, .amplitude = 0.1 });
-    station.add({ .waveform = Waveform::Sine, .frequency = 100, .amplitude = 0.5 });
-    station.add({ .waveform = Waveform::Sine, .frequency = 400, .amplitude = 0.2 });
+    station.add({ .waveform = Waveform::Sine, .frequency = 27.50000, .amplitude = 0.5 });
     station.play();
     std::this_thread::sleep_for(std::chrono::seconds(3));
     station.stop();

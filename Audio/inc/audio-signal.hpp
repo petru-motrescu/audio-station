@@ -7,7 +7,7 @@ namespace audiostation {
 
     struct AudioSignal {
         audiostation::Waveform waveform;
-        unsigned frequency;
+        double frequency;
         double amplitude;
         double phase;
     };
