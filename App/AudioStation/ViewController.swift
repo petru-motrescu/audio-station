@@ -6,6 +6,7 @@ class ViewController: NSViewController {
     private var keys: [String: Key] = [:]
     private var pressedKey: Key? = nil
     private var audioStation: AudioStationHandle? = nil
+    private var audioPlaying: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,13 +89,19 @@ class ViewController: NSViewController {
         }
         self.pressedKey = key
         key.press()
-        audio_station_play(self.audioStation!)
+        
+        if (!audioPlaying) {
+            audioPlaying = true
+            audio_station_play(self.audioStation!)
+        }
+        
+        audio_station_set_signal_live(self.audioStation!, 0)
     }
     
     private func releaseKey(_ key: Key) {
         self.pressedKey = nil
         key.release()
-        audio_station_stop(self.audioStation!)
+        audio_station_set_signal_silent(self.audioStation!, 0)
     }
     
     private func releaseAllKeys() {

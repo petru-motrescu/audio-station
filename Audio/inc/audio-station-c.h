@@ -10,6 +10,8 @@ typedef long AudioStationHandle;
 AudioStationHandle audio_station_init();
 void audio_station_play(AudioStationHandle handle);
 void audio_station_stop(AudioStationHandle handle);
+void audio_station_set_signal_live(AudioStationHandle handle, int signal_id);
+void audio_station_set_signal_silent(AudioStationHandle handle, int signal_id);
 void audio_station_dispose(AudioStationHandle handle);
 
 #ifdef __cplusplus
