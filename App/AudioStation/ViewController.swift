@@ -48,15 +48,21 @@ class ViewController: NSViewController {
         gestureRecognizers.insert(gestureRecognizer, at: 0)
         scnView.gestureRecognizers = gestureRecognizers
         
-        for octave in 1...2 {
-            for index in 1...7 {
-                let keyName = "O\(octave)-K\(index)"
-                keys[keyName] = Key(findNode(scene, keyName))
-            }
-        }
-        
         let appDelegate = NSApplication.shared.delegate as! AppDelegate
         self.audioStation = appDelegate.audioStation
+        audio_station_play(self.audioStation!)
+        
+        let keyNames = [
+            "C2", "D2", "E2", "F2", "G2", "A2", "B2",
+            "C3", "D3", "E3", "F3", "G3", "A3", "B3",
+        ]
+        
+        var audioSignalId: Int32 = 0
+        for keyName in keyNames {
+            let graphicsNode = findNode(scene, keyName)
+            keys[keyName] = Key(self.audioStation!, audioSignalId, graphicsNode)
+            audioSignalId += 1
+        }
     }
     
     @objc
@@ -89,19 +95,11 @@ class ViewController: NSViewController {
         }
         self.pressedKey = key
         key.press()
-        
-        if (!audioPlaying) {
-            audioPlaying = true
-            audio_station_play(self.audioStation!)
-        }
-        
-        audio_station_set_signal_live(self.audioStation!, 0)
     }
     
     private func releaseKey(_ key: Key) {
         self.pressedKey = nil
         key.release()
-        audio_station_set_signal_silent(self.audioStation!, 0)
     }
     
     private func releaseAllKeys() {
