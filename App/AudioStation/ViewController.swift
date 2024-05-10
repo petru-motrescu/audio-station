@@ -16,13 +16,13 @@ class ViewController: NSViewController {
         let cameraNode = SCNNode()
         
         let camera = SCNCamera()
-        camera.fieldOfView = 10
-        camera.zFar = 110
+        camera.fieldOfView = 1
+        camera.zFar = 2000
         
         cameraNode.camera = camera
         scene.rootNode.addChildNode(cameraNode)
         
-        cameraNode.position = SCNVector3(x: 0, y: 0, z: 100)
+        cameraNode.position = SCNVector3(x: 0, y: 0, z: 1000)
         
         let lightNode = SCNNode()
         lightNode.light = SCNLight()
