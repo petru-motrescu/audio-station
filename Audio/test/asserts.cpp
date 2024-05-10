@@ -1,3 +1,4 @@
+#include <iomanip>
 #include "asserts.hpp"
 using namespace audiostation;
 
@@ -9,6 +10,7 @@ void audiostation::assert_equal(
 {
     if (abs(expected - actual) > epsilon) {
         std::cout 
+            << std::setprecision (16)
             << "Expected: " << expected 
             << " Actual: " << actual 
             << " [" << message << "]" 

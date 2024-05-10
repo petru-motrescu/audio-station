@@ -14,10 +14,10 @@ Built on top of Core Audio, the audio library can generate audio signals and pla
 You can even try the library directly from terminal. Here is an example of doing so:
 ```cpp
 std::vector<AudioSignal> signals {
-    { .waveform = Waveform::Sine, .frequency = 65.40639, .amplitude = 0.4, .live = true },
-    { .waveform = Waveform::Sine, .frequency = 261.6256, .amplitude = 0.3, .live = true },
-    { .waveform = Waveform::Sine, .frequency = 349.2282, .amplitude = 0.2, .live = true },
-    { .waveform = Waveform::Square, .frequency = 523.2511, .amplitude = 0.01, .live = true },
+    { .waveform = Waveform::Sine, .frequency = C2, .amplitude = 0.4, .live = true },
+    { .waveform = Waveform::Sine, .frequency = C4, .amplitude = 0.3, .live = true },
+    { .waveform = Waveform::Sine, .frequency = F4, .amplitude = 0.2, .live = true },
+    { .waveform = Waveform::Square, .frequency = C5, .amplitude = 0.01, .live = true },
 };
 
 AudioStation station;
