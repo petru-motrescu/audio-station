@@ -7,11 +7,11 @@ The project consists of two parts:
 - a DAW-like app that uses the library (coming soon)
 
 
-### The library
+### The audio library
 
-The purpose of the library is to generate and play sounds from any C++ app on Mac.
+Built on top of Core Audio, the audio library can generate audio signals and play them in real-time. For better or for worse the library has been implemented in C++. There is a C api available as well so that it can be easily used from any Swift of Objective-C app on Mac.
 
-A simple example:
+You can even try the library directly from terminal. Here is an example of doing so:
 ```cpp
 std::vector<AudioSignal> signals {
     { .waveform = Waveform::Sine, .frequency = 65.40639, .amplitude = 0.4, .live = true },
@@ -38,7 +38,9 @@ make run
 
 ### The app
 
-_soon_
+<img src="screenshot.png" width="800"/>
+
+The app uses SceneKit for the graphics and the audio library to play some silly sounds. Very much a work in progress.
 
 
 ### Documentation
@@ -52,3 +54,8 @@ Audio:
 
 Graphics:
 - [Apple > SceneKit](https://developer.apple.com/documentation/scenekit)
+
+
+### Footnote
+
+_Educational purpose only, no guarantees, no promises. Not connected to my employer._
