@@ -54,7 +54,7 @@ AudioStationHandle audio_station_init() {
     std::vector<AudioSignal> signals;
     for (int i = 0; i < frequencies.size(); i++) {
         signals.push_back({
-            .waveform = Waveform::Sine,
+            .waveform = Waveform::Square,
             .frequency = frequencies[i],
             .amplitude = 0.5,
             .live = false
