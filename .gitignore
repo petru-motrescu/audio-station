@@ -94,4 +94,5 @@ iOSInjectionProject/
 
 .idea/
 .vscode/
+.DS_Store
 audio-station
