@@ -22,7 +22,8 @@ class ViewController: NSViewController {
         cameraNode.camera = camera
         scene.rootNode.addChildNode(cameraNode)
         
-        cameraNode.position = SCNVector3(x: 0, y: 0, z: 1000)
+        cameraNode.position = SCNVector3(x: 0, y: -360, z: 1000)
+        cameraNode.eulerAngles = SCNVector3(x: 0.35, y: 0, z: 0)
         
         let lightNode = SCNNode()
         lightNode.light = SCNLight()

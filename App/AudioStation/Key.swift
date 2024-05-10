@@ -35,9 +35,8 @@ class Key : Equatable {
     }
     
     private func pressedZ() -> Double {
-        print(self.isBlack)
         if self.isBlack {
-            return 0.0
+            return 0.5
         } else {
             return -1.0
         }
