@@ -7,7 +7,8 @@
 #include <chrono>
 #include "audio-signal.hpp"
 #include "audio-station.hpp"
-#include "pitch.hpp"
+#include "frequency.hpp"
+#include "synth.hpp"
 #include "tests.hpp"
 using namespace audiostation;
 
@@ -15,15 +16,16 @@ void run_tests() {
     std::cout << "🧪 Running tests" << std::endl;
     run_wave_rendering_tests();
     run_audio_rendering_tests();
+    run_synth_tests();
     std::cout << "✅ All tests done" << std::endl;
 }
 
 void run_readme_demo() {
     std::vector<AudioSignal> signals {
-        { .waveform = Waveform::Sine, .frequency = C2, .amplitude = 0.4, .live = true },
-        { .waveform = Waveform::Sine, .frequency = C4, .amplitude = 0.3, .live = true },
-        { .waveform = Waveform::Sine, .frequency = F4, .amplitude = 0.2, .live = true },
-        { .waveform = Waveform::Square, .frequency = C5, .amplitude = 0.01, .live = true },
+        { .waveform = Waveform::Sine, .frequency = Frequency::C2, .amplitude = 0.4, .live = true },
+        { .waveform = Waveform::Sine, .frequency = Frequency::C4, .amplitude = 0.3, .live = true },
+        { .waveform = Waveform::Sine, .frequency = Frequency::F4, .amplitude = 0.2, .live = true },
+        { .waveform = Waveform::Square, .frequency = Frequency::C5, .amplitude = 0.01, .live = true },
     };
 
     AudioStation station;
