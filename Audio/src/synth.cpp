@@ -19,7 +19,7 @@ audiostation::Synth::Synth() {
         this->impl->signals.push_back({ 
             .waveform = Waveform::Square, 
             .frequency = Notes::get_frequency(note), 
-            .amplitude = 0.5
+            .amplitude = 0.1
         });
         this->impl->note_signal_ids[note] = signal_id++;
     }

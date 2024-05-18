@@ -21,22 +21,6 @@ void run_tests() {
     std::cout << "✅ All tests done" << std::endl;
 }
 
-void run_readme_demo() {
-    std::vector<AudioSignal> signals {
-        { .waveform = Waveform::Sine, .frequency = Frequency::C2, .amplitude = 0.4, .live = true },
-        { .waveform = Waveform::Sine, .frequency = Frequency::C4, .amplitude = 0.3, .live = true },
-        { .waveform = Waveform::Sine, .frequency = Frequency::F4, .amplitude = 0.2, .live = true },
-        { .waveform = Waveform::Square, .frequency = Frequency::C5, .amplitude = 0.01, .live = true },
-    };
-
-    AudioStation station;
-    station.init();
-    station.add_signals(signals);
-    station.play();
-    std::this_thread::sleep_for(std::chrono::seconds(3));
-    station.stop();
-}
-
 void run_synth_demo() {
     AudioStation station;
     station.init();
@@ -47,7 +31,7 @@ void run_synth_demo() {
     
     for (auto& note : Notes::piano_notes) {
         synth.play_note(note);
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        std::this_thread::sleep_for(std::chrono::milliseconds(60));
         synth.stop_note(note);
     }
     
@@ -69,8 +53,7 @@ void run_oscillator_demo() {
 
 int main() {
     run_tests();
-    // run_readme_demo();
-    // run_synth_demo();
-    run_oscillator_demo();
+    run_synth_demo();
+    // run_oscillator_demo();
     return 0;
 }
