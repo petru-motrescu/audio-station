@@ -18,6 +18,7 @@ namespace audiostation {
         void play_note(Note note);
         void stop_note(Note note);
         bool is_note_live(Note note);
+        double render(unsigned sample_rate);
 
     private:
         std::unique_ptr<SynthImpl> impl;

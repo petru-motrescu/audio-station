@@ -4,6 +4,7 @@
 #include <memory>
 #include <vector>
 #include "audio-signal.hpp"
+#include "synth.hpp"
 
 namespace audiostation {
 
@@ -14,6 +15,7 @@ namespace audiostation {
         ~AudioStation();
 
         void init();
+        void add_synth(audiostation::Synth* synth);
         void add_signal(audiostation::AudioSignal signal);
         void add_signals(std::vector<audiostation::AudioSignal> signals);
         void set_signal_live(int signal_id, bool live);

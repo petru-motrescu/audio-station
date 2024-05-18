@@ -62,9 +62,28 @@ void run_piano_demo() {
     station.stop();
 }
 
+void run_synth_demo() {
+    AudioStation station;
+    station.init();
+    station.play();
+    
+    Synth synth;
+    station.add_synth(&synth);
+    
+    for (int i = Notes::to_int(Synth::FIRST_NOTE); i <= Notes::to_int(Synth::LAST_NOTE); i++) {
+        auto note = Notes::from_int(i);
+        synth.play_note(note);
+        std::this_thread::sleep_for(std::chrono::milliseconds(250));
+        synth.stop_note(note);
+    }
+    
+    station.stop();
+}
+
 int main() {
-    run_tests();
-    run_readme_demo();
+    // run_tests();
+    // run_readme_demo();
     // run_piano_demo();
+    run_synth_demo();
     return 0;
 }

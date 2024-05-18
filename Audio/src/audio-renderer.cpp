@@ -4,9 +4,11 @@
 #include <mutex>
 #include <list>
 #include <vector>
+#include <memory>
 #include <AudioToolbox/AudioToolbox.h>
 #include "audio-signal.hpp"
 #include "audio-renderer.hpp"
+#include "synth.hpp"
 #include "wave-rendering.hpp"
 using namespace audiostation;
 
@@ -14,6 +16,7 @@ struct audiostation::AudioRendererImpl {
     AudioRendererImpl(unsigned sample_rate);
     unsigned sample_rate;
     std::vector<AudioSignal> signals;
+    std::vector<Synth*> synths;
 };
 
 audiostation::AudioRendererImpl::AudioRendererImpl(unsigned sample_rate) {
@@ -28,6 +31,8 @@ audiostation::AudioRenderer::~AudioRenderer() = default;
 
 double audiostation::AudioRenderer::render() {
     double sample = 0;
+    
+    // TODO: Move to a osciloscope device
     for (AudioSignal& signal : this->impl->signals) {
         if (signal.live) {
             sample += render_wave(signal.waveform, signal.phase) * signal.amplitude;
@@ -35,7 +40,16 @@ double audiostation::AudioRenderer::render() {
         // Intentionally advancing the phase of silent signals too.
         signal.phase = next_phase(signal.phase, signal.frequency, this->impl->sample_rate);
     }
+
+    for (auto synth : this->impl->synths) {
+        sample += synth->render(this->impl->sample_rate);
+    }
+
     return sample;
+}
+
+void audiostation::AudioRenderer::add_synth(audiostation::Synth* synth) {
+    this->impl->synths.push_back(synth);
 }
 
 void audiostation::AudioRenderer::add_signal(audiostation::AudioSignal signal) {
