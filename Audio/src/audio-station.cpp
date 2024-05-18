@@ -123,18 +123,6 @@ void audiostation::AudioStation::add_synth(audiostation::Synth* synth) {
     this->impl->audio_renderer.add_synth(synth);
 }
 
-void audiostation::AudioStation::add_signal(AudioSignal signal) {
-    this->impl->audio_renderer.add_signal(signal);
-}
-
-void audiostation::AudioStation::add_signals(std::vector<AudioSignal> signals) {
-    this->impl->audio_renderer.add_signals(signals);
-}
-
-void audiostation::AudioStation::set_signal_live(int signal_id, bool live) {
-    this->impl->audio_renderer.set_signal_live(signal_id, live);
-}
-
 void audiostation::AudioStation::play() {
     AudioOutputUnitStart(this->impl->audio_unit);
     std::cout << "▶️ Audio playing" << std::endl;
