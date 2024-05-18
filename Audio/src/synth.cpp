@@ -31,16 +31,16 @@ audiostation::Synth::Synth() {
         this->impl->signals.push_back({ 
             .waveform = Waveform::Square, 
             .frequency = Notes::get_frequency(note), 
-            .amplitude = 0.1,
+            .amplitude = 0.2,
             .ticks = 0
         });
         this->impl->note_signal_ids[note] = signal_id++;
     }
 
     this->impl->envelope = {
-        .atack = 0.25,
-        .decay = 1,
-        .sustain = 0.05,
+        .atack = 10,
+        .decay = 5000,
+        .sustain = 0.005,
         .release = 1
     };
 }
@@ -83,9 +83,16 @@ double audiostation::Synth::render(unsigned sample_rate) {
 double render_signal(SynthSignal& signal, Envelope& envelope, unsigned sample_rate) {
     double sample = WaveRenderer::render_wave(signal.waveform, signal.phase) * signal.amplitude;
     double atack_ticks = envelope.atack * sample_rate / 1000; // TODO Precompute this
+    double decay_ticks = envelope.decay * sample_rate / 1000; // TODO Precompute this
     if (signal.ticks < atack_ticks) {
         sample = (signal.ticks / atack_ticks) * sample;
+    } else if (signal.ticks < (atack_ticks + decay_ticks)) {
+        auto ticks = signal.ticks - atack_ticks;
+        sample = (1 - ticks / decay_ticks) * sample + ticks / decay_ticks * envelope.sustain * sample;
+    } else {
+        sample = envelope.sustain * sample;
     }
+    
     signal.phase = WaveRenderer::next_phase(signal.phase, signal.frequency, sample_rate);
     signal.ticks++;
     return sample;
