@@ -1,7 +1,6 @@
 #include <vector>
 #include "audio-station-c.h"
 #include "audio-station.hpp"
-#include "audio-signal.hpp"
 #include "note.hpp"
 using namespace audiostation;
 

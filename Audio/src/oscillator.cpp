@@ -1,6 +1,5 @@
 #include <iostream>
 #include <utility>
-#include "audio-signal.hpp"
 #include "note.hpp"
 #include "frequency.hpp"
 #include "oscillator.hpp"

@@ -33,7 +33,6 @@
 		0A5EEE2B2BF91EAB0088DA5D /* synth.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = synth.cpp; sourceTree = "<group>"; };
 		0A5EEE2C2BF91EAB0088DA5D /* notes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = notes.cpp; sourceTree = "<group>"; };
 		0ABBE0292BE554B000803057 /* audio-renderer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "audio-renderer.hpp"; sourceTree = "<group>"; };
-		0ABBE02A2BE554B000803057 /* audio-signal.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "audio-signal.hpp"; sourceTree = "<group>"; };
 		0ABBE02B2BE554B000803057 /* audio-station.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "audio-station.hpp"; sourceTree = "<group>"; };
 		0ABBE02C2BE554B000803057 /* waveform.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = waveform.hpp; sourceTree = "<group>"; };
 		0ABBE02D2BE554B000803057 /* wave-renderer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "wave-renderer.hpp"; sourceTree = "<group>"; };
@@ -85,7 +84,6 @@
 				0A5EEE272BF91E9F0088DA5D /* oscillator.hpp */,
 				0A5EEE282BF91E9F0088DA5D /* synth.hpp */,
 				0ABBE0292BE554B000803057 /* audio-renderer.hpp */,
-				0ABBE02A2BE554B000803057 /* audio-signal.hpp */,
 				0ABBE02B2BE554B000803057 /* audio-station.hpp */,
 				0ABBE03F2BE556D700803057 /* audio-station-c.h */,
 				0ABBE02C2BE554B000803057 /* waveform.hpp */,

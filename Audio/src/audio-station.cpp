@@ -2,7 +2,6 @@
 #include <iostream>
 #include <cmath>
 #include <AudioToolbox/AudioToolbox.h>
-#include "audio-signal.hpp"
 #include "audio-station.hpp"
 #include "audio-renderer.hpp"
 #include "wave-renderer.hpp"

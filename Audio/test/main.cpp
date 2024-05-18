@@ -5,7 +5,6 @@
 #include <tuple>
 #include <thread>
 #include <chrono>
-#include "audio-signal.hpp"
 #include "audio-station.hpp"
 #include "frequency.hpp"
 #include "oscillator.hpp"

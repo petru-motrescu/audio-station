@@ -6,7 +6,6 @@
 #include <vector>
 #include <memory>
 #include <AudioToolbox/AudioToolbox.h>
-#include "audio-signal.hpp"
 #include "audio-renderer.hpp"
 #include "oscillator.hpp"
 #include "synth.hpp"

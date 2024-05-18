@@ -3,7 +3,6 @@
 
 #include <memory>
 #include <vector>
-#include "audio-signal.hpp"
 #include "oscillator.hpp"
 #include "synth.hpp"
 

@@ -2,7 +2,6 @@
 #define AUDIO_STATION_AUDIO_RENDERER_HPP
 
 #include <memory>
-#include "audio-signal.hpp"
 #include "oscillator.hpp"
 #include "synth.hpp"
 

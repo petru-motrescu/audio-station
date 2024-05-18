@@ -1,14 +1,21 @@
 #include <iostream>
 #include <utility>
 #include <unordered_map>
-#include "audio-signal.hpp"
 #include "note.hpp"
 #include "synth.hpp"
 #include "wave-renderer.hpp"
 using namespace audiostation;
 
+struct SynthSignal {
+    audiostation::Waveform waveform;
+    double frequency;
+    double amplitude;
+    double phase;
+    bool live;
+};
+
 struct audiostation::SynthImpl {
-    std::vector<AudioSignal> signals;
+    std::vector<SynthSignal> signals;
     std::unordered_map<Note, int> note_signal_ids;
 };
 
