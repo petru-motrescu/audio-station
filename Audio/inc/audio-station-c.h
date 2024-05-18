@@ -6,13 +6,15 @@ extern "C" {
 #endif
 
 typedef long AudioStationHandle;
+typedef long SynthHandle;
 
 AudioStationHandle audio_station_init();
-void audio_station_play(AudioStationHandle handle);
-void audio_station_stop(AudioStationHandle handle);
-void audio_station_set_signal_live(AudioStationHandle handle, int signal_id);
-void audio_station_set_signal_silent(AudioStationHandle handle, int signal_id);
 void audio_station_dispose(AudioStationHandle handle);
+
+SynthHandle synth_init(AudioStationHandle handle);
+void synth_play_note(SynthHandle handle, int note);
+void synth_stop_note(SynthHandle handle, int note);
+void synth_dispose(SynthHandle handle);
 
 #ifdef __cplusplus
 }

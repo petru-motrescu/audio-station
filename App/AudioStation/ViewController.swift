@@ -5,8 +5,7 @@ class ViewController: NSViewController {
     
     private var keys: [String: Key] = [:]
     private var pressedKey: Key? = nil
-    private var audioStation: AudioStationHandle? = nil
-    private var audioPlaying: Bool = false
+    private var synth: SynthHandle? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,8 +49,7 @@ class ViewController: NSViewController {
         scnView.gestureRecognizers = gestureRecognizers
         
         let appDelegate = NSApplication.shared.delegate as! AppDelegate
-        self.audioStation = appDelegate.audioStation
-        audio_station_play(self.audioStation!)
+        self.synth = appDelegate.synth
         
         let keyNames = [
             "C1", "CD1", "D1", "DE1", "E1", "F1", "FG1", "G1", "GA1", "A1", "AB1", "B1",
@@ -59,11 +57,12 @@ class ViewController: NSViewController {
             "C3", "CD3", "D3", "DE3", "E3", "F3", "FG3", "G3", "GA3", "A3", "AB3", "B3",
         ]
         
-        var audioSignalId: Int32 = 0
+        // TODO Better note identification
+        var noteIndex: Int32 = 3
         for keyName in keyNames {
             let graphicsNode = findNode(scene, keyName)
-            keys[keyName] = Key(keyName, self.audioStation!, audioSignalId, graphicsNode)
-            audioSignalId += 1
+            keys[keyName] = Key(keyName, self.synth!, noteIndex, graphicsNode)
+            noteIndex += 1
         }
     }
     

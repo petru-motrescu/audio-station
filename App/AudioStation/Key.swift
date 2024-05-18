@@ -4,30 +4,30 @@ import SceneKit
 class Key : Equatable {
     let name: String
     var graphicsNode: SCNNode
-    let audioSignalId: Int32
-    let audioStation: AudioStationHandle
+    let noteIndex: Int32
+    let synth: SynthHandle
     let isBlack: Bool
     
     init(_ name: String,
-         _ audioStation: AudioStationHandle,
-         _ audioSignalId: Int32,
+         _ synth: SynthHandle,
+         _ noteIndex: Int32,
          _ graphicsNode: SCNNode
     ) {
         self.name = name
-        self.audioStation = audioStation
-        self.audioSignalId = audioSignalId
+        self.synth = synth
+        self.noteIndex = noteIndex
         self.graphicsNode = graphicsNode
         self.isBlack = name.count > 2
     }
     
     func press() {
         graphicsNode.position.z = pressedZ()
-        audio_station_set_signal_live(self.audioStation, self.audioSignalId)
+        synth_play_note(self.synth, self.noteIndex)
     }
     
     func release() {
         graphicsNode.position.z = defaultZ()
-        audio_station_set_signal_silent(self.audioStation, self.audioSignalId)
+        synth_stop_note(self.synth, self.noteIndex)
     }
     
     static func == (lhs: Key, rhs: Key) -> Bool {
