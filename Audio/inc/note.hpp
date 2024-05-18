@@ -2,6 +2,7 @@
 #define AUDIO_STATION_NOTE_HPP
 
 #include <vector>
+#include <string>
 
 namespace audiostation {
 
@@ -21,6 +22,7 @@ namespace audiostation {
         static const std::vector<Note> piano_notes;
         
         static double get_frequency(Note note);
+        static std::string to_string(Note note);
         static inline int to_int(Note note) { return static_cast<int>(note); }
         static inline Note from_int(int note) { return static_cast<Note>(note); }
     };

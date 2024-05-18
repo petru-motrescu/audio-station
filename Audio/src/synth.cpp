@@ -1,6 +1,7 @@
 #include <iostream>
 #include <utility>
 #include "audio-signal.hpp"
+#include "note.hpp"
 #include "synth.hpp"
 #include "wave-rendering.hpp"
 using namespace audiostation;
@@ -13,8 +14,7 @@ struct audiostation::SynthImpl {
 audiostation::Synth::Synth() {
     this->impl = std::make_unique<SynthImpl>();
     int signal_id = 0;
-    for (int i = Notes::to_int(Synth::FIRST_NOTE); i <= Notes::to_int(Synth::LAST_NOTE); i++) {
-        auto note = Notes::from_int(i);
+    for (auto& note : Notes::piano_notes) {
         this->impl->signals.push_back({ 
             .waveform = Waveform::Square, 
             .frequency = Notes::get_frequency(note), 
@@ -51,6 +51,5 @@ double audiostation::Synth::render(unsigned sample_rate) {
             signal.phase = next_phase(signal.phase, signal.frequency, sample_rate);
         }
     }
-    std::cout << sample << std::endl;
     return sample;
 }

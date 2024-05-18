@@ -9,9 +9,6 @@ namespace audiostation {
     struct SynthImpl;
 
     struct Synth {
-        static constexpr Note FIRST_NOTE = Note::A0;
-        static constexpr Note LAST_NOTE = Note::C8;
-
         Synth();
         ~Synth();
 

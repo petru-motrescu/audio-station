@@ -115,3 +115,104 @@ double audiostation::Notes::get_frequency(Note note) {
         case Note::C8: return Frequency::C8;
     }
 }
+
+std::string audiostation::Notes::to_string(Note note) {
+    switch (note) {
+        case Note::A0: return "A0";
+        case Note::AB0: return "AB0";
+        case Note::B0: return "B0";
+        // ---
+        case Note::C1: return "C1";
+        case Note::CD1: return "CD1";
+        case Note::D1: return "D1";
+        case Note::DE1: return "DE1";
+        case Note::E1: return "E1";
+        case Note::F1: return "F1";
+        case Note::FG1: return "FG1";
+        case Note::G1: return "G1";
+        case Note::GA1: return "GA1";
+        case Note::A1: return "A1";
+        case Note::AB1: return "AB1";
+        case Note::B1: return "B1";
+        // ---
+        case Note::C2: return "C2";
+        case Note::CD2: return "CD2";
+        case Note::D2: return "D2";
+        case Note::DE2: return "DE2";
+        case Note::E2: return "E2";
+        case Note::F2: return "F2";
+        case Note::FG2: return "FG2";
+        case Note::G2: return "G2";
+        case Note::GA2: return "GA2";
+        case Note::A2: return "A2";
+        case Note::AB2: return "AB2";
+        case Note::B2: return "B2";
+        // ---
+        case Note::C3: return "C3";
+        case Note::CD3: return "CD3";
+        case Note::D3: return "D3";
+        case Note::DE3: return "DE3";
+        case Note::E3: return "E3";
+        case Note::F3: return "F3";
+        case Note::FG3: return "FG3";
+        case Note::G3: return "G3";
+        case Note::GA3: return "GA3";
+        case Note::A3: return "A3";
+        case Note::AB3: return "AB3";
+        case Note::B3: return "B3";
+        // ---
+        case Note::C4: return "C4";
+        case Note::CD4: return "CD4";
+        case Note::D4: return "D4";
+        case Note::DE4: return "DE4";
+        case Note::E4: return "E4";
+        case Note::F4: return "F4";
+        case Note::FG4: return "FG4";
+        case Note::G4: return "G4";
+        case Note::GA4: return "GA4";
+        case Note::A4: return "A4";
+        case Note::AB4: return "AB4";
+        case Note::B4: return "B4";
+        // ---
+        case Note::C5: return "C5";
+        case Note::CD5: return "CD5";
+        case Note::D5: return "D5";
+        case Note::DE5: return "DE5";
+        case Note::E5: return "E5";
+        case Note::F5: return "F5";
+        case Note::FG5: return "FG5";
+        case Note::G5: return "G5";
+        case Note::GA5: return "GA5";
+        case Note::A5: return "A5";
+        case Note::AB5: return "AB5";
+        case Note::B5: return "B5";
+        // ---
+        case Note::C6: return "C6";
+        case Note::CD6: return "CD6";
+        case Note::D6: return "D6";
+        case Note::DE6: return "DE6";
+        case Note::E6: return "E6";
+        case Note::F6: return "F6";
+        case Note::FG6: return "FG6";
+        case Note::G6: return "G6";
+        case Note::GA6: return "GA6";
+        case Note::A6: return "A6";
+        case Note::AB6: return "AB6";
+        case Note::B6: return "B6";
+        // ---
+        case Note::C7: return "C7";
+        case Note::CD7: return "CD7";
+        case Note::D7: return "D7";
+        case Note::DE7: return "DE7";
+        case Note::E7: return "E7";
+        case Note::F7: return "F7";
+        case Note::FG7: return "FG7";
+        case Note::G7: return "G7";
+        case Note::GA7: return "GA7";
+        case Note::A7: return "A7";
+        case Note::AB7: return "AB7";
+        case Note::B7: return "B7";
+        // ---
+        case Note::C8: return "C8";
+    }
+}

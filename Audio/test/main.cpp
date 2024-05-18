@@ -70,10 +70,9 @@ void run_synth_demo() {
     Synth synth;
     station.add_synth(&synth);
     
-    for (int i = Notes::to_int(Synth::FIRST_NOTE); i <= Notes::to_int(Synth::LAST_NOTE); i++) {
-        auto note = Notes::from_int(i);
+    for (auto& note : Notes::piano_notes) {
         synth.play_note(note);
-        std::this_thread::sleep_for(std::chrono::milliseconds(250));
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
         synth.stop_note(note);
     }
     
