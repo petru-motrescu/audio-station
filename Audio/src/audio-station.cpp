@@ -5,7 +5,7 @@
 #include "audio-signal.hpp"
 #include "audio-station.hpp"
 #include "audio-renderer.hpp"
-#include "wave-rendering.hpp"
+#include "wave-renderer.hpp"
 using namespace audiostation;
 
 constexpr unsigned int SAMPLE_RATE = 44100;

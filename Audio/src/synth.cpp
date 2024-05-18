@@ -4,7 +4,7 @@
 #include "audio-signal.hpp"
 #include "note.hpp"
 #include "synth.hpp"
-#include "wave-rendering.hpp"
+#include "wave-renderer.hpp"
 using namespace audiostation;
 
 struct audiostation::SynthImpl {
@@ -48,8 +48,8 @@ double audiostation::Synth::render(unsigned sample_rate) {
     double sample = 0;
     for (auto& signal : this->impl->signals) {
         if (signal.live) {
-            sample += render_wave(signal.waveform, signal.phase) * signal.amplitude;
-            signal.phase = next_phase(signal.phase, signal.frequency, sample_rate);
+            sample += WaveRenderer::render_wave(signal.waveform, signal.phase) * signal.amplitude;
+            signal.phase = WaveRenderer::next_phase(signal.phase, signal.frequency, sample_rate);
         }
     }
     return sample;

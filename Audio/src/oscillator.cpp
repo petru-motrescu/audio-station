@@ -4,7 +4,7 @@
 #include "note.hpp"
 #include "frequency.hpp"
 #include "oscillator.hpp"
-#include "wave-rendering.hpp"
+#include "wave-renderer.hpp"
 using namespace audiostation;
 
 struct audiostation::OscillatorImpl {
@@ -45,7 +45,7 @@ double audiostation::Oscillator::render(unsigned sample_rate) {
         return 0;
     }
 
-    double sample = render_wave(this->impl->waveform, this->impl->phase) * this->impl->amplitude;
-    this->impl->phase = next_phase(this->impl->phase, this->impl->frequency, sample_rate);
+    double sample = WaveRenderer::render_wave(this->impl->waveform, this->impl->phase) * this->impl->amplitude;
+    this->impl->phase = WaveRenderer::next_phase(this->impl->phase, this->impl->frequency, sample_rate);
     return sample;
 }

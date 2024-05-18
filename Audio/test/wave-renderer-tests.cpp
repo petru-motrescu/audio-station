@@ -3,7 +3,7 @@
 #include <cmath>
 #include <list>
 #include <tuple>
-#include "wave-rendering.hpp"
+#include "wave-renderer.hpp"
 #include "asserts.hpp"
 #include "tests.hpp"
 using namespace audiostation;
@@ -24,12 +24,12 @@ void test_sine_wave_rendering() {
     };
 
     for (auto [expected, phase, message] : triples) {
-        auto actual = render_wave(Waveform::Sine, phase);
+        auto actual = WaveRenderer::render_wave(Waveform::Sine, phase);
         assert_equal(expected, actual, EPSILON, message);
     }
 
     for (auto [expected, phase, message] : triples) {
-        auto actual = render_wave(Waveform::Sine, -phase);
+        auto actual = WaveRenderer::render_wave(Waveform::Sine, -phase);
         assert_equal(-expected, actual, EPSILON, "-" + message);
     }
 }
@@ -47,7 +47,7 @@ void test_square_wave_rendering() {
     };
 
     for (auto [expected, phase, message] : triples) {
-        auto actual = render_wave(Waveform::Square, phase);
+        auto actual = WaveRenderer::render_wave(Waveform::Square, phase);
         assert_equal(expected, actual, EPSILON, message);
     }
 }
@@ -81,7 +81,7 @@ void test_next_phase() {
     };
 
     for (auto [current_phase, expected, message] : triples) {
-        auto actual = next_phase(current_phase, frequency, sample_rate);
+        auto actual = WaveRenderer::next_phase(current_phase, frequency, sample_rate);
         assert_equal(expected, actual, EPSILON, message);
     }
 }

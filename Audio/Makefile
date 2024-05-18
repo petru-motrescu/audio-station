@@ -11,12 +11,12 @@ build:
 	src/notes.cpp \
 	src/oscillator.cpp \
 	src/synth.cpp \
-	src/wave-rendering.cpp \
+	src/wave-renderer.cpp \
 	test/asserts.cpp \
 	test/audio-renderer-tests.cpp \
 	test/oscillator-tests.cpp \
 	test/synth-tests.cpp \
-	test/wave-rendering-tests.cpp \
+	test/wave-renderer-tests.cpp \
 	test/main.cpp
 
 .PHONY: run

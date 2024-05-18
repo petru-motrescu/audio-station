@@ -5,7 +5,7 @@
 #include <tuple>
 #include <vector>
 #include "audio-renderer.hpp"
-#include "wave-rendering.hpp"
+#include "wave-renderer.hpp"
 #include "asserts.hpp"
 #include "tests.hpp"
 using namespace audiostation;

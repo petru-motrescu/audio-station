@@ -51,6 +51,7 @@ Audio:
 - [Apple > Audio](https://developer.apple.com/audio/)
 - [Apple > Core Audio](https://developer.apple.com/library/archive/documentation/MusicAudio/Conceptual/CoreAudioOverview)
 - [Wiki > Piano key frequencies](https://en.wikipedia.org/wiki/Piano_key_frequencies)
+- [Waveforms by Josh Comeau](https://pudding.cool/2018/02/waveforms/)
 
 Graphics:
 - [Apple > SceneKit](https://developer.apple.com/documentation/scenekit)

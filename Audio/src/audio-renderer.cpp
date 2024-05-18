@@ -10,7 +10,7 @@
 #include "audio-renderer.hpp"
 #include "oscillator.hpp"
 #include "synth.hpp"
-#include "wave-rendering.hpp"
+#include "wave-renderer.hpp"
 using namespace audiostation;
 
 struct audiostation::AudioRendererImpl {
@@ -37,10 +37,10 @@ double audiostation::AudioRenderer::render() {
     // TODO: Move to a osciloscope device
     for (AudioSignal& signal : this->impl->signals) {
         if (signal.live) {
-            sample += render_wave(signal.waveform, signal.phase) * signal.amplitude;
+            sample += WaveRenderer::render_wave(signal.waveform, signal.phase) * signal.amplitude;
         }
         // Intentionally advancing the phase of silent signals too.
-        signal.phase = next_phase(signal.phase, signal.frequency, this->impl->sample_rate);
+        signal.phase = WaveRenderer::next_phase(signal.phase, signal.frequency, this->impl->sample_rate);
     }
 
     for (auto oscillator : this->impl->oscillators) {
