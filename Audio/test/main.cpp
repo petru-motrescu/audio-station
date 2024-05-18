@@ -26,11 +26,12 @@ void run_synth_demo() {
     station.play();
     
     Synth synth;
+    synth.set_envelope({.atack = 30});
     station.add_synth(&synth);
     
     for (auto& note : Notes::piano_notes) {
         synth.play_note(note);
-        std::this_thread::sleep_for(std::chrono::milliseconds(60));
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
         synth.stop_note(note);
     }
     

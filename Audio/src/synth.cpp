@@ -1,6 +1,7 @@
 #include <iostream>
 #include <utility>
 #include <unordered_map>
+#include "envelope.hpp"
 #include "note.hpp"
 #include "synth.hpp"
 #include "wave-renderer.hpp"
@@ -11,13 +12,17 @@ struct SynthSignal {
     double frequency;
     double amplitude;
     double phase;
+    unsigned ticks;
     bool live;
 };
 
 struct audiostation::SynthImpl {
     std::vector<SynthSignal> signals;
     std::unordered_map<Note, int> note_signal_ids;
+    Envelope envelope;
 };
+
+double render_signal(SynthSignal& signal, Envelope& envelope, unsigned sample_rate);
 
 audiostation::Synth::Synth() {
     this->impl = std::make_unique<SynthImpl>();
@@ -26,19 +31,33 @@ audiostation::Synth::Synth() {
         this->impl->signals.push_back({ 
             .waveform = Waveform::Square, 
             .frequency = Notes::get_frequency(note), 
-            .amplitude = 0.1
+            .amplitude = 0.1,
+            .ticks = 0
         });
         this->impl->note_signal_ids[note] = signal_id++;
     }
+
+    this->impl->envelope = {
+        .atack = 0.25,
+        .decay = 1,
+        .sustain = 0.05,
+        .release = 1
+    };
 }
 
 audiostation::Synth::~Synth() {
     this->impl.reset();
 }
 
+void audiostation::Synth::set_envelope(Envelope envelope) {
+    this->impl->envelope = envelope;
+}
+
 void audiostation::Synth::play_note(Note note) {
     auto signal_id = this->impl->note_signal_ids[note];
-    this->impl->signals[signal_id].live = true;
+    auto& signal = this->impl->signals[signal_id];
+    signal.ticks = 0;
+    signal.live = true;
 }
 
 void audiostation::Synth::stop_note(Note note) {
@@ -55,9 +74,19 @@ double audiostation::Synth::render(unsigned sample_rate) {
     double sample = 0;
     for (auto& signal : this->impl->signals) {
         if (signal.live) {
-            sample += WaveRenderer::render_wave(signal.waveform, signal.phase) * signal.amplitude;
-            signal.phase = WaveRenderer::next_phase(signal.phase, signal.frequency, sample_rate);
+            sample += render_signal(signal, this->impl->envelope, sample_rate);
         }
     }
+    return sample;
+}
+
+double render_signal(SynthSignal& signal, Envelope& envelope, unsigned sample_rate) {
+    double sample = WaveRenderer::render_wave(signal.waveform, signal.phase) * signal.amplitude;
+    double atack_ticks = envelope.atack * sample_rate / 1000; // TODO Precompute this
+    if (signal.ticks < atack_ticks) {
+        sample = (signal.ticks / atack_ticks) * sample;
+    }
+    signal.phase = WaveRenderer::next_phase(signal.phase, signal.frequency, sample_rate);
+    signal.ticks++;
     return sample;
 }

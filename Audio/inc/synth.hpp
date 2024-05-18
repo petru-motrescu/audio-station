@@ -2,6 +2,7 @@
 #define AUDIO_STATION_SYNTH_HPP
 
 #include <memory>
+#include "envelope.hpp"
 #include "note.hpp"
 
 namespace audiostation {
@@ -11,6 +12,8 @@ namespace audiostation {
     struct Synth {
         Synth();
         ~Synth();
+        
+        void set_envelope(Envelope envelope);
 
         void play_note(Note note);
         void stop_note(Note note);

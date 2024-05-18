@@ -43,6 +43,7 @@
 		0ABBE03D2BE554D800803057 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		0ABBE03F2BE556D700803057 /* audio-station-c.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "audio-station-c.h"; sourceTree = "<group>"; };
 		0ABBE0402BE5579900803057 /* audio-station-c.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "audio-station-c.cpp"; sourceTree = "<group>"; };
+		0AF0F5482BF9580E006BDE7A /* envelope.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = envelope.hpp; sourceTree = "<group>"; };
 		0AF4267E2BE2D8650028C5B3 /* AudioStation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioStation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AF426812BE2D8650028C5B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0AF426832BE2D8650028C5B3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +80,7 @@
 		0ABBE02E2BE554B000803057 /* inc */ = {
 			isa = PBXGroup;
 			children = (
+				0AF0F5482BF9580E006BDE7A /* envelope.hpp */,
 				0A5EEE292BF91E9F0088DA5D /* frequency.hpp */,
 				0A5EEE262BF91E9F0088DA5D /* note.hpp */,
 				0A5EEE272BF91E9F0088DA5D /* oscillator.hpp */,
