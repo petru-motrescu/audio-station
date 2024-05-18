@@ -1,7 +1,7 @@
 #ifndef AUDIO_STATION_WAVE_RENDERING_HPP
 #define AUDIO_STATION_WAVE_RENDERING_HPP
 
-#include "audio-waveform.hpp"
+#include "waveform.hpp"
 
 namespace audiostation {
     double render_wave(audiostation::Waveform waveform, double phase);

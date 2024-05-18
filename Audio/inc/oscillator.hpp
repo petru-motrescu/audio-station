@@ -2,7 +2,7 @@
 #define AUDIO_STATION_OSCILLATOR_HPP
 
 #include <memory>
-#include "audio-waveform.hpp"
+#include "waveform.hpp"
 #include "frequency.hpp"
 
 namespace audiostation {

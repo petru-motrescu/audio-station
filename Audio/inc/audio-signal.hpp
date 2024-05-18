@@ -1,7 +1,7 @@
 #ifndef AUDIO_STATION_AUDIO_SIGNAL_HPP
 #define AUDIO_STATION_AUDIO_SIGNAL_HPP
 
-#include "audio-waveform.hpp"
+#include "waveform.hpp"
 
 namespace audiostation {
 

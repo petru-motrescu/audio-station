@@ -1,5 +1,6 @@
 #include <iostream>
 #include <utility>
+#include <unordered_map>
 #include "audio-signal.hpp"
 #include "note.hpp"
 #include "synth.hpp"
