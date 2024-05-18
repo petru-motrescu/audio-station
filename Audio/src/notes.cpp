@@ -3,6 +3,18 @@
 #include "frequency.hpp"
 using namespace audiostation;
 
+const std::vector<Note> audiostation::Notes::piano_notes = {
+    Note::A0, Note::AB0, Note::B0,
+    Note::C1, Note::CD1, Note::D1, Note::DE1, Note::E1, Note::F1, Note::FG1, Note::G1, Note::GA1, Note::A1, Note::AB1, Note::B1,
+    Note::C2, Note::CD2, Note::D2, Note::DE2, Note::E2, Note::F2, Note::FG2, Note::G2, Note::GA2, Note::A2, Note::AB2, Note::B2,
+    Note::C3, Note::CD3, Note::D3, Note::DE3, Note::E3, Note::F3, Note::FG3, Note::G3, Note::GA3, Note::A3, Note::AB3, Note::B3,
+    Note::C4, Note::CD4, Note::D4, Note::DE4, Note::E4, Note::F4, Note::FG4, Note::G4, Note::GA4, Note::A4, Note::AB4, Note::B4,
+    Note::C5, Note::CD5, Note::D5, Note::DE5, Note::E5, Note::F5, Note::FG5, Note::G5, Note::GA5, Note::A5, Note::AB5, Note::B5,
+    Note::C6, Note::CD6, Note::D6, Note::DE6, Note::E6, Note::F6, Note::FG6, Note::G6, Note::GA6, Note::A6, Note::AB6, Note::B6,
+    Note::C7, Note::CD7, Note::D7, Note::DE7, Note::E7, Note::F7, Note::FG7, Note::G7, Note::GA7, Note::A7, Note::AB7, Note::B7,
+    Note::C8
+};
+
 double audiostation::Notes::get_frequency(Note note) {
     switch (note) {
         case Note::A0: return Frequency::A0;

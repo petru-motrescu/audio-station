@@ -1,6 +1,8 @@
 #ifndef AUDIO_STATION_NOTE_HPP
 #define AUDIO_STATION_NOTE_HPP
 
+#include <vector>
+
 namespace audiostation {
 
     enum class Note {
@@ -16,6 +18,8 @@ namespace audiostation {
     };
 
     struct Notes {
+        static const std::vector<Note> piano_notes;
+        
         static double get_frequency(Note note);
         static inline int to_int(Note note) { return static_cast<int>(note); }
         static inline Note from_int(int note) { return static_cast<Note>(note); }
