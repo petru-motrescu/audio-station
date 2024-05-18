@@ -115,6 +115,10 @@ void audiostation::AudioStation::init() {
     std::cout << "🎛️ Audio initialized" << std::endl;
 }
 
+void audiostation::AudioStation::add_oscillator(audiostation::Oscillator* oscillator) {
+    this->impl->audio_renderer.add_oscillator(oscillator);
+}
+
 void audiostation::AudioStation::add_synth(audiostation::Synth* synth) {
     this->impl->audio_renderer.add_synth(synth);
 }

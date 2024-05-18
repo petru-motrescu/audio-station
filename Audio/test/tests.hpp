@@ -4,6 +4,7 @@
 namespace audiostation {
     void run_wave_rendering_tests();
     void run_audio_rendering_tests();
+    void run_oscillator_tests();
     void run_synth_tests();
 }
 

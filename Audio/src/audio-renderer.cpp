@@ -8,6 +8,7 @@
 #include <AudioToolbox/AudioToolbox.h>
 #include "audio-signal.hpp"
 #include "audio-renderer.hpp"
+#include "oscillator.hpp"
 #include "synth.hpp"
 #include "wave-rendering.hpp"
 using namespace audiostation;
@@ -16,6 +17,7 @@ struct audiostation::AudioRendererImpl {
     AudioRendererImpl(unsigned sample_rate);
     unsigned sample_rate;
     std::vector<AudioSignal> signals;
+    std::vector<Oscillator*> oscillators;
     std::vector<Synth*> synths;
 };
 
@@ -41,11 +43,19 @@ double audiostation::AudioRenderer::render() {
         signal.phase = next_phase(signal.phase, signal.frequency, this->impl->sample_rate);
     }
 
+    for (auto oscillator : this->impl->oscillators) {
+        sample += oscillator->render(this->impl->sample_rate);
+    }
+
     for (auto synth : this->impl->synths) {
         sample += synth->render(this->impl->sample_rate);
     }
 
     return sample;
+}
+
+void audiostation::AudioRenderer::add_oscillator(audiostation::Oscillator* oscillator) {
+    this->impl->oscillators.push_back(oscillator);
 }
 
 void audiostation::AudioRenderer::add_synth(audiostation::Synth* synth) {

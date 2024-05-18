@@ -9,10 +9,12 @@ build:
 	src/audio-station.cpp \
 	src/audio-renderer.cpp \
 	src/notes.cpp \
+	src/oscillator.cpp \
 	src/synth.cpp \
 	src/wave-rendering.cpp \
 	test/asserts.cpp \
 	test/audio-renderer-tests.cpp \
+	test/oscillator-tests.cpp \
 	test/synth-tests.cpp \
 	test/wave-rendering-tests.cpp \
 	test/main.cpp

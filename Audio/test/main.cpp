@@ -8,6 +8,7 @@
 #include "audio-signal.hpp"
 #include "audio-station.hpp"
 #include "frequency.hpp"
+#include "oscillator.hpp"
 #include "synth.hpp"
 #include "tests.hpp"
 using namespace audiostation;
@@ -79,10 +80,24 @@ void run_synth_demo() {
     station.stop();
 }
 
+void run_oscillator_demo() {
+    AudioStation station;
+    station.init();
+    station.play();
+
+    Oscillator oscillator;
+    station.add_oscillator(&oscillator);
+    oscillator.play();
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    oscillator.stop();
+    station.stop();
+}
+
 int main() {
-    // run_tests();
+    run_tests();
     // run_readme_demo();
     // run_piano_demo();
-    run_synth_demo();
+    // run_synth_demo();
+    run_oscillator_demo();
     return 0;
 }

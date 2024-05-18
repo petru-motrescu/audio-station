@@ -3,6 +3,7 @@
 
 #include <memory>
 #include "audio-signal.hpp"
+#include "oscillator.hpp"
 #include "synth.hpp"
 
 namespace audiostation {
@@ -13,6 +14,7 @@ namespace audiostation {
         AudioRenderer(unsigned sample_rate);
         ~AudioRenderer();
 
+        void add_oscillator(audiostation::Oscillator* oscillator);
         void add_synth(audiostation::Synth* synth);
         void add_signal(audiostation::AudioSignal signal);
         void add_signals(std::vector<audiostation::AudioSignal> signals);

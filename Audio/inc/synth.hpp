@@ -15,6 +15,8 @@ namespace audiostation {
         void play_note(Note note);
         void stop_note(Note note);
         bool is_note_live(Note note);
+    
+    // internal:
         double render(unsigned sample_rate);
 
     private:
