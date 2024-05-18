@@ -37,32 +37,6 @@ void run_readme_demo() {
     station.stop();
 }
 
-void run_piano_demo() {
-    std::vector<AudioSignal> signals;
-    
-    // Idealized standard piano keys
-    for (int i = 1; i <= 89; i++) {
-        auto frequency = pow(2, (i - 49) / 12.0) * 440;
-        std::cout << i << " = " << frequency << std::endl;
-        signals.push_back({ 
-            .waveform = Waveform::Sine, 
-            .frequency = frequency, 
-            .amplitude = 0.5
-        });
-    }
-
-    AudioStation station;
-    station.init();
-    station.add_signals(signals);
-    station.play();
-    for (int i = 0; i < signals.size(); i++) {
-        station.set_signal_live(i, true);
-        std::this_thread::sleep_for(std::chrono::milliseconds(250));
-        station.set_signal_live(i, false);
-    }
-    station.stop();
-}
-
 void run_synth_demo() {
     AudioStation station;
     station.init();
@@ -96,7 +70,6 @@ void run_oscillator_demo() {
 int main() {
     run_tests();
     // run_readme_demo();
-    // run_piano_demo();
     // run_synth_demo();
     run_oscillator_demo();
     return 0;
