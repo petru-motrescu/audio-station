@@ -5,6 +5,7 @@
 #include <tuple>
 #include <thread>
 #include <chrono>
+#include <vector>
 #include "audio-station.hpp"
 #include "frequency.hpp"
 #include "oscillator.hpp"
@@ -17,7 +18,7 @@ void run_tests() {
     run_oscillator_tests();
     run_synth_tests();
     run_track_tests();
-    run_wave_rendering_tests();
+    run_renderer_tests();
     std::cout << "✅ All tests done" << std::endl;
 }
 
@@ -26,16 +27,19 @@ void run_synth_demo() {
     station.init();
 
     Synth synth;
-    synth.set_envelope({ .atack = 20, .decay = 100, .sustain = 0.75, .release = 100 });
+    synth.set_envelope({ .atack = 20, .decay = 50, .sustain = 0.75, .release = 3000 });
 
     Track track { .synths = { &synth } };
     station.play(&track);
     
-    for (auto& note : Notes::piano_notes) {
+    std::vector<Note> notes = { Note::D3, Note::A3, Note::D4 };
+    for (auto& note : notes) {
         synth.play_note(note);
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        std::this_thread::sleep_for(std::chrono::milliseconds(300));
         synth.stop_note(note);
     }
+
+    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
     
     station.stop();
 }

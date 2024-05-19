@@ -17,16 +17,19 @@ AudioStation station;
 station.init();
 
 Synth synth;
-synth.set_envelope({ .atack = 20, .decay = 100, .sustain = 0.75, .release = 100 });
+synth.set_envelope({ .atack = 20, .decay = 50, .sustain = 0.75, .release = 3000 });
 
 Track track { .synths = { &synth } };
 station.play(&track);
 
-for (auto& note : Notes::piano_notes) {
+std::vector<Note> notes = { Note::D3, Note::A3, Note::D4 };
+for (auto& note : notes) {
     synth.play_note(note);
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    std::this_thread::sleep_for(std::chrono::milliseconds(300));
     synth.stop_note(note);
 }
+
+std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 
 station.stop();
 ```

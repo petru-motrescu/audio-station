@@ -18,6 +18,7 @@ void test_synth_quiet_by_default() {
 
 void test_synth_play_note() {
     Synth synth;
+    synth.set_envelope({.release = 0});
     for (auto& note : Notes::piano_notes) {
         auto note_str = Notes::to_string(note);
         synth.play_note(note);
