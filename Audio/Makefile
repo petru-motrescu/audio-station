@@ -9,14 +9,14 @@ build:
 	src/audio-station.cpp \
 	src/notes.cpp \
 	src/oscillator.cpp \
+	src/renderer.cpp \
 	src/synth.cpp \
 	src/track.cpp \
-	src/wave-renderer.cpp \
 	test/asserts.cpp \
 	test/oscillator-tests.cpp \
+	test/renderer-tests.cpp \
 	test/synth-tests.cpp \
 	test/track-tests.cpp \
-	test/wave-renderer-tests.cpp \
 	test/main.cpp
 
 .PHONY: run

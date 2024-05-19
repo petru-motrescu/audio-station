@@ -12,7 +12,7 @@
 		0A5EEE2F2BF91EAB0088DA5D /* notes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A5EEE2C2BF91EAB0088DA5D /* notes.cpp */; };
 		0A7A69242BF9D88B0030B5F1 /* track.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A69232BF9D88B0030B5F1 /* track.cpp */; };
 		0ABBE0382BE554B000803057 /* audio-station.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0ABBE0302BE554B000803057 /* audio-station.cpp */; };
-		0ABBE0392BE554B000803057 /* wave-renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0ABBE0312BE554B000803057 /* wave-renderer.cpp */; };
+		0ABBE0392BE554B000803057 /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0ABBE0312BE554B000803057 /* renderer.cpp */; };
 		0ABBE03C2BE554D100803057 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABBE03B2BE554D100803057 /* AudioToolbox.framework */; };
 		0ABBE03E2BE554D800803057 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABBE03D2BE554D800803057 /* AudioUnit.framework */; };
 		0ABBE0412BE5579900803057 /* audio-station-c.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0ABBE0402BE5579900803057 /* audio-station-c.cpp */; };
@@ -36,9 +36,9 @@
 		0A7A69232BF9D88B0030B5F1 /* track.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = track.cpp; sourceTree = "<group>"; };
 		0ABBE02B2BE554B000803057 /* audio-station.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "audio-station.hpp"; sourceTree = "<group>"; };
 		0ABBE02C2BE554B000803057 /* waveform.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = waveform.hpp; sourceTree = "<group>"; };
-		0ABBE02D2BE554B000803057 /* wave-renderer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "wave-renderer.hpp"; sourceTree = "<group>"; };
+		0ABBE02D2BE554B000803057 /* renderer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "renderer.hpp"; sourceTree = "<group>"; };
 		0ABBE0302BE554B000803057 /* audio-station.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "audio-station.cpp"; sourceTree = "<group>"; };
-		0ABBE0312BE554B000803057 /* wave-renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "wave-renderer.cpp"; sourceTree = "<group>"; };
+		0ABBE0312BE554B000803057 /* renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "renderer.cpp"; sourceTree = "<group>"; };
 		0ABBE03B2BE554D100803057 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		0ABBE03D2BE554D800803057 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		0ABBE03F2BE556D700803057 /* audio-station-c.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "audio-station-c.h"; sourceTree = "<group>"; };
@@ -89,7 +89,7 @@
 				0A5EEE282BF91E9F0088DA5D /* synth.hpp */,
 				0A7A69222BF9D8690030B5F1 /* track.hpp */,
 				0ABBE02C2BE554B000803057 /* waveform.hpp */,
-				0ABBE02D2BE554B000803057 /* wave-renderer.hpp */,
+				0ABBE02D2BE554B000803057 /* renderer.hpp */,
 			);
 			name = inc;
 			path = ../Audio/inc;
@@ -104,7 +104,7 @@
 				0A5EEE2A2BF91EAB0088DA5D /* oscillator.cpp */,
 				0A5EEE2B2BF91EAB0088DA5D /* synth.cpp */,
 				0A7A69232BF9D88B0030B5F1 /* track.cpp */,
-				0ABBE0312BE554B000803057 /* wave-renderer.cpp */,
+				0ABBE0312BE554B000803057 /* renderer.cpp */,
 			);
 			name = src;
 			path = ../Audio/src;
@@ -231,7 +231,7 @@
 				0A5EEE2D2BF91EAB0088DA5D /* oscillator.cpp in Sources */,
 				0A7A69242BF9D88B0030B5F1 /* track.cpp in Sources */,
 				0AF426822BE2D8650028C5B3 /* AppDelegate.swift in Sources */,
-				0ABBE0392BE554B000803057 /* wave-renderer.cpp in Sources */,
+				0ABBE0392BE554B000803057 /* renderer.cpp in Sources */,
 				0ABBE0382BE554B000803057 /* audio-station.cpp in Sources */,
 				0AF71D662BE2E1D700348FDE /* Key.swift in Sources */,
 			);

@@ -9,7 +9,6 @@
 #include "oscillator.hpp"
 #include "synth.hpp"
 #include "track.hpp"
-#include "wave-renderer.hpp"
 using namespace audiostation;
 
 void audiostation::Track::add_oscillator(audiostation::Oscillator* oscillator) {

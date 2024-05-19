@@ -1,14 +1,23 @@
 #include <iostream>
 #include <cmath>
-#include "wave-renderer.hpp"
+#include "renderer.hpp"
 using namespace audiostation;
 
 constexpr double TWO_PI = 2 * M_PI;
 
-double render_sine_wave(double phase);
-double render_square_wave(double phase);
+double audiostation::Renderer::render_sine_wave(double phase) {
+    return sin(phase);
+}
 
-double audiostation::WaveRenderer::render_wave(Waveform waveform, double phase) {
+double audiostation::Renderer::render_square_wave(double phase) {
+    if (sin(phase) < 0) {
+        return -1;
+    } else {
+        return +1;
+    }
+}
+
+double audiostation::Renderer::render_wave(Waveform waveform, double phase) {
     switch (waveform) {
         case Waveform::Sine:
             return render_sine_wave(phase);
@@ -19,7 +28,7 @@ double audiostation::WaveRenderer::render_wave(Waveform waveform, double phase) 
     }
 }
 
-double audiostation::WaveRenderer::next_phase(double phase, double frequency, unsigned sample_rate) {
+double audiostation::Renderer::next_phase(double phase, double frequency, unsigned sample_rate) {
     double next_phase = phase + TWO_PI * frequency / sample_rate;
 
     if (next_phase >= TWO_PI) {
@@ -31,16 +40,4 @@ double audiostation::WaveRenderer::next_phase(double phase, double frequency, un
     }
 
     return next_phase;
-}
-
-double render_sine_wave(double phase) {
-    return sin(phase);
-}
-
-double render_square_wave(double phase) {
-    if (sin(phase) < 0) {
-        return -1;
-    } else {
-        return +1;
-    }
 }

@@ -3,8 +3,8 @@
 #include <unordered_map>
 #include "envelope.hpp"
 #include "note.hpp"
+#include "renderer.hpp"
 #include "synth.hpp"
-#include "wave-renderer.hpp"
 using namespace audiostation;
 
 struct SynthSignal {
@@ -81,7 +81,7 @@ double audiostation::Synth::render(unsigned sample_rate) {
 }
 
 double render_signal(SynthSignal& signal, Envelope& envelope, unsigned sample_rate) {
-    double sample = WaveRenderer::render_wave(signal.waveform, signal.phase) * signal.amplitude;
+    double sample = Renderer::render_wave(signal.waveform, signal.phase) * signal.amplitude;
     double atack_ticks = envelope.atack * sample_rate / 1000; // TODO Precompute this
     double decay_ticks = envelope.decay * sample_rate / 1000; // TODO Precompute this
     if (signal.ticks < atack_ticks) {
@@ -93,7 +93,7 @@ double render_signal(SynthSignal& signal, Envelope& envelope, unsigned sample_ra
         sample = envelope.sustain * sample;
     }
     
-    signal.phase = WaveRenderer::next_phase(signal.phase, signal.frequency, sample_rate);
+    signal.phase = Renderer::next_phase(signal.phase, signal.frequency, sample_rate);
     signal.ticks++;
     return sample;
 }

@@ -4,7 +4,6 @@
 #include <AudioToolbox/AudioToolbox.h>
 #include "audio-station.hpp"
 #include "track.hpp"
-#include "wave-renderer.hpp"
 using namespace audiostation;
 
 constexpr unsigned int SAMPLE_RATE = 44100;

@@ -3,7 +3,7 @@
 #include <cmath>
 #include <list>
 #include <tuple>
-#include "wave-renderer.hpp"
+#include "renderer.hpp"
 #include "asserts.hpp"
 #include "tests.hpp"
 using namespace audiostation;
@@ -24,12 +24,12 @@ void test_sine_wave_rendering() {
     };
 
     for (auto [expected, phase, message] : triples) {
-        auto actual = WaveRenderer::render_wave(Waveform::Sine, phase);
+        auto actual = Renderer::render_wave(Waveform::Sine, phase);
         assert_equal(expected, actual, EPSILON, message);
     }
 
     for (auto [expected, phase, message] : triples) {
-        auto actual = WaveRenderer::render_wave(Waveform::Sine, -phase);
+        auto actual = Renderer::render_wave(Waveform::Sine, -phase);
         assert_equal(-expected, actual, EPSILON, "-" + message);
     }
 }
@@ -47,7 +47,7 @@ void test_square_wave_rendering() {
     };
 
     for (auto [expected, phase, message] : triples) {
-        auto actual = WaveRenderer::render_wave(Waveform::Square, phase);
+        auto actual = Renderer::render_wave(Waveform::Square, phase);
         assert_equal(expected, actual, EPSILON, message);
     }
 }
@@ -81,12 +81,12 @@ void test_next_phase() {
     };
 
     for (auto [current_phase, expected, message] : triples) {
-        auto actual = WaveRenderer::next_phase(current_phase, frequency, sample_rate);
+        auto actual = Renderer::next_phase(current_phase, frequency, sample_rate);
         assert_equal(expected, actual, EPSILON, message);
     }
 }
 
-void audiostation::run_wave_rendering_tests() {
+void audiostation::run_renderer_tests() {
     test_sine_wave_rendering();
     test_square_wave_rendering();
     test_next_phase();
