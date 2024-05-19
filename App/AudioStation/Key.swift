@@ -7,6 +7,7 @@ class Key : Equatable {
     let noteIndex: Int32
     let synth: SynthHandle
     let isBlack: Bool
+    var isPressed: Bool
     
     init(_ name: String,
          _ synth: SynthHandle,
@@ -18,16 +19,23 @@ class Key : Equatable {
         self.noteIndex = noteIndex
         self.graphicsNode = graphicsNode
         self.isBlack = name.count > 2
+        self.isPressed = false
     }
     
     func press() {
-        graphicsNode.position.z = pressedZ()
-        synth_play_note(self.synth, self.noteIndex)
+        if (!self.isPressed) {
+            self.isPressed = true
+            graphicsNode.position.z = pressedZ()
+            synth_play_note(self.synth, self.noteIndex)
+        }
     }
     
     func release() {
-        graphicsNode.position.z = defaultZ()
-        synth_stop_note(self.synth, self.noteIndex)
+        if (self.isPressed) {
+            self.isPressed = false
+            graphicsNode.position.z = defaultZ()
+            synth_stop_note(self.synth, self.noteIndex)
+        }
     }
     
     static func == (lhs: Key, rhs: Key) -> Bool {

@@ -39,9 +39,9 @@ audiostation::Synth::Synth() {
 
     this->impl->envelope = {
         .atack = 10,
-        .decay = 5000,
-        .sustain = 0.005,
-        .release = 1
+        .decay = 100,
+        .sustain = 0.15,
+        .release = 0
     };
 }
 

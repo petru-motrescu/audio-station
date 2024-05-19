@@ -3,7 +3,7 @@
 #include <cmath>
 #include <AudioToolbox/AudioToolbox.h>
 #include "audio-station.hpp"
-#include "audio-renderer.hpp"
+#include "track.hpp"
 #include "wave-renderer.hpp"
 using namespace audiostation;
 
@@ -12,15 +12,9 @@ constexpr unsigned int BUFFER_SIZE = 512;
 constexpr unsigned SIZE_OF_DOUBLE = sizeof(double);
 
 struct audiostation::AudioStationImpl {
-    AudioStationImpl(unsigned sample_rate);
-    AudioRenderer audio_renderer;
-    AudioComponentInstance audio_unit;
+    Track* track = nullptr;
+    AudioComponentInstance audio_unit = 0;
 };
-
-audiostation::AudioStationImpl::AudioStationImpl(unsigned sample_rate) 
-    : audio_renderer(sample_rate)
-    , audio_unit(0)
-    { }
 
 static OSStatus render_audio(
     void* client_data,
@@ -30,12 +24,16 @@ static OSStatus render_audio(
     UInt32 frame_count,
     AudioBufferList* buffers
 ) {
-    AudioRenderer* renderer = (AudioRenderer*) client_data;
+    AudioStationImpl* station = (AudioStationImpl*) client_data;
+    if (station->track == nullptr) {
+        return 0;
+    }
+
     double* buffer_left = (double*) buffers->mBuffers[0].mData;
     double* buffer_right = (double*) buffers->mBuffers[1].mData;
 
     for (int frame = 0; frame < frame_count; frame++) {
-        double sample = renderer->render();
+        double sample = station->track->render();
         buffer_left[frame] = sample;
         buffer_right[frame] = sample;
     }
@@ -44,7 +42,8 @@ static OSStatus render_audio(
 }
 
 audiostation::AudioStation::AudioStation() {
-    this->impl = std::make_unique<AudioStationImpl>(SAMPLE_RATE);
+    this->impl = std::make_unique<AudioStationImpl>();
+    this->impl->track = nullptr;
 }
 
 audiostation::AudioStation::~AudioStation() {
@@ -70,7 +69,7 @@ void audiostation::AudioStation::init() {
 
     AURenderCallbackStruct callback;
     callback.inputProc = render_audio;
-    callback.inputProcRefCon = &this->impl->audio_renderer;
+    callback.inputProcRefCon = this->impl.get();
 
     AudioUnitSetProperty(
         this->impl->audio_unit,
@@ -114,20 +113,14 @@ void audiostation::AudioStation::init() {
     std::cout << "🎛️ Audio initialized" << std::endl;
 }
 
-void audiostation::AudioStation::add_oscillator(audiostation::Oscillator* oscillator) {
-    this->impl->audio_renderer.add_oscillator(oscillator);
-}
-
-void audiostation::AudioStation::add_synth(audiostation::Synth* synth) {
-    this->impl->audio_renderer.add_synth(synth);
-}
-
-void audiostation::AudioStation::play() {
+void audiostation::AudioStation::play(Track *track) {
+    this->impl->track = track;
     AudioOutputUnitStart(this->impl->audio_unit);
-    std::cout << "▶️ Audio playing" << std::endl;
+    std::cout << "▶️ Audio live" << std::endl;
 }
 
 void audiostation::AudioStation::stop() {
     AudioOutputUnitStop(this->impl->audio_unit);
+    this->impl->track = nullptr;
     std::cout << "⏹️ Audio stopped" << std::endl;
 }

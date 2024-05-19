@@ -3,8 +3,7 @@
 
 #include <memory>
 #include <vector>
-#include "oscillator.hpp"
-#include "synth.hpp"
+#include "track.hpp"
 
 namespace audiostation {
 
@@ -15,9 +14,7 @@ namespace audiostation {
         ~AudioStation();
 
         void init();
-        void add_oscillator(audiostation::Oscillator* oscillator);
-        void add_synth(audiostation::Synth* synth);
-        void play();
+        void play(audiostation::Track* track);
         void stop();
 
     private:

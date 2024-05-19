@@ -14,20 +14,22 @@ using namespace audiostation;
 
 void run_tests() {
     std::cout << "🧪 Running tests" << std::endl;
-    run_wave_rendering_tests();
-    run_audio_rendering_tests();
+    run_oscillator_tests();
     run_synth_tests();
+    run_track_tests();
+    run_wave_rendering_tests();
     std::cout << "✅ All tests done" << std::endl;
 }
 
 void run_synth_demo() {
     AudioStation station;
     station.init();
-    station.play();
-    
+
     Synth synth;
-    synth.set_envelope({.atack = 30});
-    station.add_synth(&synth);
+    synth.set_envelope({ .atack = 20, .decay = 100, .sustain = 0.75, .release = 100 });
+
+    Track track { .synths = { &synth } };
+    station.play(&track);
     
     for (auto& note : Notes::piano_notes) {
         synth.play_note(note);
@@ -41,13 +43,16 @@ void run_synth_demo() {
 void run_oscillator_demo() {
     AudioStation station;
     station.init();
-    station.play();
 
     Oscillator oscillator;
-    station.add_oscillator(&oscillator);
+    Track track;
+    track.add_oscillator(&oscillator);
+    station.play(&track);
+
     oscillator.play();
     std::this_thread::sleep_for(std::chrono::seconds(1));
     oscillator.stop();
+
     station.stop();
 }
 
