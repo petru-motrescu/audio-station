@@ -56,12 +56,13 @@ The app uses SceneKit for the graphics and the audio library to play some silly 
 
 ### Documentation
 
-Audio:
 - [DAW, by Wikipedia](https://en.wikipedia.org/wiki/Digital_audio_workstation)
 - [Waveform, by Wikipedia](https://en.wikipedia.org/wiki/Waveform)
+- [Waveforms, by Josh Comeau](https://pudding.cool/2018/02/waveforms/)
 - [Envelope, by Wikipedia](https://en.wikipedia.org/wiki/Envelope_(music))
 - [Piano key frequencies, by Wikipedia](https://en.wikipedia.org/wiki/Piano_key_frequencies)
-- [Waveforms, by Josh Comeau](https://pudding.cool/2018/02/waveforms/)
+- [Drum kit, by Wikipedia](https://en.wikipedia.org/wiki/Drum_kit)
+- [How To Get the Perfect Kick Drum Sound, by Output Mag](https://output.com/blog/get-perfect-kick-drum)
 - [Apple Audio](https://developer.apple.com/audio/)
 - [Apple Core Audio](https://developer.apple.com/library/archive/documentation/MusicAudio/Conceptual/CoreAudioOverview)
 - [Apple SceneKit](https://developer.apple.com/documentation/scenekit)

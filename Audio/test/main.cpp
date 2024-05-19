@@ -7,6 +7,7 @@
 #include <chrono>
 #include <vector>
 #include "audio-station.hpp"
+#include "bass-drum.hpp"
 #include "frequency.hpp"
 #include "oscillator.hpp"
 #include "synth.hpp"
@@ -65,9 +66,27 @@ void run_oscillator_demo() {
     station.stop();
 }
 
+void run_bass_drum_demo() {
+    AudioStation station;
+    station.init();
+
+    BassDrum bass_drum;
+    Track track { .bass_drums = { &bass_drum } };
+    station.play(&track);
+
+    while (true) {
+        bass_drum.play();
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    }
+
+    station.stop();
+}
+
+
 int main() {
-    run_tests();
-    run_synth_demo();
+    // run_tests();
+    // run_synth_demo();
     // run_oscillator_demo();
+    run_bass_drum_demo();
     return 0;
 }
