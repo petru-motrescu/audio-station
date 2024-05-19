@@ -27,7 +27,12 @@ void run_synth_demo() {
     station.init();
 
     Synth synth;
-    synth.set_envelope({ .atack = 20, .decay = 50, .sustain = 0.75, .release = 3000 });
+    synth.set_envelope({ 
+        .atack_millis = 20, 
+        .decay_millis = 50, 
+        .sustain_level = 0.75, 
+        .release_millis = 3000
+    });
 
     Track track { .synths = { &synth } };
     station.play(&track);

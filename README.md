@@ -17,7 +17,12 @@ AudioStation station;
 station.init();
 
 Synth synth;
-synth.set_envelope({ .atack = 20, .decay = 50, .sustain = 0.75, .release = 3000 });
+synth.set_envelope({ 
+    .atack_millis = 20, 
+    .decay_millis = 50, 
+    .sustain_level = 0.75, 
+    .release_millis = 3000
+});
 
 Track track { .synths = { &synth } };
 station.play(&track);
@@ -52,15 +57,14 @@ The app uses SceneKit for the graphics and the audio library to play some silly 
 ### Documentation
 
 Audio:
-- [Wiki > DAW](https://en.wikipedia.org/wiki/Digital_audio_workstation)
-- [Wiki > Waveform](https://en.wikipedia.org/wiki/Waveform)
-- [Apple > Audio](https://developer.apple.com/audio/)
-- [Apple > Core Audio](https://developer.apple.com/library/archive/documentation/MusicAudio/Conceptual/CoreAudioOverview)
-- [Wiki > Piano key frequencies](https://en.wikipedia.org/wiki/Piano_key_frequencies)
-- [Waveforms by Josh Comeau](https://pudding.cool/2018/02/waveforms/)
-
-Graphics:
-- [Apple > SceneKit](https://developer.apple.com/documentation/scenekit)
+- [DAW, by Wikipedia](https://en.wikipedia.org/wiki/Digital_audio_workstation)
+- [Waveform, by Wikipedia](https://en.wikipedia.org/wiki/Waveform)
+- [Envelope, by Wikipedia](https://en.wikipedia.org/wiki/Envelope_(music))
+- [Piano key frequencies, by Wikipedia](https://en.wikipedia.org/wiki/Piano_key_frequencies)
+- [Waveforms, by Josh Comeau](https://pudding.cool/2018/02/waveforms/)
+- [Apple Audio](https://developer.apple.com/audio/)
+- [Apple Core Audio](https://developer.apple.com/library/archive/documentation/MusicAudio/Conceptual/CoreAudioOverview)
+- [Apple SceneKit](https://developer.apple.com/documentation/scenekit)
 
 
 ### Footnote

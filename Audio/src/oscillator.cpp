@@ -1,5 +1,6 @@
 #include <iostream>
 #include <utility>
+#include "config.hpp"
 #include "note.hpp"
 #include "frequency.hpp"
 #include "oscillator.hpp"
@@ -39,12 +40,12 @@ void audiostation::Oscillator::stop() {
     this->impl->is_live = false;
 }
 
-double audiostation::Oscillator::render(unsigned sample_rate) {
+double audiostation::Oscillator::render() {
     if (!this->impl->is_live) {
         return 0;
     }
 
     double sample = Renderer::render_wave(this->impl->waveform, this->impl->phase) * this->impl->amplitude;
-    this->impl->phase = Renderer::next_phase(this->impl->phase, this->impl->frequency, sample_rate);
+    this->impl->phase = Renderer::next_phase(this->impl->phase, this->impl->frequency, Config::SAMPLE_RATE);
     return sample;
 }

@@ -23,11 +23,11 @@ double audiostation::Track::render() {
     double sample = 0;
     
     for (auto& oscillator : this->oscillators) {
-        sample += oscillator->render(44100); // TODO Set sample rate in constructor
+        sample += oscillator->render();
     }
 
     for (auto& synth : this->synths) {
-        sample += synth->render(44100); // TODO Set sample rate in constructor
+        sample += synth->render();
     }
 
     return sample;

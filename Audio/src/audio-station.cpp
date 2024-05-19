@@ -3,11 +3,10 @@
 #include <cmath>
 #include <AudioToolbox/AudioToolbox.h>
 #include "audio-station.hpp"
+#include "config.hpp"
 #include "track.hpp"
 using namespace audiostation;
 
-constexpr unsigned int SAMPLE_RATE = 44100;
-constexpr unsigned int BUFFER_SIZE = 512;
 constexpr unsigned SIZE_OF_DOUBLE = sizeof(double);
 
 struct audiostation::AudioStationImpl {
@@ -23,6 +22,8 @@ static OSStatus render_audio(
     UInt32 frame_count,
     AudioBufferList* buffers
 ) {
+    // ⚠️ No locks and no IO allowed here.
+
     AudioStationImpl* station = (AudioStationImpl*) client_data;
     if (station->track == nullptr) {
         return 0;
@@ -80,7 +81,7 @@ void audiostation::AudioStation::init() {
     );
 
     AudioStreamBasicDescription stream_format {
-        .mSampleRate = SAMPLE_RATE,
+        .mSampleRate = Config::SAMPLE_RATE,
         .mFormatID = kAudioFormatLinearPCM,
         .mFormatFlags = kAudioFormatFlagIsFloat | kAudioFormatFlagIsNonInterleaved,
         .mBytesPerPacket = SIZE_OF_DOUBLE,
@@ -104,8 +105,8 @@ void audiostation::AudioStation::init() {
         kAudioUnitProperty_MaximumFramesPerSlice,
         kAudioUnitScope_Global,
         0,
-        &BUFFER_SIZE,
-        sizeof(BUFFER_SIZE)
+        &Config::BUFFER_SIZE,
+        sizeof(Config::BUFFER_SIZE)
     );
 
     AudioUnitInitialize(this->impl->audio_unit);

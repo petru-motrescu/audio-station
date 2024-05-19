@@ -1,6 +1,7 @@
 #include <iostream>
 #include <utility>
 #include <unordered_map>
+#include "config.hpp"
 #include "envelope.hpp"
 #include "note.hpp"
 #include "renderer.hpp"
@@ -12,38 +13,41 @@ struct SynthSignal {
     double frequency;
     double amplitude;
     double phase;
-    unsigned ticks;
+    unsigned ticks_since_live;
+    unsigned ticks_at_release;
     bool live;
-    long released_at_ticks;
 };
 
 struct audiostation::SynthImpl {
     std::vector<SynthSignal> signals;
     std::unordered_map<Note, int> note_signal_ids;
-    Envelope envelope;
+    RenderableEnvelope envelope;
+    unsigned sample_rate;
 };
 
-double render_signal(SynthSignal& signal, Envelope& envelope, unsigned sample_rate);
+double render_signal(SynthSignal& signal, RenderableEnvelope& envelope);
 
 audiostation::Synth::Synth() {
     this->impl = std::make_unique<SynthImpl>();
+    this->impl->sample_rate = Config::SAMPLE_RATE;
+    
     int signal_id = 0;
     for (auto& note : Notes::piano_notes) {
         this->impl->signals.push_back({ 
             .waveform = Waveform::Square,
             .frequency = Notes::get_frequency(note),
             .amplitude = 0.2,
-            .ticks = 0
+            .ticks_since_live = 0
         });
         this->impl->note_signal_ids[note] = signal_id++;
     }
 
-    this->impl->envelope = {
-        .atack = 10,
-        .decay = 100,
-        .sustain = 0.1,
-        .release = 2000
-    };
+    set_envelope({
+        .atack_millis = 10,
+        .decay_millis = 100,
+        .sustain_level = 0.1,
+        .release_millis = 2000
+    });
 }
 
 audiostation::Synth::~Synth() {
@@ -51,23 +55,23 @@ audiostation::Synth::~Synth() {
 }
 
 void audiostation::Synth::set_envelope(Envelope envelope) {
-    this->impl->envelope = envelope;
+    this->impl->envelope = Envelopes::to_renderable_envelope(envelope);
 }
 
 void audiostation::Synth::play_note(Note note) {
     auto signal_id = this->impl->note_signal_ids[note];
     auto& signal = this->impl->signals[signal_id];
     signal.phase = 0;
-    signal.ticks = 0;
+    signal.ticks_since_live = 0;
+    signal.ticks_at_release = -1;
     signal.live = true;
-    signal.released_at_ticks = -1;
 }
 
 void audiostation::Synth::stop_note(Note note) {
     auto signal_id = this->impl->note_signal_ids[note];
     auto& signal = this->impl->signals[signal_id];
-    if (this->impl->envelope.release > 0) {
-        signal.released_at_ticks = signal.ticks;
+    if (this->impl->envelope.release_ticks > 0) {
+        signal.ticks_at_release = signal.ticks_since_live;
     } else {
         signal.live = false;
     }
@@ -78,38 +82,27 @@ bool audiostation::Synth::is_note_live(Note note) {
     return this->impl->signals[signal_id].live;
 }
 
-double audiostation::Synth::render(unsigned sample_rate) {
+double audiostation::Synth::render() {
     double sample = 0;
     for (auto& signal : this->impl->signals) {
         if (signal.live) {
-            sample += render_signal(signal, this->impl->envelope, sample_rate);
+            sample += render_signal(signal, this->impl->envelope);
         }
     }
     return sample;
 }
 
-double render_signal(SynthSignal& signal, Envelope& envelope, unsigned sample_rate) {
+double render_signal(SynthSignal& signal, RenderableEnvelope& envelope) {
     double sample = Renderer::render_wave(signal.waveform, signal.phase) * signal.amplitude;
-    double atack_ticks = envelope.atack * sample_rate / 1000; // TODO Precompute this
-    double decay_ticks = envelope.decay * sample_rate / 1000; // TODO Precompute this
-    double release_ticks = envelope.release * sample_rate / 1000; // TODO Precompute this
-    
-    if (signal.ticks < atack_ticks) {
-        sample = (signal.ticks / atack_ticks) * sample;
-    } else if (signal.ticks < (atack_ticks + decay_ticks)) {
-        auto ticks = signal.ticks - atack_ticks;
-        sample = (1 - ticks / decay_ticks) * sample + ticks / decay_ticks * envelope.sustain * sample;
-    } else if (signal.released_at_ticks < 0) {
-        sample = envelope.sustain * sample;
-    } else if (signal.ticks < (signal.released_at_ticks + release_ticks)) {
-        auto ticks = signal.ticks - signal.released_at_ticks;
-        sample = (1 - ticks / release_ticks) * envelope.sustain * sample;
-    } else {
-        signal.live = false;
-        return 0;
-    }
-
-    signal.phase = Renderer::next_phase(signal.phase, signal.frequency, sample_rate);
-    signal.ticks++;
+    auto result = Renderer::render_enveloped_sample(
+        sample,
+        signal.ticks_since_live,
+        signal.ticks_at_release,
+        envelope
+    );
+    sample = result.sample;
+    signal.live = result.live;
+    signal.phase = Renderer::next_phase(signal.phase, signal.frequency, Config::SAMPLE_RATE);
+    signal.ticks_since_live++;
     return sample;
 }

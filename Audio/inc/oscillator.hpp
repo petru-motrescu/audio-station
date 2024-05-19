@@ -21,7 +21,7 @@ namespace audiostation {
         void stop();
 
     // internal:
-        double render(unsigned sample_rate);
+        double render();
 
     private:
         std::unique_ptr<OscillatorImpl> impl;
