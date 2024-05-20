@@ -3,6 +3,7 @@
 
 #include <memory>
 #include "envelope.hpp"
+#include "instrument.hpp"
 #include "note.hpp"
 #include "waveform.hpp"
 
@@ -18,7 +19,7 @@ namespace audiostation {
         double amplitude = 0.6;
     };
 
-    struct BassDrum {
+    struct BassDrum : public Instrument {
         BassDrum();
         BassDrum(BassConfig config);
         ~BassDrum();
@@ -26,7 +27,7 @@ namespace audiostation {
         void play();
     
     // internal:
-        double render();
+        double render() override;
 
     private:
         std::unique_ptr<BassDrumImpl> impl;

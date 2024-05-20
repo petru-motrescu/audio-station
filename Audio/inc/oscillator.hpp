@@ -2,6 +2,7 @@
 #define AUDIO_STATION_OSCILLATOR_HPP
 
 #include <memory>
+#include "instrument.hpp"
 #include "waveform.hpp"
 #include "frequency.hpp"
 
@@ -9,7 +10,7 @@ namespace audiostation {
 
     struct OscillatorImpl;
 
-    struct Oscillator {
+    struct Oscillator : public Instrument {
         Oscillator(
             Waveform waveform = Waveform::Sine,
             double frequency = Frequency::C4,
@@ -21,7 +22,7 @@ namespace audiostation {
         void stop();
 
     // internal:
-        double render();
+        double render() override;
 
     private:
         std::unique_ptr<OscillatorImpl> impl;

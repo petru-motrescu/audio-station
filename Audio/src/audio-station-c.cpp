@@ -43,7 +43,7 @@ TrackHandle track_init() {
 }
 
 void track_add_synth(TrackHandle track, SynthHandle synth) {
-    reinterpret_cast<Track*>(track)->add_synth(reinterpret_cast<Synth*>(synth));
+    reinterpret_cast<Track*>(track)->add_instrument(reinterpret_cast<Synth*>(synth));
 }
 
 void track_dispose(TrackHandle track) {

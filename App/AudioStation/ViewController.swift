@@ -89,7 +89,6 @@ class ViewController: NSViewController {
         return scene.rootNode.childNode(withName: name, recursively: true)!
     }
     
-    
     private func pressKey(_ key: Key) {
         if (self.pressedKey != nil && self.pressedKey != key) {
             self.pressedKey?.release()

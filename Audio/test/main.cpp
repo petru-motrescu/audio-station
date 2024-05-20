@@ -39,7 +39,7 @@ void run_synth_demo() {
         .release_millis = 3000
     });
 
-    Track track { .synths = { &synth } };
+    Track track { .instruments = { &synth } };
     station.play(&track);
     
     std::vector<Note> notes = { Note::D3, Note::A3, Note::D4 };
@@ -59,8 +59,7 @@ void run_oscillator_demo() {
     station.init();
 
     Oscillator oscillator;
-    Track track;
-    track.add_oscillator(&oscillator);
+    Track track { .instruments = { &oscillator } };
     station.play(&track);
 
     oscillator.play();
@@ -75,7 +74,7 @@ void run_bass_drum_demo() {
     station.init();
 
     BassDrum bass_drum;
-    Track track { .bass_drums = { &bass_drum } };
+    Track track { .instruments = { &bass_drum } };
     station.play(&track);
 
     while (true) {
@@ -114,11 +113,7 @@ void run_track_demo() {
         .amplitude = 0.2,
     });
 
-    Track track { 
-        .bass_drums = { &bass_drum, &click_drum }, 
-        .synths = { &synth }
-    };
-
+    Track track { .instruments = { &bass_drum, &click_drum, &synth } };
     station.play(&track);
 
     for (int i = 0; i < 16; i++) {

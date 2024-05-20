@@ -36,6 +36,7 @@
 		0A5EEE2C2BF91EAB0088DA5D /* notes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = notes.cpp; sourceTree = "<group>"; };
 		0A7A69222BF9D8690030B5F1 /* track.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = track.hpp; sourceTree = "<group>"; };
 		0A7A69232BF9D88B0030B5F1 /* track.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = track.cpp; sourceTree = "<group>"; };
+		0A8D9E6F2BFBCE8C005B27C0 /* instrument.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = instrument.hpp; sourceTree = "<group>"; };
 		0AA72FDD2BFAAEBE00DF2ED8 /* bass-drum.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "bass-drum.hpp"; sourceTree = "<group>"; };
 		0AA72FDE2BFAAEC400DF2ED8 /* bass-drum.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "bass-drum.cpp"; sourceTree = "<group>"; };
 		0ABBE02B2BE554B000803057 /* audio-station.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "audio-station.hpp"; sourceTree = "<group>"; };
@@ -90,6 +91,7 @@
 				0A2806E92BFA96660062A235 /* config.hpp */,
 				0AF0F5482BF9580E006BDE7A /* envelope.hpp */,
 				0A5EEE292BF91E9F0088DA5D /* frequency.hpp */,
+				0A8D9E6F2BFBCE8C005B27C0 /* instrument.hpp */,
 				0A5EEE262BF91E9F0088DA5D /* note.hpp */,
 				0A5EEE272BF91E9F0088DA5D /* oscillator.hpp */,
 				0ABBE02D2BE554B000803057 /* renderer.hpp */,

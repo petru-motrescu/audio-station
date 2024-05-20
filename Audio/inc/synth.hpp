@@ -3,13 +3,14 @@
 
 #include <memory>
 #include "envelope.hpp"
+#include "instrument.hpp"
 #include "note.hpp"
 
 namespace audiostation {
 
     struct SynthImpl;
 
-    struct Synth {
+    struct Synth : public Instrument {
         Synth();
         ~Synth();
         
@@ -20,7 +21,7 @@ namespace audiostation {
         bool is_note_live(Note note);
     
     // internal:
-        double render();
+        double render() override;
 
     private:
         std::unique_ptr<SynthImpl> impl;
