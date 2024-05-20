@@ -46,7 +46,8 @@ double audiostation::BassDrum::render() {
 
     auto& config = this->impl->config;
     double frequency = (1 - ratio) * config.atack_frequency + ratio * config.decay_frequency;
-    double sample = Renderer::render_wave(config.waveform, this->impl->phase) * config.amplitude;
+    double amplitude = (1 - ratio) * config.amplitude;
+    double sample = Renderer::render_wave(config.waveform, this->impl->phase) * amplitude;
     this->impl->phase = Renderer::next_phase(this->impl->phase, frequency, Config::SAMPLE_RATE);
     this->impl->ticks_since_live++;
 
