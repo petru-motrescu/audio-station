@@ -14,6 +14,10 @@
 #include "tests.hpp"
 using namespace audiostation;
 
+void sleep(int milliseconds) {
+    std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
+}
+
 void run_tests() {
     std::cout << "🧪 Running tests" << std::endl;
     run_oscillator_tests();
@@ -82,11 +86,60 @@ void run_bass_drum_demo() {
     station.stop();
 }
 
+void run_track_demo() {
+    AudioStation station;
+    station.init();
+
+    Synth synth;
+    synth.set_envelope({
+        .atack_millis = 5, 
+        .decay_millis = 20, 
+        .sustain_level = 0.8, 
+        .release_millis = 300
+    });
+
+    BassDrum bass_drum({
+        .waveform = Waveform::Sine,
+        .atack_frequency = 120,
+        .decay_frequency = 30,
+        .decay_millis = 150,
+        .amplitude = 0.5,
+    });
+
+    BassDrum click_drum({
+        .waveform = Waveform::Sine,
+        .atack_frequency = 2000,
+        .decay_frequency = 2000,
+        .decay_millis = 100,
+        .amplitude = 0.2,
+    });
+
+    Track track { 
+        .bass_drums = { &bass_drum, &click_drum }, 
+        .synths = { &synth }
+    };
+
+    station.play(&track);
+
+    for (int i = 0; i < 16; i++) {
+        bass_drum.play();
+        sleep(5);
+        synth.play_note(Note::E1);
+        sleep(20);
+        synth.stop_note(Note::E1);
+        sleep(250);
+        click_drum.play();
+        sleep(200);
+    }
+
+    station.stop();
+}
 
 int main() {
     // run_tests();
     // run_synth_demo();
     // run_oscillator_demo();
-    run_bass_drum_demo();
+    // run_bass_drum_demo();
+    run_track_demo();
     return 0;
 }
