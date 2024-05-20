@@ -3,6 +3,7 @@
 #include <cmath>
 #include <list>
 #include <tuple>
+#include <iomanip>
 #include "renderer.hpp"
 #include "asserts.hpp"
 #include "tests.hpp"
@@ -52,6 +53,25 @@ void test_square_wave_rendering() {
     }
 }
 
+void test_triangle_wave_rendering() {
+    std::list<std::tuple<double, double, std::string>> triples {
+        {  0.00000000000, 0.00 * PI, "0.00 * PI" },
+        {  0.50000000000, 0.25 * PI, "0.25 * PI" },
+        {  1.00000000000, 0.50 * PI, "0.50 * PI" },
+        {  0.50000000000, 0.75 * PI, "0.75 * PI" },
+        {  0.00000000000, 1.00 * PI, "1.00 * PI" },
+        { -0.50000000000, 1.25 * PI, "1.25 * PI" },
+        { -1.00000000000, 1.50 * PI, "1.50 * PI" },
+        { -0.50000000000, 1.75 * PI, "1.75 * PI" },
+        {  0.00000000000, 2.00 * PI - EPSILON, "2.00 * PI - epsilon" }, // if phase == 2PI it wraps back to 0
+    };
+
+    for (auto [expected, phase, message] : triples) {
+        auto actual = Renderer::render_wave(Waveform::Triangle, phase);
+        assert_equal(expected, actual, EPSILON, message);
+    }
+}
+
 void test_next_phase() {
     constexpr unsigned int frequency = 100;
     constexpr unsigned int sample_rate = 800;
@@ -89,5 +109,6 @@ void test_next_phase() {
 void audiostation::run_renderer_tests() {
     test_sine_wave_rendering();
     test_square_wave_rendering();
+    test_triangle_wave_rendering();
     test_next_phase();
 }

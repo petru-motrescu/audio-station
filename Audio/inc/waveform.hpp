@@ -6,6 +6,7 @@ namespace audiostation {
     enum class Waveform : int {
         Sine = 0,
         Square = 1,
+        Triangle = 2,
     };
 }
 

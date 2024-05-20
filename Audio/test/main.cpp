@@ -131,7 +131,7 @@ void run_track_demo() {
 }
 
 int main() {
-    // run_tests();
+    run_tests();
     // run_synth_demo();
     // run_oscillator_demo();
     // run_bass_drum_demo();
