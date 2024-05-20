@@ -22,32 +22,27 @@ struct audiostation::SynthImpl {
     std::vector<SynthSignal> signals;
     std::unordered_map<Note, int> note_signal_ids;
     RenderableEnvelope envelope;
-    unsigned sample_rate;
 };
 
 double render_signal(SynthSignal& signal, RenderableEnvelope& envelope);
 
-audiostation::Synth::Synth() {
+audiostation::Synth::Synth() : Synth(SynthConfig()) { }
+
+audiostation::Synth::Synth(SynthConfig config) {
     this->impl = std::make_unique<SynthImpl>();
-    this->impl->sample_rate = Config::SAMPLE_RATE;
     
     int signal_id = 0;
     for (auto& note : Notes::piano_notes) {
         this->impl->signals.push_back({ 
-            .waveform = Waveform::Square,
+            .waveform = config.waveform,
             .frequency = Notes::get_frequency(note),
-            .amplitude = 0.2,
+            .amplitude = config.amplitude,
             .ticks_since_live = 0
         });
         this->impl->note_signal_ids[note] = signal_id++;
     }
 
-    set_envelope({
-        .atack_millis = 10,
-        .decay_millis = 100,
-        .sustain_level = 0.1,
-        .release_millis = 2000
-    });
+    set_envelope(config.envelope);
 }
 
 audiostation::Synth::~Synth() {

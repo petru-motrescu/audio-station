@@ -10,7 +10,6 @@ constexpr double PI_x_2 = 2 * M_PI;
 constexpr double HALF_PI = M_PI / 2;
 constexpr double HALF_PI_x_0 = 0;
 constexpr double HALF_PI_x_1 = HALF_PI;
-constexpr double HALF_PI_x_2 = PI;
 constexpr double HALF_PI_x_3 = 3 * M_PI / 2;
 constexpr double HALF_PI_x_4 = PI_x_2;
 

@@ -89,12 +89,15 @@ void run_track_demo() {
     AudioStation station;
     station.init();
 
-    Synth synth;
-    synth.set_envelope({
-        .atack_millis = 5, 
-        .decay_millis = 20, 
-        .sustain_level = 0.8, 
-        .release_millis = 300
+    Synth synth({
+        .waveform = Waveform::Triangle,
+        .amplitude = 0.5,
+        .envelope = {
+            .atack_millis = 5, 
+            .decay_millis = 20, 
+            .sustain_level = 0.9, 
+            .release_millis = 400
+        }
     });
 
     BassDrum bass_drum({
