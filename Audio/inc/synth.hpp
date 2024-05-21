@@ -11,12 +11,12 @@ namespace audiostation {
 
     struct SynthConfig {
         Waveform waveform = Waveform::Triangle;
-        double amplitude = 0.2;
+        double amplitude = 0.5;
         Envelope envelope = {
             .atack_millis = 10,
             .decay_millis = 100,
-            .sustain_level = 0.1,
-            .release_millis = 200,
+            .sustain_level = 0.9,
+            .release_millis = 1000,
         };
     };
 
@@ -35,6 +35,8 @@ namespace audiostation {
     
     // internal:
         double render() override;
+        void set_sample_rate(unsigned sample_rate);
+        void set_renderable_envelope(RenderableEnvelope envelope);
 
     private:
         std::unique_ptr<SynthImpl> impl;

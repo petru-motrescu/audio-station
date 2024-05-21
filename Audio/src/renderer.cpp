@@ -4,9 +4,7 @@
 #include "renderer.hpp"
 using namespace audiostation;
 
-constexpr double PI = M_PI;
 constexpr double PI_x_2 = 2 * M_PI;
-
 constexpr double HALF_PI = M_PI / 2;
 constexpr double HALF_PI_x_0 = 0;
 constexpr double HALF_PI_x_1 = HALF_PI;
@@ -85,12 +83,12 @@ EnvelopedSample audiostation::Renderer::render_enveloped_sample(
     bool live = true;
 
     if (ticks_since_live < envelope.atack_ticks) {
-        new_sample = (ticks_since_live / envelope.atack_ticks) * sample;
+        new_sample = sample * ticks_since_live / envelope.atack_ticks;
     } else if (ticks_since_live < (envelope.atack_ticks + envelope.decay_ticks)) {
         auto ticks = ticks_since_live - envelope.atack_ticks;
         auto ratio = ticks / envelope.decay_ticks;
         new_sample = (1 - ratio + ratio * envelope.sustain_level) * sample;
-    } else if (ticks_at_release < 0) {
+    } else if (ticks_at_release == 0) {
         new_sample = envelope.sustain_level * sample;
     } else if (ticks_since_live < (ticks_at_release + envelope.release_ticks)) {
         auto ticks = ticks_since_live - ticks_at_release;

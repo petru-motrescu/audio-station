@@ -22,14 +22,16 @@ struct audiostation::SynthImpl {
     std::vector<SynthSignal> signals;
     std::unordered_map<Note, int> note_signal_ids;
     RenderableEnvelope envelope;
+    unsigned sample_rate;
 };
 
-double render_signal(SynthSignal& signal, RenderableEnvelope& envelope);
+double render_signal(SynthSignal& signal, RenderableEnvelope& envelope, unsigned sample_rate);
 
 audiostation::Synth::Synth() : Synth(SynthConfig()) { }
 
 audiostation::Synth::Synth(SynthConfig config) {
     this->impl = std::make_unique<SynthImpl>();
+    this->impl->sample_rate = Config::SAMPLE_RATE;
     
     int signal_id = 0;
     for (auto& note : Notes::piano_notes) {
@@ -50,7 +52,7 @@ audiostation::Synth::~Synth() {
 }
 
 void audiostation::Synth::set_envelope(Envelope envelope) {
-    this->impl->envelope = Envelopes::to_renderable_envelope(envelope);
+    set_renderable_envelope(Envelopes::to_renderable_envelope(envelope));
 }
 
 void audiostation::Synth::play_note(Note note) {
@@ -58,7 +60,7 @@ void audiostation::Synth::play_note(Note note) {
     auto& signal = this->impl->signals[signal_id];
     signal.phase = 0;
     signal.ticks_since_live = 0;
-    signal.ticks_at_release = -1;
+    signal.ticks_at_release = 0;
     signal.live = true;
 }
 
@@ -81,13 +83,21 @@ double audiostation::Synth::render() {
     double sample = 0;
     for (auto& signal : this->impl->signals) {
         if (signal.live) {
-            sample += render_signal(signal, this->impl->envelope);
+            sample += render_signal(signal, this->impl->envelope, this->impl->sample_rate);
         }
     }
     return sample;
 }
 
-double render_signal(SynthSignal& signal, RenderableEnvelope& envelope) {
+void audiostation::Synth::set_sample_rate(unsigned sample_rate) {
+    this->impl->sample_rate = sample_rate;
+}
+
+void audiostation::Synth::set_renderable_envelope(RenderableEnvelope envelope) {
+    this->impl->envelope = envelope;
+}
+
+double render_signal(SynthSignal& signal, RenderableEnvelope& envelope, unsigned sample_rate) {
     double sample = Renderer::render_wave(signal.waveform, signal.phase) * signal.amplitude;
     auto result = Renderer::render_enveloped_sample(
         sample,
@@ -95,9 +105,8 @@ double render_signal(SynthSignal& signal, RenderableEnvelope& envelope) {
         signal.ticks_at_release,
         envelope
     );
-    sample = result.sample;
     signal.live = result.live;
-    signal.phase = Renderer::next_phase(signal.phase, signal.frequency, Config::SAMPLE_RATE);
+    signal.phase = Renderer::next_phase(signal.phase, signal.frequency, sample_rate);
     signal.ticks_since_live++;
-    return sample;
+    return result.sample;
 }

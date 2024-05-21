@@ -35,19 +35,16 @@ void run_synth_demo() {
     synth.set_envelope({ 
         .atack_millis = 20, 
         .decay_millis = 50, 
-        .sustain_level = 0.75, 
+        .sustain_level = 0.9, 
         .release_millis = 3000
     });
 
     Track track { .instruments = { &synth } };
     station.play(&track);
     
-    std::vector<Note> notes = { Note::D3, Note::A3, Note::D4 };
-    for (auto& note : notes) {
-        synth.play_note(note);
-        std::this_thread::sleep_for(std::chrono::milliseconds(300));
-        synth.stop_note(note);
-    }
+    synth.play_note(Note::C4);
+    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+    synth.stop_note(Note::C4);
 
     std::this_thread::sleep_for(std::chrono::milliseconds(3000));
     
@@ -96,7 +93,7 @@ void run_track_demo() {
             .atack_millis = 5, 
             .decay_millis = 20, 
             .sustain_level = 0.9, 
-            .release_millis = 400
+            .release_millis = 500
         }
     });
 
@@ -125,9 +122,9 @@ void run_track_demo() {
         synth.play_note(Note::E1);
         sleep(20);
         synth.stop_note(Note::E1);
-        sleep(250);
+        sleep(275);
         click_drum.play();
-        sleep(200);
+        sleep(150);
     }
 
     station.stop();

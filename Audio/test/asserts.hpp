@@ -15,6 +15,12 @@ namespace audiostation {
         double epsilon = 0.00000001, 
         std::string message = ""
     );
+
+    void assert_equal(
+        std::vector<double> expected, 
+        std::vector<double> actual, 
+        double epsilon = 0.00000001
+    );
 }
 
 #endif // AUDIO_STATION_TEST_ASSERTS_HPP
