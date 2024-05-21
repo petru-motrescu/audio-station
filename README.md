@@ -13,30 +13,53 @@ Built on top of Core Audio, the audio library can generate audio signals and pla
 
 You can even try the library directly from terminal. Here is an example of doing so:
 ```cpp
-AudioStation station;
-station.init();
+void run_track_demo() {
+    AudioStation station;
+    station.init();
 
-Synth synth;
-synth.set_envelope({ 
-    .atack_millis = 20, 
-    .decay_millis = 50, 
-    .sustain_level = 0.75, 
-    .release_millis = 3000
-});
+    Synth synth({
+        .waveform = Waveform::Triangle,
+        .amplitude = 0.5,
+        .envelope = {
+            .atack_millis = 5, 
+            .decay_millis = 20, 
+            .sustain_level = 0.9, 
+            .release_millis = 500
+        }
+    });
 
-Track track { .synths = { &synth } };
-station.play(&track);
+    BassDrum bass_drum({
+        .waveform = Waveform::Sine,
+        .atack_frequency = 120,
+        .decay_frequency = 30,
+        .decay_millis = 150,
+        .amplitude = 0.5,
+    });
 
-std::vector<Note> notes = { Note::D3, Note::A3, Note::D4 };
-for (auto& note : notes) {
-    synth.play_note(note);
-    std::this_thread::sleep_for(std::chrono::milliseconds(300));
-    synth.stop_note(note);
+    BassDrum click_drum({
+        .waveform = Waveform::Sine,
+        .atack_frequency = 2000,
+        .decay_frequency = 2000,
+        .decay_millis = 100,
+        .amplitude = 0.2,
+    });
+
+    Track track { .instruments = { &bass_drum, &click_drum, &synth } };
+    station.play(&track);
+
+    for (int i = 0; i < 16; i++) {
+        bass_drum.play();
+        sleep(5);
+        synth.play_note(Note::E1);
+        sleep(20);
+        synth.stop_note(Note::E1);
+        sleep(275);
+        click_drum.play();
+        sleep(150);
+    }
+
+    station.stop();
 }
-
-std::this_thread::sleep_for(std::chrono::milliseconds(3000));
-
-station.stop();
 ```
 
 To run the above example:
