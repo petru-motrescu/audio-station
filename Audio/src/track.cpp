@@ -17,9 +17,9 @@ void audiostation::Track::add_live_instrument(Instrument* instrument) {
 
 double audiostation::Track::render() {
     for (auto& lane : this->lanes) {
-        for (auto& bar : lane->bars) {
-            for (auto& note : bar.notes) {
-                if ((note.start_tick + bar.offset) == this->tick) {
+        for (auto& block : lane->blocks) {
+            for (auto& note : block.notes) {
+                if ((note.start_tick + block.offset) == this->tick) {
                     if (debug) {
                         std::cout 
                             << "Playing " 
@@ -31,7 +31,7 @@ double audiostation::Track::render() {
                     }
                     lane->instrument->play_note(note.note);
                 }
-                if ((note.start_tick + note.hold_ticks + bar.offset) == this->tick) {
+                if ((note.start_tick + note.hold_ticks + block.offset) == this->tick) {
                     if (debug) {
                         std::cout 
                             << "Stopping " 

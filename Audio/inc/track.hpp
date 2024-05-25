@@ -15,7 +15,7 @@ namespace audiostation {
         unsigned hold_ticks = 1;
     };
 
-    struct TrackBar {
+    struct TrackBlock {
         std::vector<TrackNote> notes;
         unsigned offset = 0;
     };
@@ -23,7 +23,7 @@ namespace audiostation {
     struct TrackLane {
         std::string label;
         Instrument* instrument;
-        std::vector<TrackBar> bars;
+        std::vector<TrackBlock> blocks;
     };
 
     struct Track {

@@ -91,7 +91,7 @@ void run_track_demo() {
     TrackLane kick_lane = {
         .label = "Kick",
         .instrument = &kick,
-        .bars = {
+        .blocks = {
             { .offset =  0 * ticks, .notes = kick_notes },
             { .offset = 16 * ticks, .notes = kick_notes },
             { .offset = 32 * ticks, .notes = kick_notes },
@@ -102,7 +102,7 @@ void run_track_demo() {
     TrackLane click_lane = {
         .label = "Click",
         .instrument = &click,
-        .bars = {
+        .blocks = {
             { .offset =  0 * ticks, .notes = click_notes },
             { .offset = 16 * ticks, .notes = click_notes },
             { .offset = 32 * ticks, .notes = click_notes },
@@ -113,7 +113,7 @@ void run_track_demo() {
     TrackLane bass_lane = {
         .label = "Bass",
         .instrument = &bass,
-        .bars = {
+        .blocks = {
             { .offset =  0 * ticks, .notes = bass_notes_1 },
             { .offset = 16 * ticks, .notes = bass_notes_1 },
             { .offset = 32 * ticks, .notes = bass_notes_1 },
