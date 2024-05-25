@@ -11,16 +11,53 @@
 #include "track.hpp"
 using namespace audiostation;
 
-void audiostation::Track::add_instrument(Instrument* instrument) {
-    this->instruments.push_back(instrument);
+void audiostation::Track::add_live_instrument(Instrument* instrument) {
+    this->live_instruments.push_back(instrument);
 }
 
 double audiostation::Track::render() {
+    for (auto& lane : this->lanes) {
+        for (auto& bar : lane->bars) {
+            for (auto& note : bar.notes) {
+                if ((note.start_tick + bar.offset) == this->tick) {
+                    if (debug) {
+                        std::cout 
+                            << "Playing " 
+                            << lane->label 
+                            << "(" 
+                            << Notes::to_string(note.note) 
+                            << ") @ " 
+                            << this->tick << std::endl;
+                    }
+                    lane->instrument->play_note(note.note);
+                }
+                if ((note.start_tick + note.hold_ticks + bar.offset) == this->tick) {
+                    if (debug) {
+                        std::cout 
+                            << "Stopping " 
+                            << lane->label 
+                            << "(" 
+                            << Notes::to_string(note.note) 
+                            << ") @ " 
+                            << this->tick << std::endl;
+                    }
+                    lane->instrument->stop_note(note.note);
+                }
+            }
+        }
+    }
+
     double sample = 0;
     
-    for (auto& instrument : this->instruments) {
-        sample += instrument->render();
+    for (auto& lane : this->lanes) {
+        sample += lane->instrument->render();
     }
+    
+    for (auto& live_instrument : this->live_instruments) {
+        sample += live_instrument->render();
+    }
+
+    this->tick++;
 
     return sample;
 }

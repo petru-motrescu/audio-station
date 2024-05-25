@@ -20,6 +20,8 @@ namespace audiostation {
 
         void play();
         void stop();
+        void play_note(Note note) override { play(); };
+        void stop_note(Note note) override { stop(); };
 
     // internal:
         double render() override;

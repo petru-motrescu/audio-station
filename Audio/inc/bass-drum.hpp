@@ -25,6 +25,8 @@ namespace audiostation {
         ~BassDrum();
         
         void play();
+        void play_note(Note note) override { play(); };
+        void stop_note(Note note) override { };
     
     // internal:
         double render() override;
