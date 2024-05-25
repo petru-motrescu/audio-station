@@ -51,7 +51,6 @@ double audiostation::BassDrum::render() {
     this->impl->phase = Renderer::next_phase(this->impl->phase, frequency, Config::SAMPLE_RATE);
     this->impl->ticks_since_live++;
 
-    // Intentionally stopping when the sample is near 0 to minimize clicking
     if (this->impl->ticks_since_live >= this->impl->decay_ticks) {
         this->impl->live = false;
         return 0;

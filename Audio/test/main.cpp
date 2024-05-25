@@ -55,35 +55,42 @@ void run_track_demo() {
             .atack_millis = 5, 
             .decay_millis = 20, 
             .sustain_level = 0.9, 
-            .release_millis = 500
+            .release_millis = 400
         }
     });
 
-    std::vector<TrackNote> kick_notes = { { .bar = 0 }, { .bar = 4 }, { .bar = 8 }, { .bar = 12 } };
-    std::vector<TrackNote> click_notes = { { .bar = 2 }, { .bar = 6 }, { .bar = 10 }, { .bar = 14 } };
+    auto bar = Config::SAMPLE_RATE / 2;
+    auto half = Config::SAMPLE_RATE / 4;
 
-    std::vector<TrackNote> bass_notes_1 = {
-        { .note = Note::E1, .bar =  0 },
-        { .note = Note::E1, .bar =  4 },
-        { .note = Note::E1, .bar =  8 },
-        { .note = Note::G1, .bar = 12 },
+    std::vector<TrackNote> kick_notes = { 
+        { .pos = 0 * bar }, 
+        { .pos = 1 * bar },
+        { .pos = 2 * bar },
+        { .pos = 3 * bar },
     };
 
-    std::vector<TrackNote> bass_notes_2 = {
-        { .note = Note::B1, .bar =  0 },
-        { .note = Note::A1, .bar =  4 },
-        { .note = Note::G1, .bar =  8 },
-        { .note = Note::E1, .bar = 12 },
+    std::vector<TrackNote> click_notes = { 
+        { .pos = 0 * bar + half }, 
+        { .pos = 1 * bar + half },
+        { .pos = 2 * bar + half },
+        { .pos = 3 * bar + half },
+    };
+
+    std::vector<TrackNote> bass_notes = {
+        { .pos = 0 * bar, .note = Note::E1 },
+        { .pos = 1 * bar, .note = Note::D1 },
+        { .pos = 2 * bar, .note = Note::C1 },
+        { .pos = 3 * bar, .note = Note::B0 },
     };
 
     TrackLane kick_lane = {
         .label = "Kick",
         .instrument = &kick,
         .blocks = {
-            { .bar =  0, .notes = kick_notes },
-            { .bar = 16, .notes = kick_notes },
-            { .bar = 32, .notes = kick_notes },
-            { .bar = 48, .notes = kick_notes },
+            { .pos = 4 * bar * 0, .notes = kick_notes },
+            { .pos = 4 * bar * 1, .notes = kick_notes },
+            { .pos = 4 * bar * 2, .notes = kick_notes },
+            { .pos = 4 * bar * 3, .notes = kick_notes },
         }
     };
 
@@ -91,10 +98,10 @@ void run_track_demo() {
         .label = "Click",
         .instrument = &click,
         .blocks = {
-            { .bar =  0, .notes = click_notes },
-            { .bar = 16, .notes = click_notes },
-            { .bar = 32, .notes = click_notes },
-            { .bar = 48, .notes = click_notes },
+            { .pos = 4 * bar * 0, .notes = click_notes },
+            { .pos = 4 * bar * 1, .notes = click_notes },
+            { .pos = 4 * bar * 2, .notes = click_notes },
+            { .pos = 4 * bar * 3, .notes = click_notes },
         }
     };
 
@@ -102,16 +109,19 @@ void run_track_demo() {
         .label = "Bass",
         .instrument = &bass,
         .blocks = {
-            { .bar =  0, .notes = bass_notes_1 },
-            { .bar = 16, .notes = bass_notes_1 },
-            { .bar = 32, .notes = bass_notes_1 },
-            { .bar = 48, .notes = bass_notes_2 },
+            { .pos = 4 * bar * 0, .notes = bass_notes },
+            { .pos = 4 * bar * 1, .notes = bass_notes },
+            { .pos = 4 * bar * 2, .notes = bass_notes },
+            { .pos = 4 * bar * 3, .notes = bass_notes },
         }
     };
 
     Track track { 
-        .lanes = { &kick_lane, &click_lane, &bass_lane },
-        .milliticks_per_bar = Config::SAMPLE_RATE * 1000 / 8,
+        .lanes = { 
+            &kick_lane,
+            &click_lane,
+            &bass_lane,
+        },
         .debug = true,
     };
 
@@ -122,7 +132,6 @@ void run_track_demo() {
 }
 
 int main() {
-    std::cout << std::numeric_limits<unsigned long>::max() << std::endl;
     run_tests();
     run_track_demo();
     return 0;

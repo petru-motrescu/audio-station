@@ -11,17 +11,16 @@ namespace audiostation {
 
     using Bar = unsigned;
     using Tick = unsigned;
-    using Millitick = unsigned long;
 
     struct TrackNote {
         Note note = Note::C4;
-        Bar bar = 0;
-        Bar len = 1;
+        Tick pos = 0;
+        Tick len = 1;
     };
 
     struct TrackBlock {
         std::vector<TrackNote> notes;
-        Bar bar = 0;
+        Tick pos = 0;
     };
 
     struct TrackLane {
@@ -35,8 +34,7 @@ namespace audiostation {
         double render();
         std::vector<TrackLane*> lanes;
         std::vector<Instrument*> live_instruments;
-        Millitick milliticks_per_bar;
-        Millitick millitick;
+        Tick tick;
         bool debug;
     };
 }
