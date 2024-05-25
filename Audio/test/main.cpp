@@ -6,6 +6,7 @@
 #include <thread>
 #include <chrono>
 #include <vector>
+#include <limits>
 #include "audio-station.hpp"
 #include "bass-drum.hpp"
 #include "frequency.hpp"
@@ -58,44 +59,31 @@ void run_track_demo() {
         }
     });
 
-    auto ticks = Config::SAMPLE_RATE / 8;
-
-    std::vector<TrackNote> kick_notes = {
-        { .start_tick =  0 * ticks },
-        { .start_tick =  4 * ticks },
-        { .start_tick =  8 * ticks },
-        { .start_tick = 12 * ticks },
-    };
-
-    std::vector<TrackNote> click_notes = {
-        { .start_tick = ( 0 + 2) * ticks },
-        { .start_tick = ( 4 + 2) * ticks },
-        { .start_tick = ( 8 + 2) * ticks },
-        { .start_tick = (12 + 2) * ticks },
-    };
+    std::vector<TrackNote> kick_notes = { { .bar = 0 }, { .bar = 4 }, { .bar = 8 }, { .bar = 12 } };
+    std::vector<TrackNote> click_notes = { { .bar = 2 }, { .bar = 6 }, { .bar = 10 }, { .bar = 14 } };
 
     std::vector<TrackNote> bass_notes_1 = {
-        { .note = Note::E1, .start_tick =  0 * ticks },
-        { .note = Note::E1, .start_tick =  4 * ticks },
-        { .note = Note::E1, .start_tick =  8 * ticks },
-        { .note = Note::G1, .start_tick = 12 * ticks },
+        { .note = Note::E1, .bar =  0 },
+        { .note = Note::E1, .bar =  4 },
+        { .note = Note::E1, .bar =  8 },
+        { .note = Note::G1, .bar = 12 },
     };
 
     std::vector<TrackNote> bass_notes_2 = {
-        { .note = Note::B1, .start_tick =  0 * ticks },
-        { .note = Note::A1, .start_tick =  4 * ticks },
-        { .note = Note::G1, .start_tick =  8 * ticks },
-        { .note = Note::E1, .start_tick = 12 * ticks },
+        { .note = Note::B1, .bar =  0 },
+        { .note = Note::A1, .bar =  4 },
+        { .note = Note::G1, .bar =  8 },
+        { .note = Note::E1, .bar = 12 },
     };
 
     TrackLane kick_lane = {
         .label = "Kick",
         .instrument = &kick,
         .blocks = {
-            { .offset =  0 * ticks, .notes = kick_notes },
-            { .offset = 16 * ticks, .notes = kick_notes },
-            { .offset = 32 * ticks, .notes = kick_notes },
-            { .offset = 48 * ticks, .notes = kick_notes },
+            { .bar =  0, .notes = kick_notes },
+            { .bar = 16, .notes = kick_notes },
+            { .bar = 32, .notes = kick_notes },
+            { .bar = 48, .notes = kick_notes },
         }
     };
 
@@ -103,10 +91,10 @@ void run_track_demo() {
         .label = "Click",
         .instrument = &click,
         .blocks = {
-            { .offset =  0 * ticks, .notes = click_notes },
-            { .offset = 16 * ticks, .notes = click_notes },
-            { .offset = 32 * ticks, .notes = click_notes },
-            { .offset = 48 * ticks, .notes = click_notes },
+            { .bar =  0, .notes = click_notes },
+            { .bar = 16, .notes = click_notes },
+            { .bar = 32, .notes = click_notes },
+            { .bar = 48, .notes = click_notes },
         }
     };
 
@@ -114,15 +102,16 @@ void run_track_demo() {
         .label = "Bass",
         .instrument = &bass,
         .blocks = {
-            { .offset =  0 * ticks, .notes = bass_notes_1 },
-            { .offset = 16 * ticks, .notes = bass_notes_1 },
-            { .offset = 32 * ticks, .notes = bass_notes_1 },
-            { .offset = 48 * ticks, .notes = bass_notes_2 },
+            { .bar =  0, .notes = bass_notes_1 },
+            { .bar = 16, .notes = bass_notes_1 },
+            { .bar = 32, .notes = bass_notes_1 },
+            { .bar = 48, .notes = bass_notes_2 },
         }
     };
 
     Track track { 
         .lanes = { &kick_lane, &click_lane, &bass_lane },
+        .milliticks_per_bar = Config::SAMPLE_RATE * 1000 / 8,
         .debug = true,
     };
 
@@ -133,6 +122,7 @@ void run_track_demo() {
 }
 
 int main() {
+    std::cout << std::numeric_limits<unsigned long>::max() << std::endl;
     run_tests();
     run_track_demo();
     return 0;

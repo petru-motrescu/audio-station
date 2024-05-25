@@ -19,7 +19,7 @@ double audiostation::Track::render() {
     for (auto& lane : this->lanes) {
         for (auto& block : lane->blocks) {
             for (auto& note : block.notes) {
-                if ((note.start_tick + block.offset) == this->tick) {
+                if ((note.bar + block.bar) * this->milliticks_per_bar == this->millitick) {
                     if (debug) {
                         std::cout 
                             << "Playing " 
@@ -27,11 +27,11 @@ double audiostation::Track::render() {
                             << "(" 
                             << Notes::to_string(note.note) 
                             << ") @ " 
-                            << this->tick << std::endl;
+                            << this->millitick << std::endl;
                     }
                     lane->instrument->play_note(note.note);
                 }
-                if ((note.start_tick + note.hold_ticks + block.offset) == this->tick) {
+                if ((note.bar + note.bar + block.bar) * this->milliticks_per_bar == this->millitick) {
                     if (debug) {
                         std::cout 
                             << "Stopping " 
@@ -39,7 +39,7 @@ double audiostation::Track::render() {
                             << "(" 
                             << Notes::to_string(note.note) 
                             << ") @ " 
-                            << this->tick << std::endl;
+                            << this->millitick << std::endl;
                     }
                     lane->instrument->stop_note(note.note);
                 }
@@ -57,7 +57,7 @@ double audiostation::Track::render() {
         sample += live_instrument->render();
     }
 
-    this->tick++;
+    this->millitick += 1000;
 
     return sample;
 }
