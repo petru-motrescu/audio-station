@@ -9,7 +9,7 @@
 
 namespace audiostation {
 
-    struct BassConfig {
+    struct BassDrumConfig {
         Waveform waveform = Waveform::Sine;
         double atack_frequency = 180;
         double decay_frequency = 40;
@@ -21,7 +21,7 @@ namespace audiostation {
 
     struct BassDrum : public Instrument {
         BassDrum();
-        BassDrum(BassConfig config);
+        BassDrum(BassDrumConfig config);
         ~BassDrum();
         
         void play();

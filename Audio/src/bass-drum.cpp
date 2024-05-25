@@ -9,16 +9,16 @@
 using namespace audiostation;
 
 struct audiostation::BassDrumImpl {
-    BassConfig config;
+    BassDrumConfig config;
     double decay_ticks = 0;
     double phase = 0;
     unsigned ticks_since_live = 0;
     bool live = false;
 };
 
-audiostation::BassDrum::BassDrum() : BassDrum(BassConfig()) { }
+audiostation::BassDrum::BassDrum() : BassDrum(BassDrumConfig()) { }
 
-audiostation::BassDrum::BassDrum(BassConfig config) {
+audiostation::BassDrum::BassDrum(BassDrumConfig config) {
     this->impl = std::make_unique<BassDrumImpl>();
     this->impl->config = config;
     this->impl->decay_ticks = config.decay_millis * Config::SAMPLE_RATE / 1000.0;
