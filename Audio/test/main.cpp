@@ -15,6 +15,10 @@
 #include "tests.hpp"
 using namespace audiostation;
 
+constexpr unsigned bar = Config::SAMPLE_RATE / 2;
+constexpr unsigned half = Config::SAMPLE_RATE / 4;
+constexpr unsigned sixteenth = Config::SAMPLE_RATE / 16;
+
 void sleep(int milliseconds) {
     std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
 }
@@ -26,6 +30,92 @@ void run_tests() {
     run_track_tests();
     run_renderer_tests();
     std::cout << "✅ All tests done" << std::endl;
+}
+
+TrackLane build_kick_lane(BassDrum& kick) {
+    std::vector<TrackNote> kick_notes = { 
+        { .pos = 0 * bar }, 
+        { .pos = 1 * bar },
+        { .pos = 2 * bar },
+        { .pos = 3 * bar },
+    };
+
+    TrackLane kick_lane = {
+        .label = "Kick",
+        .instrument = &kick,
+        .blocks = {
+            { .pos = 4 * bar * 0, .notes = kick_notes },
+            { .pos = 4 * bar * 1, .notes = kick_notes },
+        }
+    };
+
+    return kick_lane;
+}
+
+TrackLane build_click_lane(BassDrum& click) {
+    std::vector<TrackNote> click_notes = { 
+        { .pos = 0 * bar + half }, 
+        { .pos = 1 * bar + half },
+        { .pos = 1 * bar + half + 1 * sixteenth }, 
+        { .pos = 1 * bar + half + 2 * sixteenth },
+        { .pos = 1 * bar + half + 3 * sixteenth },
+        { .pos = 2 * bar + half },
+        { .pos = 3 * bar + half },
+        { .pos = 3 * bar + half + 1 * sixteenth }, 
+        { .pos = 3 * bar + half + 2 * sixteenth },
+        { .pos = 3 * bar + half + 3 * sixteenth },
+    };
+    
+    TrackLane click_lane = {
+        .label = "Click",
+        .instrument = &click,
+        .blocks = {
+            { .pos = 4 * bar * 0, .notes = click_notes },
+            { .pos = 4 * bar * 1, .notes = click_notes },
+        }
+    };
+
+    return click_lane;
+}
+
+TrackLane build_hihat_lane(BassDrum& hihat) {
+    std::vector<TrackNote> hihat_notes = { 
+        { .pos = 0 * bar + half }, 
+        { .pos = 1 * bar + half },
+        { .pos = 2 * bar + half },
+        { .pos = 3 * bar + half },
+    };
+
+    TrackLane hihat_lane = {
+        .label = "Hihat",
+        .instrument = &hihat,
+        .blocks = {
+            { .pos = 4 * bar * 0, .notes = hihat_notes },
+            { .pos = 4 * bar * 1, .notes = hihat_notes },
+        }
+    };
+
+    return hihat_lane;
+}
+
+TrackLane build_bass_lane(Synth& bass) {
+    std::vector<TrackNote> bass_notes = {
+        { .pos = 0 * bar, .note = Note::E1 },
+        { .pos = 1 * bar, .note = Note::D1 },
+        { .pos = 2 * bar, .note = Note::C1 },
+        { .pos = 3 * bar, .note = Note::B0 },
+    };
+
+    TrackLane bass_lane = {
+        .label = "Bass",
+        .instrument = &bass,
+        .blocks = {
+            { .pos = 4 * bar * 0, .notes = bass_notes },
+            { .pos = 4 * bar * 1, .notes = bass_notes },
+        }
+    };
+
+    return bass_lane;
 }
 
 void run_track_demo() {
@@ -48,6 +138,12 @@ void run_track_demo() {
         .amplitude = 0.2,
     });
 
+    BassDrum hihat({
+        .waveform = Waveform::Noise,
+        .decay_millis = 150,
+        .amplitude = 0.1,
+    });
+
     Synth bass({
         .waveform = Waveform::Triangle,
         .amplitude = 0.6,
@@ -59,74 +155,18 @@ void run_track_demo() {
         }
     });
 
-    auto bar = Config::SAMPLE_RATE / 2;
-    auto half = Config::SAMPLE_RATE / 4;
-
-    std::vector<TrackNote> kick_notes = { 
-        { .pos = 0 * bar }, 
-        { .pos = 1 * bar },
-        { .pos = 2 * bar },
-        { .pos = 3 * bar },
-    };
-
-    std::vector<TrackNote> click_notes = { 
-        { .pos = 0 * bar + half }, 
-        { .pos = 1 * bar + half },
-        { .pos = 2 * bar + half },
-        { .pos = 3 * bar + half },
-    };
-
-    std::vector<TrackNote> bass_notes = {
-        { .pos = 0 * bar, .note = Note::E1 },
-        { .pos = 1 * bar, .note = Note::D1 },
-        { .pos = 2 * bar, .note = Note::C1 },
-        { .pos = 3 * bar, .note = Note::B0 },
-    };
-
-    TrackLane kick_lane = {
-        .label = "Kick",
-        .instrument = &kick,
-        .blocks = {
-            { .pos = 4 * bar * 0, .notes = kick_notes },
-            { .pos = 4 * bar * 1, .notes = kick_notes },
-            { .pos = 4 * bar * 2, .notes = kick_notes },
-            { .pos = 4 * bar * 3, .notes = kick_notes },
-        }
-    };
-
-    TrackLane click_lane = {
-        .label = "Click",
-        .instrument = &click,
-        .blocks = {
-            { .pos = 4 * bar * 0, .notes = click_notes },
-            { .pos = 4 * bar * 1, .notes = click_notes },
-            { .pos = 4 * bar * 2, .notes = click_notes },
-            { .pos = 4 * bar * 3, .notes = click_notes },
-        }
-    };
-
-    TrackLane bass_lane = {
-        .label = "Bass",
-        .instrument = &bass,
-        .blocks = {
-            { .pos = 4 * bar * 0, .notes = bass_notes },
-            { .pos = 4 * bar * 1, .notes = bass_notes },
-            { .pos = 4 * bar * 2, .notes = bass_notes },
-            { .pos = 4 * bar * 3, .notes = bass_notes },
-        }
-    };
+    TrackLane kick_lane = build_kick_lane(kick);
+    TrackLane click_lane = build_click_lane(click);
+    TrackLane hihat_lane = build_hihat_lane(hihat);
+    TrackLane bass_lane = build_bass_lane(bass);
 
     Track track { 
-        .lanes = { 
-            &kick_lane,
-            &click_lane,
-            &bass_lane,
-        },
+        .lanes = { &kick_lane, &click_lane, &hihat_lane, &bass_lane },
         .debug = true,
     };
 
     station.play(&track);
-    sleep(9000);
+    sleep(5000);
 
     station.stop();
 }
@@ -161,7 +201,7 @@ void run_oscillator_demo() {
 
 int main() {
     run_tests();
-    // run_track_demo();
-    run_oscillator_demo();
+    run_track_demo();
+    // run_oscillator_demo();
     return 0;
 }

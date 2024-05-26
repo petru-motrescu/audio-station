@@ -11,7 +11,7 @@ The project consists of two parts:
 
 Built on top of Core Audio, the audio library can generate audio signals and play them in real-time. For better or for worse the library has been implemented in C++. There is a C api available as well so that it can be easily used from any Swift of Objective-C app on Mac.
 
-You can even try the library directly from terminal. Here is an example of doing so:
+Example (see the full version [here](Audio/test/main.cpp)):
 ```cpp
 void run_track_demo() {
     AudioStation station;
@@ -33,6 +33,12 @@ void run_track_demo() {
         .amplitude = 0.2,
     });
 
+    BassDrum hihat({
+        .waveform = Waveform::Noise,
+        .decay_millis = 150,
+        .amplitude = 0.1,
+    });
+
     Synth bass({
         .waveform = Waveform::Triangle,
         .amplitude = 0.6,
@@ -40,80 +46,22 @@ void run_track_demo() {
             .atack_millis = 5, 
             .decay_millis = 20, 
             .sustain_level = 0.9, 
-            .release_millis = 500
+            .release_millis = 400
         }
     });
 
-    auto ticks = Config::SAMPLE_RATE / 8;
-
-    std::vector<TrackNote> kick_notes = {
-        { .start_tick =  0 * ticks },
-        { .start_tick =  4 * ticks },
-        { .start_tick =  8 * ticks },
-        { .start_tick = 12 * ticks },
-    };
-
-    std::vector<TrackNote> click_notes = {
-        { .start_tick = ( 0 + 2) * ticks },
-        { .start_tick = ( 4 + 2) * ticks },
-        { .start_tick = ( 8 + 2) * ticks },
-        { .start_tick = (12 + 2) * ticks },
-    };
-
-    std::vector<TrackNote> bass_notes_1 = {
-        { .note = Note::E1, .start_tick =  0 * ticks },
-        { .note = Note::E1, .start_tick =  4 * ticks },
-        { .note = Note::E1, .start_tick =  8 * ticks },
-        { .note = Note::G1, .start_tick = 12 * ticks },
-    };
-
-    std::vector<TrackNote> bass_notes_2 = {
-        { .note = Note::B1, .start_tick =  0 * ticks },
-        { .note = Note::A1, .start_tick =  4 * ticks },
-        { .note = Note::G1, .start_tick =  8 * ticks },
-        { .note = Note::E1, .start_tick = 12 * ticks },
-    };
-
-    TrackLane kick_lane = {
-        .label = "Kick",
-        .instrument = &kick,
-        .bars = {
-            { .offset =  0 * ticks, .notes = kick_notes },
-            { .offset = 16 * ticks, .notes = kick_notes },
-            { .offset = 32 * ticks, .notes = kick_notes },
-            { .offset = 48 * ticks, .notes = kick_notes },
-        }
-    };
-
-    TrackLane click_lane = {
-        .label = "Click",
-        .instrument = &click,
-        .bars = {
-            { .offset =  0 * ticks, .notes = click_notes },
-            { .offset = 16 * ticks, .notes = click_notes },
-            { .offset = 32 * ticks, .notes = click_notes },
-            { .offset = 48 * ticks, .notes = click_notes },
-        }
-    };
-
-    TrackLane bass_lane = {
-        .label = "Bass",
-        .instrument = &bass,
-        .bars = {
-            { .offset =  0 * ticks, .notes = bass_notes_1 },
-            { .offset = 16 * ticks, .notes = bass_notes_1 },
-            { .offset = 32 * ticks, .notes = bass_notes_1 },
-            { .offset = 48 * ticks, .notes = bass_notes_2 },
-        }
-    };
+    TrackLane kick_lane = build_kick_lane(kick);
+    TrackLane click_lane = build_click_lane(click);
+    TrackLane hihat_lane = build_hihat_lane(hihat);
+    TrackLane bass_lane = build_bass_lane(bass);
 
     Track track { 
-        .lanes = { &kick_lane, &click_lane, &bass_lane },
+        .lanes = { &kick_lane, &click_lane, &hihat_lane, &bass_lane },
         .debug = true,
     };
 
     station.play(&track);
-    sleep(9000);
+    sleep(5000);
 
     station.stop();
 }
