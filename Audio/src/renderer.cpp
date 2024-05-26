@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cmath>
 #include <iomanip>
+#include <random>
 #include "renderer.hpp"
 using namespace audiostation;
 
@@ -10,6 +11,9 @@ constexpr double HALF_PI_x_0 = 0;
 constexpr double HALF_PI_x_1 = HALF_PI;
 constexpr double HALF_PI_x_3 = 3 * M_PI / 2;
 constexpr double HALF_PI_x_4 = PI_x_2;
+
+static std::random_device noise_device;
+static std::mt19937 noise_generator(noise_device());
 
 double audiostation::Renderer::render_sine_wave(double phase) {
     return sin(phase);
@@ -46,6 +50,11 @@ double audiostation::Renderer::render_triangle_wave(double phase) {
     return 0;
 }
 
+double audiostation::Renderer::render_noise_wave() {
+    std::uniform_real_distribution<> distribution(0, PI_x_2);
+    return sin(distribution(noise_generator));
+}
+
 double audiostation::Renderer::render_wave(Waveform waveform, double phase) {
     switch (waveform) {
         case Waveform::Sine:
@@ -54,6 +63,8 @@ double audiostation::Renderer::render_wave(Waveform waveform, double phase) {
             return render_square_wave(phase);
         case Waveform::Triangle:
             return render_triangle_wave(phase);
+        case Waveform::Noise:
+            return render_noise_wave();
         default:
             return 0;
     }

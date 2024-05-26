@@ -131,8 +131,37 @@ void run_track_demo() {
     station.stop();
 }
 
+void run_oscillator_demo() {
+    Oscillator sine_oscillator(Waveform::Sine);
+    Oscillator triangle_oscillator(Waveform::Triangle);
+    Oscillator square_oscillator(Waveform::Square);
+    Oscillator noise_oscillator(Waveform::Noise);
+    
+    Track track { 
+        .live_instruments = { 
+            &sine_oscillator, 
+            &triangle_oscillator, 
+            &square_oscillator,
+            &noise_oscillator,
+        }
+    };
+
+    AudioStation station;
+    station.init();
+    station.play(&track);
+    
+    for (auto& oscilator : track.live_instruments) {
+        oscilator->play_note(Note::C3);
+        sleep(2000);
+        oscilator->stop_note(Note::C3);
+    }
+
+    station.stop();
+}
+
 int main() {
     run_tests();
-    run_track_demo();
+    // run_track_demo();
+    run_oscillator_demo();
     return 0;
 }

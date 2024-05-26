@@ -16,6 +16,7 @@ namespace audiostation {
         static double render_sine_wave(double phase);
         static double render_square_wave(double phase);
         static double render_triangle_wave(double phase);
+        static double render_noise_wave();
         static double render_wave(audiostation::Waveform waveform, double phase);
         static double next_phase(double phase, double frequency, unsigned sample_rate);
         
