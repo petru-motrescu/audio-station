@@ -7,7 +7,7 @@ build:
 	-framework AudioToolbox \
 	-o audio-station \
 	src/audio-station.cpp \
-	src/bass-drum.cpp \
+	src/drum.cpp \
 	src/notes.cpp \
 	src/oscillator.cpp \
 	src/renderer.cpp \

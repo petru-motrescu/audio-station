@@ -1,5 +1,5 @@
-#ifndef AUDIO_STATION_BASS_DRUM_HPP
-#define AUDIO_STATION_BASS_DRUM_HPP
+#ifndef AUDIO_STATION_DRUM_HPP
+#define AUDIO_STATION_DRUM_HPP
 
 #include <memory>
 #include "envelope.hpp"
@@ -9,7 +9,7 @@
 
 namespace audiostation {
 
-    struct BassDrumConfig {
+    struct DrumConfig {
         Wave wave = Wave::Sine;
         double atack_frequency = 180;
         double decay_frequency = 40;
@@ -17,12 +17,12 @@ namespace audiostation {
         double amplitude = 0.6;
     };
 
-    struct BassDrumImpl;
+    struct DrumImpl;
 
-    struct BassDrum : public Instrument {
-        BassDrum();
-        BassDrum(BassDrumConfig config);
-        ~BassDrum();
+    struct Drum : public Instrument {
+        Drum();
+        Drum(DrumConfig config);
+        ~Drum();
         
         void play();
         void play_note(Note note) override { play(); };
@@ -32,8 +32,8 @@ namespace audiostation {
         double render() override;
 
     private:
-        std::unique_ptr<BassDrumImpl> impl;
+        std::unique_ptr<DrumImpl> impl;
     };
 }
 
-#endif // AUDIO_STATION_BASS_DRUM_HPP
+#endif // AUDIO_STATION_DRUM_HPP

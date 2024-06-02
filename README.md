@@ -17,7 +17,7 @@ void run_track_demo() {
     AudioStation station;
     station.init();
 
-    BassDrum kick({
+    Drum kick({
         .wave = Wave::Sine,
         .atack_frequency = 120,
         .decay_frequency = 30,
@@ -25,7 +25,7 @@ void run_track_demo() {
         .amplitude = 0.5,
     });
 
-    BassDrum click({
+    Drum click({
         .wave = Wave::Sine,
         .atack_frequency = 2000,
         .decay_frequency = 2000,
@@ -33,7 +33,7 @@ void run_track_demo() {
         .amplitude = 0.2,
     });
 
-    BassDrum hihat({
+    Drum hihat({
         .wave = Wave::Noise,
         .decay_millis = 150,
         .amplitude = 0.1,

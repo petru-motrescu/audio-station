@@ -8,7 +8,7 @@
 #include <vector>
 #include <limits>
 #include "audio-station.hpp"
-#include "bass-drum.hpp"
+#include "drum.hpp"
 #include "frequency.hpp"
 #include "oscillator.hpp"
 #include "synth.hpp"
@@ -32,7 +32,7 @@ void run_tests() {
     std::cout << "✅ All tests done" << std::endl;
 }
 
-TrackLane build_kick_lane(BassDrum& kick) {
+TrackLane build_kick_lane(Drum& kick) {
     std::vector<TrackNote> kick_notes = { 
         { .pos = 0 * bar }, 
         { .pos = 1 * bar },
@@ -52,7 +52,7 @@ TrackLane build_kick_lane(BassDrum& kick) {
     return kick_lane;
 }
 
-TrackLane build_click_lane(BassDrum& click) {
+TrackLane build_click_lane(Drum& click) {
     std::vector<TrackNote> click_notes = { 
         { .pos = 0 * bar + half }, 
         { .pos = 1 * bar + half },
@@ -78,7 +78,7 @@ TrackLane build_click_lane(BassDrum& click) {
     return click_lane;
 }
 
-TrackLane build_hihat_lane(BassDrum& hihat) {
+TrackLane build_hihat_lane(Drum& hihat) {
     std::vector<TrackNote> hihat_notes = { 
         { .pos = 0 * bar + half }, 
         { .pos = 1 * bar + half },
@@ -122,7 +122,7 @@ void run_track_demo() {
     AudioStation station;
     station.init();
 
-    BassDrum kick({
+    Drum kick({
         .wave = Wave::Sine,
         .atack_frequency = 120,
         .decay_frequency = 30,
@@ -130,7 +130,7 @@ void run_track_demo() {
         .amplitude = 0.5,
     });
 
-    BassDrum click({
+    Drum click({
         .wave = Wave::Sine,
         .atack_frequency = 2000,
         .decay_frequency = 2000,
@@ -138,7 +138,7 @@ void run_track_demo() {
         .amplitude = 0.2,
     });
 
-    BassDrum hihat({
+    Drum hihat({
         .wave = Wave::Noise,
         .decay_millis = 150,
         .amplitude = 0.1,

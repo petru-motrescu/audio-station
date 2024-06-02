@@ -1,40 +1,40 @@
 #include <iostream>
 #include <utility>
 #include <unordered_map>
-#include "bass-drum.hpp"
+#include "drum.hpp"
 #include "config.hpp"
 #include "envelope.hpp"
 #include "note.hpp"
 #include "renderer.hpp"
 using namespace audiostation;
 
-struct audiostation::BassDrumImpl {
-    BassDrumConfig config;
+struct audiostation::DrumImpl {
+    DrumConfig config;
     double decay_ticks = 0;
     double phase = 0;
     unsigned ticks_since_live = 0;
     bool live = false;
 };
 
-audiostation::BassDrum::BassDrum() : BassDrum(BassDrumConfig()) { }
+audiostation::Drum::Drum() : Drum(DrumConfig()) { }
 
-audiostation::BassDrum::BassDrum(BassDrumConfig config) {
-    this->impl = std::make_unique<BassDrumImpl>();
+audiostation::Drum::Drum(DrumConfig config) {
+    this->impl = std::make_unique<DrumImpl>();
     this->impl->config = config;
     this->impl->decay_ticks = config.decay_millis * Config::SAMPLE_RATE / 1000.0;
 }
 
-audiostation::BassDrum::~BassDrum() {
+audiostation::Drum::~Drum() {
     this->impl.reset();
 }
 
-void audiostation::BassDrum::play() {
+void audiostation::Drum::play() {
     this->impl->phase = 0;
     this->impl->ticks_since_live = 0;
     this->impl->live = true;
 }
 
-double audiostation::BassDrum::render() {
+double audiostation::Drum::render() {
     if (!this->impl->live) {
         return 0;
     }
