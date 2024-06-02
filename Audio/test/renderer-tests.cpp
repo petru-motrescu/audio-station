@@ -25,12 +25,12 @@ void test_sine_wave_rendering() {
     };
 
     for (auto [expected, phase, message] : triples) {
-        auto actual = Renderer::render_wave(Waveform::Sine, phase);
+        auto actual = Renderer::render_wave(Wave::Sine, phase);
         assert_equal(expected, actual, EPSILON, message);
     }
 
     for (auto [expected, phase, message] : triples) {
-        auto actual = Renderer::render_wave(Waveform::Sine, -phase);
+        auto actual = Renderer::render_wave(Wave::Sine, -phase);
         assert_equal(-expected, actual, EPSILON, "-" + message);
     }
 }
@@ -48,7 +48,7 @@ void test_square_wave_rendering() {
     };
 
     for (auto [expected, phase, message] : triples) {
-        auto actual = Renderer::render_wave(Waveform::Square, phase);
+        auto actual = Renderer::render_wave(Wave::Square, phase);
         assert_equal(expected, actual, EPSILON, message);
     }
 }
@@ -67,7 +67,7 @@ void test_triangle_wave_rendering() {
     };
 
     for (auto [expected, phase, message] : triples) {
-        auto actual = Renderer::render_wave(Waveform::Triangle, phase);
+        auto actual = Renderer::render_wave(Wave::Triangle, phase);
         assert_equal(expected, actual, EPSILON, message);
     }
 }

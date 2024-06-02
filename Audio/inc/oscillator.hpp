@@ -3,7 +3,7 @@
 
 #include <memory>
 #include "instrument.hpp"
-#include "waveform.hpp"
+#include "wave.hpp"
 #include "frequency.hpp"
 
 namespace audiostation {
@@ -12,7 +12,7 @@ namespace audiostation {
 
     struct Oscillator : public Instrument {
         Oscillator(
-            Waveform waveform = Waveform::Sine,
+            Wave wave = Wave::Sine,
             double frequency = Frequency::C4,
             double amplitude = 0.5
         );

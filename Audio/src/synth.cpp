@@ -9,7 +9,7 @@
 using namespace audiostation;
 
 struct SynthSignal {
-    audiostation::Waveform waveform;
+    audiostation::Wave wave;
     double frequency;
     double amplitude;
     double phase;
@@ -36,7 +36,7 @@ audiostation::Synth::Synth(SynthConfig config) {
     int signal_id = 0;
     for (auto& note : Notes::piano_notes) {
         this->impl->signals.push_back({ 
-            .waveform = config.waveform,
+            .wave = config.wave,
             .frequency = Notes::get_frequency(note),
             .amplitude = config.amplitude,
             .ticks_since_live = 0
@@ -98,7 +98,7 @@ void audiostation::Synth::set_renderable_envelope(RenderableEnvelope envelope) {
 }
 
 double render_signal(SynthSignal& signal, RenderableEnvelope& envelope, unsigned sample_rate) {
-    double sample = Renderer::render_wave(signal.waveform, signal.phase) * signal.amplitude;
+    double sample = Renderer::render_wave(signal.wave, signal.phase) * signal.amplitude;
     auto result = Renderer::render_enveloped_sample(
         sample,
         signal.ticks_since_live,

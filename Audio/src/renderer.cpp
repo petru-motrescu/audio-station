@@ -55,15 +55,15 @@ double audiostation::Renderer::render_noise_wave() {
     return sin(distribution(noise_generator));
 }
 
-double audiostation::Renderer::render_wave(Waveform waveform, double phase) {
-    switch (waveform) {
-        case Waveform::Sine:
+double audiostation::Renderer::render_wave(Wave wave, double phase) {
+    switch (wave) {
+        case Wave::Sine:
             return render_sine_wave(phase);
-        case Waveform::Square:
+        case Wave::Square:
             return render_square_wave(phase);
-        case Waveform::Triangle:
+        case Wave::Triangle:
             return render_triangle_wave(phase);
-        case Waveform::Noise:
+        case Wave::Noise:
             return render_noise_wave();
         default:
             return 0;

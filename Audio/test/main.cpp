@@ -123,7 +123,7 @@ void run_track_demo() {
     station.init();
 
     BassDrum kick({
-        .waveform = Waveform::Sine,
+        .wave = Wave::Sine,
         .atack_frequency = 120,
         .decay_frequency = 30,
         .decay_millis = 150,
@@ -131,7 +131,7 @@ void run_track_demo() {
     });
 
     BassDrum click({
-        .waveform = Waveform::Sine,
+        .wave = Wave::Sine,
         .atack_frequency = 2000,
         .decay_frequency = 2000,
         .decay_millis = 100,
@@ -139,13 +139,13 @@ void run_track_demo() {
     });
 
     BassDrum hihat({
-        .waveform = Waveform::Noise,
+        .wave = Wave::Noise,
         .decay_millis = 150,
         .amplitude = 0.1,
     });
 
     Synth bass({
-        .waveform = Waveform::Triangle,
+        .wave = Wave::Triangle,
         .amplitude = 0.6,
         .envelope = {
             .atack_millis = 5, 
@@ -172,10 +172,10 @@ void run_track_demo() {
 }
 
 void run_oscillator_demo() {
-    Oscillator sine_oscillator(Waveform::Sine);
-    Oscillator triangle_oscillator(Waveform::Triangle);
-    Oscillator square_oscillator(Waveform::Square);
-    Oscillator noise_oscillator(Waveform::Noise);
+    Oscillator sine_oscillator(Wave::Sine);
+    Oscillator triangle_oscillator(Wave::Triangle);
+    Oscillator square_oscillator(Wave::Square);
+    Oscillator noise_oscillator(Wave::Noise);
     
     Track track { 
         .live_instruments = { 

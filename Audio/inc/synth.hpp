@@ -5,12 +5,12 @@
 #include "envelope.hpp"
 #include "instrument.hpp"
 #include "note.hpp"
-#include "waveform.hpp"
+#include "wave.hpp"
 
 namespace audiostation {
 
     struct SynthConfig {
-        Waveform waveform = Waveform::Triangle;
+        Wave wave = Wave::Triangle;
         double amplitude = 0.5;
         Envelope envelope = {
             .atack_millis = 10,

@@ -1,8 +1,8 @@
-#ifndef AUDIO_STATION_WAVE_RENDERER_HPP
-#define AUDIO_STATION_WAVE_RENDERER_HPP
+#ifndef AUDIO_STATION_RENDERER_HPP
+#define AUDIO_STATION_RENDERER_HPP
 
 #include "envelope.hpp"
-#include "waveform.hpp"
+#include "wave.hpp"
 
 namespace audiostation {
 
@@ -17,7 +17,7 @@ namespace audiostation {
         static double render_square_wave(double phase);
         static double render_triangle_wave(double phase);
         static double render_noise_wave();
-        static double render_wave(audiostation::Waveform waveform, double phase);
+        static double render_wave(audiostation::Wave wave, double phase);
         static double next_phase(double phase, double frequency, unsigned sample_rate);
         
         static EnvelopedSample render_enveloped_sample(
@@ -29,4 +29,4 @@ namespace audiostation {
     };
 }
 
-#endif // AUDIO_STATION_WAVE_RENDERER_HPP
+#endif // AUDIO_STATION_RENDERER_HPP

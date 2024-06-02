@@ -8,7 +8,7 @@
 using namespace audiostation;
 
 struct audiostation::OscillatorImpl {
-    audiostation::Waveform waveform;
+    audiostation::Wave wave;
     double frequency;
     double amplitude;
     double phase;
@@ -16,12 +16,12 @@ struct audiostation::OscillatorImpl {
 };
 
 audiostation::Oscillator::Oscillator(
-    audiostation::Waveform waveform,
+    audiostation::Wave wave,
     double frequency,
     double amplitude
 ) {
     this->impl = std::make_unique<OscillatorImpl>();
-    this->impl->waveform = waveform;
+    this->impl->wave = wave;
     this->impl->frequency = frequency;
     this->impl->amplitude = amplitude;
     this->impl->phase = 0;
@@ -45,7 +45,7 @@ double audiostation::Oscillator::render() {
         return 0;
     }
 
-    double sample = Renderer::render_wave(this->impl->waveform, this->impl->phase) * this->impl->amplitude;
+    double sample = Renderer::render_wave(this->impl->wave, this->impl->phase) * this->impl->amplitude;
     this->impl->phase = Renderer::next_phase(this->impl->phase, this->impl->frequency, Config::SAMPLE_RATE);
     return sample;
 }

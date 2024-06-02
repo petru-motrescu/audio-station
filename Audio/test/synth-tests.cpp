@@ -18,7 +18,7 @@ void test_synth_quiet_by_default() {
 }
 
 void test_triangle_synth_with_blank_envelope() {
-    Synth synth({ .waveform = Waveform::Triangle, .amplitude = 1.0 });
+    Synth synth({ .wave = Wave::Triangle, .amplitude = 1.0 });
 
     auto note = Note::A3;
     synth.set_sample_rate(Notes::get_frequency(note) * 8);
@@ -46,7 +46,7 @@ void test_triangle_synth_with_blank_envelope() {
 }
 
 void test_triangle_synth_with_proper_envelope() {
-    Synth synth({ .waveform = Waveform::Triangle, .amplitude = 1.0 });
+    Synth synth({ .wave = Wave::Triangle, .amplitude = 1.0 });
 
     auto note = Note::A3;
     synth.set_sample_rate(Notes::get_frequency(note) * 8);

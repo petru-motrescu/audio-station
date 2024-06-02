@@ -18,7 +18,7 @@ void run_track_demo() {
     station.init();
 
     BassDrum kick({
-        .waveform = Waveform::Sine,
+        .wave = Wave::Sine,
         .atack_frequency = 120,
         .decay_frequency = 30,
         .decay_millis = 150,
@@ -26,7 +26,7 @@ void run_track_demo() {
     });
 
     BassDrum click({
-        .waveform = Waveform::Sine,
+        .wave = Wave::Sine,
         .atack_frequency = 2000,
         .decay_frequency = 2000,
         .decay_millis = 100,
@@ -34,13 +34,13 @@ void run_track_demo() {
     });
 
     BassDrum hihat({
-        .waveform = Waveform::Noise,
+        .wave = Wave::Noise,
         .decay_millis = 150,
         .amplitude = 0.1,
     });
 
     Synth bass({
-        .waveform = Waveform::Triangle,
+        .wave = Wave::Triangle,
         .amplitude = 0.6,
         .envelope = {
             .atack_millis = 5, 
@@ -85,8 +85,8 @@ The app uses SceneKit for the graphics and the audio library to play some silly 
 ### Documentation
 
 - [DAW, by Wikipedia](https://en.wikipedia.org/wiki/Digital_audio_workstation)
-- [Waveform, by Wikipedia](https://en.wikipedia.org/wiki/Waveform)
-- [Waveforms, by Josh Comeau](https://pudding.cool/2018/02/waveforms/)
+- [wave, by Wikipedia](https://en.wikipedia.org/wiki/wave)
+- [waves, by Josh Comeau](https://pudding.cool/2018/02/waves/)
 - [Envelope, by Wikipedia](https://en.wikipedia.org/wiki/Envelope_(music))
 - [Piano key frequencies, by Wikipedia](https://en.wikipedia.org/wiki/Piano_key_frequencies)
 - [Drum kit, by Wikipedia](https://en.wikipedia.org/wiki/Drum_kit)

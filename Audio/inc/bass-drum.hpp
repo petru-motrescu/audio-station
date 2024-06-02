@@ -5,12 +5,12 @@
 #include "envelope.hpp"
 #include "instrument.hpp"
 #include "note.hpp"
-#include "waveform.hpp"
+#include "wave.hpp"
 
 namespace audiostation {
 
     struct BassDrumConfig {
-        Waveform waveform = Waveform::Sine;
+        Wave wave = Wave::Sine;
         double atack_frequency = 180;
         double decay_frequency = 40;
         double decay_millis = 200;
