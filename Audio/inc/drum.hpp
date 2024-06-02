@@ -9,12 +9,16 @@
 
 namespace audiostation {
 
-    struct DrumConfig {
+    struct DrumSignal {
         Wave wave = Wave::Sine;
-        double atack_frequency = 180;
-        double decay_frequency = 40;
-        double decay_millis = 200;
-        double amplitude = 0.6;
+        double frequency = 180;
+        double amplitude = 0.5;
+    };
+
+    struct DrumConfig {
+        DrumSignal attack;
+        DrumSignal release;
+        double duration_millis = 500;
     };
 
     struct DrumImpl;

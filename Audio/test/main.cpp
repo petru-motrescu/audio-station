@@ -23,6 +23,10 @@ void sleep(int milliseconds) {
     std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
 }
 
+void run_drum_demo() {
+
+}
+
 void run_tests() {
     std::cout << "🧪 Running tests" << std::endl;
     run_oscillator_tests();
@@ -123,25 +127,21 @@ void run_track_demo() {
     station.init();
 
     Drum kick({
-        .wave = Wave::Sine,
-        .atack_frequency = 120,
-        .decay_frequency = 30,
-        .decay_millis = 150,
-        .amplitude = 0.5,
+        .attack = { .wave = Wave::Triangle, .frequency = 150, .amplitude = 0.3 },
+        .release = { .wave = Wave::Sine, .frequency = 30, .amplitude = 1.0 },
+        .duration_millis = 150,
     });
 
     Drum click({
-        .wave = Wave::Sine,
-        .atack_frequency = 2000,
-        .decay_frequency = 2000,
-        .decay_millis = 100,
-        .amplitude = 0.2,
+        .attack = { .wave = Wave::Triangle, .frequency = 2000, .amplitude = 0.2 },
+        .release = { .wave = Wave::Sine, .frequency = 2000, .amplitude = 0.1 },
+        .duration_millis = 100,
     });
 
     Drum hihat({
-        .wave = Wave::Noise,
-        .decay_millis = 150,
-        .amplitude = 0.1,
+        .attack = { .wave = Wave::Noise, .amplitude = 0.1 },
+        .release = { .wave = Wave::Noise, .amplitude = 0.1 },
+        .duration_millis = 150,
     });
 
     Synth bass({
