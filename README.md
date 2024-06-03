@@ -9,9 +9,9 @@ The project consists of two parts:
 
 ### The audio library
 
-Built on top of Core Audio, the audio library can generate audio signals and play them in real-time. For better or for worse the library has been implemented in C++. There is a C api available as well so that it can be easily used from any Swift of Objective-C app on Mac.
+Built on top of Core Audio, the audio library can generate audio signals and play them in real-time. The library is implemented in C++ and it features also a C api so that it can be easily used from any Swift of Objective-C app on Mac.
 
-Example (see the full version [here](Audio/test/main.cpp)):
+Here's an example that creates a few instruments and organizes them in a track (see the full version [here](Audio/test/main.cpp)):
 ```cpp
 void run_track_demo() {
     AudioStation station;
@@ -82,20 +82,24 @@ make run
 The app uses SceneKit for the graphics and the audio library to play some silly sounds. Very much a work in progress.
 
 
-### Documentation
+### References
 
 - [DAW, by Wikipedia](https://en.wikipedia.org/wiki/Digital_audio_workstation)
-- [wave, by Wikipedia](https://en.wikipedia.org/wiki/wave)
-- [waves, by Josh Comeau](https://pudding.cool/2018/02/waves/)
+- [Wave, by Wikipedia](https://en.wikipedia.org/wiki/wave)
 - [Envelope, by Wikipedia](https://en.wikipedia.org/wiki/Envelope_(music))
 - [Piano key frequencies, by Wikipedia](https://en.wikipedia.org/wiki/Piano_key_frequencies)
 - [Drum kit, by Wikipedia](https://en.wikipedia.org/wiki/Drum_kit)
 - [How To Get the Perfect Kick Drum Sound, by Output Mag](https://output.com/blog/get-perfect-kick-drum)
+- [Reverb effect](https://en.wikipedia.org/wiki/Reverb_effect#Convolution_reverb)
+- [Impulse response](https://en.wikipedia.org/wiki/Impulse_response)
+- [Introduction to digital filters, by Julius Orion Smith III](https://ccrma.stanford.edu/~jos/filters/)
+- [Julius Orion Smith III's home page](https://ccrma.stanford.edu/~jos/)
+- [Learning Core Audio, by Chris Adamson, Kevin Avila](https://www.oreilly.com/library/view/learning-core-audio/9780321636973/)
 - [Apple Audio](https://developer.apple.com/audio/)
 - [Apple Core Audio](https://developer.apple.com/library/archive/documentation/MusicAudio/Conceptual/CoreAudioOverview)
 - [Apple SceneKit](https://developer.apple.com/documentation/scenekit)
 
 
-### Footnote
+### Disclaimer
 
-_Educational purpose only, no guarantees, no promises. Not connected to my employer._
+_Educational & fun purpose only, no guarantees, no promises. Not connected to my employer._
