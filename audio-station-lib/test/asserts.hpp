@@ -19,14 +19,14 @@ namespace audiostation {
     void assert_equal_2(
         double expected, 
         double actual, 
-        const char* message = nullptr
+        std::string message = ""
     );
 
     void assert_equal_2(
         double expected, 
         double actual, 
         double epsilon, 
-        const char* message = nullptr
+        std::string message = ""
     );
 
     void assert_equal(

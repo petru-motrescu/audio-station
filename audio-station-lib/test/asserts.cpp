@@ -67,7 +67,7 @@ void audiostation::assert_equal(
 void audiostation::assert_equal_2(
     double expected, 
     double actual, 
-    const char* message)
+    std::string message)
 {
     assert_equal_2(
         expected, 
@@ -80,14 +80,14 @@ void audiostation::assert_equal_2(
     double expected, 
     double actual, 
     double epsilon, 
-    const char* message)
+    std::string message)
 {
     if (fabs(expected - actual) > epsilon) {
         std::stringstream str;
         str << std::setprecision (16) 
             << "Expected: " << expected 
             << ", Actual: " << actual;
-        if (message != nullptr) {
+        if (message.size() > 0) {
             str << ", Hint: " << message;
         }
         throw std::runtime_error(str.str());
