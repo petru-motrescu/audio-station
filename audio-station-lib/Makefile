@@ -19,6 +19,7 @@ build:
 	test/oscillator-tests.cpp \
 	test/renderer-tests.cpp \
 	test/synth-tests.cpp \
+	test/test-suite.cpp \
 	test/track-tests.cpp \
 	test/main.cpp
 

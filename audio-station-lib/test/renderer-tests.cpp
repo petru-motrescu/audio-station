@@ -6,7 +6,7 @@
 #include <iomanip>
 #include "renderer.hpp"
 #include "asserts.hpp"
-#include "tests.hpp"
+#include "test-suite.hpp"
 using namespace audiostation;
 
 constexpr double EPSILON = 0.00000000001;
@@ -106,7 +106,7 @@ void test_next_phase() {
     }
 }
 
-void audiostation::run_renderer_tests() {
+void audiostation::TestSuite::run_renderer_tests() {
     test_sine_wave_rendering();
     test_square_wave_rendering();
     test_triangle_wave_rendering();

@@ -6,7 +6,7 @@
 #include <vector>
 #include "track.hpp"
 #include "asserts.hpp"
-#include "tests.hpp"
+#include "test-suite.hpp"
 using namespace audiostation;
 
 constexpr double EPSILON = 0.000000000000001;
@@ -18,6 +18,6 @@ void test_empty_track() {
     }
 }
 
-void audiostation::run_track_tests() {
+void audiostation::TestSuite::run_track_tests() {
     test_empty_track();
 }

@@ -13,7 +13,7 @@
 #include "frequency.hpp"
 #include "oscillator.hpp"
 #include "synth.hpp"
-#include "tests.hpp"
+#include "test-suite.hpp"
 using namespace audiostation;
 
 constexpr unsigned bar = Config::SAMPLE_RATE / 2;
@@ -21,16 +21,6 @@ constexpr unsigned half = Config::SAMPLE_RATE / 4;
 
 void sleep(int milliseconds) {
     std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
-}
-
-void run_tests() {
-    std::cout << "🧪 Running tests" << std::endl;
-    run_delay_tests();
-    run_oscillator_tests();
-    run_synth_tests();
-    run_track_tests();
-    run_renderer_tests();
-    std::cout << "✅ All tests done" << std::endl;
 }
 
 TrackLane build_kick_lane(Drum& kick) {
@@ -219,7 +209,8 @@ void run_delay_demo() {
 }
 
 int main() {
-    run_tests();
+    TestSuite test_suite;
+    test_suite.run_tests();
     // run_track_demo();
     // run_oscillator_demo();
     // run_delay_demo();

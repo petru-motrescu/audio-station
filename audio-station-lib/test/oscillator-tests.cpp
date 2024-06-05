@@ -1,10 +1,10 @@
 #include "oscillator.hpp"
 #include "asserts.hpp"
-#include "tests.hpp"
+#include "test-suite.hpp"
 #include "test.hpp"
 using namespace audiostation;
 
-void audiostation::run_oscillator_tests() {
+void audiostation::TestSuite::run_oscillator_tests() {
 
     test("Oscillator is quiet by default", [] {
         Oscillator oscillator;

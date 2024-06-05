@@ -6,7 +6,7 @@
 #include <vector>
 #include "synth.hpp"
 #include "asserts.hpp"
-#include "tests.hpp"
+#include "test-suite.hpp"
 using namespace audiostation;
 
 void test_synth_quiet_by_default() {
@@ -79,7 +79,7 @@ void test_triangle_synth_with_proper_envelope() {
     assert_equal(expected_samples, actual_samples);
 }
 
-void audiostation::run_synth_tests() {
+void audiostation::TestSuite::run_synth_tests() {
     test_synth_quiet_by_default();
     test_triangle_synth_with_blank_envelope();
     test_triangle_synth_with_proper_envelope();

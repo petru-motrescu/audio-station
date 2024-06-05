@@ -1,10 +1,10 @@
 #include "delay.hpp"
 #include "asserts.hpp"
-#include "tests.hpp"
+#include "test-suite.hpp"
 #include "test.hpp"
 using namespace audiostation;
 
-void audiostation::run_delay_tests() {
+void audiostation::TestSuite::run_delay_tests() {
 
     test("Delay effect with full level", [] {
         Delay delay({.time = 3, .level = 1.0, .sample_rate = 1000});
@@ -12,7 +12,7 @@ void audiostation::run_delay_tests() {
         assert_equal_2(0, delay.render(0.2));
         assert_equal_2(0, delay.render(0.3));
         assert_equal_2(0.1, delay.render(1.0));
-        assert_equal_2(0.21, delay.render(1.0));
+        assert_equal_2(0.2, delay.render(1.0));
         assert_equal_2(0.3, delay.render(1.0));
         assert_equal_2(1.0, delay.render(1.0));
         assert_equal_2(1.0, delay.render(1.0));
