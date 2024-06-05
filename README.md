@@ -21,7 +21,7 @@ void run_track_demo() {
         .wave = Wave::Sine,
         .atack_frequency = 120,
         .decay_frequency = 30,
-        .decay_ms = 150,
+        .decay_duration = 150,
         .amplitude = 0.5,
     });
 
@@ -29,13 +29,13 @@ void run_track_demo() {
         .wave = Wave::Sine,
         .atack_frequency = 2000,
         .decay_frequency = 2000,
-        .decay_ms = 100,
+        .decay_duration = 100,
         .amplitude = 0.2,
     });
 
     Drum hihat({
         .wave = Wave::Noise,
-        .decay_ms = 150,
+        .decay_duration = 150,
         .amplitude = 0.1,
     });
 
@@ -43,10 +43,10 @@ void run_track_demo() {
         .wave = Wave::Triangle,
         .amplitude = 0.6,
         .envelope = {
-            .atack_ms = 5, 
-            .decay_ms = 20, 
+            .atack_duration = 5, 
+            .decay_duration = 20, 
             .sustain_level = 0.9, 
-            .release_ms = 400
+            .release_duration = 400
         }
     });
 

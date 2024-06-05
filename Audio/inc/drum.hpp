@@ -18,7 +18,7 @@ namespace audiostation {
     struct DrumConfig {
         DrumSignal attack;
         DrumSignal release;
-        double duration_ms = 500;
+        double duration = 500;
     };
 
     struct DrumImpl;

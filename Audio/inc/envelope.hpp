@@ -6,10 +6,10 @@
 namespace audiostation {
 
     struct Envelope {
-        unsigned atack_ms;
-        unsigned decay_ms;
+        unsigned atack_duration;
+        unsigned decay_duration;
         double sustain_level; // 0.0 <= sustain_level <= 1.0
-        unsigned release_ms;
+        unsigned release_duration;
     };
 
     struct RenderableEnvelope {
@@ -22,10 +22,10 @@ namespace audiostation {
     struct Envelopes {
         static inline RenderableEnvelope to_renderable_envelope(Envelope& envelope) {
             return {
-                .atack_ticks = envelope.atack_ms * Config::SAMPLE_RATE / 1000.0,
-                .decay_ticks = envelope.decay_ms * Config::SAMPLE_RATE / 1000.0,
+                .atack_ticks = envelope.atack_duration * Config::SAMPLE_RATE / 1000.0,
+                .decay_ticks = envelope.decay_duration * Config::SAMPLE_RATE / 1000.0,
                 .sustain_level = envelope.sustain_level,
-                .release_ticks = envelope.release_ms * Config::SAMPLE_RATE / 1000.0,
+                .release_ticks = envelope.release_duration * Config::SAMPLE_RATE / 1000.0,
             };
         }
     };
