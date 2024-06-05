@@ -13,7 +13,7 @@ constexpr double EPSILON = 0.00000000001;
 constexpr double PI = M_PI;
 
 void audiostation::TestSuite::run_renderer_tests() {
-    
+
     test("Sine wave rendering", [] {
         std::list<std::tuple<double, double, std::string>> triples {
             { 0.00000000000, PI/1, "pi/1" },
@@ -51,7 +51,7 @@ void audiostation::TestSuite::run_renderer_tests() {
 
         for (auto [expected, phase, message] : triples) {
             auto actual = Renderer::render_wave(Wave::Square, phase);
-            assert_equal(expected, actual, EPSILON, message);
+            assert_equal_2(expected, actual, EPSILON, message);
         }
     });
 
@@ -70,7 +70,7 @@ void audiostation::TestSuite::run_renderer_tests() {
 
         for (auto [expected, phase, message] : triples) {
             auto actual = Renderer::render_wave(Wave::Triangle, phase);
-            assert_equal(expected, actual, EPSILON, message);
+            assert_equal_2(expected, actual, EPSILON, message);
         }
     });
 
@@ -104,7 +104,7 @@ void audiostation::TestSuite::run_renderer_tests() {
 
         for (auto [current_phase, expected, message] : triples) {
             auto actual = Renderer::next_phase(current_phase, frequency, sample_rate);
-            assert_equal(expected, actual, EPSILON, message);
+            assert_equal_2(expected, actual, EPSILON, message);
         }
     });
 }

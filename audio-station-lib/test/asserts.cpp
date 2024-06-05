@@ -39,12 +39,34 @@ void audiostation::assert_true(bool actual, std::string message) {
     }
 }
 
+void audiostation::assert_true_2(bool actual, std::string message) {
+    if (!actual) {
+        std::stringstream str;
+        str << "Expected: true, Actual: false "; 
+        if (message.size() > 0) {
+            str << ", Hint: " << message;
+        }
+        throw std::runtime_error(str.str());
+    }
+}
+
 void audiostation::assert_false(bool actual, std::string message) {
     if (actual) {
         std::cout 
             << "Expected: false, Actual: true " 
             << "[" << message << "]" 
             << std::endl;
+    }
+}
+
+void audiostation::assert_false_2(bool actual, std::string message) {
+    if (actual) {
+        std::stringstream str;
+        str << "Expected: false, Actual: true "; 
+        if (message.size() > 0) {
+            str << ", Hint: " << message;
+        }
+        throw std::runtime_error(str.str());
     }
 }
 
@@ -105,5 +127,19 @@ void audiostation::assert_equal(
         std::cout << std::endl << "Actual: ";
         for (auto& x : actual) { std::cout << x << ", "; }
         std::cout << std::endl;
+    }
+}
+
+void audiostation::assert_equal_2(
+    std::vector<double> expected, 
+    std::vector<double> actual, 
+    double epsilon)
+{
+    if (!are_equal(expected, actual, epsilon)) {
+        std::stringstream str;
+        str << "Expected: ";
+        for (auto& x : expected) { str << x << ", "; }
+        str << "Actual: ";
+        for (auto& x : actual) { str << x << ", "; }
     }
 }
