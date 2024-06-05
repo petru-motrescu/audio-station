@@ -13,27 +13,9 @@ double audiostation::Track::render() {
         for (auto& block : lane->blocks) {
             for (auto& note : block.notes) {
                 if ((note.pos + block.pos) == this->tick) {
-                    if (debug) {
-                        std::cout 
-                            << "Playing " 
-                            << lane->label 
-                            << "(" 
-                            << Notes::to_string(note.note) 
-                            << ") @ " 
-                            << this->tick << std::endl;
-                    }
                     lane->instrument->play_note(note.note);
                 }
                 if ((note.pos + note.len + block.pos) == this->tick) {
-                    if (debug) {
-                        std::cout 
-                            << "Stopping " 
-                            << lane->label 
-                            << "(" 
-                            << Notes::to_string(note.note) 
-                            << ") @ " 
-                            << this->tick << std::endl;
-                    }
                     lane->instrument->stop_note(note.note);
                 }
             }

@@ -18,25 +18,21 @@ void run_track_demo() {
     station.init();
 
     Drum kick({
-        .wave = Wave::Sine,
-        .atack_frequency = 120,
-        .decay_frequency = 30,
-        .decay_duration = 150,
-        .amplitude = 0.5,
+        .attack = { .wave = Wave::Triangle, .frequency = 150, .amplitude = 0.3 },
+        .release = { .wave = Wave::Sine, .frequency = 30, .amplitude = 1.0 },
+        .duration = 150,
     });
 
     Drum click({
-        .wave = Wave::Sine,
-        .atack_frequency = 2000,
-        .decay_frequency = 2000,
-        .decay_duration = 100,
-        .amplitude = 0.2,
+        .attack = { .wave = Wave::Triangle, .frequency = 2000, .amplitude = 0.2 },
+        .release = { .wave = Wave::Sine, .frequency = 2000, .amplitude = 0.1 },
+        .duration = 100,
     });
 
     Drum hihat({
-        .wave = Wave::Noise,
-        .decay_duration = 150,
-        .amplitude = 0.1,
+        .attack = { .wave = Wave::Noise, .amplitude = 0.1 },
+        .release = { .wave = Wave::Noise, .amplitude = 0.1 },
+        .duration = 150,
     });
 
     Synth bass({
@@ -56,8 +52,9 @@ void run_track_demo() {
     TrackLane bass_lane = build_bass_lane(bass);
 
     Track track { 
-        .lanes = { &kick_lane, &click_lane, &hihat_lane, &bass_lane },
-        .debug = true,
+        .lanes = { 
+            &kick_lane, &click_lane, &hihat_lane, &bass_lane
+        }
     };
 
     station.play(&track);

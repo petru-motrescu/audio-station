@@ -35,7 +35,6 @@ namespace audiostation {
         std::vector<TrackLane*> lanes;
         std::vector<Instrument*> live_instruments;
         Tick tick;
-        bool debug;
     };
 }
 

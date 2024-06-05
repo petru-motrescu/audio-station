@@ -155,8 +155,9 @@ void run_track_demo() {
     TrackLane bass_lane = build_bass_lane(bass);
 
     Track track { 
-        .lanes = { &kick_lane, &click_lane, &hihat_lane, &bass_lane },
-        .debug = true,
+        .lanes = { 
+            &kick_lane, &click_lane, &hihat_lane, &bass_lane
+        }
     };
 
     station.play(&track);
