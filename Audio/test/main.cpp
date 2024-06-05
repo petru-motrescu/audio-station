@@ -23,10 +23,6 @@ void sleep(int milliseconds) {
     std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
 }
 
-void run_drum_demo() {
-
-}
-
 void run_tests() {
     std::cout << "🧪 Running tests" << std::endl;
     run_oscillator_tests();
@@ -104,10 +100,8 @@ TrackLane build_hihat_lane(Drum& hihat) {
 
 TrackLane build_bass_lane(Synth& bass) {
     std::vector<TrackNote> bass_notes = {
-        { .pos = 0 * bar, .note = Note::E1 },
-        { .pos = 1 * bar, .note = Note::D1 },
-        { .pos = 2 * bar, .note = Note::C1 },
-        { .pos = 3 * bar, .note = Note::B0 },
+        { .pos = 0 * bar, .len = 2 * bar, .note = Note::A1 },
+        { .pos = 3 * bar, .len = half, .note = Note::D2 }
     };
 
     TrackLane bass_lane = {

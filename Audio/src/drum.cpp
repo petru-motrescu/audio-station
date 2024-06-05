@@ -22,7 +22,7 @@ audiostation::Drum::Drum() : Drum(DrumConfig()) { }
 audiostation::Drum::Drum(DrumConfig config) {
     this->impl = std::make_unique<DrumImpl>();
     this->impl->config = config;
-    this->impl->total_ticks = (config.duration_millis) * Config::SAMPLE_RATE / 1000.0;
+    this->impl->total_ticks = config.duration_millis * Config::SAMPLE_RATE / 1000.0;
 }
 
 audiostation::Drum::~Drum() {
@@ -60,7 +60,6 @@ double audiostation::Drum::render() {
 
     if (this->impl->ticks_since_live >= this->impl->total_ticks) {
         this->impl->live = false;
-        std::cout << sample << std::endl;
         return 0;
     }
 
