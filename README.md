@@ -11,7 +11,7 @@ The project consists of two parts:
 
 Built on top of Core Audio, the audio library can generate audio signals and play them in real-time. The library is implemented in C++ and it features also a C api so that it can be easily used from any Swift of Objective-C app on Mac.
 
-Here's an example that creates a few instruments and organizes them in a track (see the full version [here](Audio/test/main.cpp)):
+Here's an example that creates a few instruments and organizes them in a track (see the full version [here](audio-station-lib/test/main.cpp)):
 ```cpp
 void run_track_demo() {
     AudioStation station;
@@ -66,7 +66,7 @@ void run_track_demo() {
 
 To run the above example:
 ```bash
-cd Audio
+cd audio-station-lib
 make build
 make run
 ```
@@ -87,10 +87,9 @@ The app uses SceneKit for the graphics and the audio library to play some silly 
 - [Piano key frequencies, by Wikipedia](https://en.wikipedia.org/wiki/Piano_key_frequencies)
 - [Drum kit, by Wikipedia](https://en.wikipedia.org/wiki/Drum_kit)
 - [How To Get the Perfect Kick Drum Sound, by Output Mag](https://output.com/blog/get-perfect-kick-drum)
-- [Reverb effect](https://en.wikipedia.org/wiki/Reverb_effect#Convolution_reverb)
+- [Reverb effect](https://en.wikipedia.org/wiki/Reverb_effect)
 - [Impulse response](https://en.wikipedia.org/wiki/Impulse_response)
 - [Introduction to digital filters, by Julius Orion Smith III](https://ccrma.stanford.edu/~jos/filters/)
-- [Julius Orion Smith III's home page](https://ccrma.stanford.edu/~jos/)
 - [Learning Core Audio, by Chris Adamson, Kevin Avila](https://www.oreilly.com/library/view/learning-core-audio/9780321636973/)
 - [Apple Audio](https://developer.apple.com/audio/)
 - [Apple Core Audio](https://developer.apple.com/library/archive/documentation/MusicAudio/Conceptual/CoreAudioOverview)
