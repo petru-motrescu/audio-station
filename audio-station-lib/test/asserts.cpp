@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <iomanip>
+#include <sstream>
 #include "asserts.hpp"
 using namespace audiostation;
 
@@ -60,6 +61,36 @@ void audiostation::assert_equal(
             << " Actual: " << actual 
             << " [" << message << "]" 
             << std::endl;
+    }
+}
+
+void audiostation::assert_equal_2(
+    double expected, 
+    double actual, 
+    const char* message)
+{
+    assert_equal_2(
+        expected, 
+        actual, 
+        0.00000001, 
+        message);
+}
+
+void audiostation::assert_equal_2(
+    double expected, 
+    double actual, 
+    double epsilon, 
+    const char* message)
+{
+    if (fabs(expected - actual) > epsilon) {
+        std::stringstream str;
+        str << std::setprecision (16) 
+            << "Expected: " << expected 
+            << ", Actual: " << actual;
+        if (message != nullptr) {
+            str << ", Hint: " << message;
+        }
+        throw std::runtime_error(str.str());
     }
 }
 
