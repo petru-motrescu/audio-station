@@ -4,6 +4,7 @@
 #include <memory>
 #include <vector>
 #include <unordered_map>
+#include "effect.hpp"
 #include "instrument.hpp"
 #include "note.hpp"
 
@@ -26,6 +27,7 @@ namespace audiostation {
     struct TrackLane {
         std::string label;
         Instrument* instrument;
+        std::vector<Effect*> effects;
         std::vector<TrackBlock> blocks;
     };
 

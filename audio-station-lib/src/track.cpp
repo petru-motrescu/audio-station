@@ -25,9 +25,14 @@ double audiostation::Track::render() {
     double sample = 0;
     
     for (auto& lane : this->lanes) {
-        sample += lane->instrument->render();
+        double instrument_sample = lane->instrument->render();
+        sample += instrument_sample;
+        for (auto& effect : lane->effects) {
+            sample += effect->render(instrument_sample);
+        }
     }
     
+    // TODO Remove live_instruments
     for (auto& live_instrument : this->live_instruments) {
         sample += live_instrument->render();
     }

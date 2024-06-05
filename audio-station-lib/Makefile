@@ -7,6 +7,7 @@ build:
 	-framework AudioToolbox \
 	-o audio-station \
 	src/audio-station.cpp \
+	src/delay.cpp \
 	src/drum.cpp \
 	src/notes.cpp \
 	src/oscillator.cpp \

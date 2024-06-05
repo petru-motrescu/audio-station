@@ -87,6 +87,7 @@ The app uses SceneKit for the graphics and the audio library to play some silly 
 - [Piano key frequencies, by Wikipedia](https://en.wikipedia.org/wiki/Piano_key_frequencies)
 - [Drum kit, by Wikipedia](https://en.wikipedia.org/wiki/Drum_kit)
 - [How To Get the Perfect Kick Drum Sound, by Output Mag](https://output.com/blog/get-perfect-kick-drum)
+- [Delay effect](https://en.wikipedia.org/wiki/Delay_(audio_effect))
 - [Reverb effect](https://en.wikipedia.org/wiki/Reverb_effect)
 - [Impulse response](https://en.wikipedia.org/wiki/Impulse_response)
 - [Introduction to digital filters, by Julius Orion Smith III](https://ccrma.stanford.edu/~jos/filters/)

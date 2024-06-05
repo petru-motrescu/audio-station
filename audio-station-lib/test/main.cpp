@@ -8,6 +8,7 @@
 #include <vector>
 #include <limits>
 #include "audio-station.hpp"
+#include "delay.hpp"
 #include "drum.hpp"
 #include "frequency.hpp"
 #include "oscillator.hpp"
@@ -52,23 +53,18 @@ TrackLane build_kick_lane(Drum& kick) {
     return kick_lane;
 }
 
-TrackLane build_click_lane(Drum& click) {
+TrackLane build_click_lane(Drum& click, Delay& delay_1, Delay& delay_2, Delay& delay_3) {
     std::vector<TrackNote> click_notes = { 
         { .pos = 0 * bar + half }, 
         { .pos = 1 * bar + half },
-        { .pos = 1 * bar + half + 1 * sixteenth }, 
-        { .pos = 1 * bar + half + 2 * sixteenth },
-        { .pos = 1 * bar + half + 3 * sixteenth },
         { .pos = 2 * bar + half },
         { .pos = 3 * bar + half },
-        { .pos = 3 * bar + half + 1 * sixteenth }, 
-        { .pos = 3 * bar + half + 2 * sixteenth },
-        { .pos = 3 * bar + half + 3 * sixteenth },
     };
     
     TrackLane click_lane = {
         .label = "Click",
         .instrument = &click,
+        .effects = { &delay_1, &delay_2, &delay_3 },
         .blocks = {
             { .pos = 4 * bar * 0, .notes = click_notes },
             { .pos = 4 * bar * 1, .notes = click_notes },
@@ -149,8 +145,12 @@ void run_track_demo() {
         }
     });
 
+    Delay delay_1({ .time = 80, .level = 0.60 });
+    Delay delay_2({ .time = 100, .level = 0.40 });
+    Delay delay_3({ .time = 150, .level = 0.30 });
+
     TrackLane kick_lane = build_kick_lane(kick);
-    TrackLane click_lane = build_click_lane(click);
+    TrackLane click_lane = build_click_lane(click, delay_1, delay_2, delay_3);
     TrackLane hihat_lane = build_hihat_lane(hihat);
     TrackLane bass_lane = build_bass_lane(bass);
 
@@ -194,9 +194,34 @@ void run_oscillator_demo() {
     station.stop();
 }
 
+void run_delay_demo() {
+    Drum drum;
+    Delay delay;
+
+    TrackLane lane = {
+        .label = "Drum",
+        .instrument = &drum,
+        .effects = { &delay }
+    };
+
+    Track track { .lanes = { &lane } };
+
+    AudioStation station;
+    station.init();
+    station.play(&track);
+
+    for (int i = 0; i < 4; i++) {
+        drum.play();
+        sleep(1000);
+    }
+    
+    station.stop();
+}
+
 int main() {
     run_tests();
     run_track_demo();
     // run_oscillator_demo();
+    // run_delay_demo();
     return 0;
 }

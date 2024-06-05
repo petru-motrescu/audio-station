@@ -15,6 +15,7 @@
 		0A8406CA2C1021BB00C667AE /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A8406C12C1021BB00C667AE /* renderer.cpp */; };
 		0A8406CB2C1021BB00C667AE /* synth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A8406C22C1021BB00C667AE /* synth.cpp */; };
 		0A8406CC2C1021BB00C667AE /* track.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A8406C32C1021BB00C667AE /* track.cpp */; };
+		0A902BB72C103E8900411A3A /* delay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A902BB62C103E8900411A3A /* delay.cpp */; };
 		0ABBE03C2BE554D100803057 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABBE03B2BE554D100803057 /* AudioToolbox.framework */; };
 		0ABBE03E2BE554D800803057 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABBE03D2BE554D800803057 /* AudioUnit.framework */; };
 		0AF426822BE2D8650028C5B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF426812BE2D8650028C5B3 /* AppDelegate.swift */; };
@@ -47,6 +48,10 @@
 		0A8406C12C1021BB00C667AE /* renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = renderer.cpp; sourceTree = "<group>"; };
 		0A8406C22C1021BB00C667AE /* synth.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = synth.cpp; sourceTree = "<group>"; };
 		0A8406C32C1021BB00C667AE /* track.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = track.cpp; sourceTree = "<group>"; };
+		0A902BB32C103E7600411A3A /* effect.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = effect.hpp; sourceTree = "<group>"; };
+		0A902BB42C103E7600411A3A /* utils.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = utils.hpp; sourceTree = "<group>"; };
+		0A902BB52C103E7600411A3A /* delay.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = delay.hpp; sourceTree = "<group>"; };
+		0A902BB62C103E8900411A3A /* delay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = delay.cpp; sourceTree = "<group>"; };
 		0ABBE03B2BE554D100803057 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		0ABBE03D2BE554D800803057 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		0AF4267E2BE2D8650028C5B3 /* AudioStation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioStation.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,7 +84,9 @@
 				0A8406AE2C1021B100C667AE /* audio-station-c.h */,
 				0A8406AF2C1021B100C667AE /* audio-station.hpp */,
 				0A8406B02C1021B100C667AE /* config.hpp */,
+				0A902BB52C103E7600411A3A /* delay.hpp */,
 				0A8406B12C1021B100C667AE /* drum.hpp */,
+				0A902BB32C103E7600411A3A /* effect.hpp */,
 				0A8406B22C1021B100C667AE /* envelope.hpp */,
 				0A8406B32C1021B100C667AE /* frequency.hpp */,
 				0A8406B42C1021B100C667AE /* instrument.hpp */,
@@ -89,6 +96,7 @@
 				0A8406B82C1021B100C667AE /* synth.hpp */,
 				0A8406B92C1021B100C667AE /* track.hpp */,
 				0A8406BA2C1021B100C667AE /* wave.hpp */,
+				0A902BB42C103E7600411A3A /* utils.hpp */,
 			);
 			name = inc;
 			path = "../audio-station-lib/inc";
@@ -97,6 +105,7 @@
 		0A8406C42C1021BB00C667AE /* src */ = {
 			isa = PBXGroup;
 			children = (
+				0A902BB62C103E8900411A3A /* delay.cpp */,
 				0A8406BC2C1021BB00C667AE /* audio-station-c.cpp */,
 				0A8406BD2C1021BB00C667AE /* audio-station.cpp */,
 				0A8406BE2C1021BB00C667AE /* drum.cpp */,
@@ -234,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AF426842BE2D8650028C5B3 /* ViewController.swift in Sources */,
+				0A902BB72C103E8900411A3A /* delay.cpp in Sources */,
 				0A8406C82C1021BB00C667AE /* notes.cpp in Sources */,
 				0A8406C62C1021BB00C667AE /* audio-station.cpp in Sources */,
 				0A8406C92C1021BB00C667AE /* oscillator.cpp in Sources */,
