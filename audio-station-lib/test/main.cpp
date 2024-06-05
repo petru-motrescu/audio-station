@@ -18,7 +18,6 @@ using namespace audiostation;
 
 constexpr unsigned bar = Config::SAMPLE_RATE / 2;
 constexpr unsigned half = Config::SAMPLE_RATE / 4;
-constexpr unsigned sixteenth = Config::SAMPLE_RATE / 16;
 
 void sleep(int milliseconds) {
     std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
@@ -26,6 +25,7 @@ void sleep(int milliseconds) {
 
 void run_tests() {
     std::cout << "🧪 Running tests" << std::endl;
+    run_delay_tests();
     run_oscillator_tests();
     run_synth_tests();
     run_track_tests();
@@ -220,7 +220,7 @@ void run_delay_demo() {
 
 int main() {
     run_tests();
-    run_track_demo();
+    // run_track_demo();
     // run_oscillator_demo();
     // run_delay_demo();
     return 0;

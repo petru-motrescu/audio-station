@@ -15,6 +15,7 @@ build:
 	src/synth.cpp \
 	src/track.cpp \
 	test/asserts.cpp \
+	test/delay-tests.cpp \
 	test/oscillator-tests.cpp \
 	test/renderer-tests.cpp \
 	test/synth-tests.cpp \

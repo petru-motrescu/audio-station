@@ -2,6 +2,7 @@
 #define AUDIO_STATION_DELAY_HPP
 
 #include <memory>
+#include "config.hpp"
 #include "effect.hpp"
 
 namespace audiostation {
@@ -9,6 +10,7 @@ namespace audiostation {
     struct DelayConfig {
         unsigned time = 250;
         double level = 0.25;
+        unsigned sample_rate = Config::SAMPLE_RATE;
     };
 
     struct DelayImpl;

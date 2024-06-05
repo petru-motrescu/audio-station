@@ -16,7 +16,7 @@ audiostation::Delay::Delay() : Delay(DelayConfig()) { }
 audiostation::Delay::Delay(DelayConfig config) {
     this->impl = std::make_unique<DelayImpl>();
     this->impl->config = config;
-    this->impl->history_size = config.time * Config::SAMPLE_RATE / 1000.0;
+    this->impl->history_size = config.time * config.sample_rate / 1000.0;
 
     for (int i = 0; i < this->impl->history_size; i++) {
         this->impl->input_history.emplace(0);
