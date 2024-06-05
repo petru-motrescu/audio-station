@@ -123,29 +123,29 @@ void run_track_demo() {
     Drum kick({
         .attack = { .wave = Wave::Triangle, .frequency = 150, .amplitude = 0.3 },
         .release = { .wave = Wave::Sine, .frequency = 30, .amplitude = 1.0 },
-        .duration_millis = 150,
+        .duration_ms = 150,
     });
 
     Drum click({
         .attack = { .wave = Wave::Triangle, .frequency = 2000, .amplitude = 0.2 },
         .release = { .wave = Wave::Sine, .frequency = 2000, .amplitude = 0.1 },
-        .duration_millis = 100,
+        .duration_ms = 100,
     });
 
     Drum hihat({
         .attack = { .wave = Wave::Noise, .amplitude = 0.1 },
         .release = { .wave = Wave::Noise, .amplitude = 0.1 },
-        .duration_millis = 150,
+        .duration_ms = 150,
     });
 
     Synth bass({
         .wave = Wave::Triangle,
         .amplitude = 0.6,
         .envelope = {
-            .atack_millis = 5, 
-            .decay_millis = 20, 
+            .atack_ms = 5, 
+            .decay_ms = 20, 
             .sustain_level = 0.9, 
-            .release_millis = 400
+            .release_ms = 400
         }
     });
 

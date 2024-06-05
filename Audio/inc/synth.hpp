@@ -13,10 +13,10 @@ namespace audiostation {
         Wave wave = Wave::Triangle;
         double amplitude = 0.5;
         Envelope envelope = {
-            .atack_millis = 10,
-            .decay_millis = 100,
+            .atack_ms = 10,
+            .decay_ms = 100,
             .sustain_level = 0.9,
-            .release_millis = 1000,
+            .release_ms = 1000,
         };
     };
 
