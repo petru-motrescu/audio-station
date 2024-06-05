@@ -8,7 +8,7 @@
 
 namespace audiostation {
 
-    void test(std::string test_name, const std::function<void()>& test_body) {
+    inline void test(std::string test_name, const std::function<void()>& test_body) {
         try {
             test_body();
             std::cout << "✅ " << test_name << std::endl;
