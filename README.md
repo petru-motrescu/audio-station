@@ -83,9 +83,11 @@ The app uses SceneKit for the graphics and the audio library to play some silly 
 
 Books:
 - [Learning Core Audio, by Chris Adamson, Kevin Avila](https://www.oreilly.com/library/view/learning-core-audio/9780321636973/)
+- [Physical audio signal processing, by Julius Orion Smith III](https://ccrma.stanford.edu/~jos/pasp/pasp.html)
 - [Introduction to digital filters, by Julius Orion Smith III](https://ccrma.stanford.edu/~jos/filters/)
 
 Articles:
+- [A bit about reverb, by Nigel Redmon](https://www.earlevel.com/main/1997/01/19/a-bit-about-reverb/)
 - [How To Get the Perfect Kick Drum Sound, by Output Mag](https://output.com/blog/get-perfect-kick-drum)
 
 Wikipedia:
