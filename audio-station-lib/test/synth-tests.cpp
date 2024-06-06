@@ -14,8 +14,8 @@ void audiostation::TestSuite::run_synth_tests() {
     test("Synth is quiet by default", [] {
         Synth synth;
         for (auto& note : Notes::piano_notes) {
-            assert_false_2(synth.is_note_live(note), Notes::to_string(note));
-            assert_equal_2(0, synth.render());
+            assert_false(synth.is_note_live(note), Notes::to_string(note));
+            assert_equal(0, synth.render());
         }
     });
 
@@ -44,7 +44,7 @@ void audiostation::TestSuite::run_synth_tests() {
             0, 0.5, 1, 0.5, 0, -0.5, -1, -0.5,
         };
 
-        assert_equal_2(expected_samples, actual_samples);
+        assert_equal(expected_samples, actual_samples);
     });
 
     test("Triangle synth with proper envelope", [] {
@@ -78,7 +78,7 @@ void audiostation::TestSuite::run_synth_tests() {
             0, 0.21875, 0.375, 0.15625, 0, -0.09375, -0.125, -0.03125,  // release
         };
 
-        assert_equal_2(expected_samples, actual_samples);
+        assert_equal(expected_samples, actual_samples);
     });
 
 }

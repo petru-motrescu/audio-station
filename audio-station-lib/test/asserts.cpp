@@ -32,15 +32,6 @@ bool are_equal(
 
 void audiostation::assert_true(bool actual, std::string message) {
     if (!actual) {
-        std::cout 
-            << "Expected: true, Actual: false " 
-            << "[" << message << "]" 
-            << std::endl;
-    }
-}
-
-void audiostation::assert_true_2(bool actual, std::string message) {
-    if (!actual) {
         std::stringstream str;
         str << "Expected: true, Actual: false "; 
         if (message.size() > 0) {
@@ -51,15 +42,6 @@ void audiostation::assert_true_2(bool actual, std::string message) {
 }
 
 void audiostation::assert_false(bool actual, std::string message) {
-    if (actual) {
-        std::cout 
-            << "Expected: false, Actual: true " 
-            << "[" << message << "]" 
-            << std::endl;
-    }
-}
-
-void audiostation::assert_false_2(bool actual, std::string message) {
     if (actual) {
         std::stringstream str;
         str << "Expected: false, Actual: true "; 
@@ -73,32 +55,16 @@ void audiostation::assert_false_2(bool actual, std::string message) {
 void audiostation::assert_equal(
     double expected, 
     double actual, 
-    double epsilon, 
     std::string message)
 {
-    if (fabs(expected - actual) > epsilon) {
-        std::cout 
-            << std::setprecision (16)
-            << "Expected: " << expected 
-            << " Actual: " << actual 
-            << " [" << message << "]" 
-            << std::endl;
-    }
-}
-
-void audiostation::assert_equal_2(
-    double expected, 
-    double actual, 
-    std::string message)
-{
-    assert_equal_2(
+    assert_equal(
         expected, 
         actual, 
         0.00000001, 
         message);
 }
 
-void audiostation::assert_equal_2(
+void audiostation::assert_equal(
     double expected, 
     double actual, 
     double epsilon, 
@@ -117,20 +83,6 @@ void audiostation::assert_equal_2(
 }
 
 void audiostation::assert_equal(
-    std::vector<double> expected, 
-    std::vector<double> actual, 
-    double epsilon)
-{
-    if (!are_equal(expected, actual, epsilon)) {
-        std::cout << "Expected: ";
-        for (auto& x : expected) { std::cout << x << ", "; }
-        std::cout << std::endl << "Actual: ";
-        for (auto& x : actual) { std::cout << x << ", "; }
-        std::cout << std::endl;
-    }
-}
-
-void audiostation::assert_equal_2(
     std::vector<double> expected, 
     std::vector<double> actual, 
     double epsilon)

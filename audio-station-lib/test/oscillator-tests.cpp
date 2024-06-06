@@ -7,15 +7,15 @@ void audiostation::TestSuite::run_oscillator_tests() {
 
     test("Oscillator is quiet by default", [] {
         Oscillator oscillator;
-        assert_equal_2(0, oscillator.render());
+        assert_equal(0, oscillator.render());
     });
 
     test("Oscillator can play and stop", [] {
         Oscillator oscillator;
         oscillator.play();
-        assert_equal_2(0, oscillator.render());
+        assert_equal(0, oscillator.render());
         oscillator.stop();
-        assert_equal_2(0, oscillator.render());
+        assert_equal(0, oscillator.render());
     });
 
 }

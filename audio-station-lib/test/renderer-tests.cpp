@@ -28,12 +28,12 @@ void audiostation::TestSuite::run_renderer_tests() {
 
         for (auto [expected, phase, message] : triples) {
             auto actual = Renderer::render_wave(Wave::Sine, phase);
-            assert_equal_2(expected, actual, EPSILON, message.c_str());
+            assert_equal(expected, actual, EPSILON, message.c_str());
         }
 
         for (auto [expected, phase, message] : triples) {
             auto actual = Renderer::render_wave(Wave::Sine, -phase);
-            assert_equal_2(-expected, actual, EPSILON, "-" + message);
+            assert_equal(-expected, actual, EPSILON, "-" + message);
         }
     });
 
@@ -51,7 +51,7 @@ void audiostation::TestSuite::run_renderer_tests() {
 
         for (auto [expected, phase, message] : triples) {
             auto actual = Renderer::render_wave(Wave::Square, phase);
-            assert_equal_2(expected, actual, EPSILON, message);
+            assert_equal(expected, actual, EPSILON, message);
         }
     });
 
@@ -70,7 +70,7 @@ void audiostation::TestSuite::run_renderer_tests() {
 
         for (auto [expected, phase, message] : triples) {
             auto actual = Renderer::render_wave(Wave::Triangle, phase);
-            assert_equal_2(expected, actual, EPSILON, message);
+            assert_equal(expected, actual, EPSILON, message);
         }
     });
 
@@ -104,7 +104,7 @@ void audiostation::TestSuite::run_renderer_tests() {
 
         for (auto [current_phase, expected, message] : triples) {
             auto actual = Renderer::next_phase(current_phase, frequency, sample_rate);
-            assert_equal_2(expected, actual, EPSILON, message);
+            assert_equal(expected, actual, EPSILON, message);
         }
     });
 }

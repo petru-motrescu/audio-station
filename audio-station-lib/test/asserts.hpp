@@ -6,26 +6,17 @@
 #include <cmath>
 
 namespace audiostation {
+    
     void assert_true(bool actual, std::string message = "");
     void assert_false(bool actual, std::string message = "");
-
-    void assert_true_2(bool actual, std::string message = "");
-    void assert_false_2(bool actual, std::string message = "");
 
     void assert_equal(
         double expected, 
         double actual, 
-        double epsilon = 0.00000001, 
         std::string message = ""
     );
 
-    void assert_equal_2(
-        double expected, 
-        double actual, 
-        std::string message = ""
-    );
-
-    void assert_equal_2(
+    void assert_equal(
         double expected, 
         double actual, 
         double epsilon, 
@@ -33,12 +24,6 @@ namespace audiostation {
     );
 
     void assert_equal(
-        std::vector<double> expected, 
-        std::vector<double> actual, 
-        double epsilon = 0.00000001
-    );
-
-    void assert_equal_2(
         std::vector<double> expected, 
         std::vector<double> actual, 
         double epsilon = 0.00000001
