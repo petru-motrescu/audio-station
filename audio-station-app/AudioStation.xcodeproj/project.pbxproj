@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A8406C52C1021BB00C667AE /* audio-station-c.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A8406BC2C1021BB00C667AE /* audio-station-c.cpp */; };
-		0A8406C62C1021BB00C667AE /* audio-station.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A8406BD2C1021BB00C667AE /* audio-station.cpp */; };
-		0A8406C72C1021BB00C667AE /* drum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A8406BE2C1021BB00C667AE /* drum.cpp */; };
-		0A8406C82C1021BB00C667AE /* notes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A8406BF2C1021BB00C667AE /* notes.cpp */; };
-		0A8406C92C1021BB00C667AE /* oscillator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A8406C02C1021BB00C667AE /* oscillator.cpp */; };
-		0A8406CA2C1021BB00C667AE /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A8406C12C1021BB00C667AE /* renderer.cpp */; };
-		0A8406CB2C1021BB00C667AE /* synth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A8406C22C1021BB00C667AE /* synth.cpp */; };
-		0A8406CC2C1021BB00C667AE /* track.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A8406C32C1021BB00C667AE /* track.cpp */; };
-		0A902BB72C103E8900411A3A /* delay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A902BB62C103E8900411A3A /* delay.cpp */; };
+		0A7CED522C118A470020251E /* audio-station-c.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CED482C118A470020251E /* audio-station-c.cpp */; };
+		0A7CED532C118A470020251E /* audio-station.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CED492C118A470020251E /* audio-station.cpp */; };
+		0A7CED542C118A470020251E /* delay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CED4A2C118A470020251E /* delay.cpp */; };
+		0A7CED552C118A470020251E /* drum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CED4B2C118A470020251E /* drum.cpp */; };
+		0A7CED562C118A470020251E /* notes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CED4C2C118A470020251E /* notes.cpp */; };
+		0A7CED572C118A470020251E /* oscillator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CED4D2C118A470020251E /* oscillator.cpp */; };
+		0A7CED582C118A470020251E /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CED4E2C118A470020251E /* renderer.cpp */; };
+		0A7CED592C118A470020251E /* synth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CED4F2C118A470020251E /* synth.cpp */; };
+		0A7CED5A2C118A470020251E /* track.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CED502C118A470020251E /* track.cpp */; };
 		0ABBE03C2BE554D100803057 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABBE03B2BE554D100803057 /* AudioToolbox.framework */; };
 		0ABBE03E2BE554D800803057 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABBE03D2BE554D800803057 /* AudioUnit.framework */; };
 		0AF426822BE2D8650028C5B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF426812BE2D8650028C5B3 /* AppDelegate.swift */; };
@@ -27,31 +27,31 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0A8406AE2C1021B100C667AE /* audio-station-c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "audio-station-c.h"; sourceTree = "<group>"; };
-		0A8406AF2C1021B100C667AE /* audio-station.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "audio-station.hpp"; sourceTree = "<group>"; };
-		0A8406B02C1021B100C667AE /* config.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = config.hpp; sourceTree = "<group>"; };
-		0A8406B12C1021B100C667AE /* drum.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = drum.hpp; sourceTree = "<group>"; };
-		0A8406B22C1021B100C667AE /* envelope.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = envelope.hpp; sourceTree = "<group>"; };
-		0A8406B32C1021B100C667AE /* frequency.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = frequency.hpp; sourceTree = "<group>"; };
-		0A8406B42C1021B100C667AE /* instrument.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = instrument.hpp; sourceTree = "<group>"; };
-		0A8406B52C1021B100C667AE /* note.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = note.hpp; sourceTree = "<group>"; };
-		0A8406B62C1021B100C667AE /* oscillator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = oscillator.hpp; sourceTree = "<group>"; };
-		0A8406B72C1021B100C667AE /* renderer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = renderer.hpp; sourceTree = "<group>"; };
-		0A8406B82C1021B100C667AE /* synth.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = synth.hpp; sourceTree = "<group>"; };
-		0A8406B92C1021B100C667AE /* track.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = track.hpp; sourceTree = "<group>"; };
-		0A8406BA2C1021B100C667AE /* wave.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = wave.hpp; sourceTree = "<group>"; };
-		0A8406BC2C1021BB00C667AE /* audio-station-c.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "audio-station-c.cpp"; sourceTree = "<group>"; };
-		0A8406BD2C1021BB00C667AE /* audio-station.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "audio-station.cpp"; sourceTree = "<group>"; };
-		0A8406BE2C1021BB00C667AE /* drum.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = drum.cpp; sourceTree = "<group>"; };
-		0A8406BF2C1021BB00C667AE /* notes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = notes.cpp; sourceTree = "<group>"; };
-		0A8406C02C1021BB00C667AE /* oscillator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = oscillator.cpp; sourceTree = "<group>"; };
-		0A8406C12C1021BB00C667AE /* renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = renderer.cpp; sourceTree = "<group>"; };
-		0A8406C22C1021BB00C667AE /* synth.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = synth.cpp; sourceTree = "<group>"; };
-		0A8406C32C1021BB00C667AE /* track.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = track.cpp; sourceTree = "<group>"; };
-		0A902BB32C103E7600411A3A /* effect.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = effect.hpp; sourceTree = "<group>"; };
-		0A902BB42C103E7600411A3A /* utils.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = utils.hpp; sourceTree = "<group>"; };
-		0A902BB52C103E7600411A3A /* delay.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = delay.hpp; sourceTree = "<group>"; };
-		0A902BB62C103E8900411A3A /* delay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = delay.cpp; sourceTree = "<group>"; };
+		0A7CED372C118A470020251E /* audio-station-c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "audio-station-c.h"; sourceTree = "<group>"; };
+		0A7CED382C118A470020251E /* audio-station.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "audio-station.hpp"; sourceTree = "<group>"; };
+		0A7CED392C118A470020251E /* config.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = config.hpp; sourceTree = "<group>"; };
+		0A7CED3A2C118A470020251E /* delay.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = delay.hpp; sourceTree = "<group>"; };
+		0A7CED3B2C118A470020251E /* drum.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = drum.hpp; sourceTree = "<group>"; };
+		0A7CED3C2C118A470020251E /* effect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = effect.hpp; sourceTree = "<group>"; };
+		0A7CED3D2C118A470020251E /* envelope.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = envelope.hpp; sourceTree = "<group>"; };
+		0A7CED3E2C118A470020251E /* frequency.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = frequency.hpp; sourceTree = "<group>"; };
+		0A7CED3F2C118A470020251E /* instrument.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = instrument.hpp; sourceTree = "<group>"; };
+		0A7CED402C118A470020251E /* note.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = note.hpp; sourceTree = "<group>"; };
+		0A7CED412C118A470020251E /* oscillator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = oscillator.hpp; sourceTree = "<group>"; };
+		0A7CED422C118A470020251E /* renderer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = renderer.hpp; sourceTree = "<group>"; };
+		0A7CED432C118A470020251E /* synth.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = synth.hpp; sourceTree = "<group>"; };
+		0A7CED442C118A470020251E /* track.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = track.hpp; sourceTree = "<group>"; };
+		0A7CED452C118A470020251E /* utils.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = utils.hpp; sourceTree = "<group>"; };
+		0A7CED462C118A470020251E /* wave.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = wave.hpp; sourceTree = "<group>"; };
+		0A7CED482C118A470020251E /* audio-station-c.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "audio-station-c.cpp"; sourceTree = "<group>"; };
+		0A7CED492C118A470020251E /* audio-station.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "audio-station.cpp"; sourceTree = "<group>"; };
+		0A7CED4A2C118A470020251E /* delay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = delay.cpp; sourceTree = "<group>"; };
+		0A7CED4B2C118A470020251E /* drum.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = drum.cpp; sourceTree = "<group>"; };
+		0A7CED4C2C118A470020251E /* notes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = notes.cpp; sourceTree = "<group>"; };
+		0A7CED4D2C118A470020251E /* oscillator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = oscillator.cpp; sourceTree = "<group>"; };
+		0A7CED4E2C118A470020251E /* renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = renderer.cpp; sourceTree = "<group>"; };
+		0A7CED4F2C118A470020251E /* synth.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = synth.cpp; sourceTree = "<group>"; };
+		0A7CED502C118A470020251E /* track.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = track.cpp; sourceTree = "<group>"; };
 		0ABBE03B2BE554D100803057 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		0ABBE03D2BE554D800803057 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		0AF4267E2BE2D8650028C5B3 /* AudioStation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioStation.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,54 +78,69 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0A8406BB2C1021B100C667AE /* inc */ = {
+		0A7CED352C118A140020251E /* AudioStationApp */ = {
 			isa = PBXGroup;
 			children = (
-				0A8406AE2C1021B100C667AE /* audio-station-c.h */,
-				0A8406AF2C1021B100C667AE /* audio-station.hpp */,
-				0A8406B02C1021B100C667AE /* config.hpp */,
-				0A902BB52C103E7600411A3A /* delay.hpp */,
-				0A8406B12C1021B100C667AE /* drum.hpp */,
-				0A902BB32C103E7600411A3A /* effect.hpp */,
-				0A8406B22C1021B100C667AE /* envelope.hpp */,
-				0A8406B32C1021B100C667AE /* frequency.hpp */,
-				0A8406B42C1021B100C667AE /* instrument.hpp */,
-				0A8406B52C1021B100C667AE /* note.hpp */,
-				0A8406B62C1021B100C667AE /* oscillator.hpp */,
-				0A8406B72C1021B100C667AE /* renderer.hpp */,
-				0A8406B82C1021B100C667AE /* synth.hpp */,
-				0A8406B92C1021B100C667AE /* track.hpp */,
-				0A8406BA2C1021B100C667AE /* wave.hpp */,
-				0A902BB42C103E7600411A3A /* utils.hpp */,
+				0AF71D652BE2E1D700348FDE /* Key.swift */,
+				0AF426812BE2D8650028C5B3 /* AppDelegate.swift */,
+				0AF426832BE2D8650028C5B3 /* ViewController.swift */,
+				0AF426852BE2D8650028C5B3 /* art.scnassets */,
+				0AF426872BE2D8660028C5B3 /* Assets.xcassets */,
+				0AF426892BE2D8660028C5B3 /* Main.storyboard */,
+				0AF4268C2BE2D8670028C5B3 /* AudioStation.entitlements */,
+				0AF71D672BE2F0B100348FDE /* Bridging-Header.h */,
+			);
+			name = AudioStationApp;
+			sourceTree = "<group>";
+		};
+		0A7CED362C118A1D0020251E /* AudioStationLib */ = {
+			isa = PBXGroup;
+			children = (
+				0A7CED472C118A470020251E /* inc */,
+				0A7CED512C118A470020251E /* src */,
+			);
+			name = AudioStationLib;
+			sourceTree = "<group>";
+		};
+		0A7CED472C118A470020251E /* inc */ = {
+			isa = PBXGroup;
+			children = (
+				0A7CED372C118A470020251E /* audio-station-c.h */,
+				0A7CED382C118A470020251E /* audio-station.hpp */,
+				0A7CED392C118A470020251E /* config.hpp */,
+				0A7CED3A2C118A470020251E /* delay.hpp */,
+				0A7CED3B2C118A470020251E /* drum.hpp */,
+				0A7CED3C2C118A470020251E /* effect.hpp */,
+				0A7CED3D2C118A470020251E /* envelope.hpp */,
+				0A7CED3E2C118A470020251E /* frequency.hpp */,
+				0A7CED3F2C118A470020251E /* instrument.hpp */,
+				0A7CED402C118A470020251E /* note.hpp */,
+				0A7CED412C118A470020251E /* oscillator.hpp */,
+				0A7CED422C118A470020251E /* renderer.hpp */,
+				0A7CED432C118A470020251E /* synth.hpp */,
+				0A7CED442C118A470020251E /* track.hpp */,
+				0A7CED452C118A470020251E /* utils.hpp */,
+				0A7CED462C118A470020251E /* wave.hpp */,
 			);
 			name = inc;
 			path = "../audio-station-lib/inc";
 			sourceTree = "<group>";
 		};
-		0A8406C42C1021BB00C667AE /* src */ = {
+		0A7CED512C118A470020251E /* src */ = {
 			isa = PBXGroup;
 			children = (
-				0A902BB62C103E8900411A3A /* delay.cpp */,
-				0A8406BC2C1021BB00C667AE /* audio-station-c.cpp */,
-				0A8406BD2C1021BB00C667AE /* audio-station.cpp */,
-				0A8406BE2C1021BB00C667AE /* drum.cpp */,
-				0A8406BF2C1021BB00C667AE /* notes.cpp */,
-				0A8406C02C1021BB00C667AE /* oscillator.cpp */,
-				0A8406C12C1021BB00C667AE /* renderer.cpp */,
-				0A8406C22C1021BB00C667AE /* synth.cpp */,
-				0A8406C32C1021BB00C667AE /* track.cpp */,
+				0A7CED482C118A470020251E /* audio-station-c.cpp */,
+				0A7CED492C118A470020251E /* audio-station.cpp */,
+				0A7CED4A2C118A470020251E /* delay.cpp */,
+				0A7CED4B2C118A470020251E /* drum.cpp */,
+				0A7CED4C2C118A470020251E /* notes.cpp */,
+				0A7CED4D2C118A470020251E /* oscillator.cpp */,
+				0A7CED4E2C118A470020251E /* renderer.cpp */,
+				0A7CED4F2C118A470020251E /* synth.cpp */,
+				0A7CED502C118A470020251E /* track.cpp */,
 			);
 			name = src;
 			path = "../audio-station-lib/src";
-			sourceTree = "<group>";
-		};
-		0ABBE0212BE5549E00803057 /* Audio */ = {
-			isa = PBXGroup;
-			children = (
-				0A8406C42C1021BB00C667AE /* src */,
-				0A8406BB2C1021B100C667AE /* inc */,
-			);
-			name = Audio;
 			sourceTree = "<group>";
 		};
 		0ABBE03A2BE554D000803057 /* Frameworks */ = {
@@ -140,8 +155,8 @@
 		0AF426752BE2D8650028C5B3 = {
 			isa = PBXGroup;
 			children = (
-				0ABBE0212BE5549E00803057 /* Audio */,
-				0AF426802BE2D8650028C5B3 /* AudioStation */,
+				0A7CED352C118A140020251E /* AudioStationApp */,
+				0A7CED362C118A1D0020251E /* AudioStationLib */,
 				0AF4267F2BE2D8650028C5B3 /* Products */,
 				0ABBE03A2BE554D000803057 /* Frameworks */,
 			);
@@ -153,21 +168,6 @@
 				0AF4267E2BE2D8650028C5B3 /* AudioStation.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		0AF426802BE2D8650028C5B3 /* AudioStation */ = {
-			isa = PBXGroup;
-			children = (
-				0AF71D652BE2E1D700348FDE /* Key.swift */,
-				0AF426812BE2D8650028C5B3 /* AppDelegate.swift */,
-				0AF426832BE2D8650028C5B3 /* ViewController.swift */,
-				0AF426852BE2D8650028C5B3 /* art.scnassets */,
-				0AF426872BE2D8660028C5B3 /* Assets.xcassets */,
-				0AF426892BE2D8660028C5B3 /* Main.storyboard */,
-				0AF4268C2BE2D8670028C5B3 /* AudioStation.entitlements */,
-				0AF71D672BE2F0B100348FDE /* Bridging-Header.h */,
-			);
-			path = AudioStation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,17 +243,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AF426842BE2D8650028C5B3 /* ViewController.swift in Sources */,
-				0A902BB72C103E8900411A3A /* delay.cpp in Sources */,
-				0A8406C82C1021BB00C667AE /* notes.cpp in Sources */,
-				0A8406C62C1021BB00C667AE /* audio-station.cpp in Sources */,
-				0A8406C92C1021BB00C667AE /* oscillator.cpp in Sources */,
-				0A8406CB2C1021BB00C667AE /* synth.cpp in Sources */,
-				0A8406CA2C1021BB00C667AE /* renderer.cpp in Sources */,
-				0A8406C52C1021BB00C667AE /* audio-station-c.cpp in Sources */,
-				0A8406CC2C1021BB00C667AE /* track.cpp in Sources */,
+				0A7CED542C118A470020251E /* delay.cpp in Sources */,
+				0A7CED582C118A470020251E /* renderer.cpp in Sources */,
+				0A7CED552C118A470020251E /* drum.cpp in Sources */,
+				0A7CED562C118A470020251E /* notes.cpp in Sources */,
+				0A7CED572C118A470020251E /* oscillator.cpp in Sources */,
+				0A7CED532C118A470020251E /* audio-station.cpp in Sources */,
+				0A7CED522C118A470020251E /* audio-station-c.cpp in Sources */,
+				0A7CED592C118A470020251E /* synth.cpp in Sources */,
 				0AF426822BE2D8650028C5B3 /* AppDelegate.swift in Sources */,
 				0AF71D662BE2E1D700348FDE /* Key.swift in Sources */,
-				0A8406C72C1021BB00C667AE /* drum.cpp in Sources */,
+				0A7CED5A2C118A470020251E /* track.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,7 +397,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = AudioStation/AudioStation.entitlements;
+				CODE_SIGN_ENTITLEMENTS = AudioStation.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -415,7 +415,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = petru.motrescu.AudioStation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "AudioStation/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
 				SWIFT_OBJC_INTEROP_MODE = objc;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -428,7 +428,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = AudioStation/AudioStation.entitlements;
+				CODE_SIGN_ENTITLEMENTS = AudioStation.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -446,7 +446,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = petru.motrescu.AudioStation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "AudioStation/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
 				SWIFT_OBJC_INTEROP_MODE = objc;
 				SWIFT_VERSION = 5.0;
 			};
