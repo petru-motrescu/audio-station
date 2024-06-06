@@ -81,17 +81,24 @@ The app uses SceneKit for the graphics and the audio library to play some silly 
 
 ### References
 
-- [DAW, by Wikipedia](https://en.wikipedia.org/wiki/Digital_audio_workstation)
-- [Wave, by Wikipedia](https://en.wikipedia.org/wiki/wave)
-- [Envelope, by Wikipedia](https://en.wikipedia.org/wiki/Envelope_(music))
-- [Piano key frequencies, by Wikipedia](https://en.wikipedia.org/wiki/Piano_key_frequencies)
-- [Drum kit, by Wikipedia](https://en.wikipedia.org/wiki/Drum_kit)
+Books:
+- [Learning Core Audio, by Chris Adamson, Kevin Avila](https://www.oreilly.com/library/view/learning-core-audio/9780321636973/)
+- [Introduction to digital filters, by Julius Orion Smith III](https://ccrma.stanford.edu/~jos/filters/)
+
+Articles:
 - [How To Get the Perfect Kick Drum Sound, by Output Mag](https://output.com/blog/get-perfect-kick-drum)
+
+Wikipedia:
+- [DAW](https://en.wikipedia.org/wiki/Digital_audio_workstation)
+- [Wave](https://en.wikipedia.org/wiki/wave)
+- [Envelope](https://en.wikipedia.org/wiki/Envelope_(music))
+- [Drum kit](https://en.wikipedia.org/wiki/Drum_kit)
 - [Delay effect](https://en.wikipedia.org/wiki/Delay_(audio_effect))
 - [Reverb effect](https://en.wikipedia.org/wiki/Reverb_effect)
 - [Impulse response](https://en.wikipedia.org/wiki/Impulse_response)
-- [Introduction to digital filters, by Julius Orion Smith III](https://ccrma.stanford.edu/~jos/filters/)
-- [Learning Core Audio, by Chris Adamson, Kevin Avila](https://www.oreilly.com/library/view/learning-core-audio/9780321636973/)
+- [Piano key frequencies](https://en.wikipedia.org/wiki/Piano_key_frequencies)
+
+Apple:
 - [Apple Audio](https://developer.apple.com/audio/)
 - [Apple Core Audio](https://developer.apple.com/library/archive/documentation/MusicAudio/Conceptual/CoreAudioOverview)
 - [Apple SceneKit](https://developer.apple.com/documentation/scenekit)
