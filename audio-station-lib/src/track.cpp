@@ -39,5 +39,15 @@ double audiostation::Track::render() {
 
     this->tick += 1;
 
+    if (sample > Config::MAX_AMPLITUDE) {
+        std::cout << "Clipping!" << std::endl;
+        return Config::MAX_AMPLITUDE;
+    }
+
+    if (sample < Config::MIN_AMPLITUDE) {
+        std::cout << "Clipping!" << std::endl;
+        return Config::MIN_AMPLITUDE;
+    }
+
     return sample;
 }
