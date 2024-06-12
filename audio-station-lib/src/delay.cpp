@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <queue>
 #include "config.hpp"
 #include "delay.hpp"
@@ -31,12 +32,27 @@ audiostation::Delay::~Delay() {
 }
 
 double audiostation::Delay::render(double sample) {
-    double result = this->impl->input_history.front() * this->impl->config.level;
-    this->impl->input_history.pop();
-    double snapshot = sample + this->impl->config.feedback * result;
-    this->impl->input_history.emplace(snapshot);
-    if (this->impl->config.debug) {
-        std::cout << "Delay sample:" << sample << ", result:" << result << ", snapshot:" << snapshot << std::endl;
+    double result = this->impl->input_history.front();
+    double snapshot = (sample + this->impl->config.feedback * result) * this->impl->config.level;
+
+    if (snapshot > Config::MAX_AMPLITUDE) {
+        snapshot = Config::MAX_AMPLITUDE;
     }
+    
+    if (snapshot < Config::MIN_AMPLITUDE) {
+        snapshot = Config::MIN_AMPLITUDE;
+    }
+
+    this->impl->input_history.pop();
+    this->impl->input_history.emplace(snapshot);
+
+    if (this->impl->config.debug) {
+        std::cout << std::fixed << std::setprecision(16) 
+            << "Delay sample:" << sample 
+            << ", result:" << result 
+            << ", snapshot:" << snapshot 
+            << std::endl;
+    }
+
     return result;
 }
