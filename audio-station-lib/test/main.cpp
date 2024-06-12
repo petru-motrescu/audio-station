@@ -186,7 +186,11 @@ void run_oscillator_demo() {
 
 void run_delay_demo() {
     Drum drum;
-    Delay delay;
+    Delay delay({ 
+        .time = 200,
+        .feedback = 0.9,
+        .level = 0.5
+    });
 
     TrackLane lane = {
         .label = "Drum",
@@ -202,7 +206,7 @@ void run_delay_demo() {
 
     for (int i = 0; i < 4; i++) {
         drum.play();
-        sleep(1000);
+        sleep(3000);
     }
     
     station.stop();
@@ -211,7 +215,7 @@ void run_delay_demo() {
 int main() {
     TestSuite test_suite;
     test_suite.run_tests();
-    run_track_demo();
+    // run_track_demo();
     // run_oscillator_demo();
     // run_delay_demo();
     return 0;
