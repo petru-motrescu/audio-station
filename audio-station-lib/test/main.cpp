@@ -18,6 +18,8 @@ using namespace audiostation;
 
 constexpr unsigned bar = Config::SAMPLE_RATE / 2;
 constexpr unsigned half = Config::SAMPLE_RATE / 4;
+constexpr unsigned quart = Config::SAMPLE_RATE / 8;
+constexpr unsigned eighth = Config::SAMPLE_RATE / 16;
 
 void sleep(int milliseconds) {
     std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
@@ -26,9 +28,7 @@ void sleep(int milliseconds) {
 TrackLane build_kick_lane(Drum& kick) {
     std::vector<TrackNote> kick_notes = { 
         { .pos = 0 * bar }, 
-        { .pos = 1 * bar },
-        { .pos = 2 * bar },
-        { .pos = 3 * bar },
+        { .pos = 2 * bar + half },
     };
 
     TrackLane kick_lane = {
@@ -37,27 +37,28 @@ TrackLane build_kick_lane(Drum& kick) {
         .blocks = {
             { .pos = 4 * bar * 0, .notes = kick_notes },
             { .pos = 4 * bar * 1, .notes = kick_notes },
+            { .pos = 4 * bar * 2, .notes = kick_notes },
+            { .pos = 4 * bar * 3, .notes = kick_notes },
         }
     };
 
     return kick_lane;
 }
 
-TrackLane build_click_lane(Drum& click, Delay& delay_1, Delay& delay_2, Delay& delay_3) {
+TrackLane build_click_lane(Drum& click, Delay& delay) {
     std::vector<TrackNote> click_notes = { 
-        { .pos = 0 * bar + half }, 
-        { .pos = 1 * bar + half },
-        { .pos = 2 * bar + half },
-        { .pos = 3 * bar + half },
+        { .pos = 2 * bar }
     };
     
     TrackLane click_lane = {
         .label = "Click",
         .instrument = &click,
-        .effects = { &delay_1, &delay_2, &delay_3 },
+        .effects = { &delay },
         .blocks = {
             { .pos = 4 * bar * 0, .notes = click_notes },
             { .pos = 4 * bar * 1, .notes = click_notes },
+            { .pos = 4 * bar * 2, .notes = click_notes },
+            { .pos = 4 * bar * 3, .notes = click_notes },
         }
     };
 
@@ -66,9 +67,7 @@ TrackLane build_click_lane(Drum& click, Delay& delay_1, Delay& delay_2, Delay& d
 
 TrackLane build_hihat_lane(Drum& hihat) {
     std::vector<TrackNote> hihat_notes = { 
-        { .pos = 0 * bar + half }, 
         { .pos = 1 * bar + half },
-        { .pos = 2 * bar + half },
         { .pos = 3 * bar + half },
     };
 
@@ -78,6 +77,8 @@ TrackLane build_hihat_lane(Drum& hihat) {
         .blocks = {
             { .pos = 4 * bar * 0, .notes = hihat_notes },
             { .pos = 4 * bar * 1, .notes = hihat_notes },
+            { .pos = 4 * bar * 2, .notes = hihat_notes },
+            { .pos = 4 * bar * 3, .notes = hihat_notes },
         }
     };
 
@@ -86,8 +87,10 @@ TrackLane build_hihat_lane(Drum& hihat) {
 
 TrackLane build_bass_lane(Synth& bass) {
     std::vector<TrackNote> bass_notes = {
-        { .pos = 0 * bar, .len = 2 * bar, .note = Note::A1 },
-        { .pos = 3 * bar, .len = half, .note = Note::D2 }
+        { .pos = 2 * bar + half, .len = 3 * quart, .note = Note::C2 },
+        { .pos = 3 * bar + 1 * quart, .len = 1 * quart, .note = Note::A1 },
+        { .pos = 3 * bar + 2 * quart, .len = 1 * eighth, .note = Note::A1 },
+        { .pos = 3 * bar + 3 * quart, .len = 1 * eighth, .note = Note::A1 },
     };
 
     TrackLane bass_lane = {
@@ -96,6 +99,8 @@ TrackLane build_bass_lane(Synth& bass) {
         .blocks = {
             { .pos = 4 * bar * 0, .notes = bass_notes },
             { .pos = 4 * bar * 1, .notes = bass_notes },
+            { .pos = 4 * bar * 2, .notes = bass_notes },
+            { .pos = 4 * bar * 3, .notes = bass_notes },
         }
     };
 
@@ -109,7 +114,7 @@ void run_track_demo() {
     Drum kick({
         .attack = { .wave = Wave::Triangle, .frequency = 150, .amplitude = 0.3 },
         .release = { .wave = Wave::Sine, .frequency = 30, .amplitude = 1.0 },
-        .duration = 150,
+        .duration = 200,
     });
 
     Drum click({
@@ -126,7 +131,7 @@ void run_track_demo() {
 
     Synth bass({
         .wave = Wave::Triangle,
-        .amplitude = 0.6,
+        .amplitude = 0.4,
         .envelope = {
             .atack_duration = 5, 
             .decay_duration = 20, 
@@ -135,23 +140,17 @@ void run_track_demo() {
         }
     });
 
-    Delay delay_1({ .time = 80, .level = 0.60 });
-    Delay delay_2({ .time = 100, .level = 0.40 });
-    Delay delay_3({ .time = 150, .level = 0.30 });
+    Delay delay({ .time = 80, .level = 0.6, .feedback = 0.75 });
 
     TrackLane kick_lane = build_kick_lane(kick);
-    TrackLane click_lane = build_click_lane(click, delay_1, delay_2, delay_3);
+    TrackLane click_lane = build_click_lane(click, delay);
     TrackLane hihat_lane = build_hihat_lane(hihat);
     TrackLane bass_lane = build_bass_lane(bass);
 
-    Track track { 
-        .lanes = { 
-            &kick_lane, &click_lane, &hihat_lane, &bass_lane
-        }
-    };
+    Track track { .lanes = { &kick_lane, &click_lane, &hihat_lane, &bass_lane } };
 
     station.play(&track);
-    sleep(5000);
+    sleep(9000);
 
     station.stop();
 }
