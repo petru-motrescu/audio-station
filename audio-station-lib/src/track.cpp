@@ -8,7 +8,7 @@ void audiostation::Track::add_live_instrument(Instrument* instrument) {
     this->live_instruments.push_back(instrument);
 }
 
-double audiostation::Track::render() {
+double audiostation::Track::render() {    
     for (auto& lane : this->lanes) {
         for (auto& block : lane->blocks) {
             for (auto& note : block.notes) {

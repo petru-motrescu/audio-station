@@ -20,8 +20,9 @@ namespace audiostation {
 
     struct Delay : public Effect {
         Delay();
+        Delay(Delay&& other);
         Delay(DelayConfig config);
-        ~Delay();
+        virtual ~Delay();
     
     // internal:
         double render(double sample) override;

@@ -12,8 +12,10 @@ build:
 	src/notes.cpp \
 	src/oscillator.cpp \
 	src/renderer.cpp \
+	src/reverb.cpp \
 	src/synth.cpp \
 	src/track.cpp \
+	src/utils.cpp \
 	test/asserts.cpp \
 	test/delay-tests.cpp \
 	test/oscillator-tests.cpp \

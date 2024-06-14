@@ -33,6 +33,7 @@ audiostation::Oscillator::~Oscillator() {
 }
 
 void audiostation::Oscillator::play() {
+    this->impl->phase = 0;
     this->impl->is_live = true;
 }
 

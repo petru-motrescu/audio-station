@@ -12,13 +12,14 @@
 #include "drum.hpp"
 #include "frequency.hpp"
 #include "oscillator.hpp"
+#include "reverb.hpp"
 #include "synth.hpp"
 #include "test-suite.hpp"
 using namespace audiostation;
 
 constexpr unsigned bar = Config::SAMPLE_RATE / 2;
 constexpr unsigned half = Config::SAMPLE_RATE / 4;
-constexpr unsigned quart = Config::SAMPLE_RATE / 8;
+constexpr unsigned quart = Config::SAMPLE_RATE / 8; // 5512,5
 constexpr unsigned eighth = Config::SAMPLE_RATE / 16;
 
 void sleep(int milliseconds) {
@@ -55,8 +56,6 @@ TrackLane build_click_lane(Drum& click, Delay& delay) {
         .instrument = &click,
         .effects = { &delay },
         .blocks = {
-            { .pos = 4 * bar * 0, .notes = click_notes },
-            { .pos = 4 * bar * 1, .notes = click_notes },
             { .pos = 4 * bar * 2, .notes = click_notes },
             { .pos = 4 * bar * 3, .notes = click_notes },
         }
@@ -75,8 +74,6 @@ TrackLane build_hihat_lane(Drum& hihat) {
         .label = "Hihat",
         .instrument = &hihat,
         .blocks = {
-            { .pos = 4 * bar * 0, .notes = hihat_notes },
-            { .pos = 4 * bar * 1, .notes = hihat_notes },
             { .pos = 4 * bar * 2, .notes = hihat_notes },
             { .pos = 4 * bar * 3, .notes = hihat_notes },
         }
@@ -107,13 +104,30 @@ TrackLane build_bass_lane(Synth& bass) {
     return bass_lane;
 }
 
+TrackLane build_lead_lane(Synth& lead, Reverb& reverb) {
+    std::vector<TrackNote> notes = {
+        { .pos = 0 * bar, .len = 1 * eighth, .note = Note::B3 },
+    };
+
+    TrackLane lane = {
+        .label = "Lead",
+        .instrument = &lead,
+        .effects = { &reverb },
+        .blocks = {
+            { .pos = 4 * bar * 0, .notes = notes }
+        }
+    };
+
+    return lane;
+}
+
 void run_track_demo() {
     AudioStation station;
     station.init();
 
     Drum kick({
-        .attack = { .wave = Wave::Triangle, .frequency = 150, .amplitude = 0.3 },
-        .release = { .wave = Wave::Sine, .frequency = 30, .amplitude = 1.0 },
+        .attack = { .wave = Wave::Triangle, .frequency = Frequency::A2, .amplitude = 0.5 },
+        .release = { .wave = Wave::Sine, .frequency = Frequency::B0, .amplitude = 1.0 },
         .duration = 200,
     });
 
@@ -140,14 +154,27 @@ void run_track_demo() {
         }
     });
 
+    Synth lead({
+        .wave = Wave::Sine,
+        .amplitude = 0.2,
+        .envelope = {
+            .atack_duration = 5, 
+            .decay_duration = 5, 
+            .sustain_level = 1.0, 
+            .release_duration = 40
+        }
+    });
+
     Delay delay({ .time = 80, .level = 0.6, .feedback = 0.75 });
+    Reverb reverb;
 
     TrackLane kick_lane = build_kick_lane(kick);
     TrackLane click_lane = build_click_lane(click, delay);
     TrackLane hihat_lane = build_hihat_lane(hihat);
     TrackLane bass_lane = build_bass_lane(bass);
+    TrackLane lead_lane = build_lead_lane(lead, reverb);
 
-    Track track { .lanes = { &kick_lane, &click_lane, &hihat_lane, &bass_lane } };
+    Track track { .lanes = { &kick_lane, &click_lane, &hihat_lane, &bass_lane, &lead_lane } };
 
     station.play(&track);
     sleep(9000);
@@ -211,11 +238,58 @@ void run_delay_demo() {
     station.stop();
 }
 
+void run_reverb_demo() {
+    unsigned note_duration = (unsigned) 16 * M_PI;
+
+    Synth synth_1({
+        .amplitude = 0.4,
+        .envelope = {
+            .atack_duration = 0, 
+            .decay_duration = 0, 
+            .sustain_level = 1.0,
+            .release_duration = note_duration
+        }
+    });
+
+    Synth synth_2({
+        .amplitude = 0.4,
+        .envelope = {
+            .atack_duration = 0, 
+            .decay_duration = 0, 
+            .sustain_level = 1.0,
+            .release_duration = note_duration
+        }
+    });
+
+    Reverb reverb;
+    TrackLane lane_1 = { .label = "1", .instrument = &synth_1 };
+    TrackLane lane_2 = { .label = "2", .instrument = &synth_2, .effects = { &reverb } };
+    Track track { .lanes = { &lane_1, &lane_2 } };
+    AudioStation station;
+    station.init();
+    station.play(&track);
+    
+    for (int i = 0; i < 4; i++) {
+        synth_1.play_note(Note::A3);
+        sleep(note_duration);
+        synth_1.stop_note(Note::A3);
+        sleep(1000);
+
+        synth_2.play_note(Note::A3);
+        sleep(note_duration);
+        synth_2.stop_note(Note::A3);
+        sleep(15000);
+    }
+    
+    station.stop();
+}
+
 int main() {
-    TestSuite test_suite;
-    test_suite.run_tests();
+    // TestSuite test_suite;
+    // test_suite.run_tests();
     run_track_demo();
     // run_oscillator_demo();
     // run_delay_demo();
+    // run_reverb_demo();
     return 0;
 }

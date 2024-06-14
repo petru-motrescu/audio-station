@@ -14,9 +14,15 @@ struct audiostation::DelayImpl {
 
 audiostation::Delay::Delay() : Delay(DelayConfig()) { }
 
+audiostation::Delay::Delay(Delay&& other) : impl(std::move(other.impl)) { }
+
 audiostation::Delay::Delay(DelayConfig config) {
     require(config.feedback >= 0.0, "Delay feedback cannot be negative");
     require(config.feedback <= 1.0, "Delay feedback cannot be greater than 1.0");
+
+    if (config.time == 0) {
+        std::cout << "Delay time is 0" << std::endl;
+    }
 
     this->impl = std::make_unique<DelayImpl>();
     this->impl->config = config;
@@ -32,6 +38,10 @@ audiostation::Delay::~Delay() {
 }
 
 double audiostation::Delay::render(double sample) {
+    if (this->impl->input_history.size() == 0) {
+        return 0;
+    }
+
     double result = this->impl->input_history.front();
     double snapshot = (sample + this->impl->config.feedback * result) * this->impl->config.level;
 
