@@ -8,6 +8,7 @@ namespace audiostation {
 
     struct Effect {
         virtual double render(double sample) = 0;
+        virtual ~Effect() {};
     };
 }
 
