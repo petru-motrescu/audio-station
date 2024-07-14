@@ -6,7 +6,8 @@
 
 namespace audiostation {
 
-    struct Effect {
+    class Effect {
+    public:
         virtual double render(double sample) = 0;
         virtual ~Effect() {};
     };

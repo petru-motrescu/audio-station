@@ -13,7 +13,8 @@ namespace audiostation {
 
     struct ReverbImpl;
 
-    struct Reverb : public Effect {
+    class Reverb : public Effect {
+    public:
         Reverb();
         Reverb(ReverbConfig config);
         virtual ~Reverb();

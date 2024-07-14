@@ -9,7 +9,8 @@ namespace audiostation {
 
     struct AudioStationImpl;
 
-    struct AudioStation {
+    class AudioStation {
+    public:
         AudioStation();
         ~AudioStation();
 

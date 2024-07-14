@@ -22,7 +22,8 @@ namespace audiostation {
 
     struct SynthImpl;
 
-    struct Synth : public Instrument {
+    class Synth : public Instrument {
+    public:
         Synth();
         Synth(SynthConfig config);
         ~Synth();

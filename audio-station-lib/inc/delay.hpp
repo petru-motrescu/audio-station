@@ -18,7 +18,8 @@ namespace audiostation {
 
     struct DelayImpl;
 
-    struct Delay : public Effect {
+    class Delay : public Effect {
+    public:
         Delay();
         Delay(Delay&& other);
         Delay(DelayConfig config);

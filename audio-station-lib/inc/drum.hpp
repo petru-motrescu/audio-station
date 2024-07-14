@@ -23,7 +23,8 @@ namespace audiostation {
 
     struct DrumImpl;
 
-    struct Drum : public Instrument {
+    class Drum : public Instrument {
+    public:
         Drum();
         Drum(DrumConfig config);
         ~Drum();

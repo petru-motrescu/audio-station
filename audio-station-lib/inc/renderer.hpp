@@ -11,8 +11,8 @@ namespace audiostation {
         bool live;
     };
 
-    struct Renderer
-    {
+    class Renderer {
+    public:
         static double render_sine_wave(double phase);
         static double render_square_wave(double phase);
         static double render_triangle_wave(double phase);

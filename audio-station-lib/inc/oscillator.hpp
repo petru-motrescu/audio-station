@@ -10,7 +10,8 @@ namespace audiostation {
 
     struct OscillatorImpl;
 
-    struct Oscillator : public Instrument {
+    class Oscillator : public Instrument {
+    public:
         Oscillator(
             Wave wave = Wave::Sine,
             double frequency = Frequency::C4,
