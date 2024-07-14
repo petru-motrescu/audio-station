@@ -13,13 +13,14 @@
 		0A7CED552C118A470020251E /* drum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CED4B2C118A470020251E /* drum.cpp */; };
 		0A7CED562C118A470020251E /* notes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CED4C2C118A470020251E /* notes.cpp */; };
 		0A7CED572C118A470020251E /* oscillator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CED4D2C118A470020251E /* oscillator.cpp */; };
-		0A7CED582C118A470020251E /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CED4E2C118A470020251E /* renderer.cpp */; };
 		0A7CED592C118A470020251E /* synth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CED4F2C118A470020251E /* synth.cpp */; };
 		0A7CED5A2C118A470020251E /* track.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CED502C118A470020251E /* track.cpp */; };
 		0AAB8B212C1C39A700365EC5 /* reverb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB8B1F2C1C39A700365EC5 /* reverb.cpp */; };
 		0AAB8B222C1C39A700365EC5 /* utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB8B202C1C39A700365EC5 /* utils.cpp */; };
 		0ABBE03C2BE554D100803057 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABBE03B2BE554D100803057 /* AudioToolbox.framework */; };
 		0ABBE03E2BE554D800803057 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABBE03D2BE554D800803057 /* AudioUnit.framework */; };
+		0ACA07232C43AF1900FD9B24 /* envelope-renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA07212C43AF1900FD9B24 /* envelope-renderer.cpp */; };
+		0ACA07242C43AF1900FD9B24 /* wave-renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA07222C43AF1900FD9B24 /* wave-renderer.cpp */; };
 		0AF426822BE2D8650028C5B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF426812BE2D8650028C5B3 /* AppDelegate.swift */; };
 		0AF426842BE2D8650028C5B3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF426832BE2D8650028C5B3 /* ViewController.swift */; };
 		0AF426862BE2D8650028C5B3 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AF426852BE2D8650028C5B3 /* art.scnassets */; };
@@ -40,7 +41,6 @@
 		0A7CED3F2C118A470020251E /* instrument.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = instrument.hpp; sourceTree = "<group>"; };
 		0A7CED402C118A470020251E /* note.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = note.hpp; sourceTree = "<group>"; };
 		0A7CED412C118A470020251E /* oscillator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = oscillator.hpp; sourceTree = "<group>"; };
-		0A7CED422C118A470020251E /* renderer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = renderer.hpp; sourceTree = "<group>"; };
 		0A7CED432C118A470020251E /* synth.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = synth.hpp; sourceTree = "<group>"; };
 		0A7CED442C118A470020251E /* track.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = track.hpp; sourceTree = "<group>"; };
 		0A7CED452C118A470020251E /* utils.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = utils.hpp; sourceTree = "<group>"; };
@@ -51,7 +51,6 @@
 		0A7CED4B2C118A470020251E /* drum.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = drum.cpp; sourceTree = "<group>"; };
 		0A7CED4C2C118A470020251E /* notes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = notes.cpp; sourceTree = "<group>"; };
 		0A7CED4D2C118A470020251E /* oscillator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = oscillator.cpp; sourceTree = "<group>"; };
-		0A7CED4E2C118A470020251E /* renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = renderer.cpp; sourceTree = "<group>"; };
 		0A7CED4F2C118A470020251E /* synth.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = synth.cpp; sourceTree = "<group>"; };
 		0A7CED502C118A470020251E /* track.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = track.cpp; sourceTree = "<group>"; };
 		0AAB8B1E2C1C399900365EC5 /* reverb.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = reverb.hpp; sourceTree = "<group>"; };
@@ -59,6 +58,10 @@
 		0AAB8B202C1C39A700365EC5 /* utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utils.cpp; sourceTree = "<group>"; };
 		0ABBE03B2BE554D100803057 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		0ABBE03D2BE554D800803057 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		0ACA071F2C43AEE200FD9B24 /* wave-renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "wave-renderer.hpp"; sourceTree = "<group>"; };
+		0ACA07202C43AEE200FD9B24 /* envelope-renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "envelope-renderer.hpp"; sourceTree = "<group>"; };
+		0ACA07212C43AF1900FD9B24 /* envelope-renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "envelope-renderer.cpp"; sourceTree = "<group>"; };
+		0ACA07222C43AF1900FD9B24 /* wave-renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "wave-renderer.cpp"; sourceTree = "<group>"; };
 		0AF4267E2BE2D8650028C5B3 /* AudioStation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioStation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AF426812BE2D8650028C5B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0AF426832BE2D8650028C5B3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -117,16 +120,17 @@
 				0A7CED3B2C118A470020251E /* drum.hpp */,
 				0A7CED3C2C118A470020251E /* effect.hpp */,
 				0A7CED3D2C118A470020251E /* envelope.hpp */,
+				0ACA07202C43AEE200FD9B24 /* envelope-renderer.hpp */,
 				0A7CED3E2C118A470020251E /* frequency.hpp */,
 				0A7CED3F2C118A470020251E /* instrument.hpp */,
 				0A7CED402C118A470020251E /* note.hpp */,
 				0A7CED412C118A470020251E /* oscillator.hpp */,
-				0A7CED422C118A470020251E /* renderer.hpp */,
 				0AAB8B1E2C1C399900365EC5 /* reverb.hpp */,
 				0A7CED432C118A470020251E /* synth.hpp */,
 				0A7CED442C118A470020251E /* track.hpp */,
 				0A7CED452C118A470020251E /* utils.hpp */,
 				0A7CED462C118A470020251E /* wave.hpp */,
+				0ACA071F2C43AEE200FD9B24 /* wave-renderer.hpp */,
 			);
 			name = inc;
 			path = "../audio-station-lib/inc";
@@ -139,13 +143,14 @@
 				0A7CED492C118A470020251E /* audio-station.cpp */,
 				0A7CED4A2C118A470020251E /* delay.cpp */,
 				0A7CED4B2C118A470020251E /* drum.cpp */,
+				0ACA07212C43AF1900FD9B24 /* envelope-renderer.cpp */,
 				0A7CED4C2C118A470020251E /* notes.cpp */,
 				0A7CED4D2C118A470020251E /* oscillator.cpp */,
-				0A7CED4E2C118A470020251E /* renderer.cpp */,
 				0AAB8B1F2C1C39A700365EC5 /* reverb.cpp */,
 				0A7CED4F2C118A470020251E /* synth.cpp */,
 				0A7CED502C118A470020251E /* track.cpp */,
 				0AAB8B202C1C39A700365EC5 /* utils.cpp */,
+				0ACA07222C43AF1900FD9B24 /* wave-renderer.cpp */,
 			);
 			name = src;
 			path = "../audio-station-lib/src";
@@ -251,8 +256,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AF426842BE2D8650028C5B3 /* ViewController.swift in Sources */,
+				0ACA07242C43AF1900FD9B24 /* wave-renderer.cpp in Sources */,
 				0A7CED542C118A470020251E /* delay.cpp in Sources */,
-				0A7CED582C118A470020251E /* renderer.cpp in Sources */,
+				0ACA07232C43AF1900FD9B24 /* envelope-renderer.cpp in Sources */,
 				0A7CED552C118A470020251E /* drum.cpp in Sources */,
 				0A7CED562C118A470020251E /* notes.cpp in Sources */,
 				0A7CED572C118A470020251E /* oscillator.cpp in Sources */,

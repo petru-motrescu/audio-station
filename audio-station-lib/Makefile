@@ -9,21 +9,22 @@ build:
 	src/audio-station.cpp \
 	src/delay.cpp \
 	src/drum.cpp \
+	src/envelope-renderer.cpp \
 	src/notes.cpp \
 	src/oscillator.cpp \
-	src/renderer.cpp \
 	src/reverb.cpp \
 	src/synth.cpp \
 	src/track.cpp \
 	src/utils.cpp \
+	src/wave-renderer.cpp \
 	test/asserts.cpp \
 	test/delay-tests.cpp \
+	test/main.cpp \
 	test/oscillator-tests.cpp \
-	test/renderer-tests.cpp \
 	test/synth-tests.cpp \
 	test/test-suite.cpp \
 	test/track-tests.cpp \
-	test/main.cpp
+	test/wave-renderer-tests.cpp
 
 .PHONY: run
 run:

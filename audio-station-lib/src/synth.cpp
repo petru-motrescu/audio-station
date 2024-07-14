@@ -3,9 +3,10 @@
 #include <unordered_map>
 #include "config.hpp"
 #include "envelope.hpp"
+#include "envelope-renderer.hpp"
 #include "note.hpp"
-#include "renderer.hpp"
 #include "synth.hpp"
+#include "wave-renderer.hpp"
 using namespace audiostation;
 
 struct SynthSignal {
@@ -98,15 +99,15 @@ void audiostation::Synth::set_renderable_envelope(RenderableEnvelope envelope) {
 }
 
 double render_signal(SynthSignal& signal, RenderableEnvelope& envelope, unsigned sample_rate) {
-    double sample = Renderer::render_wave(signal.wave, signal.phase) * signal.amplitude;
-    auto result = Renderer::render_enveloped_sample(
+    double sample = WaveRenderer::render(signal.wave, signal.phase) * signal.amplitude;
+    auto result = EnvelopeRenderer::render(
         sample,
         signal.ticks_since_live,
         signal.ticks_at_release,
         envelope
     );
     signal.live = result.live;
-    signal.phase = Renderer::next_phase(signal.phase, signal.frequency, sample_rate);
+    signal.phase = WaveRenderer::next_phase(signal.phase, signal.frequency, sample_rate);
     signal.ticks_since_live++;
     return result.sample;
 }

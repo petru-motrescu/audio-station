@@ -5,7 +5,7 @@
 #include "config.hpp"
 #include "envelope.hpp"
 #include "note.hpp"
-#include "renderer.hpp"
+#include "wave-renderer.hpp"
 using namespace audiostation;
 
 struct audiostation::DrumImpl {
@@ -50,10 +50,10 @@ double audiostation::Drum::render() {
     double frequency = (1 - ratio) * config.attack.frequency + ratio * config.release.frequency;
     double attack_amplitude = (1 - ratio) * config.attack.amplitude;
     double release_amplitude = (1 - ratio) * config.release.amplitude;
-    double attack_sample = Renderer::render_wave(config.attack.wave, this->impl->attack_phase) * attack_amplitude;
-    double release_sample = Renderer::render_wave(config.release.wave, this->impl->release_phase) * release_amplitude;
-    this->impl->attack_phase = Renderer::next_phase(this->impl->attack_phase, frequency, Config::SAMPLE_RATE);
-    this->impl->release_phase = Renderer::next_phase(this->impl->release_phase, frequency, Config::SAMPLE_RATE);
+    double attack_sample = WaveRenderer::render(config.attack.wave, this->impl->attack_phase) * attack_amplitude;
+    double release_sample = WaveRenderer::render(config.release.wave, this->impl->release_phase) * release_amplitude;
+    this->impl->attack_phase = WaveRenderer::next_phase(this->impl->attack_phase, frequency, Config::SAMPLE_RATE);
+    this->impl->release_phase = WaveRenderer::next_phase(this->impl->release_phase, frequency, Config::SAMPLE_RATE);
     double sample = (1 - ratio) * attack_sample + ratio * release_sample;
 
     this->impl->ticks_since_live++;

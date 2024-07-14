@@ -285,8 +285,8 @@ void run_reverb_demo() {
 }
 
 int main() {
-    // TestSuite test_suite;
-    // test_suite.run_tests();
+    TestSuite test_suite;
+    test_suite.run_tests();
     run_track_demo();
     // run_oscillator_demo();
     // run_delay_demo();

@@ -4,7 +4,7 @@
 #include <list>
 #include <tuple>
 #include <iomanip>
-#include "renderer.hpp"
+#include "wave-renderer.hpp"
 #include "asserts.hpp"
 #include "test-suite.hpp"
 using namespace audiostation;
@@ -27,12 +27,12 @@ void audiostation::TestSuite::run_renderer_tests() {
         };
 
         for (auto [expected, phase, message] : triples) {
-            auto actual = Renderer::render_wave(Wave::Sine, phase);
+            auto actual = WaveRenderer::render(Wave::Sine, phase);
             assert_equal(expected, actual, EPSILON, message.c_str());
         }
 
         for (auto [expected, phase, message] : triples) {
-            auto actual = Renderer::render_wave(Wave::Sine, -phase);
+            auto actual = WaveRenderer::render(Wave::Sine, -phase);
             assert_equal(-expected, actual, EPSILON, "-" + message);
         }
     });
@@ -50,7 +50,7 @@ void audiostation::TestSuite::run_renderer_tests() {
         };
 
         for (auto [expected, phase, message] : triples) {
-            auto actual = Renderer::render_wave(Wave::Square, phase);
+            auto actual = WaveRenderer::render(Wave::Square, phase);
             assert_equal(expected, actual, EPSILON, message);
         }
     });
@@ -69,7 +69,7 @@ void audiostation::TestSuite::run_renderer_tests() {
         };
 
         for (auto [expected, phase, message] : triples) {
-            auto actual = Renderer::render_wave(Wave::Triangle, phase);
+            auto actual = WaveRenderer::render(Wave::Triangle, phase);
             assert_equal(expected, actual, EPSILON, message);
         }
     });
@@ -103,7 +103,7 @@ void audiostation::TestSuite::run_renderer_tests() {
         };
 
         for (auto [current_phase, expected, message] : triples) {
-            auto actual = Renderer::next_phase(current_phase, frequency, sample_rate);
+            auto actual = WaveRenderer::next_phase(current_phase, frequency, sample_rate);
             assert_equal(expected, actual, EPSILON, message);
         }
     });
