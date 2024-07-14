@@ -1,6 +1,4 @@
 #include <iostream>
-#include <utility>
-#include <unordered_map>
 #include "drum.hpp"
 #include "config.hpp"
 #include "envelope.hpp"
