@@ -10,6 +10,7 @@ build:
 	src/delay.cpp \
 	src/drum.cpp \
 	src/envelope-renderer.cpp \
+	src/noise.cpp \
 	src/notes.cpp \
 	src/oscillator.cpp \
 	src/reverb.cpp \
@@ -20,6 +21,7 @@ build:
 	test/asserts.cpp \
 	test/delay-tests.cpp \
 	test/main.cpp \
+	test/noise-tests.cpp \
 	test/oscillator-tests.cpp \
 	test/synth-tests.cpp \
 	test/test-suite.cpp \

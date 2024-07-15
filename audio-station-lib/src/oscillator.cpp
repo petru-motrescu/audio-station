@@ -32,12 +32,12 @@ audiostation::Oscillator::~Oscillator() {
     this->impl.reset();
 }
 
-void audiostation::Oscillator::play() {
+void audiostation::Oscillator::play(Note note) {
     this->impl->phase = 0;
     this->impl->is_live = true;
 }
 
-void audiostation::Oscillator::stop() {
+void audiostation::Oscillator::stop(Note note) {
     this->impl->is_live = false;
 }
 

@@ -19,12 +19,8 @@ namespace audiostation {
         );
         ~Oscillator();
 
-        void play();
-        void stop();
-        void play_note(Note note) override { play(); };
-        void stop_note(Note note) override { stop(); };
-
-    // internal:
+        void play(Note note = Note::C4) override;
+        void stop(Note note = Note::C4) override;
         double render() override;
 
     private:

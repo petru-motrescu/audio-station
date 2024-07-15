@@ -13,10 +13,10 @@ double audiostation::Track::render() {
         for (auto& block : lane->blocks) {
             for (auto& note : block.notes) {
                 if ((note.pos + block.pos) == this->tick) {
-                    lane->instrument->play_note(note.note);
+                    lane->instrument->play(note.note);
                 }
                 if ((note.pos + note.len + block.pos) == this->tick) {
-                    lane->instrument->stop_note(note.note);
+                    lane->instrument->stop(note.note);
                 }
             }
         }

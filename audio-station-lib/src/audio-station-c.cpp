@@ -27,11 +27,11 @@ SynthHandle synth_init() {
 }
 
 void synth_play_note(SynthHandle synth, int note) {
-    reinterpret_cast<Synth*>(synth)->play_note(Notes::from_int(note));
+    reinterpret_cast<Synth*>(synth)->play(Notes::from_int(note));
 }
 
 void synth_stop_note(SynthHandle synth, int note) {
-    reinterpret_cast<Synth*>(synth)->stop_note(Notes::from_int(note));
+    reinterpret_cast<Synth*>(synth)->stop(Notes::from_int(note));
 }
 
 void synth_dispose(SynthHandle synth) {

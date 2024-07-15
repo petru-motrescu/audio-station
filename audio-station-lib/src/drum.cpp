@@ -27,7 +27,7 @@ audiostation::Drum::~Drum() {
     this->impl.reset();
 }
 
-void audiostation::Drum::play() {
+void audiostation::Drum::play(Note note) {
     this->impl->attack_phase = 0;
     this->impl->release_phase = 0;
     this->impl->ticks_since_live = 0;

@@ -8,6 +8,7 @@ void audiostation::TestSuite::run_tests() {
     this->failed_tests = 0;
     
     run_delay_tests();
+    run_noise_tests();
     run_oscillator_tests();
     run_synth_tests();
     run_track_tests();

@@ -28,9 +28,10 @@ namespace audiostation {
         Synth(SynthConfig config);
         ~Synth();
         
+        void play(Note note) override;
+        void stop(Note note) override;
+
         void set_envelope(Envelope envelope);
-        void play_note(Note note) override;
-        void stop_note(Note note) override;
         bool is_note_live(Note note);
     
     // internal:

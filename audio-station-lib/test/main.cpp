@@ -11,6 +11,7 @@
 #include "delay.hpp"
 #include "drum.hpp"
 #include "frequency.hpp"
+#include "noise.hpp"
 #include "oscillator.hpp"
 #include "reverb.hpp"
 #include "synth.hpp"
@@ -182,6 +183,20 @@ void run_track_demo() {
     station.stop();
 }
 
+void run_noise_demo() {
+    AudioStation station;
+    station.init();
+
+    Noise noise({});
+    Track track { .live_instruments = { &noise } };
+    station.play(&track);
+
+    noise.play();
+    sleep(2000);
+    noise.stop();
+    station.stop();
+}
+
 void run_oscillator_demo() {
     Oscillator sine_oscillator(Wave::Sine);
     Oscillator triangle_oscillator(Wave::Triangle);
@@ -202,9 +217,9 @@ void run_oscillator_demo() {
     station.play(&track);
     
     for (auto& oscilator : track.live_instruments) {
-        oscilator->play_note(Note::C3);
+        oscilator->play(Note::C3);
         sleep(2000);
-        oscilator->stop_note(Note::C3);
+        oscilator->stop(Note::C3);
     }
 
     station.stop();
@@ -270,14 +285,14 @@ void run_reverb_demo() {
     station.play(&track);
     
     for (int i = 0; i < 4; i++) {
-        synth_1.play_note(Note::A3);
+        synth_1.play(Note::A3);
         sleep(note_duration);
-        synth_1.stop_note(Note::A3);
+        synth_1.stop(Note::A3);
         sleep(1000);
 
-        synth_2.play_note(Note::A3);
+        synth_2.play(Note::A3);
         sleep(note_duration);
-        synth_2.stop_note(Note::A3);
+        synth_2.stop(Note::A3);
         sleep(15000);
     }
     
@@ -288,6 +303,7 @@ int main() {
     TestSuite test_suite;
     test_suite.run_tests();
     run_track_demo();
+    // run_noise_demo();
     // run_oscillator_demo();
     // run_delay_demo();
     // run_reverb_demo();

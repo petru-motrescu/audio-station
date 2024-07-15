@@ -57,7 +57,7 @@ void audiostation::Synth::set_envelope(Envelope envelope) {
     set_renderable_envelope(Envelopes::to_renderable_envelope(envelope));
 }
 
-void audiostation::Synth::play_note(Note note) {
+void audiostation::Synth::play(Note note) {
     auto signal_id = this->impl->note_signal_ids[note];
     auto& signal = this->impl->signals[signal_id];
     signal.phase = 0;
@@ -66,7 +66,7 @@ void audiostation::Synth::play_note(Note note) {
     signal.live = true;
 }
 
-void audiostation::Synth::stop_note(Note note) {
+void audiostation::Synth::stop(Note note) {
     auto signal_id = this->impl->note_signal_ids[note];
     auto& signal = this->impl->signals[signal_id];
     if (this->impl->envelope.release_ticks > 0) {

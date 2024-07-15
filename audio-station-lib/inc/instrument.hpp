@@ -7,9 +7,9 @@ namespace audiostation {
 
     class Instrument {
     public:
+        virtual void play(Note note) = 0;
+        virtual void stop(Note note) = 0;
         virtual double render() = 0;
-        virtual void play_note(Note note) = 0;
-        virtual void stop_note(Note note) = 0;
         virtual ~Instrument() {};
     };
 }
