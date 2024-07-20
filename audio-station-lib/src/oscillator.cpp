@@ -23,7 +23,6 @@ audiostation::Oscillator::~Oscillator() {
 }
 
 void audiostation::Oscillator::play(Note note) {
-    this->impl->config.phase = 0;
     this->impl->is_live = true;
 }
 
