@@ -8,23 +8,13 @@
 using namespace audiostation;
 
 struct audiostation::OscillatorImpl {
-    audiostation::Wave wave;
-    double frequency;
-    double amplitude;
-    double phase;
+    OscillatorConfig config;
     bool is_live;
 };
 
-audiostation::Oscillator::Oscillator(
-    audiostation::Wave wave,
-    double frequency,
-    double amplitude
-) {
+audiostation::Oscillator::Oscillator(OscillatorConfig config) {
     this->impl = std::make_unique<OscillatorImpl>();
-    this->impl->wave = wave;
-    this->impl->frequency = frequency;
-    this->impl->amplitude = amplitude;
-    this->impl->phase = 0;
+    this->impl->config = config;
     this->impl->is_live = false;
 }
 
@@ -33,7 +23,7 @@ audiostation::Oscillator::~Oscillator() {
 }
 
 void audiostation::Oscillator::play(Note note) {
-    this->impl->phase = 0;
+    this->impl->config.phase = 0;
     this->impl->is_live = true;
 }
 
@@ -46,7 +36,8 @@ double audiostation::Oscillator::render() {
         return 0;
     }
 
-    double sample = WaveRenderer::render(this->impl->wave, this->impl->phase) * this->impl->amplitude;
-    this->impl->phase = WaveRenderer::next_phase(this->impl->phase, this->impl->frequency, Config::SAMPLE_RATE);
+    auto& config = this->impl->config;
+    double sample = WaveRenderer::render(config.wave, config.phase) * config.amplitude;
+    config.phase = WaveRenderer::next_phase(config.phase, config.frequency, Config::SAMPLE_RATE);
     return sample;
 }

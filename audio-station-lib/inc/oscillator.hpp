@@ -8,15 +8,18 @@
 
 namespace audiostation {
 
+    struct OscillatorConfig {
+        audiostation::Wave wave = Wave::Sine;
+        double frequency = Frequency::C4;
+        double amplitude = 0.5;
+        double phase = 0.0;
+    };
+
     struct OscillatorImpl;
 
     class Oscillator : public Instrument {
     public:
-        Oscillator(
-            Wave wave = Wave::Sine,
-            double frequency = Frequency::C4,
-            double amplitude = 0.5
-        );
+        Oscillator(OscillatorConfig config);
         ~Oscillator();
 
         void play(Note note = Note::C4) override;

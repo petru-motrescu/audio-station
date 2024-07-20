@@ -198,10 +198,10 @@ void run_noise_demo() {
 }
 
 void run_oscillator_demo() {
-    Oscillator sine_oscillator(Wave::Sine);
-    Oscillator triangle_oscillator(Wave::Triangle);
-    Oscillator square_oscillator(Wave::Square);
-    Oscillator noise_oscillator(Wave::Noise);
+    Oscillator sine_oscillator({.wave = Wave::Sine});
+    Oscillator triangle_oscillator({.wave = Wave::Triangle});
+    Oscillator square_oscillator({.wave = Wave::Square});
+    Oscillator noise_oscillator({.wave = Wave::Noise});
     
     Track track { 
         .live_instruments = { 
