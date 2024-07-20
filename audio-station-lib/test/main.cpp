@@ -198,17 +198,15 @@ void run_noise_demo() {
 }
 
 void run_oscillator_demo() {
-    Oscillator sine_oscillator({.wave = Wave::Sine});
-    Oscillator triangle_oscillator({.wave = Wave::Triangle});
-    Oscillator square_oscillator({.wave = Wave::Square});
-    Oscillator noise_oscillator({.wave = Wave::Noise});
+    Oscillator sine_oscillator({.wave = Wave::Sine, .amplitude = 0.5});
+    Oscillator triangle_oscillator({.wave = Wave::Triangle, .amplitude = 0.5});
+    Oscillator square_oscillator({.wave = Wave::Square, .amplitude = 0.2});
     
     Track track { 
         .live_instruments = { 
             &sine_oscillator, 
             &triangle_oscillator, 
             &square_oscillator,
-            &noise_oscillator,
         }
     };
 
@@ -302,9 +300,9 @@ void run_reverb_demo() {
 int main() {
     TestSuite test_suite;
     test_suite.run_tests();
-    run_track_demo();
+    // run_track_demo();
     // run_noise_demo();
-    // run_oscillator_demo();
+    run_oscillator_demo();
     // run_delay_demo();
     // run_reverb_demo();
     return 0;
