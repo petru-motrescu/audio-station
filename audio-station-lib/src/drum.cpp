@@ -8,6 +8,8 @@ using namespace audiostation;
 
 struct audiostation::DrumImpl {
     DrumConfig config;
+    std::unique_ptr<Oscillator> attack_oscillator;
+    std::unique_ptr<Oscillator> release_oscillator;
     double total_ticks = 0;
     double attack_phase = 0;
     double release_phase = 0;
@@ -20,6 +22,8 @@ audiostation::Drum::Drum() : Drum(DrumConfig()) { }
 audiostation::Drum::Drum(DrumConfig config) {
     this->impl = std::make_unique<DrumImpl>();
     this->impl->config = config;
+    this->impl->attack_oscillator = std::make_unique<Oscillator>(config.attack);
+    this->impl->release_oscillator = std::make_unique<Oscillator>(config.release);
     this->impl->total_ticks = config.duration * Config::SAMPLE_RATE / 1000.0;
 }
 
@@ -28,8 +32,10 @@ audiostation::Drum::~Drum() {
 }
 
 void audiostation::Drum::play(Note note) {
-    this->impl->attack_phase = 0;
-    this->impl->release_phase = 0;
+    this->impl->attack_oscillator->play();
+    this->impl->release_oscillator->play();
+    this->impl->attack_phase = 0; // TODO Reset oscillator phase
+    this->impl->release_phase = 0; // TODO Reset oscillator phase
     this->impl->ticks_since_live = 0;
     this->impl->live = true;
 }
@@ -45,18 +51,22 @@ double audiostation::Drum::render() {
     }
 
     auto& config = this->impl->config;
+    this->impl->attack_oscillator->set_amplitude((1 - ratio) * config.attack.amplitude);
+    this->impl->release_oscillator->set_amplitude((1 - ratio) * config.release.amplitude);
+
     double frequency = (1 - ratio) * config.attack.frequency + ratio * config.release.frequency;
-    double attack_amplitude = (1 - ratio) * config.attack.amplitude;
-    double release_amplitude = (1 - ratio) * config.release.amplitude;
-    double attack_sample = WaveRenderer::render(config.attack.wave, this->impl->attack_phase) * attack_amplitude;
-    double release_sample = WaveRenderer::render(config.release.wave, this->impl->release_phase) * release_amplitude;
-    this->impl->attack_phase = WaveRenderer::next_phase(this->impl->attack_phase, frequency, Config::SAMPLE_RATE);
-    this->impl->release_phase = WaveRenderer::next_phase(this->impl->release_phase, frequency, Config::SAMPLE_RATE);
+    this->impl->attack_oscillator->set_frequency(frequency);
+    this->impl->release_oscillator->set_frequency(frequency);
+
+    double attack_sample = this->impl->attack_oscillator->render();
+    double release_sample = this->impl->release_oscillator->render();
     double sample = (1 - ratio) * attack_sample + ratio * release_sample;
 
     this->impl->ticks_since_live++;
 
     if (this->impl->ticks_since_live >= this->impl->total_ticks) {
+        this->impl->attack_oscillator->stop();
+        this->impl->release_oscillator->stop();
         this->impl->live = false;
         return 0;
     }

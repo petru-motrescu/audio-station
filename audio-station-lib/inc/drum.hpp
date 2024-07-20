@@ -5,19 +5,13 @@
 #include "envelope.hpp"
 #include "instrument.hpp"
 #include "note.hpp"
-#include "wave.hpp"
+#include "oscillator.hpp"
 
 namespace audiostation {
 
-    struct DrumSignal {
-        Wave wave = Wave::Sine;
-        double frequency = 180;
-        double amplitude = 0.5;
-    };
-
     struct DrumConfig {
-        DrumSignal attack;
-        DrumSignal release;
+        OscillatorConfig attack;
+        OscillatorConfig release;
         double duration = 500;
     };
 

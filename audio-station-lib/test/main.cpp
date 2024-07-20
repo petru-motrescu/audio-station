@@ -65,10 +65,10 @@ TrackLane build_click_lane(Drum& click, Delay& delay) {
     return click_lane;
 }
 
-TrackLane build_hihat_lane(Drum& hihat) {
+TrackLane build_hihat_lane(Noise& hihat) {
     std::vector<TrackNote> hihat_notes = { 
-        { .pos = 1 * bar + half },
-        { .pos = 3 * bar + half },
+        { .pos = 1 * bar + half, .len = 1 * eighth },
+        { .pos = 3 * bar + half, .len = 1 * eighth },
     };
 
     TrackLane hihat_lane = {
@@ -138,11 +138,7 @@ void run_track_demo() {
         .duration = 100,
     });
 
-    Drum hihat({
-        .attack = { .wave = Wave::Noise, .amplitude = 0.1 },
-        .release = { .wave = Wave::Noise, .amplitude = 0.1 },
-        .duration = 150,
-    });
+    Noise hihat({ .amplitude = 0.1 });
 
     Synth bass({
         .wave = Wave::Triangle,
@@ -300,9 +296,9 @@ void run_reverb_demo() {
 int main() {
     TestSuite test_suite;
     test_suite.run_tests();
-    // run_track_demo();
+    run_track_demo();
     // run_noise_demo();
-    run_oscillator_demo();
+    // run_oscillator_demo();
     // run_delay_demo();
     // run_reverb_demo();
     return 0;

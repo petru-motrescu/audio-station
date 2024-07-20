@@ -24,6 +24,8 @@ namespace audiostation {
 
         void play(Note note = Note::C4) override;
         void stop(Note note = Note::C4) override;
+        void set_amplitude(double amplitude);
+        void set_frequency(double frequency);
         double render() override;
 
     private:

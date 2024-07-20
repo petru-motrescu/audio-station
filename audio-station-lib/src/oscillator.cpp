@@ -101,6 +101,14 @@ void audiostation::Oscillator::stop(Note note) {
     this->impl->is_live = false;
 }
 
+void audiostation::Oscillator::set_amplitude(double amplitude) {
+    this->impl->config.amplitude = amplitude;
+}
+
+void audiostation::Oscillator::set_frequency(double frequency) {
+    this->impl->config.frequency = frequency;
+}
+
 double audiostation::Oscillator::render() {
     if (!this->impl->is_live) {
         return 0;
