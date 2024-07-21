@@ -89,6 +89,10 @@ audiostation::Oscillator::Oscillator(OscillatorConfig config) {
     this->impl->is_live = false;
 }
 
+audiostation::Oscillator::Oscillator(Oscillator&& other) : 
+    impl(std::move(other.impl))
+{ }
+
 audiostation::Oscillator::~Oscillator() {
     this->impl.reset();
 }
@@ -107,6 +111,10 @@ void audiostation::Oscillator::set_amplitude(double amplitude) {
 
 void audiostation::Oscillator::set_frequency(double frequency) {
     this->impl->config.frequency = frequency;
+}
+
+bool audiostation::Oscillator::is_live() const {
+    return this->impl->is_live;
 }
 
 double audiostation::Oscillator::render() {

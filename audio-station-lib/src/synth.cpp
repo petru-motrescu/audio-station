@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory>
 #include <utility>
 #include <unordered_map>
 #include <vector>
@@ -6,18 +7,15 @@
 #include "envelope.hpp"
 #include "envelope-renderer.hpp"
 #include "note.hpp"
+#include "oscillator.hpp"
 #include "synth.hpp"
 #include "wave-renderer.hpp"
 using namespace audiostation;
 
 struct SynthSignal {
-    audiostation::Wave wave;
-    double frequency;
-    double amplitude;
-    double phase;
+    Oscillator oscillator;
     unsigned ticks_since_live;
     unsigned ticks_at_release;
-    bool live;
 };
 
 struct audiostation::SynthImpl {
@@ -27,7 +25,11 @@ struct audiostation::SynthImpl {
     unsigned sample_rate;
 };
 
-double render_signal(SynthSignal& signal, RenderableEnvelope& envelope, unsigned sample_rate);
+double render_signal(
+    SynthSignal& signal, 
+    RenderableEnvelope& envelope, 
+    unsigned sample_rate
+);
 
 audiostation::Synth::Synth() : Synth(SynthConfig()) { }
 
@@ -37,12 +39,16 @@ audiostation::Synth::Synth(SynthConfig config) {
     
     int signal_id = 0;
     for (auto& note : Notes::piano_notes) {
-        this->impl->signals.push_back({ 
+        auto oscillator = Oscillator({
             .wave = config.wave,
             .frequency = Notes::get_frequency(note),
-            .amplitude = config.amplitude,
-            .ticks_since_live = 0
+            .amplitude = config.amplitude
         });
+
+        this->impl->signals.push_back(SynthSignal({
+            .oscillator = std::move(oscillator)
+        }));
+
         this->impl->note_signal_ids[note] = signal_id++;
     }
 
@@ -60,10 +66,10 @@ void audiostation::Synth::set_envelope(Envelope envelope) {
 void audiostation::Synth::play(Note note) {
     auto signal_id = this->impl->note_signal_ids[note];
     auto& signal = this->impl->signals[signal_id];
-    signal.phase = 0;
+    // signal.phase = 0; // TODO Reset oscillator phase
     signal.ticks_since_live = 0;
     signal.ticks_at_release = 0;
-    signal.live = true;
+    signal.oscillator.play();
 }
 
 void audiostation::Synth::stop(Note note) {
@@ -72,20 +78,23 @@ void audiostation::Synth::stop(Note note) {
     if (this->impl->envelope.release_ticks > 0) {
         signal.ticks_at_release = signal.ticks_since_live;
     } else {
-        signal.live = false;
+        signal.oscillator.stop();
     }
 }
 
 bool audiostation::Synth::is_note_live(Note note) {
     auto signal_id = this->impl->note_signal_ids[note];
-    return this->impl->signals[signal_id].live;
+    return this->impl->signals[signal_id].oscillator.is_live();
 }
 
 double audiostation::Synth::render() {
     double sample = 0;
     for (auto& signal : this->impl->signals) {
-        if (signal.live) {
-            sample += render_signal(signal, this->impl->envelope, this->impl->sample_rate);
+        if (signal.oscillator.is_live()) {
+            sample += render_signal(
+                signal, 
+                this->impl->envelope, 
+                this->impl->sample_rate);
         }
     }
     return sample;
@@ -99,16 +108,21 @@ void audiostation::Synth::set_renderable_envelope(RenderableEnvelope envelope) {
     this->impl->envelope = envelope;
 }
 
-double render_signal(SynthSignal& signal, RenderableEnvelope& envelope, unsigned sample_rate) {
-    double sample = WaveRenderer::render(signal.wave, signal.phase) * signal.amplitude;
+double render_signal(
+    SynthSignal& signal, 
+    RenderableEnvelope& envelope, 
+    unsigned sample_rate
+) {
+    auto sample = signal.oscillator.render();
     auto result = EnvelopeRenderer::render(
         sample,
         signal.ticks_since_live,
         signal.ticks_at_release,
         envelope
     );
-    signal.live = result.live;
-    signal.phase = WaveRenderer::next_phase(signal.phase, signal.frequency, sample_rate);
+    if (!result.live) {
+        signal.oscillator.stop();
+    };
     signal.ticks_since_live++;
     return result.sample;
 }

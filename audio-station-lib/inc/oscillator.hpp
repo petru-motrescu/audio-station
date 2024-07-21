@@ -20,12 +20,14 @@ namespace audiostation {
     class Oscillator : public Instrument {
     public:
         Oscillator(OscillatorConfig config);
+        Oscillator(Oscillator&& other);
         ~Oscillator();
 
         void play(Note note = Note::C4) override;
         void stop(Note note = Note::C4) override;
         void set_amplitude(double amplitude);
         void set_frequency(double frequency);
+        bool is_live() const;
         double render() override;
 
     private:
