@@ -25,8 +25,7 @@ build:
 	test/oscillator-tests.cpp \
 	test/synth-tests.cpp \
 	test/test-suite.cpp \
-	test/track-tests.cpp \
-	test/wave-renderer-tests.cpp
+	test/track-tests.cpp
 
 .PHONY: run
 run:

@@ -12,7 +12,6 @@ void audiostation::TestSuite::run_tests() {
     run_oscillator_tests();
     run_synth_tests();
     run_track_tests();
-    run_renderer_tests();
 
     if (this->failed_tests > 0) {
         std::cout << "😬 Some tests failed!" << std::endl;

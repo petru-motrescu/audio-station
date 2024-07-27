@@ -77,7 +77,6 @@ static double next_phase(double phase, double frequency, unsigned sample_rate) {
     return next_phase;
 }
 
-
 struct audiostation::OscillatorImpl {
     OscillatorConfig config;
     bool is_live;
@@ -113,6 +112,22 @@ void audiostation::Oscillator::set_frequency(double frequency) {
     this->impl->config.frequency = frequency;
 }
 
+void audiostation::Oscillator::set_phase(double phase) {
+    this->impl->config.phase = phase;
+}
+
+double audiostation::Oscillator::get_amplitude() const {
+    return this->impl->config.amplitude;
+}
+
+double audiostation::Oscillator::get_frequency() const {
+    return this->impl->config.frequency;
+}
+
+double audiostation::Oscillator::get_phase() const {
+    return this->impl->config.phase;
+}
+
 bool audiostation::Oscillator::is_live() const {
     return this->impl->is_live;
 }
@@ -124,6 +139,6 @@ double audiostation::Oscillator::render() {
 
     auto& config = this->impl->config;
     double sample = render_wave(config.wave, config.phase) * config.amplitude;
-    config.phase = next_phase(config.phase, config.frequency, Config::SAMPLE_RATE);
+    config.phase = next_phase(config.phase, config.frequency, config.sample_rate);
     return sample;
 }
