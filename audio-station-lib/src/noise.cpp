@@ -1,7 +1,6 @@
 #include <iostream>
 #include <random>
 #include "noise.hpp"
-#include "wave-renderer.hpp"
 using namespace audiostation;
 
 constexpr double PI_x_2 = 2 * M_PI;

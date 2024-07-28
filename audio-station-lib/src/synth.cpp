@@ -9,7 +9,6 @@
 #include "note.hpp"
 #include "oscillator.hpp"
 #include "synth.hpp"
-#include "wave-renderer.hpp"
 using namespace audiostation;
 
 struct SynthSignal {

@@ -3,7 +3,6 @@
 #include "config.hpp"
 #include "envelope.hpp"
 #include "note.hpp"
-#include "wave-renderer.hpp"
 using namespace audiostation;
 
 struct audiostation::DrumImpl {

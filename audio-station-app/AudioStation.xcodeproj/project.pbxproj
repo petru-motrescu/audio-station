@@ -21,7 +21,6 @@
 		0ABBE03C2BE554D100803057 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABBE03B2BE554D100803057 /* AudioToolbox.framework */; };
 		0ABBE03E2BE554D800803057 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABBE03D2BE554D800803057 /* AudioUnit.framework */; };
 		0ACA07232C43AF1900FD9B24 /* envelope-renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA07212C43AF1900FD9B24 /* envelope-renderer.cpp */; };
-		0ACA07242C43AF1900FD9B24 /* wave-renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA07222C43AF1900FD9B24 /* wave-renderer.cpp */; };
 		0AF426822BE2D8650028C5B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF426812BE2D8650028C5B3 /* AppDelegate.swift */; };
 		0AF426842BE2D8650028C5B3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF426832BE2D8650028C5B3 /* ViewController.swift */; };
 		0AF426862BE2D8650028C5B3 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AF426852BE2D8650028C5B3 /* art.scnassets */; };
@@ -61,10 +60,8 @@
 		0AAB8B202C1C39A700365EC5 /* utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utils.cpp; sourceTree = "<group>"; };
 		0ABBE03B2BE554D100803057 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		0ABBE03D2BE554D800803057 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
-		0ACA071F2C43AEE200FD9B24 /* wave-renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "wave-renderer.hpp"; sourceTree = "<group>"; };
 		0ACA07202C43AEE200FD9B24 /* envelope-renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "envelope-renderer.hpp"; sourceTree = "<group>"; };
 		0ACA07212C43AF1900FD9B24 /* envelope-renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "envelope-renderer.cpp"; sourceTree = "<group>"; };
-		0ACA07222C43AF1900FD9B24 /* wave-renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "wave-renderer.cpp"; sourceTree = "<group>"; };
 		0AF4267E2BE2D8650028C5B3 /* AudioStation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioStation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AF426812BE2D8650028C5B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0AF426832BE2D8650028C5B3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -134,7 +131,6 @@
 				0A7CED442C118A470020251E /* track.hpp */,
 				0A7CED452C118A470020251E /* utils.hpp */,
 				0A7CED462C118A470020251E /* wave.hpp */,
-				0ACA071F2C43AEE200FD9B24 /* wave-renderer.hpp */,
 			);
 			name = inc;
 			path = "../audio-station-lib/inc";
@@ -155,7 +151,6 @@
 				0A7CED4F2C118A470020251E /* synth.cpp */,
 				0A7CED502C118A470020251E /* track.cpp */,
 				0AAB8B202C1C39A700365EC5 /* utils.cpp */,
-				0ACA07222C43AF1900FD9B24 /* wave-renderer.cpp */,
 			);
 			name = src;
 			path = "../audio-station-lib/src";
@@ -261,7 +256,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AF426842BE2D8650028C5B3 /* ViewController.swift in Sources */,
-				0ACA07242C43AF1900FD9B24 /* wave-renderer.cpp in Sources */,
 				0A7CED542C118A470020251E /* delay.cpp in Sources */,
 				0ACA07232C43AF1900FD9B24 /* envelope-renderer.cpp in Sources */,
 				0A7CED552C118A470020251E /* drum.cpp in Sources */,

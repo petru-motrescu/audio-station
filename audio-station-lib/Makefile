@@ -17,7 +17,6 @@ build:
 	src/synth.cpp \
 	src/track.cpp \
 	src/utils.cpp \
-	src/wave-renderer.cpp \
 	test/asserts.cpp \
 	test/delay-tests.cpp \
 	test/main.cpp \
