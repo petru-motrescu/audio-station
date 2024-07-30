@@ -58,7 +58,7 @@ audiostation::Synth::~Synth() {
     this->impl.reset();
 }
 
-void audiostation::Synth::set_envelope(Envelope envelope) {
+void audiostation::Synth::set_envelope(EnvelopeConfig envelope) {
     set_renderable_envelope(Envelopes::to_renderable_envelope(envelope));
 }
 

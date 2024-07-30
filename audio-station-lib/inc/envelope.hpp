@@ -5,7 +5,7 @@
 
 namespace audiostation {
 
-    struct Envelope {
+    struct EnvelopeConfig {
         unsigned atack_duration;
         unsigned decay_duration;
         double sustain_level; // 0.0 <= sustain_level <= 1.0
@@ -20,7 +20,7 @@ namespace audiostation {
     };
 
     struct Envelopes {
-        static inline RenderableEnvelope to_renderable_envelope(Envelope& envelope) {
+        static inline RenderableEnvelope to_renderable_envelope(EnvelopeConfig& envelope) {
             return {
                 .atack_ticks = envelope.atack_duration * Config::SAMPLE_RATE / 1000.0,
                 .decay_ticks = envelope.decay_duration * Config::SAMPLE_RATE / 1000.0,

@@ -12,7 +12,7 @@ namespace audiostation {
     struct SynthConfig {
         Wave wave = Wave::Triangle;
         double amplitude = 0.5;
-        Envelope envelope = {
+        EnvelopeConfig envelope = {
             .atack_duration = 10,
             .decay_duration = 100,
             .sustain_level = 0.9,
@@ -31,7 +31,7 @@ namespace audiostation {
         void play(Note note) override;
         void stop(Note note) override;
 
-        void set_envelope(Envelope envelope);
+        void set_envelope(EnvelopeConfig envelope);
         bool is_note_live(Note note);
     
     // internal:
