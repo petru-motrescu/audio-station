@@ -143,6 +143,7 @@ void run_track_demo() {
     Synth bass({
         .wave = Wave::Triangle,
         .amplitude = 0.4,
+        .harmonics = 0,
         .envelope = {
             .attack_duration = 5, 
             .decay_duration = 20, 
@@ -154,6 +155,7 @@ void run_track_demo() {
     Synth lead({
         .wave = Wave::Sine,
         .amplitude = 0.2,
+        .harmonics = 0,
         .envelope = {
             .attack_duration = 5, 
             .decay_duration = 5, 

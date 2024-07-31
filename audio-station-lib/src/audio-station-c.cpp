@@ -23,7 +23,9 @@ void audio_station_dispose(AudioStationHandle handle) {
 }
 
 SynthHandle synth_init() {
-    return reinterpret_cast<SynthHandle>(new Synth());
+    return reinterpret_cast<SynthHandle>(new Synth({
+        .harmonics = 15
+    }));
 }
 
 void synth_play_note(SynthHandle synth, int note) {
