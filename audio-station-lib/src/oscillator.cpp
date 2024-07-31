@@ -87,6 +87,12 @@ audiostation::Oscillator::Oscillator(OscillatorConfig config) {
     this->impl->is_live = false;
 }
 
+Oscillator::Oscillator(const Oscillator& other) {
+    this->impl = std::make_unique<OscillatorImpl>();
+    this->impl->config = other.impl->config;
+    this->impl->is_live = other.impl->is_live;
+}
+
 audiostation::Oscillator::Oscillator(Oscillator&& other) : 
     impl(std::move(other.impl))
 { }

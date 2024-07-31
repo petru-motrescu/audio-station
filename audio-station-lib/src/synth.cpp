@@ -11,7 +11,7 @@
 using namespace audiostation;
 
 struct SynthSignal {
-    Oscillator oscillator;
+    std::vector<Oscillator> oscillators;
     Envelope envelope;
 };
 
@@ -31,16 +31,31 @@ audiostation::Synth::Synth(SynthConfig config) {
     
     int signal_id = 0;
     for (auto& note : Notes::piano_notes) {
+        std::vector<Oscillator> oscillators;
+        auto fundamental_frequency = Notes::get_frequency(note);
+        
         auto oscillator = Oscillator({
             .wave = config.wave,
-            .frequency = Notes::get_frequency(note),
-            .amplitude = config.amplitude
+            .frequency = fundamental_frequency,
+            .amplitude = config.amplitude,
         });
+        oscillators.push_back(oscillator);
+        
+        auto amplitude = config.amplitude / 4.0;
+        for (int i = 0; i < config.harmonics; i++) {
+            auto oscillator = Oscillator({
+                .wave = config.wave,
+                .frequency = fundamental_frequency * (i + 2),
+                .amplitude = amplitude,
+            });
+            oscillators.push_back(oscillator);
+            amplitude /= 2.0;
+        }
 
         auto envelope = Envelope(config.envelope);
 
         this->impl->signals.push_back(SynthSignal({
-            .oscillator = std::move(oscillator),
+            .oscillators = std::move(oscillators),
             .envelope = std::move(envelope)
         }));
 
@@ -55,8 +70,12 @@ audiostation::Synth::~Synth() {
 void audiostation::Synth::play(Note note) {
     auto signal_id = this->impl->note_signal_ids[note];
     auto& signal = this->impl->signals[signal_id];
-    // signal.phase = 0; // TODO Reset oscillator phase
-    signal.oscillator.play();
+    
+    for (auto& oscilator : signal.oscillators) {
+        // TODO Reset oscillator phase
+        oscilator.play();
+    }
+    
     signal.envelope.engage();
 }
 
@@ -68,7 +87,7 @@ void audiostation::Synth::stop(Note note) {
 
 bool audiostation::Synth::is_note_live(Note note) {
     auto signal_id = this->impl->note_signal_ids[note];
-    return this->impl->signals[signal_id].oscillator.is_live();
+    return this->impl->signals[signal_id].oscillators.front().is_live();
 }
 
 double audiostation::Synth::render() {
@@ -82,10 +101,16 @@ double audiostation::Synth::render() {
 }
 
 double render_signal(SynthSignal& signal) {
-    auto sample = signal.oscillator.render();
+    double sample = 0.0;
+    for (auto& oscillator : signal.oscillators) {
+        sample += oscillator.render();
+    }
+
     auto result = signal.envelope.render(sample);
     if (!signal.envelope.is_live()) {
-        signal.oscillator.stop();
+        for (auto& oscillator : signal.oscillators) {
+            oscillator.stop();
+        }
     };
     return result;
 }

@@ -22,6 +22,7 @@ namespace audiostation {
     class Oscillator : public Instrument {
     public:
         Oscillator(OscillatorConfig config);
+        Oscillator(const Oscillator& other);
         Oscillator(Oscillator&& other);
         ~Oscillator();
 

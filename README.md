@@ -97,6 +97,7 @@ Wikipedia:
 - [Reverb effect](https://en.wikipedia.org/wiki/Reverb_effect)
 - [Impulse response](https://en.wikipedia.org/wiki/Impulse_response)
 - [Piano key frequencies](https://en.wikipedia.org/wiki/Piano_key_frequencies)
+- [Harmonic](https://en.wikipedia.org/wiki/Harmonic)
 
 Books:
 - [University Physics, by Hugh Young, Roger Freedman, Francis Sears, Mark Zemansky](https://en.wikipedia.org/wiki/University_Physics)

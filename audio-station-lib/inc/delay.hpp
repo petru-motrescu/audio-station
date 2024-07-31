@@ -11,7 +11,6 @@ namespace audiostation {
         unsigned time = 250;
         double feedback = 0.0;
         double level = 0.25;
-    // internal:
         bool debug = false;
         unsigned sample_rate = Config::SAMPLE_RATE;
     };
