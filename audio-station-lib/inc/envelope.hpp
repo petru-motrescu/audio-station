@@ -1,33 +1,37 @@
 #ifndef AUDIO_STATION_ENVELOPE_HPP
 #define AUDIO_STATION_ENVELOPE_HPP
 
+#include <memory>
 #include "config.hpp"
+#include "effect.hpp"
 
 namespace audiostation {
 
     struct EnvelopeConfig {
-        unsigned atack_duration;
-        unsigned decay_duration;
-        double sustain_level; // 0.0 <= sustain_level <= 1.0
-        unsigned release_duration;
+        unsigned attack_duration = 0;
+        unsigned decay_duration = 0;
+        double sustain_level = 1.0;
+        unsigned release_duration = 0;
+        unsigned sample_rate = Config::SAMPLE_RATE;
     };
 
-    struct RenderableEnvelope {
-        double atack_ticks;
-        double decay_ticks;
-        double sustain_level;
-        double release_ticks;
-    };
+    struct EnvelopeImpl;
 
-    struct Envelopes {
-        static inline RenderableEnvelope to_renderable_envelope(EnvelopeConfig& envelope) {
-            return {
-                .atack_ticks = envelope.atack_duration * Config::SAMPLE_RATE / 1000.0,
-                .decay_ticks = envelope.decay_duration * Config::SAMPLE_RATE / 1000.0,
-                .sustain_level = envelope.sustain_level,
-                .release_ticks = envelope.release_duration * Config::SAMPLE_RATE / 1000.0,
-            };
-        }
+    class Envelope {
+    public:
+        Envelope(EnvelopeConfig config);
+        Envelope(const Envelope& other);
+        Envelope(Envelope&& other);
+        Envelope& operator=(Envelope&& other);
+        virtual ~Envelope();
+
+        void engage();
+        void release();
+        bool is_live() const;
+        double render(double sample);
+    
+    private:
+        std::unique_ptr<EnvelopeImpl> impl;
     };
 }
 

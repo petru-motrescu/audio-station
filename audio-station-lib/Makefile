@@ -9,7 +9,7 @@ build:
 	src/audio-station.cpp \
 	src/delay.cpp \
 	src/drum.cpp \
-	src/envelope-renderer.cpp \
+	src/envelope.cpp \
 	src/noise.cpp \
 	src/notes.cpp \
 	src/oscillator.cpp \

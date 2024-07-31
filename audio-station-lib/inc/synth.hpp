@@ -13,11 +13,12 @@ namespace audiostation {
         Wave wave = Wave::Triangle;
         double amplitude = 0.5;
         EnvelopeConfig envelope = {
-            .atack_duration = 10,
+            .attack_duration = 10,
             .decay_duration = 100,
             .sustain_level = 0.9,
             .release_duration = 1000,
         };
+        unsigned sample_rate = Config::SAMPLE_RATE;
     };
 
     struct SynthImpl;
@@ -30,14 +31,10 @@ namespace audiostation {
         
         void play(Note note) override;
         void stop(Note note) override;
-
-        void set_envelope(EnvelopeConfig envelope);
         bool is_note_live(Note note);
     
     // internal:
         double render() override;
-        void set_sample_rate(unsigned sample_rate);
-        void set_renderable_envelope(RenderableEnvelope envelope);
 
     private:
         std::unique_ptr<SynthImpl> impl;

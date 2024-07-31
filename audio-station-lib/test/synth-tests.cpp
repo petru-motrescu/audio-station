@@ -20,15 +20,12 @@ void audiostation::TestSuite::run_synth_tests() {
     });
 
     test("Triangle synth with blank envelope", [] {
-        Synth synth({ .wave = Wave::Triangle, .amplitude = 1.0 });
-
         auto note = Note::A3;
-        synth.set_sample_rate(Notes::get_frequency(note) * 8);
-        synth.set_renderable_envelope({
-            .atack_ticks = 0,
-            .decay_ticks = 0,
-            .sustain_level = 1,
-            .release_ticks = 0
+        Synth synth({ 
+            .wave = Wave::Triangle, 
+            .amplitude = 1.0,
+            .envelope = EnvelopeConfig(),
+            .sample_rate = (unsigned) Notes::get_frequency(note) * 8,
         });
 
         synth.play(note);
@@ -48,17 +45,21 @@ void audiostation::TestSuite::run_synth_tests() {
     });
 
     test("Triangle synth with proper envelope", [] {
-        Synth synth({ .wave = Wave::Triangle, .amplitude = 1.0 });
-
-        auto note = Note::A3;
-        synth.set_sample_rate(Notes::get_frequency(note) * 8);
-        synth.set_renderable_envelope({
-            .atack_ticks = 8,
-            .decay_ticks = 8,
-            .sustain_level = 0.5,
-            .release_ticks = 8
+        Note note = Note::A3;
+        unsigned sample_rate = Notes::get_frequency(note) * 8;
+        unsigned duration_of_8_ticks = 8 * 1000 / sample_rate;
+        Synth synth({
+            .wave = Wave::Triangle,
+            .amplitude = 1.0,
+            .envelope = {
+                .attack_duration = duration_of_8_ticks,
+                .decay_duration = duration_of_8_ticks,
+                .sustain_level = 0.5,
+                .release_duration = duration_of_8_ticks,
+            },
+            .sample_rate = sample_rate,
         });
-
+        
         std::vector<double> actual_samples;
 
         synth.play(note);

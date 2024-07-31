@@ -5,7 +5,6 @@
 #include <vector>
 #include "config.hpp"
 #include "envelope.hpp"
-#include "envelope-renderer.hpp"
 #include "note.hpp"
 #include "oscillator.hpp"
 #include "synth.hpp"
@@ -13,22 +12,16 @@ using namespace audiostation;
 
 struct SynthSignal {
     Oscillator oscillator;
-    unsigned ticks_since_live;
-    unsigned ticks_at_release;
+    Envelope envelope;
 };
 
 struct audiostation::SynthImpl {
     std::vector<SynthSignal> signals;
     std::unordered_map<Note, int> note_signal_ids;
-    RenderableEnvelope envelope;
     unsigned sample_rate;
 };
 
-double render_signal(
-    SynthSignal& signal, 
-    RenderableEnvelope& envelope, 
-    unsigned sample_rate
-);
+double render_signal(SynthSignal& signal);
 
 audiostation::Synth::Synth() : Synth(SynthConfig()) { }
 
@@ -44,41 +37,33 @@ audiostation::Synth::Synth(SynthConfig config) {
             .amplitude = config.amplitude
         });
 
+        auto envelope = Envelope(config.envelope);
+
         this->impl->signals.push_back(SynthSignal({
-            .oscillator = std::move(oscillator)
+            .oscillator = std::move(oscillator),
+            .envelope = std::move(envelope)
         }));
 
         this->impl->note_signal_ids[note] = signal_id++;
     }
-
-    set_envelope(config.envelope);
 }
 
 audiostation::Synth::~Synth() {
     this->impl.reset();
 }
 
-void audiostation::Synth::set_envelope(EnvelopeConfig envelope) {
-    set_renderable_envelope(Envelopes::to_renderable_envelope(envelope));
-}
-
 void audiostation::Synth::play(Note note) {
     auto signal_id = this->impl->note_signal_ids[note];
     auto& signal = this->impl->signals[signal_id];
     // signal.phase = 0; // TODO Reset oscillator phase
-    signal.ticks_since_live = 0;
-    signal.ticks_at_release = 0;
     signal.oscillator.play();
+    signal.envelope.engage();
 }
 
 void audiostation::Synth::stop(Note note) {
     auto signal_id = this->impl->note_signal_ids[note];
     auto& signal = this->impl->signals[signal_id];
-    if (this->impl->envelope.release_ticks > 0) {
-        signal.ticks_at_release = signal.ticks_since_live;
-    } else {
-        signal.oscillator.stop();
-    }
+    signal.envelope.release();
 }
 
 bool audiostation::Synth::is_note_live(Note note) {
@@ -89,39 +74,18 @@ bool audiostation::Synth::is_note_live(Note note) {
 double audiostation::Synth::render() {
     double sample = 0;
     for (auto& signal : this->impl->signals) {
-        if (signal.oscillator.is_live()) {
-            sample += render_signal(
-                signal, 
-                this->impl->envelope, 
-                this->impl->sample_rate);
+        if (signal.envelope.is_live()) {
+            sample += render_signal(signal);
         }
     }
     return sample;
 }
 
-void audiostation::Synth::set_sample_rate(unsigned sample_rate) {
-    this->impl->sample_rate = sample_rate;
-}
-
-void audiostation::Synth::set_renderable_envelope(RenderableEnvelope envelope) {
-    this->impl->envelope = envelope;
-}
-
-double render_signal(
-    SynthSignal& signal, 
-    RenderableEnvelope& envelope, 
-    unsigned sample_rate
-) {
+double render_signal(SynthSignal& signal) {
     auto sample = signal.oscillator.render();
-    auto result = EnvelopeRenderer::render(
-        sample,
-        signal.ticks_since_live,
-        signal.ticks_at_release,
-        envelope
-    );
-    if (!result.live) {
+    auto result = signal.envelope.render(sample);
+    if (!signal.envelope.is_live()) {
         signal.oscillator.stop();
     };
-    signal.ticks_since_live++;
-    return result.sample;
+    return result;
 }

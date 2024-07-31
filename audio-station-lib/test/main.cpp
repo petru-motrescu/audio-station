@@ -144,7 +144,7 @@ void run_track_demo() {
         .wave = Wave::Triangle,
         .amplitude = 0.4,
         .envelope = {
-            .atack_duration = 5, 
+            .attack_duration = 5, 
             .decay_duration = 20, 
             .sustain_level = 0.9, 
             .release_duration = 400
@@ -155,7 +155,7 @@ void run_track_demo() {
         .wave = Wave::Sine,
         .amplitude = 0.2,
         .envelope = {
-            .atack_duration = 5, 
+            .attack_duration = 5, 
             .decay_duration = 5, 
             .sustain_level = 1.0, 
             .release_duration = 40
@@ -253,7 +253,7 @@ void run_reverb_demo() {
     Synth synth_1({
         .amplitude = 0.4,
         .envelope = {
-            .atack_duration = 0, 
+            .attack_duration = 0, 
             .decay_duration = 0, 
             .sustain_level = 1.0,
             .release_duration = note_duration
@@ -263,7 +263,7 @@ void run_reverb_demo() {
     Synth synth_2({
         .amplitude = 0.4,
         .envelope = {
-            .atack_duration = 0, 
+            .attack_duration = 0, 
             .decay_duration = 0, 
             .sustain_level = 1.0,
             .release_duration = note_duration

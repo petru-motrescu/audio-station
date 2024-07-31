@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0A01D78B2C4D9D7700E4B6DE /* noise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A01D78A2C4D9D7700E4B6DE /* noise.cpp */; };
+		0A69E9442C5A413D004F4BAD /* envelope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A69E9432C5A413D004F4BAD /* envelope.cpp */; };
 		0A7CED522C118A470020251E /* audio-station-c.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CED482C118A470020251E /* audio-station-c.cpp */; };
 		0A7CED532C118A470020251E /* audio-station.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CED492C118A470020251E /* audio-station.cpp */; };
 		0A7CED542C118A470020251E /* delay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CED4A2C118A470020251E /* delay.cpp */; };
@@ -20,7 +21,6 @@
 		0AAB8B222C1C39A700365EC5 /* utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB8B202C1C39A700365EC5 /* utils.cpp */; };
 		0ABBE03C2BE554D100803057 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABBE03B2BE554D100803057 /* AudioToolbox.framework */; };
 		0ABBE03E2BE554D800803057 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABBE03D2BE554D800803057 /* AudioUnit.framework */; };
-		0ACA07232C43AF1900FD9B24 /* envelope-renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0ACA07212C43AF1900FD9B24 /* envelope-renderer.cpp */; };
 		0AF426822BE2D8650028C5B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF426812BE2D8650028C5B3 /* AppDelegate.swift */; };
 		0AF426842BE2D8650028C5B3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF426832BE2D8650028C5B3 /* ViewController.swift */; };
 		0AF426862BE2D8650028C5B3 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AF426852BE2D8650028C5B3 /* art.scnassets */; };
@@ -32,6 +32,7 @@
 /* Begin PBXFileReference section */
 		0A01D7892C4D9D6800E4B6DE /* noise.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = noise.hpp; sourceTree = "<group>"; };
 		0A01D78A2C4D9D7700E4B6DE /* noise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = noise.cpp; sourceTree = "<group>"; };
+		0A69E9432C5A413D004F4BAD /* envelope.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = envelope.cpp; sourceTree = "<group>"; };
 		0A7CED372C118A470020251E /* audio-station-c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "audio-station-c.h"; sourceTree = "<group>"; };
 		0A7CED382C118A470020251E /* audio-station.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "audio-station.hpp"; sourceTree = "<group>"; };
 		0A7CED392C118A470020251E /* config.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = config.hpp; sourceTree = "<group>"; };
@@ -60,8 +61,6 @@
 		0AAB8B202C1C39A700365EC5 /* utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utils.cpp; sourceTree = "<group>"; };
 		0ABBE03B2BE554D100803057 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		0ABBE03D2BE554D800803057 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
-		0ACA07202C43AEE200FD9B24 /* envelope-renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "envelope-renderer.hpp"; sourceTree = "<group>"; };
-		0ACA07212C43AF1900FD9B24 /* envelope-renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "envelope-renderer.cpp"; sourceTree = "<group>"; };
 		0AF4267E2BE2D8650028C5B3 /* AudioStation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioStation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AF426812BE2D8650028C5B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0AF426832BE2D8650028C5B3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -120,7 +119,6 @@
 				0A7CED3B2C118A470020251E /* drum.hpp */,
 				0A7CED3C2C118A470020251E /* effect.hpp */,
 				0A7CED3D2C118A470020251E /* envelope.hpp */,
-				0ACA07202C43AEE200FD9B24 /* envelope-renderer.hpp */,
 				0A7CED3E2C118A470020251E /* frequency.hpp */,
 				0A7CED3F2C118A470020251E /* instrument.hpp */,
 				0A01D7892C4D9D6800E4B6DE /* noise.hpp */,
@@ -143,7 +141,7 @@
 				0A7CED492C118A470020251E /* audio-station.cpp */,
 				0A7CED4A2C118A470020251E /* delay.cpp */,
 				0A7CED4B2C118A470020251E /* drum.cpp */,
-				0ACA07212C43AF1900FD9B24 /* envelope-renderer.cpp */,
+				0A69E9432C5A413D004F4BAD /* envelope.cpp */,
 				0A01D78A2C4D9D7700E4B6DE /* noise.cpp */,
 				0A7CED4C2C118A470020251E /* notes.cpp */,
 				0A7CED4D2C118A470020251E /* oscillator.cpp */,
@@ -257,7 +255,6 @@
 			files = (
 				0AF426842BE2D8650028C5B3 /* ViewController.swift in Sources */,
 				0A7CED542C118A470020251E /* delay.cpp in Sources */,
-				0ACA07232C43AF1900FD9B24 /* envelope-renderer.cpp in Sources */,
 				0A7CED552C118A470020251E /* drum.cpp in Sources */,
 				0A7CED562C118A470020251E /* notes.cpp in Sources */,
 				0A7CED572C118A470020251E /* oscillator.cpp in Sources */,
@@ -265,6 +262,7 @@
 				0A01D78B2C4D9D7700E4B6DE /* noise.cpp in Sources */,
 				0A7CED522C118A470020251E /* audio-station-c.cpp in Sources */,
 				0A7CED592C118A470020251E /* synth.cpp in Sources */,
+				0A69E9442C5A413D004F4BAD /* envelope.cpp in Sources */,
 				0AF426822BE2D8650028C5B3 /* AppDelegate.swift in Sources */,
 				0AAB8B212C1C39A700365EC5 /* reverb.cpp in Sources */,
 				0AF71D662BE2E1D700348FDE /* Key.swift in Sources */,

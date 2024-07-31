@@ -39,7 +39,7 @@ void run_track_demo() {
         .wave = Wave::Triangle,
         .amplitude = 0.6,
         .envelope = {
-            .atack_duration = 5, 
+            .attack_duration = 5, 
             .decay_duration = 20, 
             .sustain_level = 0.9, 
             .release_duration = 400
