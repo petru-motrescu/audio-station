@@ -6,6 +6,7 @@
 #include <unordered_map>
 #include "effect.hpp"
 #include "instrument.hpp"
+#include "sequencer.hpp"
 #include "note.hpp"
 
 namespace audiostation {
@@ -36,6 +37,7 @@ namespace audiostation {
         double render();
         std::vector<TrackLane*> lanes;
         std::vector<Instrument*> live_instruments;
+        std::vector<Sequencer*> sequencers;
         Tick tick;
     };
 }

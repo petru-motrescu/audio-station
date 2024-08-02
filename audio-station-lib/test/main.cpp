@@ -295,13 +295,31 @@ void run_reverb_demo() {
     station.stop();
 }
 
+void run_sequencer_demo() {
+    Drum drum;
+    Sequencer sequencer({ .outputs = { &drum } });
+    TrackLane lane = { .instrument = &drum };
+    Track track { 
+        .lanes = { &lane },
+        .sequencers = { &sequencer }
+    };
+
+    AudioStation station;
+    station.init();
+    station.play(&track);
+    sequencer.trigger();
+    sleep(5000);
+    station.stop();
+}
+
 int main() {
     TestSuite test_suite;
     test_suite.run_tests();
-    run_track_demo();
+    // run_track_demo();
     // run_noise_demo();
     // run_oscillator_demo();
     // run_delay_demo();
     // run_reverb_demo();
+    run_sequencer_demo();
     return 0;
 }

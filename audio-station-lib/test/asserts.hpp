@@ -1,9 +1,10 @@
 #ifndef AUDIO_STATION_TEST_ASSERTS_HPP
 #define AUDIO_STATION_TEST_ASSERTS_HPP
 
+#include <cmath>
 #include <iostream>
 #include <string>
-#include <cmath>
+#include <sstream>
 
 namespace audiostation {
     
@@ -28,6 +29,15 @@ namespace audiostation {
         std::vector<double> actual, 
         double epsilon = 0.00000001
     );
+
+    template <typename T> void assert_equal(
+        std::vector<T> expected, 
+        std::vector<T> actual
+    ) {
+        if (actual != expected) {
+            throw std::runtime_error("Vectors are different");
+        }
+    }
 }
 
 #endif // AUDIO_STATION_TEST_ASSERTS_HPP

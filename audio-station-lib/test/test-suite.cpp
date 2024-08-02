@@ -10,6 +10,7 @@ void audiostation::TestSuite::run_tests() {
     run_delay_tests();
     run_noise_tests();
     run_oscillator_tests();
+    run_sequencer_tests();
     run_synth_tests();
     run_track_tests();
 

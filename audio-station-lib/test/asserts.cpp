@@ -95,3 +95,4 @@ void audiostation::assert_equal(
         for (auto& x : actual) { str << x << ", "; }
     }
 }
+

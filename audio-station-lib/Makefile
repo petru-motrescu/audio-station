@@ -14,6 +14,7 @@ build:
 	src/notes.cpp \
 	src/oscillator.cpp \
 	src/reverb.cpp \
+	src/sequencer.cpp \
 	src/synth.cpp \
 	src/track.cpp \
 	src/utils.cpp \
@@ -22,6 +23,7 @@ build:
 	test/main.cpp \
 	test/noise-tests.cpp \
 	test/oscillator-tests.cpp \
+	test/sequencer-tests.cpp \
 	test/synth-tests.cpp \
 	test/test-suite.cpp \
 	test/track-tests.cpp

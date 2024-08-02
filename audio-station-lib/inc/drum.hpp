@@ -10,9 +10,17 @@
 namespace audiostation {
 
     struct DrumConfig {
-        OscillatorConfig attack;
-        OscillatorConfig release;
-        double duration = 500;
+        OscillatorConfig attack = {
+            .wave = Wave::Triangle, 
+            .frequency = Frequency::A2, 
+            .amplitude = 0.5
+        };
+        OscillatorConfig release = { 
+            .wave = Wave::Sine, 
+            .frequency = Frequency::B0, 
+            .amplitude = 1.0
+        };
+        double duration = 200;
     };
 
     struct DrumImpl;

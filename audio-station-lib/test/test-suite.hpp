@@ -12,6 +12,7 @@ namespace audiostation {
         void run_delay_tests();
         void run_noise_tests();
         void run_oscillator_tests();
+        void run_sequencer_tests();
         void run_synth_tests();
         void run_track_tests();
     

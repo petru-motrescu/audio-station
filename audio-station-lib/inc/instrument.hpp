@@ -2,13 +2,12 @@
 #define AUDIO_STATION_INSTRUMENT_HPP
 
 #include "note.hpp"
+#include "player.hpp"
 
 namespace audiostation {
 
-    class Instrument {
+    class Instrument : public Player {
     public:
-        virtual void play(Note note) = 0;
-        virtual void stop(Note note) = 0;
         virtual double render() = 0;
         virtual ~Instrument() {};
     };
