@@ -67,19 +67,19 @@ audiostation::Synth::~Synth() {
     this->impl.reset();
 }
 
-void audiostation::Synth::play(Note note) {
+void audiostation::Synth::trigger(Note note) {
     auto signal_id = this->impl->note_signal_ids[note];
     auto& signal = this->impl->signals[signal_id];
     
     for (auto& oscilator : signal.oscillators) {
         oscilator.set_phase(0);
-        oscilator.play();
+        oscilator.trigger();
     }
     
     signal.envelope.trigger();
 }
 
-void audiostation::Synth::stop(Note note) {
+void audiostation::Synth::release(Note note) {
     auto signal_id = this->impl->note_signal_ids[note];
     auto& signal = this->impl->signals[signal_id];
     signal.envelope.release();
@@ -109,7 +109,7 @@ double render_signal(SynthSignal& signal) {
     auto amplitude = signal.envelope.render();
     if (!signal.envelope.is_live()) {
         for (auto& oscillator : signal.oscillators) {
-            oscillator.stop();
+            oscillator.release();
         }
     };
 

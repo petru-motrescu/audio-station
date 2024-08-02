@@ -3,7 +3,7 @@
 
 #include <memory>
 #include "config.hpp"
-#include "generator.hpp"
+#include "signal-source.hpp"
 
 namespace audiostation {
 
@@ -17,7 +17,7 @@ namespace audiostation {
 
     struct EnvelopeImpl;
 
-    class Envelope : public Generator {
+    class Envelope : public SignalSource {
     public:
         Envelope(EnvelopeConfig config);
         Envelope(const Envelope& other);

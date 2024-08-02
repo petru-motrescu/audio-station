@@ -28,7 +28,7 @@ void audiostation::TestSuite::run_synth_tests() {
             .sample_rate = (unsigned) Notes::get_frequency(note) * 8,
         });
 
-        synth.play(note);
+        synth.trigger(note);
         std::vector<double> actual_samples;
         for (int i = 0; i < 8 * 4; i++) {
             actual_samples.push_back(synth.render());
@@ -62,12 +62,12 @@ void audiostation::TestSuite::run_synth_tests() {
         
         std::vector<double> actual_samples;
 
-        synth.play(note);
+        synth.trigger(note);
         for (int i = 0; i < 8 * 3; i++) { 
             actual_samples.push_back(synth.render());
         }
 
-        synth.stop(note);
+        synth.release(note);
         for (int i = 0; i < 8 * 1; i++) { 
             actual_samples.push_back(synth.render());
         }

@@ -23,11 +23,11 @@ audiostation::Noise::~Noise() {
     this->impl.reset();
 }
 
-void audiostation::Noise::play(Note note) {
+void audiostation::Noise::trigger(Note note) {
     this->impl->is_live = true;
 }
 
-void audiostation::Noise::stop(Note note) {
+void audiostation::Noise::release(Note note) {
     this->impl->is_live = false;
 }
 

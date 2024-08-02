@@ -101,11 +101,11 @@ audiostation::Oscillator::~Oscillator() {
     this->impl.reset();
 }
 
-void audiostation::Oscillator::play(Note note) {
+void audiostation::Oscillator::trigger(Note note) {
     this->impl->is_live = true;
 }
 
-void audiostation::Oscillator::stop(Note note) {
+void audiostation::Oscillator::release(Note note) {
     this->impl->is_live = false;
 }
 

@@ -7,6 +7,7 @@
 #include "effect.hpp"
 #include "instrument.hpp"
 #include "sequencer.hpp"
+#include "signal-source.hpp"
 #include "note.hpp"
 
 namespace audiostation {
@@ -32,12 +33,21 @@ namespace audiostation {
         std::vector<TrackBlock> blocks;
     };
 
-    struct Track {
-        void add_live_instrument(Instrument* instrument);
-        double render();
+    struct TrackConfig {
         std::vector<TrackLane*> lanes;
         std::vector<Instrument*> live_instruments;
         std::vector<Sequencer*> sequencers;
+    };
+
+    class Track : public SignalSource {
+    public:
+        Track();
+        Track(TrackConfig config);
+        void add_live_instrument(Instrument* instrument);
+        double render() override;
+    
+    private:
+        TrackConfig config;
         Tick tick;
     };
 }

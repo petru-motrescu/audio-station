@@ -4,23 +4,29 @@
 #include "track.hpp"
 using namespace audiostation;
 
+Track::Track() : Track(TrackConfig()) {}
+
+Track::Track(TrackConfig config) {
+    this->config = config;
+}
+
 void audiostation::Track::add_live_instrument(Instrument* instrument) {
-    this->live_instruments.push_back(instrument);
+    this->config.live_instruments.push_back(instrument);
 }
 
 double audiostation::Track::render() {
-    for (auto& sequencer : this->sequencers) {
+    for (auto& sequencer : this->config.sequencers) {
         sequencer->tick();
     }
 
-    for (auto& lane : this->lanes) {
+    for (auto& lane : this->config.lanes) {
         for (auto& block : lane->blocks) {
             for (auto& note : block.notes) {
                 if ((note.pos + block.pos) == this->tick) {
-                    lane->instrument->play(note.note);
+                    lane->instrument->trigger(note.note);
                 }
                 if ((note.pos + note.len + block.pos) == this->tick) {
-                    lane->instrument->stop(note.note);
+                    lane->instrument->release(note.note);
                 }
             }
         }
@@ -28,7 +34,7 @@ double audiostation::Track::render() {
 
     double sample = 0;
     
-    for (auto& lane : this->lanes) {
+    for (auto& lane : this->config.lanes) {
         double instrument_sample = lane->instrument->render();
         sample += instrument_sample;
         for (auto& effect : lane->effects) {
@@ -37,7 +43,7 @@ double audiostation::Track::render() {
     }
     
     // TODO Remove live_instruments
-    for (auto& live_instrument : this->live_instruments) {
+    for (auto& live_instrument : this->config.live_instruments) {
         sample += live_instrument->render();
     }
 

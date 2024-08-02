@@ -28,11 +28,11 @@ audiostation::Drum::~Drum() {
     this->impl.reset();
 }
 
-void audiostation::Drum::play(Note note) {
+void audiostation::Drum::trigger(Note note) {
     this->impl->attack_oscillator->set_phase(0);
     this->impl->release_oscillator->set_phase(0);
-    this->impl->attack_oscillator->play();
-    this->impl->release_oscillator->play();
+    this->impl->attack_oscillator->trigger();
+    this->impl->release_oscillator->trigger();
     this->impl->ticks_since_live = 0;
     this->impl->live = true;
 }
@@ -62,8 +62,8 @@ double audiostation::Drum::render() {
     this->impl->ticks_since_live++;
 
     if (this->impl->ticks_since_live >= this->impl->total_ticks) {
-        this->impl->attack_oscillator->stop();
-        this->impl->release_oscillator->stop();
+        this->impl->attack_oscillator->release();
+        this->impl->release_oscillator->release();
         this->impl->live = false;
         return 0;
     }

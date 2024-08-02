@@ -12,7 +12,7 @@ void audiostation::TestSuite::run_noise_tests() {
 
     test("Noise can play and stop", [] {
         Noise noise({ .amplitude = 1.0 });
-        noise.play();
+        noise.trigger();
 
         double sum = 0.0;
         for (int i = 0; i < 100; i++) {
@@ -20,7 +20,7 @@ void audiostation::TestSuite::run_noise_tests() {
         }
         assert_true(sum != 0.0);
         
-        noise.stop();
+        noise.release();
         assert_equal(0, noise.render());
     });
 

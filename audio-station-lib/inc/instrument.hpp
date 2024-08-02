@@ -1,14 +1,13 @@
 #ifndef AUDIO_STATION_INSTRUMENT_HPP
 #define AUDIO_STATION_INSTRUMENT_HPP
 
-#include "note.hpp"
-#include "player.hpp"
+#include "playable.hpp"
+#include "signal-source.hpp"
 
 namespace audiostation {
 
-    class Instrument : public Player {
+    class Instrument : public Playable, public SignalSource {
     public:
-        virtual double render() = 0;
         virtual ~Instrument() {};
     };
 }

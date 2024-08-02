@@ -3,13 +3,13 @@
 #include "test-suite.hpp"
 using namespace audiostation;
 
-struct DummyPlayer : public Player {
+struct DummyPlayable : public Playable {
 
-    void play(Note note) { 
+    void trigger(Note note) { 
         this->calls.push_back(std::make_pair(note, true));
     };
 
-    void stop(Note note) { 
+    void release(Note note) { 
         this->calls.push_back(std::make_pair(note, false));
     };
 
@@ -19,9 +19,9 @@ struct DummyPlayer : public Player {
 void audiostation::TestSuite::run_sequencer_tests() {
 
     test("Sequencer step hold", [] {
-        DummyPlayer player;
+        DummyPlayable playable;
         Sequencer sequencer({ 
-            .outputs = { &player },
+            .outputs = { &playable },
             .step_duration = 1,
             .steps = {
                 { .note = Note::C1, .level = 1.0 },
@@ -39,13 +39,13 @@ void audiostation::TestSuite::run_sequencer_tests() {
             std::make_pair(Note::C1, true)
         });
 
-        assert_equal<std::pair<Note, bool>>(expected_calls, player.calls);
+        assert_equal<std::pair<Note, bool>>(expected_calls, playable.calls);
     });
 
     test("Sequencer step change", [] {
-        DummyPlayer player;
+        DummyPlayable playable;
         Sequencer sequencer({ 
-            .outputs = { &player },
+            .outputs = { &playable },
             .step_duration = 1,
             .steps = {
                 { .note = Note::C1, .level = 1.0 },
@@ -66,14 +66,14 @@ void audiostation::TestSuite::run_sequencer_tests() {
             std::make_pair(Note::C2, true),
         });
 
-        assert_equal<std::pair<Note, bool>>(expected_calls, player.calls);
+        assert_equal<std::pair<Note, bool>>(expected_calls, playable.calls);
     });
 
     test("Sequencer step loop", [] {
-        DummyPlayer player1;
-        DummyPlayer player2;
+        DummyPlayable playable1;
+        DummyPlayable playable2;
         Sequencer sequencer({ 
-            .outputs = { &player1, &player2 },
+            .outputs = { &playable1, &playable2 },
             .step_duration = 1,
             .steps = {
                 { .note = Note::C1, .level = 1.0 },
@@ -95,8 +95,8 @@ void audiostation::TestSuite::run_sequencer_tests() {
             std::make_pair(Note::C1, true),
         });
 
-        assert_equal<std::pair<Note, bool>>(expected_calls, player1.calls);
-        assert_equal<std::pair<Note, bool>>(expected_calls, player2.calls);
+        assert_equal<std::pair<Note, bool>>(expected_calls, playable1.calls);
+        assert_equal<std::pair<Note, bool>>(expected_calls, playable2.calls);
     });
 
 }

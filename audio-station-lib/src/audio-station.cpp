@@ -10,7 +10,7 @@ using namespace audiostation;
 constexpr unsigned SIZE_OF_DOUBLE = sizeof(double);
 
 struct audiostation::AudioStationImpl {
-    Track* track = nullptr;
+    SignalSource* signal_source = nullptr;
     AudioComponentInstance audio_unit = 0;
 };
 
@@ -25,7 +25,7 @@ static OSStatus render_audio(
     // ⚠️ No locks and no IO allowed here.
 
     AudioStationImpl* station = (AudioStationImpl*) client_data;
-    if (station->track == nullptr) {
+    if (station->signal_source == nullptr) {
         return 0;
     }
 
@@ -33,7 +33,7 @@ static OSStatus render_audio(
     double* buffer_right = (double*) buffers->mBuffers[1].mData;
 
     for (int frame = 0; frame < frame_count; frame++) {
-        double sample = station->track->render();
+        double sample = station->signal_source->render();
         buffer_left[frame] = sample;
         buffer_right[frame] = sample;
     }
@@ -43,7 +43,7 @@ static OSStatus render_audio(
 
 audiostation::AudioStation::AudioStation() {
     this->impl = std::make_unique<AudioStationImpl>();
-    this->impl->track = nullptr;
+    this->impl->signal_source = nullptr;
 }
 
 audiostation::AudioStation::~AudioStation() {
@@ -113,14 +113,14 @@ void audiostation::AudioStation::init() {
     std::cout << "🎛️ Audio initialized" << std::endl;
 }
 
-void audiostation::AudioStation::play(Track *track) {
-    this->impl->track = track;
+void audiostation::AudioStation::play(SignalSource* signal_source) {
+    this->impl->signal_source = signal_source;
     AudioOutputUnitStart(this->impl->audio_unit);
     std::cout << "▶️ Audio live" << std::endl;
 }
 
 void audiostation::AudioStation::stop() {
     AudioOutputUnitStop(this->impl->audio_unit);
-    this->impl->track = nullptr;
+    this->impl->signal_source = nullptr;
     std::cout << "⏹️ Audio stopped" << std::endl;
 }

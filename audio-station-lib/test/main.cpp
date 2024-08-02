@@ -15,6 +15,7 @@
 #include "oscillator.hpp"
 #include "reverb.hpp"
 #include "synth.hpp"
+#include "track.hpp"
 #include "test-suite.hpp"
 using namespace audiostation;
 
@@ -173,7 +174,7 @@ void run_track_demo() {
     TrackLane bass_lane = build_bass_lane(bass);
     TrackLane lead_lane = build_lead_lane(lead, reverb);
 
-    Track track { .lanes = { &kick_lane, &click_lane, &hihat_lane, &bass_lane, &lead_lane } };
+    Track track({ .lanes = { &kick_lane, &click_lane, &hihat_lane, &bass_lane, &lead_lane } });
 
     station.play(&track);
     sleep(9000);
@@ -186,36 +187,30 @@ void run_noise_demo() {
     station.init();
 
     Noise noise({});
-    Track track { .live_instruments = { &noise } };
-    station.play(&track);
+    station.play(&noise);
 
-    noise.play();
+    noise.trigger();
     sleep(2000);
-    noise.stop();
+    noise.release();
+    
     station.stop();
 }
 
 void run_oscillator_demo() {
-    Oscillator sine_oscillator({.wave = Wave::Sine, .amplitude = 0.5});
-    Oscillator triangle_oscillator({.wave = Wave::Triangle, .amplitude = 0.5});
-    Oscillator square_oscillator({.wave = Wave::Square, .amplitude = 0.2});
-    
-    Track track { 
-        .live_instruments = { 
-            &sine_oscillator, 
-            &triangle_oscillator, 
-            &square_oscillator,
-        }
+    std::vector<Oscillator> oscillators {
+        Oscillator({.wave = Wave::Sine, .amplitude = 0.5}),
+        Oscillator({.wave = Wave::Triangle, .amplitude = 0.4}),
+        Oscillator({.wave = Wave::Square, .amplitude = 0.08}),
     };
-
+    
     AudioStation station;
     station.init();
-    station.play(&track);
     
-    for (auto& oscilator : track.live_instruments) {
-        oscilator->play(Note::C3);
+    for (auto& oscilator : oscillators) {
+        station.play(&oscilator);
+        oscilator.trigger(Note::C3);
         sleep(2000);
-        oscilator->stop(Note::C3);
+        oscilator.release(Note::C3);
     }
 
     station.stop();
@@ -235,14 +230,14 @@ void run_delay_demo() {
         .effects = { &delay }
     };
 
-    Track track { .lanes = { &lane } };
+    Track track({ .lanes = { &lane } });
 
     AudioStation station;
     station.init();
     station.play(&track);
 
     for (int i = 0; i < 5; i++) {
-        drum.play();
+        drum.trigger();
         sleep(5000);
     }
     
@@ -275,20 +270,20 @@ void run_reverb_demo() {
     Reverb reverb;
     TrackLane lane_1 = { .label = "1", .instrument = &synth_1 };
     TrackLane lane_2 = { .label = "2", .instrument = &synth_2, .effects = { &reverb } };
-    Track track { .lanes = { &lane_1, &lane_2 } };
+    Track track({ .lanes = { &lane_1, &lane_2 } });
     AudioStation station;
     station.init();
     station.play(&track);
     
     for (int i = 0; i < 4; i++) {
-        synth_1.play(Note::A3);
+        synth_1.trigger(Note::A3);
         sleep(note_duration);
-        synth_1.stop(Note::A3);
+        synth_1.release(Note::A3);
         sleep(1000);
 
-        synth_2.play(Note::A3);
+        synth_2.trigger(Note::A3);
         sleep(note_duration);
-        synth_2.stop(Note::A3);
+        synth_2.release(Note::A3);
         sleep(15000);
     }
     
@@ -299,10 +294,10 @@ void run_sequencer_demo() {
     Drum drum;
     Sequencer sequencer({ .outputs = { &drum } });
     TrackLane lane = { .instrument = &drum };
-    Track track { 
+    Track track({ 
         .lanes = { &lane },
         .sequencers = { &sequencer }
-    };
+    });
 
     AudioStation station;
     station.init();
@@ -317,9 +312,9 @@ int main() {
     test_suite.run_tests();
     // run_track_demo();
     // run_noise_demo();
-    // run_oscillator_demo();
+    run_oscillator_demo();
     // run_delay_demo();
     // run_reverb_demo();
-    run_sequencer_demo();
+    // run_sequencer_demo();
     return 0;
 }

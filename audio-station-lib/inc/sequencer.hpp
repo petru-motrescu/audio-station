@@ -4,10 +4,10 @@
 #include <chrono>
 #include <memory>
 #include "config.hpp"
-#include "generator.hpp"
 #include "instrument.hpp"
 #include "note.hpp"
-#include "player.hpp"
+#include "playable.hpp"
+#include "signal-source.hpp"
 
 namespace audiostation {
 
@@ -17,7 +17,7 @@ namespace audiostation {
     };
 
     struct SequencerConfig {
-        std::vector<Player*> outputs;
+        std::vector<Playable*> outputs;
 
         std::vector<SequenceStep> steps = {
             { .note = Note::C4, .level = 1.0 },

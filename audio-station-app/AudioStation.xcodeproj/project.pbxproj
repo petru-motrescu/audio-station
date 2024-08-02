@@ -33,9 +33,9 @@
 /* Begin PBXFileReference section */
 		0A01D7892C4D9D6800E4B6DE /* noise.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = noise.hpp; sourceTree = "<group>"; };
 		0A01D78A2C4D9D7700E4B6DE /* noise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = noise.cpp; sourceTree = "<group>"; };
+		0A095EFA2C5D835F000CE889 /* playable.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = playable.hpp; sourceTree = "<group>"; };
+		0A095EFB2C5D835F000CE889 /* signal-source.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "signal-source.hpp"; sourceTree = "<group>"; };
 		0A4E96722C5D60FF00584FA3 /* sequencer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = sequencer.hpp; sourceTree = "<group>"; };
-		0A4E96732C5D60FF00584FA3 /* player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = player.hpp; sourceTree = "<group>"; };
-		0A4E96742C5D60FF00584FA3 /* generator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = generator.hpp; sourceTree = "<group>"; };
 		0A4E96752C5D611800584FA3 /* sequencer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sequencer.cpp; sourceTree = "<group>"; };
 		0A69E9432C5A413D004F4BAD /* envelope.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = envelope.cpp; sourceTree = "<group>"; };
 		0A7CED372C118A470020251E /* audio-station-c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "audio-station-c.h"; sourceTree = "<group>"; };
@@ -125,14 +125,14 @@
 				0A7CED3C2C118A470020251E /* effect.hpp */,
 				0A7CED3D2C118A470020251E /* envelope.hpp */,
 				0A7CED3E2C118A470020251E /* frequency.hpp */,
-				0A4E96742C5D60FF00584FA3 /* generator.hpp */,
 				0A7CED3F2C118A470020251E /* instrument.hpp */,
 				0A01D7892C4D9D6800E4B6DE /* noise.hpp */,
 				0A7CED402C118A470020251E /* note.hpp */,
 				0A7CED412C118A470020251E /* oscillator.hpp */,
-				0A4E96732C5D60FF00584FA3 /* player.hpp */,
+				0A095EFA2C5D835F000CE889 /* playable.hpp */,
 				0AAB8B1E2C1C399900365EC5 /* reverb.hpp */,
 				0A4E96722C5D60FF00584FA3 /* sequencer.hpp */,
+				0A095EFB2C5D835F000CE889 /* signal-source.hpp */,
 				0A7CED432C118A470020251E /* synth.hpp */,
 				0A7CED442C118A470020251E /* track.hpp */,
 				0A7CED452C118A470020251E /* utils.hpp */,

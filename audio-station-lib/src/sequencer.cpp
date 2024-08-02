@@ -57,7 +57,7 @@ void Sequencer::tick() {
         
         auto& old_step = impl->config.steps[this->impl->live_step_index];
         for (auto& output : impl->config.outputs) {
-            output->stop(old_step.note);
+            output->release(old_step.note);
         }
     }
 
@@ -69,6 +69,6 @@ void Sequencer::tick() {
 
     auto& new_step = impl->config.steps[this->impl->live_step_index];
     for (auto& output : impl->config.outputs) {
-        output->play(new_step.note);
+        output->trigger(new_step.note);
     }
 }

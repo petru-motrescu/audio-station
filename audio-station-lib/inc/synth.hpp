@@ -30,8 +30,8 @@ namespace audiostation {
         Synth(SynthConfig config);
         ~Synth();
         
-        void play(Note note) override;
-        void stop(Note note) override;
+        void trigger(Note note) override;
+        void release(Note note) override;
         bool is_note_live(Note note);
     
     // internal:

@@ -13,7 +13,7 @@ void audiostation::TestSuite::run_oscillator_tests() {
 
     test("Sine wave rendering", [] {
         Oscillator oscillator({ .wave = Wave::Sine, .amplitude = 1.0 });
-        oscillator.play();
+        oscillator.trigger();
 
         std::list<std::tuple<double, double, std::string>> triples {
             { 0.00000000000, PI/1, "pi/1" },
@@ -41,7 +41,7 @@ void audiostation::TestSuite::run_oscillator_tests() {
 
     test("Square wave rendering", [] {
         Oscillator oscillator({ .wave = Wave::Square, .amplitude = 1.0 });
-        oscillator.play();
+        oscillator.trigger();
 
         auto x = 0.00000001;
         std::list<std::tuple<double, double, std::string>> triples {
@@ -63,7 +63,7 @@ void audiostation::TestSuite::run_oscillator_tests() {
 
     test("Triangle wave rendering", [] {
         Oscillator oscillator({ .wave = Wave::Triangle, .amplitude = 1.0 });
-        oscillator.play();
+        oscillator.trigger();
 
         std::list<std::tuple<double, double, std::string>> triples {
             {  0.00000000000, 0.00 * PI, "0.00 * PI" },
@@ -110,7 +110,7 @@ void audiostation::TestSuite::run_oscillator_tests() {
         };
 
         Oscillator oscillator({ .frequency = 100, .amplitude = 1.0, .sample_rate = 800 });
-        oscillator.play();
+        oscillator.trigger();
 
         for (auto [current_phase, expected, message] : triples) {
             oscillator.set_phase(current_phase);
@@ -127,9 +127,9 @@ void audiostation::TestSuite::run_oscillator_tests() {
 
     test("Oscillator can play and stop", [] {
         Oscillator oscillator({});
-        oscillator.play();
+        oscillator.trigger();
         assert_equal(0, oscillator.render());
-        oscillator.stop();
+        oscillator.release();
         assert_equal(0, oscillator.render());
     });
 

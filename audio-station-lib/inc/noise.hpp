@@ -17,8 +17,8 @@ namespace audiostation {
         Noise(NoiseConfig config);
         ~Noise();
 
-        void play(Note note = Note::C4) override;
-        void stop(Note note = Note::C4) override;
+        void trigger(Note note = Note::C4) override;
+        void release(Note note = Note::C4) override;
         double render() override;
 
     private:

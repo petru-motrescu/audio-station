@@ -26,8 +26,8 @@ namespace audiostation {
         Oscillator(Oscillator&& other);
         ~Oscillator();
 
-        void play(Note note = Note::C4) override;
-        void stop(Note note = Note::C4) override;
+        void trigger(Note note = Note::C4) override;
+        void release(Note note = Note::C4) override;
         void set_amplitude(double amplitude);
         void set_frequency(double frequency);
         void set_phase(double phase);
