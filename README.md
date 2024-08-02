@@ -18,9 +18,9 @@ void run_track_demo() {
     station.init();
 
     Drum kick({
-        .attack = { .wave = Wave::Triangle, .frequency = 150, .amplitude = 0.3 },
-        .release = { .wave = Wave::Sine, .frequency = 30, .amplitude = 1.0 },
-        .duration = 150,
+        .attack = { .wave = Wave::Triangle, .frequency = Frequency::A2, .amplitude = 0.5 },
+        .release = { .wave = Wave::Sine, .frequency = Frequency::B0, .amplitude = 1.0 },
+        .duration = 200,
     });
 
     Drum click({
@@ -29,15 +29,12 @@ void run_track_demo() {
         .duration = 100,
     });
 
-    Drum hihat({
-        .attack = { .wave = Wave::Noise, .amplitude = 0.1 },
-        .release = { .wave = Wave::Noise, .amplitude = 0.1 },
-        .duration = 150,
-    });
+    Noise hihat({ .amplitude = 0.1 });
 
     Synth bass({
         .wave = Wave::Triangle,
-        .amplitude = 0.6,
+        .amplitude = 0.4,
+        .harmonics = 0,
         .envelope = {
             .attack_duration = 5, 
             .decay_duration = 20, 
@@ -46,19 +43,31 @@ void run_track_demo() {
         }
     });
 
+    Synth lead({
+        .wave = Wave::Sine,
+        .amplitude = 0.2,
+        .harmonics = 0,
+        .envelope = {
+            .attack_duration = 5, 
+            .decay_duration = 5, 
+            .sustain_level = 1.0, 
+            .release_duration = 40
+        }
+    });
+
+    Delay delay({ .time = 80, .level = 0.6, .feedback = 0.75 });
+    Reverb reverb;
+
     TrackLane kick_lane = build_kick_lane(kick);
-    TrackLane click_lane = build_click_lane(click);
+    TrackLane click_lane = build_click_lane(click, delay);
     TrackLane hihat_lane = build_hihat_lane(hihat);
     TrackLane bass_lane = build_bass_lane(bass);
+    TrackLane lead_lane = build_lead_lane(lead, reverb);
 
-    Track track { 
-        .lanes = { 
-            &kick_lane, &click_lane, &hihat_lane, &bass_lane
-        }
-    };
+    Track track({ .lanes = { &kick_lane, &click_lane, &hihat_lane, &bass_lane, &lead_lane } });
 
     station.play(&track);
-    sleep(5000);
+    sleep(9000);
 
     station.stop();
 }
@@ -87,6 +96,7 @@ Articles:
 - [A Generalized Introduction to Modular Analogue Synthesis Concepts, by Kevin Austin](https://econtact.ca/17_4/austin_synthesis.html)
 - [How To Get the Perfect Kick Drum Sound, by Output Mag](https://output.com/blog/get-perfect-kick-drum)
 - [A bit about reverb, by Nigel Redmon](https://www.earlevel.com/main/1997/01/19/a-bit-about-reverb/)
+- [Eurorack 101, by Intellijel](https://intellijel.com/support/eurorack-101/)
 
 Wikipedia:
 - [DAW](https://en.wikipedia.org/wiki/Digital_audio_workstation)
@@ -105,13 +115,14 @@ Books:
 - [Physical audio signal processing, by Julius Orion Smith III](https://ccrma.stanford.edu/~jos/pasp/pasp.html)
 - [Introduction to digital filters, by Julius Orion Smith III](https://ccrma.stanford.edu/~jos/filters/)
 
+Videos:
+- [Modular synths - Become an expert in 10mins, by The Crow Hill Company](https://www.youtube.com/watch?v=umkTjJ-Z6fs)
+
 Apple:
 - [Apple Audio](https://developer.apple.com/audio/)
 - [Apple Core Audio](https://developer.apple.com/library/archive/documentation/MusicAudio/Conceptual/CoreAudioOverview)
 - [Apple SceneKit](https://developer.apple.com/documentation/scenekit)
 
-
-https://www.youtube.com/watch?v=umkTjJ-Z6fs
 
 ### Disclaimer
 
