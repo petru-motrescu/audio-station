@@ -72,7 +72,7 @@ void audiostation::Synth::play(Note note) {
     auto& signal = this->impl->signals[signal_id];
     
     for (auto& oscilator : signal.oscillators) {
-        // TODO Reset oscillator phase
+        oscilator.set_phase(0);
         oscilator.play();
     }
     

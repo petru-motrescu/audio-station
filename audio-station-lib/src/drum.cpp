@@ -10,8 +10,6 @@ struct audiostation::DrumImpl {
     std::unique_ptr<Oscillator> attack_oscillator;
     std::unique_ptr<Oscillator> release_oscillator;
     double total_ticks = 0;
-    double attack_phase = 0;
-    double release_phase = 0;
     unsigned ticks_since_live = 0;
     bool live = false;
 };
@@ -31,10 +29,10 @@ audiostation::Drum::~Drum() {
 }
 
 void audiostation::Drum::play(Note note) {
+    this->impl->attack_oscillator->set_phase(0);
+    this->impl->release_oscillator->set_phase(0);
     this->impl->attack_oscillator->play();
     this->impl->release_oscillator->play();
-    this->impl->attack_phase = 0; // TODO Reset oscillator phase
-    this->impl->release_phase = 0; // TODO Reset oscillator phase
     this->impl->ticks_since_live = 0;
     this->impl->live = true;
 }

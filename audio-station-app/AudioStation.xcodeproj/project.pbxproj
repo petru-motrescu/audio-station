@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0A01D78B2C4D9D7700E4B6DE /* noise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A01D78A2C4D9D7700E4B6DE /* noise.cpp */; };
+		0A4E96762C5D611800584FA3 /* sequencer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A4E96752C5D611800584FA3 /* sequencer.cpp */; };
 		0A69E9442C5A413D004F4BAD /* envelope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A69E9432C5A413D004F4BAD /* envelope.cpp */; };
 		0A7CED522C118A470020251E /* audio-station-c.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CED482C118A470020251E /* audio-station-c.cpp */; };
 		0A7CED532C118A470020251E /* audio-station.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CED492C118A470020251E /* audio-station.cpp */; };
@@ -32,6 +33,10 @@
 /* Begin PBXFileReference section */
 		0A01D7892C4D9D6800E4B6DE /* noise.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = noise.hpp; sourceTree = "<group>"; };
 		0A01D78A2C4D9D7700E4B6DE /* noise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = noise.cpp; sourceTree = "<group>"; };
+		0A4E96722C5D60FF00584FA3 /* sequencer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = sequencer.hpp; sourceTree = "<group>"; };
+		0A4E96732C5D60FF00584FA3 /* player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = player.hpp; sourceTree = "<group>"; };
+		0A4E96742C5D60FF00584FA3 /* generator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = generator.hpp; sourceTree = "<group>"; };
+		0A4E96752C5D611800584FA3 /* sequencer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sequencer.cpp; sourceTree = "<group>"; };
 		0A69E9432C5A413D004F4BAD /* envelope.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = envelope.cpp; sourceTree = "<group>"; };
 		0A7CED372C118A470020251E /* audio-station-c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "audio-station-c.h"; sourceTree = "<group>"; };
 		0A7CED382C118A470020251E /* audio-station.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "audio-station.hpp"; sourceTree = "<group>"; };
@@ -120,11 +125,14 @@
 				0A7CED3C2C118A470020251E /* effect.hpp */,
 				0A7CED3D2C118A470020251E /* envelope.hpp */,
 				0A7CED3E2C118A470020251E /* frequency.hpp */,
+				0A4E96742C5D60FF00584FA3 /* generator.hpp */,
 				0A7CED3F2C118A470020251E /* instrument.hpp */,
 				0A01D7892C4D9D6800E4B6DE /* noise.hpp */,
 				0A7CED402C118A470020251E /* note.hpp */,
 				0A7CED412C118A470020251E /* oscillator.hpp */,
+				0A4E96732C5D60FF00584FA3 /* player.hpp */,
 				0AAB8B1E2C1C399900365EC5 /* reverb.hpp */,
+				0A4E96722C5D60FF00584FA3 /* sequencer.hpp */,
 				0A7CED432C118A470020251E /* synth.hpp */,
 				0A7CED442C118A470020251E /* track.hpp */,
 				0A7CED452C118A470020251E /* utils.hpp */,
@@ -146,6 +154,7 @@
 				0A7CED4C2C118A470020251E /* notes.cpp */,
 				0A7CED4D2C118A470020251E /* oscillator.cpp */,
 				0AAB8B1F2C1C39A700365EC5 /* reverb.cpp */,
+				0A4E96752C5D611800584FA3 /* sequencer.cpp */,
 				0A7CED4F2C118A470020251E /* synth.cpp */,
 				0A7CED502C118A470020251E /* track.cpp */,
 				0AAB8B202C1C39A700365EC5 /* utils.cpp */,
@@ -262,6 +271,7 @@
 				0A01D78B2C4D9D7700E4B6DE /* noise.cpp in Sources */,
 				0A7CED522C118A470020251E /* audio-station-c.cpp in Sources */,
 				0A7CED592C118A470020251E /* synth.cpp in Sources */,
+				0A4E96762C5D611800584FA3 /* sequencer.cpp in Sources */,
 				0A69E9442C5A413D004F4BAD /* envelope.cpp in Sources */,
 				0AF426822BE2D8650028C5B3 /* AppDelegate.swift in Sources */,
 				0AAB8B212C1C39A700365EC5 /* reverb.cpp in Sources */,
