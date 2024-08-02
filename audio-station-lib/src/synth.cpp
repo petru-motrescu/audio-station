@@ -76,7 +76,7 @@ void audiostation::Synth::play(Note note) {
         oscilator.play();
     }
     
-    signal.envelope.engage();
+    signal.envelope.trigger();
 }
 
 void audiostation::Synth::stop(Note note) {
@@ -106,11 +106,12 @@ double render_signal(SynthSignal& signal) {
         sample += oscillator.render();
     }
 
-    auto result = signal.envelope.render(sample);
+    auto amplitude = signal.envelope.render();
     if (!signal.envelope.is_live()) {
         for (auto& oscillator : signal.oscillators) {
             oscillator.stop();
         }
     };
-    return result;
+
+    return sample * amplitude;
 }

@@ -111,6 +111,8 @@ Apple:
 - [Apple SceneKit](https://developer.apple.com/documentation/scenekit)
 
 
+https://www.youtube.com/watch?v=umkTjJ-Z6fs
+
 ### Disclaimer
 
 _Educational & fun purpose only, no guarantees, no promises. Not connected to my employer._

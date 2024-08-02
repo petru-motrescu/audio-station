@@ -3,7 +3,7 @@
 
 #include <memory>
 #include "config.hpp"
-#include "effect.hpp"
+#include "generator.hpp"
 
 namespace audiostation {
 
@@ -17,7 +17,7 @@ namespace audiostation {
 
     struct EnvelopeImpl;
 
-    class Envelope {
+    class Envelope : public Generator {
     public:
         Envelope(EnvelopeConfig config);
         Envelope(const Envelope& other);
@@ -25,10 +25,10 @@ namespace audiostation {
         Envelope& operator=(Envelope&& other);
         virtual ~Envelope();
 
-        void engage();
+        void trigger();
         void release();
         bool is_live() const;
-        double render(double sample);
+        double render() override;
     
     private:
         std::unique_ptr<EnvelopeImpl> impl;

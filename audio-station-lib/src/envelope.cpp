@@ -41,7 +41,7 @@ Envelope::~Envelope() {
     this->impl.reset();
 }
 
-void Envelope::engage() {
+void Envelope::trigger() {
     this->impl->ticks_since_live = 0;
     this->impl->ticks_at_release = 0;
     this->impl->is_live = true;
@@ -55,27 +55,27 @@ bool Envelope::is_live() const {
     return this->impl->is_live;
 }
 
-double Envelope::render(double sample) {
+double Envelope::render() {
     const auto& impl = this->impl;
-    double new_sample = 0;
+    double voltage = 0;
 
     if (impl->ticks_since_live < impl->attack_ticks) {
-        new_sample = sample * impl->ticks_since_live / impl->attack_ticks;
+        voltage = impl->ticks_since_live / impl->attack_ticks;
     } else if (impl->ticks_since_live < (impl->attack_ticks + impl->decay_ticks)) {
         auto ticks = impl->ticks_since_live - impl->attack_ticks;
         auto ratio = ticks / impl->decay_ticks;
-        new_sample = (1 - ratio + ratio * impl->sustain_level) * sample;
+        voltage = (1 - ratio + ratio * impl->sustain_level);
     } else if (impl->ticks_at_release == 0) {
-        new_sample = impl->sustain_level * sample;
+        voltage = impl->sustain_level;
     } else if (impl->ticks_since_live < (impl->ticks_at_release + impl->release_ticks)) {
         auto ticks = impl->ticks_since_live - impl->ticks_at_release;
-        new_sample = (1 - ticks / impl->release_ticks) * impl->sustain_level * sample;
+        voltage = (1 - ticks / impl->release_ticks) * impl->sustain_level;
     } else {
         this->impl->is_live = false;
-        new_sample = 0;
+        voltage = 0;
     }
 
     impl->ticks_since_live++;
 
-    return new_sample;
+    return voltage;
 }
