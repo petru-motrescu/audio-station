@@ -28,13 +28,13 @@ void sleep(int milliseconds) {
     std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
 }
 
-TrackLane build_kick_lane(Drum& kick) {
+Track build_kick_track(Drum& kick) {
     std::vector<TrackNote> kick_notes = { 
         { .pos = 0 * bar }, 
         { .pos = 2 * bar + half },
     };
 
-    TrackLane kick_lane = {
+    Track kick_track = {
         .label = "Kick",
         .instrument = &kick,
         .blocks = {
@@ -45,15 +45,15 @@ TrackLane build_kick_lane(Drum& kick) {
         }
     };
 
-    return kick_lane;
+    return kick_track;
 }
 
-TrackLane build_click_lane(Drum& click, Delay& delay) {
+Track build_click_track(Drum& click, Delay& delay) {
     std::vector<TrackNote> click_notes = { 
         { .pos = 2 * bar }
     };
     
-    TrackLane click_lane = {
+    Track click_track = {
         .label = "Click",
         .instrument = &click,
         .effects = { &delay },
@@ -63,16 +63,16 @@ TrackLane build_click_lane(Drum& click, Delay& delay) {
         }
     };
 
-    return click_lane;
+    return click_track;
 }
 
-TrackLane build_hihat_lane(Noise& hihat) {
+Track build_hihat_track(Noise& hihat) {
     std::vector<TrackNote> hihat_notes = { 
         { .pos = 1 * bar + half, .len = 1 * eighth },
         { .pos = 3 * bar + half, .len = 1 * eighth },
     };
 
-    TrackLane hihat_lane = {
+    Track hihat_track = {
         .label = "Hihat",
         .instrument = &hihat,
         .blocks = {
@@ -81,10 +81,10 @@ TrackLane build_hihat_lane(Noise& hihat) {
         }
     };
 
-    return hihat_lane;
+    return hihat_track;
 }
 
-TrackLane build_bass_lane(Synth& bass) {
+Track build_bass_track(Synth& bass) {
     std::vector<TrackNote> bass_notes = {
         { .pos = 2 * bar + half, .len = 3 * quart, .note = Note::C2 },
         { .pos = 3 * bar + 1 * quart, .len = 1 * quart, .note = Note::A1 },
@@ -92,7 +92,7 @@ TrackLane build_bass_lane(Synth& bass) {
         { .pos = 3 * bar + 3 * quart, .len = 1 * eighth, .note = Note::A1 },
     };
 
-    TrackLane bass_lane = {
+    Track bass_track = {
         .label = "Bass",
         .instrument = &bass,
         .blocks = {
@@ -103,15 +103,15 @@ TrackLane build_bass_lane(Synth& bass) {
         }
     };
 
-    return bass_lane;
+    return bass_track;
 }
 
-TrackLane build_lead_lane(Synth& lead, Reverb& reverb) {
+Track build_lead_track(Synth& lead, Reverb& reverb) {
     std::vector<TrackNote> notes = {
         { .pos = 0 * bar, .len = 1 * eighth, .note = Note::B3 },
     };
 
-    TrackLane lane = {
+    Track track = {
         .label = "Lead",
         .instrument = &lead,
         .effects = { &reverb },
@@ -120,7 +120,7 @@ TrackLane build_lead_lane(Synth& lead, Reverb& reverb) {
         }
     };
 
-    return lane;
+    return track;
 }
 
 void run_song_demo() {
@@ -168,13 +168,13 @@ void run_song_demo() {
     Delay delay({ .time = 80, .level = 0.6, .feedback = 0.75 });
     Reverb reverb;
 
-    TrackLane kick_lane = build_kick_lane(kick);
-    TrackLane click_lane = build_click_lane(click, delay);
-    TrackLane hihat_lane = build_hihat_lane(hihat);
-    TrackLane bass_lane = build_bass_lane(bass);
-    TrackLane lead_lane = build_lead_lane(lead, reverb);
+    Track kick_track = build_kick_track(kick);
+    Track click_track = build_click_track(click, delay);
+    Track hihat_track = build_hihat_track(hihat);
+    Track bass_track = build_bass_track(bass);
+    Track lead_track = build_lead_track(lead, reverb);
 
-    Project project({ .lanes = { &kick_lane, &click_lane, &hihat_lane, &bass_lane, &lead_lane } });
+    Project project({ .tracks = { &kick_track, &click_track, &hihat_track, &bass_track, &lead_track } });
 
     station.play(&project);
     sleep(9000);
@@ -224,13 +224,13 @@ void run_delay_demo() {
         .level = 0.75
     });
 
-    TrackLane lane = {
+    Track track = {
         .label = "Drum",
         .instrument = &drum,
         .effects = { &delay }
     };
 
-    Project project({ .lanes = { &lane } });
+    Project project({ .tracks = { &track } });
 
     AudioStation station;
     station.init();
@@ -268,9 +268,9 @@ void run_reverb_demo() {
     });
 
     Reverb reverb;
-    TrackLane lane_1 = { .label = "1", .instrument = &synth_1 };
-    TrackLane lane_2 = { .label = "2", .instrument = &synth_2, .effects = { &reverb } };
-    Project project({ .lanes = { &lane_1, &lane_2 } });
+    Track track_1 = { .label = "1", .instrument = &synth_1 };
+    Track track_2 = { .label = "2", .instrument = &synth_2, .effects = { &reverb } };
+    Project project({ .tracks = { &track_1, &track_2 } });
     AudioStation station;
     station.init();
     station.play(&project);
@@ -293,9 +293,9 @@ void run_reverb_demo() {
 void run_sequencer_demo() {
     Drum drum;
     Sequencer sequencer({ .outputs = { &drum } });
-    TrackLane lane = { .instrument = &drum };
+    Track track = { .instrument = &drum };
     Project project({ 
-        .lanes = { &lane },
+        .tracks = { &track },
         .sequencers = { &sequencer }
     });
 

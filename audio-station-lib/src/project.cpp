@@ -15,14 +15,14 @@ double Project::render() {
         sequencer->tick();
     }
 
-    for (auto& lane : this->config.lanes) {
-        for (auto& block : lane->blocks) {
+    for (auto& track : this->config.tracks) {
+        for (auto& block : track->blocks) {
             for (auto& note : block.notes) {
                 if ((note.pos + block.pos) == this->tick) {
-                    lane->instrument->trigger(note.note);
+                    track->instrument->trigger(note.note);
                 }
                 if ((note.pos + note.len + block.pos) == this->tick) {
-                    lane->instrument->release(note.note);
+                    track->instrument->release(note.note);
                 }
             }
         }
@@ -30,10 +30,10 @@ double Project::render() {
 
     double sample = 0;
     
-    for (auto& lane : this->config.lanes) {
-        double instrument_sample = lane->instrument->render();
+    for (auto& track : this->config.tracks) {
+        double instrument_sample = track->instrument->render();
         sample += instrument_sample;
-        for (auto& effect : lane->effects) {
+        for (auto& effect : track->effects) {
             sample += effect->render(instrument_sample);
         }
     }

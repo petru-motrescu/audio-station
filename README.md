@@ -58,13 +58,13 @@ void run_song_demo() {
     Delay delay({ .time = 80, .level = 0.6, .feedback = 0.75 });
     Reverb reverb;
 
-    TrackLane kick_lane = build_kick_lane(kick);
-    TrackLane click_lane = build_click_lane(click, delay);
-    TrackLane hihat_lane = build_hihat_lane(hihat);
-    TrackLane bass_lane = build_bass_lane(bass);
-    TrackLane lead_lane = build_lead_lane(lead, reverb);
+    Track kick_track = build_kick_track(kick);
+    Track click_track = build_click_track(click, delay);
+    Track hihat_track = build_hihat_track(hihat);
+    Track bass_track = build_bass_track(bass);
+    Track lead_track = build_lead_track(lead, reverb);
 
-    Project project({ .lanes = { &kick_lane, &click_lane, &hihat_lane, &bass_lane, &lead_lane } });
+    Project project({ .tracks = { &kick_track, &click_track, &hihat_track, &bass_track, &lead_track } });
 
     station.play(&project);
     sleep(9000);

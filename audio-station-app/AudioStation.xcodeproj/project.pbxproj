@@ -61,6 +61,7 @@
 		0AAB8B1E2C1C399900365EC5 /* reverb.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = reverb.hpp; sourceTree = "<group>"; };
 		0AAB8B1F2C1C39A700365EC5 /* reverb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = reverb.cpp; sourceTree = "<group>"; };
 		0AAB8B202C1C39A700365EC5 /* utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utils.cpp; sourceTree = "<group>"; };
+		0AB2A19C2C5EA82D00D26722 /* tick.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = tick.hpp; sourceTree = "<group>"; };
 		0ABBE03B2BE554D100803057 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		0ABBE03D2BE554D800803057 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		0ACCF87D2C5E1BE60015713F /* audio-signal-source.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "audio-signal-source.hpp"; sourceTree = "<group>"; };
@@ -141,6 +142,7 @@
 				0AAB8B1E2C1C399900365EC5 /* reverb.hpp */,
 				0A4E96722C5D60FF00584FA3 /* sequencer.hpp */,
 				0A7CED432C118A470020251E /* synth.hpp */,
+				0AB2A19C2C5EA82D00D26722 /* tick.hpp */,
 				0A7CED452C118A470020251E /* utils.hpp */,
 				0A7CED462C118A470020251E /* wave.hpp */,
 			);

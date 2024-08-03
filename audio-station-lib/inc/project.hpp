@@ -27,7 +27,7 @@ namespace audiostation {
         Tick pos = 0;
     };
 
-    struct TrackLane {
+    struct Track {
         std::string label;
         Instrument* instrument;
         std::vector<Effect*> effects;
@@ -35,7 +35,7 @@ namespace audiostation {
     };
 
     struct ProjectConfig {
-        std::vector<TrackLane*> lanes;
+        std::vector<Track*> tracks;
         std::vector<Sequencer*> sequencers;
     };
 
