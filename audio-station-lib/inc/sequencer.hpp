@@ -27,7 +27,7 @@ namespace audiostation {
     };
 
     struct SequencerConfig {
-        std::vector<Playable*> outputs;
+        Playable* output = nullptr;
         std::vector<SequenceBlock> blocks = { SequenceBlock() };
         bool loop_enabled = true;
         Tick loop_length = Config::SAMPLE_RATE;
@@ -47,7 +47,8 @@ namespace audiostation {
 
         void trigger();
         bool is_live() const;
-        void tick();
+        void render();
+        void render(Playable& output);
 
     private:
         std::unique_ptr<SequencerImpl> impl;

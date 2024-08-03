@@ -12,7 +12,7 @@ Project::Project(ProjectConfig config) {
 
 double Project::render() {
     for (auto& sequencer : this->config.sequencers) {
-        sequencer->tick();
+        sequencer->render();
     }
 
     for (auto& track : this->config.tracks) {

@@ -6,18 +6,6 @@ using namespace audiostation;
 struct audiostation::SequencerImpl {
     SequencerConfig config;
     Tick tick = 0;
-
-    inline void trigger(Note note) {
-        for (auto& output : config.outputs) {
-            output->trigger(note);
-        }
-    }
-
-    inline void release(Note note) {
-        for (auto& output : config.outputs) {
-            output->release(note);
-        }
-    }
 };
 
 Sequencer::Sequencer() : Sequencer(SequencerConfig()) { }
@@ -61,14 +49,20 @@ bool Sequencer::is_live() const {
     return true; // TODO
 }
 
-void Sequencer::tick() {
+void Sequencer::render() {
+    if (this->impl->config.output != nullptr) {
+        render(*this->impl->config.output);
+    }
+}
+
+void Sequencer::render(Playable& output) {
     for (auto& block : this->impl->config.blocks) {
         for (auto& note : block.notes) {
             if ((note.offset + block.offset) == this->impl->tick) {
-                this->impl->trigger(note.note);
+                output.trigger(note.note);
             }
             if ((note.offset + note.length + block.offset) == this->impl->tick) {
-                this->impl->release(note.note);
+                output.release(note.note);
             }
         }
     }

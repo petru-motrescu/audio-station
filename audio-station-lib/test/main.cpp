@@ -292,7 +292,7 @@ void run_reverb_demo() {
 
 void run_sequencer_demo() {
     Drum drum;
-    Sequencer sequencer({ .outputs = { &drum } });
+    Sequencer sequencer({ .output = &drum });
     Track track = { .instrument = &drum };
     Project project({ 
         .tracks = { &track },
@@ -315,6 +315,6 @@ int main() {
     // run_oscillator_demo();
     // run_delay_demo();
     // run_reverb_demo();
-    // run_sequencer_demo();
+    run_sequencer_demo();
     return 0;
 }
