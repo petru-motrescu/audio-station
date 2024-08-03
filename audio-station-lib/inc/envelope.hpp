@@ -3,7 +3,7 @@
 
 #include <memory>
 #include "config.hpp"
-#include "signal-source.hpp"
+#include "audio-signal-source.hpp"
 
 namespace audiostation {
 
@@ -17,7 +17,7 @@ namespace audiostation {
 
     struct EnvelopeImpl;
 
-    class Envelope : public SignalSource {
+    class Envelope : public AudioSignalSource {
     public:
         Envelope(EnvelopeConfig config);
         Envelope(const Envelope& other);

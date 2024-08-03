@@ -3,7 +3,7 @@
 
 #include <memory>
 #include <vector>
-#include "signal-source.hpp"
+#include "audio-signal-source.hpp"
 
 namespace audiostation {
 
@@ -15,7 +15,7 @@ namespace audiostation {
         ~AudioStation();
 
         void init();
-        void play(SignalSource* source);
+        void play(AudioSignalSource* source);
         void stop();
 
     private:

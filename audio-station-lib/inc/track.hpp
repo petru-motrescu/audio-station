@@ -5,10 +5,10 @@
 #include <vector>
 #include <unordered_map>
 #include "audio-sample.hpp"
+#include "audio-signal-source.hpp"
 #include "effect.hpp"
 #include "instrument.hpp"
 #include "sequencer.hpp"
-#include "signal-source.hpp"
 #include "note.hpp"
 
 namespace audiostation {
@@ -40,7 +40,7 @@ namespace audiostation {
         std::vector<Sequencer*> sequencers;
     };
 
-    class Track : public SignalSource {
+    class Track : public AudioSignalSource {
     public:
         Track();
         Track(TrackConfig config);
