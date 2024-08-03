@@ -22,7 +22,7 @@ static OSStatus render_audio(
     AudioBufferList* buffers
 ) {
     // ⚠️ No locks and no IO allowed here.
-
+    
     AudioStationImpl* station = (AudioStationImpl*) client_data;
     if (station->audio_signal_source == nullptr) {
         return 0;

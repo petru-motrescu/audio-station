@@ -36,7 +36,6 @@ namespace audiostation {
 
     struct ProjectConfig {
         std::vector<TrackLane*> lanes;
-        std::vector<Instrument*> live_instruments;
         std::vector<Sequencer*> sequencers;
     };
 
@@ -44,7 +43,6 @@ namespace audiostation {
     public:
         Project();
         Project(ProjectConfig config);
-        void add_live_instrument(Instrument* instrument);
         AudioSample render() override;
     
     private:

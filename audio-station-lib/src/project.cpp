@@ -10,10 +10,6 @@ Project::Project(ProjectConfig config) {
     this->config = config;
 }
 
-void Project::add_live_instrument(Instrument* instrument) {
-    this->config.live_instruments.push_back(instrument);
-}
-
 double Project::render() {
     for (auto& sequencer : this->config.sequencers) {
         sequencer->tick();
@@ -40,11 +36,6 @@ double Project::render() {
         for (auto& effect : lane->effects) {
             sample += effect->render(instrument_sample);
         }
-    }
-    
-    // TODO Remove live_instruments
-    for (auto& live_instrument : this->config.live_instruments) {
-        sample += live_instrument->render();
     }
 
     this->tick += 1;

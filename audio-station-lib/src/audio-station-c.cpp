@@ -12,12 +12,12 @@ AudioStationHandle audio_station_init() {
     return reinterpret_cast<AudioStationHandle>(station);
 }
 
-void audio_station_play(AudioStationHandle handle, ProjectHandle project) {
-    reinterpret_cast<AudioStation*>(handle)->play(reinterpret_cast<Project*>(project));
+void audio_station_play(AudioStationHandle audio_station, SynthHandle synth) {
+    reinterpret_cast<AudioStation*>(audio_station)->play(reinterpret_cast<Synth*>(synth));
 }
 
-void audio_station_dispose(AudioStationHandle handle) {
-    auto station = reinterpret_cast<AudioStation*>(handle);
+void audio_station_dispose(AudioStationHandle audio_station) {
+    auto station = reinterpret_cast<AudioStation*>(audio_station);
     station->stop();
     delete station;
 }
@@ -38,16 +38,4 @@ void synth_stop_note(SynthHandle synth, int note) {
 
 void synth_dispose(SynthHandle synth) {
     delete reinterpret_cast<Synth*>(synth);
-}
-
-ProjectHandle project_init() {
-    return reinterpret_cast<ProjectHandle>(new Project());
-}
-
-void project_add_synth(ProjectHandle project, SynthHandle synth) {
-    reinterpret_cast<Project*>(project)->add_live_instrument(reinterpret_cast<Synth*>(synth));
-}
-
-void project_dispose(ProjectHandle project) {
-    delete reinterpret_cast<Project*>(project);
 }
