@@ -310,7 +310,7 @@ void run_sequencer_demo() {
 int main() {
     TestSuite test_suite;
     test_suite.run_tests();
-    run_song_demo();
+    // run_song_demo();
     // run_noise_demo();
     // run_oscillator_demo();
     // run_delay_demo();

@@ -13,25 +13,34 @@ struct DummyPlayable : public Playable {
         this->calls.push_back(std::make_pair(note, false));
     };
 
+    void debug() {
+        for (auto& call : calls) {
+            std::cout << Notes::to_string(call.first) << " : " << call.second << ", ";
+        }
+
+        std::cout << std::endl;
+    }
+
     std::vector<std::pair<Note, bool>> calls;
 };
 
 void audiostation::TestSuite::run_sequencer_tests() {
 
-    test("Sequencer step hold", [] {
+    test("Sequencer note hold", [] {
         DummyPlayable playable;
         Sequencer sequencer({ 
             .outputs = { &playable },
-            .step_duration = 1,
-            .steps = {
-                { .note = Note::C1, .level = 1.0 },
-                { .note = Note::C2, .level = 1.0 },
+            .blocks = {
+                SequenceBlock({
+                    .notes = {
+                        SequenceNote({ .note = Note::C1, .length = 2, .offset = 0 }),
+                        SequenceNote({ .note = Note::C2, .length = 2, .offset = 2 })
+                    }
+                })
             },
-            .sample_rate = 3000 // so that we get 3 ticks per step
         });
 
         sequencer.trigger();
-        sequencer.tick();
         sequencer.tick();
         sequencer.tick();
 
@@ -42,20 +51,21 @@ void audiostation::TestSuite::run_sequencer_tests() {
         assert_equal<std::pair<Note, bool>>(expected_calls, playable.calls);
     });
 
-    test("Sequencer step change", [] {
+    test("Sequencer note change", [] {
         DummyPlayable playable;
         Sequencer sequencer({ 
             .outputs = { &playable },
-            .step_duration = 1,
-            .steps = {
-                { .note = Note::C1, .level = 1.0 },
-                { .note = Note::C2, .level = 1.0 },
+            .blocks = {
+                SequenceBlock({
+                    .notes = {
+                        SequenceNote({ .note = Note::C1, .length = 2, .offset = 0 }),
+                        SequenceNote({ .note = Note::C2, .length = 2, .offset = 2 })
+                    }
+                })
             },
-            .sample_rate = 3000 // so that we get 3 ticks per step
         });
 
         sequencer.trigger();
-        sequencer.tick();
         sequencer.tick();
         sequencer.tick();
         sequencer.tick();
@@ -69,20 +79,61 @@ void audiostation::TestSuite::run_sequencer_tests() {
         assert_equal<std::pair<Note, bool>>(expected_calls, playable.calls);
     });
 
-    test("Sequencer step loop", [] {
-        DummyPlayable playable1;
-        DummyPlayable playable2;
+    test("Sequencer loop of illegal length", [] {
+        bool exception_thrown = false;
+        try {
+            Sequencer sequencer({ 
+                .loop_enabled = true,
+                .loop_length = 1,
+            });
+        }
+        catch (...) {
+            exception_thrown = true;
+        }
+
+        assert_true(exception_thrown);
+    });
+
+    test("Sequencer loop of minimum length", [] {
+        DummyPlayable playable;
         Sequencer sequencer({ 
-            .outputs = { &playable1, &playable2 },
-            .step_duration = 1,
-            .steps = {
-                { .note = Note::C1, .level = 1.0 },
-                { .note = Note::C2, .level = 1.0 },
-            },
-            .sample_rate = 1000 // so that we get 1 tick per step
+            .outputs = { &playable },
+            .blocks = { SequenceBlock({ .notes = { SequenceNote() } }) },
+            .loop_enabled = true,
+            .loop_length = 2
         });
 
         sequencer.trigger();
+        sequencer.tick();
+        sequencer.tick();
+        sequencer.tick();
+
+        std::vector<std::pair<Note, bool>> expected_calls({
+            std::make_pair(Note::C4, true),
+            std::make_pair(Note::C4, false),
+            std::make_pair(Note::C4, true),
+        });
+
+        assert_equal<std::pair<Note, bool>>(expected_calls, playable.calls);
+    });
+
+    test("Sequencer loop of 2 notes", [] {
+        DummyPlayable playable;
+        Sequencer sequencer({ 
+            .outputs = { &playable },
+            .blocks = {
+                SequenceBlock({
+                    .notes = {
+                        SequenceNote({ .note = Note::C1, .offset = 0 }),
+                        SequenceNote({ .note = Note::C2, .offset = 1 })
+                    }
+                })
+            },
+            .loop_length = 3
+        });
+
+        sequencer.trigger();
+        sequencer.tick();
         sequencer.tick();
         sequencer.tick();
         sequencer.tick();
@@ -95,8 +146,7 @@ void audiostation::TestSuite::run_sequencer_tests() {
             std::make_pair(Note::C1, true),
         });
 
-        assert_equal<std::pair<Note, bool>>(expected_calls, playable1.calls);
-        assert_equal<std::pair<Note, bool>>(expected_calls, playable2.calls);
+        assert_equal<std::pair<Note, bool>>(expected_calls, playable.calls);
     });
 
 }

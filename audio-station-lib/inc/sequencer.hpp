@@ -6,27 +6,32 @@
 #include "config.hpp"
 #include "note.hpp"
 #include "playable.hpp"
+#include "tick.hpp"
 
 namespace audiostation {
 
-    struct SequenceStep {
-        Note note;
-        double level;
+    struct SequenceNote {
+        Note note = Note::C4;
+        Tick offset = 0;
+        Tick length = 1;
+        double level = 1.0;
+    };
+
+    struct SequenceBlock {
+        std::vector<SequenceNote> notes = {
+            { .note = Note::C4 },
+            { .note = Note::A4, .offset = Config::SAMPLE_RATE / 2 },
+        };
+
+        Tick offset = 0;
     };
 
     struct SequencerConfig {
         std::vector<Playable*> outputs;
-
-        std::vector<SequenceStep> steps = {
-            { .note = Note::C4, .level = 1.0 },
-            { .note = Note::C4, .level = 1.0 },
-            { .note = Note::C4, .level = 1.0 },
-            { .note = Note::C4, .level = 1.0 },
-        };
-
-        unsigned step_duration = 500; // TODO Use std::chrono::duration
-
-        unsigned sample_rate = Config::SAMPLE_RATE;
+        std::vector<SequenceBlock> blocks = { SequenceBlock() };
+        bool loop_enabled = true;
+        Tick loop_length = Config::SAMPLE_RATE;
+        Tick sample_rate = Config::SAMPLE_RATE;
     };
 
     struct SequencerImpl;

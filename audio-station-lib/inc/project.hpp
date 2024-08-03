@@ -10,11 +10,11 @@
 #include "instrument.hpp"
 #include "sequencer.hpp"
 #include "note.hpp"
+#include "tick.hpp"
 
 namespace audiostation {
 
     using Bar = unsigned;
-    using Tick = unsigned;
 
     struct TrackNote {
         Note note = Note::C4;
