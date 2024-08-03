@@ -21,7 +21,7 @@ namespace audiostation {
             .frequency = Frequency::B0, 
             .amplitude = 1.0
         };
-        double duration = 200;
+        unsigned duration = 200;
     };
 
     struct DrumImpl;

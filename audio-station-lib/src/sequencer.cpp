@@ -16,7 +16,7 @@ Sequencer::Sequencer(SequencerConfig config) {
     if (config.loop_enabled) {
         require(
             config.loop_length >= 2, 
-            "The minimum loop length is 2 ticks. "
+            "The minimum loop length of a sequencer is 2 ticks. "
             "A second tick is needed to release a triggered note."
         );
     }

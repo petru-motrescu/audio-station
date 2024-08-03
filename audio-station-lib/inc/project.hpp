@@ -14,25 +14,11 @@
 
 namespace audiostation {
 
-    using Bar = unsigned;
-
-    struct TrackNote {
-        Note note = Note::C4;
-        Tick pos = 0;
-        Tick len = 1;
-    };
-
-    struct TrackBlock {
-        std::vector<TrackNote> notes;
-        Tick pos = 0;
-    };
-
     struct Track {
         std::string label;
         Sequencer* sequencer;
         Instrument* instrument;
         std::vector<Effect*> effects;
-        std::vector<TrackBlock> blocks;
     };
 
     struct ProjectConfig {

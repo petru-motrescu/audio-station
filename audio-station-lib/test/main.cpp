@@ -21,9 +21,9 @@
 using namespace audiostation;
 
 constexpr unsigned bar = Config::SAMPLE_RATE / 2;
-constexpr unsigned half = Config::SAMPLE_RATE / 4;
-constexpr unsigned quart = Config::SAMPLE_RATE / 8; // 5512,5
-constexpr unsigned eighth = Config::SAMPLE_RATE / 16;
+constexpr unsigned half = bar / 2;
+constexpr unsigned quart = bar / 4;
+constexpr unsigned eighth = bar / 8;
 
 void sleep(int milliseconds) {
     std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
@@ -218,7 +218,6 @@ void run_delay_demo() {
     });
 
     Track track = {
-        .label = "Drum",
         .instrument = &drum,
         .effects = { &delay }
     };
@@ -240,7 +239,8 @@ void run_delay_demo() {
 void run_reverb_demo() {
     unsigned note_duration = (unsigned) 16 * M_PI;
 
-    Synth synth_1({
+    SynthConfig config({
+        .wave = Wave::Triangle,
         .amplitude = 0.4,
         .envelope = {
             .attack_duration = 0, 
@@ -250,19 +250,12 @@ void run_reverb_demo() {
         }
     });
 
-    Synth synth_2({
-        .amplitude = 0.4,
-        .envelope = {
-            .attack_duration = 0, 
-            .decay_duration = 0, 
-            .sustain_level = 1.0,
-            .release_duration = note_duration
-        }
-    });
+    Synth synth_1(config);
+    Synth synth_2(config);
 
     Reverb reverb;
-    Track track_1 = { .label = "1", .instrument = &synth_1 };
-    Track track_2 = { .label = "2", .instrument = &synth_2, .effects = { &reverb } };
+    Track track_1 = { .instrument = &synth_1 };
+    Track track_2 = { .instrument = &synth_2, .effects = { &reverb } };
     Project project({ .tracks = { &track_1, &track_2 } });
     AudioStation station;
     station.init();
@@ -299,10 +292,10 @@ void run_sequencer_demo() {
 int main() {
     TestSuite test_suite;
     test_suite.run_tests();
-    run_song_demo();
+    // run_song_demo();
     // run_noise_demo();
     // run_oscillator_demo();
-    // run_delay_demo();
+    run_delay_demo();
     // run_reverb_demo();
     // run_sequencer_demo();
     return 0;
