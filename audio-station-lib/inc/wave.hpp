@@ -7,7 +7,6 @@ namespace audiostation {
         Sine = 0,
         Square = 1,
         Triangle = 2,
-        Noise = 3,
     };
 }
 
