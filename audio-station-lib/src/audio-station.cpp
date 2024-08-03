@@ -4,7 +4,6 @@
 #include <AudioToolbox/AudioToolbox.h>
 #include "audio-station.hpp"
 #include "config.hpp"
-#include "track.hpp"
 using namespace audiostation;
 
 constexpr unsigned SIZE_OF_DOUBLE = sizeof(double);

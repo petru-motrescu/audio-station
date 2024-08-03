@@ -1,20 +1,20 @@
 #include <iostream>
 #include "oscillator.hpp"
+#include "project.hpp"
 #include "synth.hpp"
-#include "track.hpp"
 using namespace audiostation;
 
-Track::Track() : Track(TrackConfig()) {}
+Project::Project() : Project(ProjectConfig()) {}
 
-Track::Track(TrackConfig config) {
+Project::Project(ProjectConfig config) {
     this->config = config;
 }
 
-void audiostation::Track::add_live_instrument(Instrument* instrument) {
+void Project::add_live_instrument(Instrument* instrument) {
     this->config.live_instruments.push_back(instrument);
 }
 
-double audiostation::Track::render() {
+double Project::render() {
     for (auto& sequencer : this->config.sequencers) {
         sequencer->tick();
     }

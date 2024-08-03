@@ -13,9 +13,9 @@
 #include "frequency.hpp"
 #include "noise.hpp"
 #include "oscillator.hpp"
+#include "project.hpp"
 #include "reverb.hpp"
 #include "synth.hpp"
-#include "track.hpp"
 #include "test-suite.hpp"
 using namespace audiostation;
 
@@ -123,7 +123,7 @@ TrackLane build_lead_lane(Synth& lead, Reverb& reverb) {
     return lane;
 }
 
-void run_track_demo() {
+void run_song_demo() {
     AudioStation station;
     station.init();
 
@@ -174,9 +174,9 @@ void run_track_demo() {
     TrackLane bass_lane = build_bass_lane(bass);
     TrackLane lead_lane = build_lead_lane(lead, reverb);
 
-    Track track({ .lanes = { &kick_lane, &click_lane, &hihat_lane, &bass_lane, &lead_lane } });
+    Project project({ .lanes = { &kick_lane, &click_lane, &hihat_lane, &bass_lane, &lead_lane } });
 
-    station.play(&track);
+    station.play(&project);
     sleep(9000);
 
     station.stop();
@@ -230,11 +230,11 @@ void run_delay_demo() {
         .effects = { &delay }
     };
 
-    Track track({ .lanes = { &lane } });
+    Project project({ .lanes = { &lane } });
 
     AudioStation station;
     station.init();
-    station.play(&track);
+    station.play(&project);
 
     for (int i = 0; i < 5; i++) {
         drum.trigger();
@@ -270,10 +270,10 @@ void run_reverb_demo() {
     Reverb reverb;
     TrackLane lane_1 = { .label = "1", .instrument = &synth_1 };
     TrackLane lane_2 = { .label = "2", .instrument = &synth_2, .effects = { &reverb } };
-    Track track({ .lanes = { &lane_1, &lane_2 } });
+    Project project({ .lanes = { &lane_1, &lane_2 } });
     AudioStation station;
     station.init();
-    station.play(&track);
+    station.play(&project);
     
     for (int i = 0; i < 4; i++) {
         synth_1.trigger(Note::A3);
@@ -294,14 +294,14 @@ void run_sequencer_demo() {
     Drum drum;
     Sequencer sequencer({ .outputs = { &drum } });
     TrackLane lane = { .instrument = &drum };
-    Track track({ 
+    Project project({ 
         .lanes = { &lane },
         .sequencers = { &sequencer }
     });
 
     AudioStation station;
     station.init();
-    station.play(&track);
+    station.play(&project);
     sequencer.trigger();
     sleep(5000);
     station.stop();
@@ -310,9 +310,9 @@ void run_sequencer_demo() {
 int main() {
     TestSuite test_suite;
     test_suite.run_tests();
-    // run_track_demo();
+    run_song_demo();
     // run_noise_demo();
-    run_oscillator_demo();
+    // run_oscillator_demo();
     // run_delay_demo();
     // run_reverb_demo();
     // run_sequencer_demo();

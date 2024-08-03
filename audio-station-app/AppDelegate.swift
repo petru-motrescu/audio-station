@@ -5,14 +5,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     let audioStation: AudioStationHandle
     let synth: SynthHandle
-    let track: TrackHandle
+    let project: ProjectHandle
     
     override init() {
         self.audioStation = audio_station_init()
         self.synth = synth_init()
-        self.track = track_init()
-        track_add_synth(self.track, self.synth)
-        audio_station_play(self.audioStation, self.track)
+        self.project = project_init()
+        project_add_synth(self.project, self.synth)
+        audio_station_play(self.audioStation, self.project)
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {

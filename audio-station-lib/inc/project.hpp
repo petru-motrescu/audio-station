@@ -1,5 +1,5 @@
-#ifndef AUDIO_STATION_TRACK_HPP
-#define AUDIO_STATION_TRACK_HPP
+#ifndef AUDIO_STATION_PROJECT_HPP
+#define AUDIO_STATION_PROJECT_HPP
 
 #include <memory>
 #include <vector>
@@ -34,23 +34,23 @@ namespace audiostation {
         std::vector<TrackBlock> blocks;
     };
 
-    struct TrackConfig {
+    struct ProjectConfig {
         std::vector<TrackLane*> lanes;
         std::vector<Instrument*> live_instruments;
         std::vector<Sequencer*> sequencers;
     };
 
-    class Track : public AudioSignalSource {
+    class Project : public AudioSignalSource {
     public:
-        Track();
-        Track(TrackConfig config);
+        Project();
+        Project(ProjectConfig config);
         void add_live_instrument(Instrument* instrument);
         AudioSample render() override;
     
     private:
-        TrackConfig config;
+        ProjectConfig config;
         Tick tick;
     };
 }
 
-#endif // AUDIO_STATION_TRACK_HPP
+#endif // AUDIO_STATION_PROJECT_HPP
