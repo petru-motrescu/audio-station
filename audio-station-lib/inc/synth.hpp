@@ -2,6 +2,7 @@
 #define AUDIO_STATION_SYNTH_HPP
 
 #include <memory>
+#include "audio-sample.hpp"
 #include "envelope.hpp"
 #include "instrument.hpp"
 #include "note.hpp"
@@ -33,9 +34,7 @@ namespace audiostation {
         void trigger(Note note) override;
         void release(Note note) override;
         bool is_note_live(Note note);
-    
-    // internal:
-        double render() override;
+        AudioSample render() override;
 
     private:
         std::unique_ptr<SynthImpl> impl;

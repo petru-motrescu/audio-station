@@ -2,6 +2,7 @@
 #define AUDIO_STATION_REVERB_HPP
 
 #include <memory>
+#include "audio-sample.hpp"
 #include "effect.hpp"
 
 namespace audiostation {
@@ -18,9 +19,8 @@ namespace audiostation {
         Reverb();
         Reverb(ReverbConfig config);
         virtual ~Reverb();
-    
-    // internal:
-        double render(double sample) override;
+
+        AudioSample render(AudioSample sample) override;
         void set_sample_rate(unsigned sample_rate);
     
     private:

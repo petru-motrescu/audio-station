@@ -2,6 +2,7 @@
 #define AUDIO_STATION_DRUM_HPP
 
 #include <memory>
+#include "audio-sample.hpp"
 #include "envelope.hpp"
 #include "instrument.hpp"
 #include "note.hpp"
@@ -33,7 +34,7 @@ namespace audiostation {
         
         void trigger(Note note = Note::C4) override;
         void release(Note note = Note::C4) override { };
-        double render() override;
+        AudioSample render() override;
 
     private:
         std::unique_ptr<DrumImpl> impl;

@@ -1,13 +1,13 @@
 #ifndef AUDIO_STATION_SIGNAL_SOURCE_HPP
 #define AUDIO_STATION_SIGNAL_SOURCE_HPP
 
-#include "note.hpp"
+#include "audio-sample.hpp"
 
 namespace audiostation {
 
     class SignalSource {
     public:
-        virtual double render() = 0;
+        virtual AudioSample render() = 0;
         virtual ~SignalSource() {};
     };
 }

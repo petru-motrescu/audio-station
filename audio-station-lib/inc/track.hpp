@@ -4,6 +4,7 @@
 #include <memory>
 #include <vector>
 #include <unordered_map>
+#include "audio-sample.hpp"
 #include "effect.hpp"
 #include "instrument.hpp"
 #include "sequencer.hpp"
@@ -44,7 +45,7 @@ namespace audiostation {
         Track();
         Track(TrackConfig config);
         void add_live_instrument(Instrument* instrument);
-        double render() override;
+        AudioSample render() override;
     
     private:
         TrackConfig config;

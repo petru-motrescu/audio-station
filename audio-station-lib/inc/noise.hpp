@@ -2,6 +2,7 @@
 #define AUDIO_STATION_NOISE_HPP
 
 #include <memory>
+#include "audio-sample.hpp"
 #include "instrument.hpp"
 
 namespace audiostation {
@@ -19,7 +20,7 @@ namespace audiostation {
 
         void trigger(Note note = Note::C4) override;
         void release(Note note = Note::C4) override;
-        double render() override;
+        AudioSample render() override;
 
     private:
         std::unique_ptr<NoiseImpl> impl;

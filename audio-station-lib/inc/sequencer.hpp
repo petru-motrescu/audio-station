@@ -4,10 +4,8 @@
 #include <chrono>
 #include <memory>
 #include "config.hpp"
-#include "instrument.hpp"
 #include "note.hpp"
 #include "playable.hpp"
-#include "signal-source.hpp"
 
 namespace audiostation {
 

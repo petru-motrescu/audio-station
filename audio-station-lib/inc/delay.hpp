@@ -2,6 +2,7 @@
 #define AUDIO_STATION_DELAY_HPP
 
 #include <memory>
+#include "audio-sample.hpp"
 #include "config.hpp"
 #include "effect.hpp"
 
@@ -24,8 +25,7 @@ namespace audiostation {
         Delay(DelayConfig config);
         virtual ~Delay();
     
-    // internal:
-        double render(double sample) override;
+        AudioSample render(AudioSample sample) override;
     
     private:
         std::unique_ptr<DelayImpl> impl;

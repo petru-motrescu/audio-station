@@ -2,6 +2,7 @@
 #define AUDIO_STATION_OSCILLATOR_HPP
 
 #include <memory>
+#include "audio-sample.hpp"
 #include "config.hpp"
 #include "instrument.hpp"
 #include "wave.hpp"
@@ -35,9 +36,7 @@ namespace audiostation {
         double get_frequency() const;
         double get_phase() const;
         bool is_live() const;
-    
-    // internal:
-        double render() override;
+        AudioSample render() override;
 
     private:
         std::unique_ptr<OscillatorImpl> impl;
