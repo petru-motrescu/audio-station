@@ -67,6 +67,8 @@
 		0ABBE03D2BE554D800803057 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		0ACCF87D2C5E1BE60015713F /* audio-signal-source.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "audio-signal-source.hpp"; sourceTree = "<group>"; };
 		0ACCF87E2C5E1BE60015713F /* audio-sample.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "audio-sample.hpp"; sourceTree = "<group>"; };
+		0ACCF87F2C5E1F100015713F /* control-signal-source.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "control-signal-source.hpp"; sourceTree = "<group>"; };
+		0ACCF8802C5E1F100015713F /* control-sample.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "control-sample.hpp"; sourceTree = "<group>"; };
 		0AF4267E2BE2D8650028C5B3 /* AudioStation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioStation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AF426812BE2D8650028C5B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0AF426832BE2D8650028C5B3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +125,8 @@
 				0A7CED372C118A470020251E /* audio-station-c.h */,
 				0A7CED382C118A470020251E /* audio-station.hpp */,
 				0A7CED392C118A470020251E /* config.hpp */,
+				0ACCF8802C5E1F100015713F /* control-sample.hpp */,
+				0ACCF87F2C5E1F100015713F /* control-signal-source.hpp */,
 				0A7CED3A2C118A470020251E /* delay.hpp */,
 				0A7CED3B2C118A470020251E /* drum.hpp */,
 				0A7CED3C2C118A470020251E /* effect.hpp */,

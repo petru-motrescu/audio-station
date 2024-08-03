@@ -55,27 +55,27 @@ bool Envelope::is_live() const {
     return this->impl->is_live;
 }
 
-double Envelope::render() {
+ControlSample Envelope::render() {
     const auto& impl = this->impl;
-    double voltage = 0;
+    ControlSample sample = 0;
 
     if (impl->ticks_since_live < impl->attack_ticks) {
-        voltage = impl->ticks_since_live / impl->attack_ticks;
+        sample = impl->ticks_since_live / impl->attack_ticks;
     } else if (impl->ticks_since_live < (impl->attack_ticks + impl->decay_ticks)) {
         auto ticks = impl->ticks_since_live - impl->attack_ticks;
         auto ratio = ticks / impl->decay_ticks;
-        voltage = (1 - ratio + ratio * impl->sustain_level);
+        sample = (1 - ratio + ratio * impl->sustain_level);
     } else if (impl->ticks_at_release == 0) {
-        voltage = impl->sustain_level;
+        sample = impl->sustain_level;
     } else if (impl->ticks_since_live < (impl->ticks_at_release + impl->release_ticks)) {
         auto ticks = impl->ticks_since_live - impl->ticks_at_release;
-        voltage = (1 - ticks / impl->release_ticks) * impl->sustain_level;
+        sample = (1 - ticks / impl->release_ticks) * impl->sustain_level;
     } else {
         this->impl->is_live = false;
-        voltage = 0;
+        sample = 0;
     }
 
     impl->ticks_since_live++;
 
-    return voltage;
+    return sample;
 }

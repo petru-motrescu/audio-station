@@ -3,7 +3,7 @@
 
 #include <memory>
 #include "config.hpp"
-#include "audio-signal-source.hpp"
+#include "control-signal-source.hpp"
 
 namespace audiostation {
 
@@ -17,7 +17,7 @@ namespace audiostation {
 
     struct EnvelopeImpl;
 
-    class Envelope : public AudioSignalSource {
+    class Envelope : public ControlSignalSource {
     public:
         Envelope(EnvelopeConfig config);
         Envelope(const Envelope& other);
@@ -28,7 +28,7 @@ namespace audiostation {
         void trigger();
         void release();
         bool is_live() const;
-        double render() override;
+        ControlSample render() override;
     
     private:
         std::unique_ptr<EnvelopeImpl> impl;
