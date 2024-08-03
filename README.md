@@ -13,7 +13,7 @@ Built on top of Core Audio, the audio library can generate audio signals and pla
 
 Here's an example that creates a few instruments and organizes them in a track (see the full version [here](audio-station-lib/test/main.cpp)):
 ```cpp
-void run_track_demo() {
+void run_song_demo() {
     AudioStation station;
     station.init();
 
@@ -64,9 +64,9 @@ void run_track_demo() {
     TrackLane bass_lane = build_bass_lane(bass);
     TrackLane lead_lane = build_lead_lane(lead, reverb);
 
-    Track track({ .lanes = { &kick_lane, &click_lane, &hihat_lane, &bass_lane, &lead_lane } });
+    Project project({ .lanes = { &kick_lane, &click_lane, &hihat_lane, &bass_lane, &lead_lane } });
 
-    station.play(&track);
+    station.play(&project);
     sleep(9000);
 
     station.stop();
