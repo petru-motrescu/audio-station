@@ -29,7 +29,6 @@ void audiostation::TestSuite::run_sequencer_tests() {
     test("Sequencer note hold", [] {
         DummyPlayable playable;
         Sequencer sequencer({ 
-            .output = &playable,
             .blocks = {
                 SequenceBlock({
                     .notes = {
@@ -41,8 +40,8 @@ void audiostation::TestSuite::run_sequencer_tests() {
         });
 
         sequencer.trigger();
-        sequencer.render();
-        sequencer.render();
+        sequencer.render(playable);
+        sequencer.render(playable);
 
         std::vector<std::pair<Note, bool>> expected_calls({
             std::make_pair(Note::C1, true)
@@ -54,7 +53,6 @@ void audiostation::TestSuite::run_sequencer_tests() {
     test("Sequencer note change", [] {
         DummyPlayable playable;
         Sequencer sequencer({ 
-            .output = &playable,
             .blocks = {
                 SequenceBlock({
                     .notes = {
@@ -66,9 +64,9 @@ void audiostation::TestSuite::run_sequencer_tests() {
         });
 
         sequencer.trigger();
-        sequencer.render();
-        sequencer.render();
-        sequencer.render();
+        sequencer.render(playable);
+        sequencer.render(playable);
+        sequencer.render(playable);
 
         std::vector<std::pair<Note, bool>> expected_calls({
             std::make_pair(Note::C1, true),
@@ -97,16 +95,15 @@ void audiostation::TestSuite::run_sequencer_tests() {
     test("Sequencer loop of minimum length", [] {
         DummyPlayable playable;
         Sequencer sequencer({ 
-            .output = &playable,
             .blocks = { SequenceBlock({ .notes = { SequenceNote() } }) },
             .loop_enabled = true,
             .loop_length = 2
         });
 
         sequencer.trigger();
-        sequencer.render();
-        sequencer.render();
-        sequencer.render();
+        sequencer.render(playable);
+        sequencer.render(playable);
+        sequencer.render(playable);
 
         std::vector<std::pair<Note, bool>> expected_calls({
             std::make_pair(Note::C4, true),
@@ -120,7 +117,6 @@ void audiostation::TestSuite::run_sequencer_tests() {
     test("Sequencer loop of 2 notes", [] {
         DummyPlayable playable;
         Sequencer sequencer({ 
-            .output = &playable,
             .blocks = {
                 SequenceBlock({
                     .notes = {
@@ -133,10 +129,10 @@ void audiostation::TestSuite::run_sequencer_tests() {
         });
 
         sequencer.trigger();
-        sequencer.render();
-        sequencer.render();
-        sequencer.render();
-        sequencer.render();
+        sequencer.render(playable);
+        sequencer.render(playable);
+        sequencer.render(playable);
+        sequencer.render(playable);
 
         std::vector<std::pair<Note, bool>> expected_calls({
             std::make_pair(Note::C1, true),

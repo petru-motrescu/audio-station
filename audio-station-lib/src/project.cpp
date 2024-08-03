@@ -11,18 +11,21 @@ Project::Project(ProjectConfig config) {
 }
 
 double Project::render() {
-    for (auto& sequencer : this->config.sequencers) {
-        sequencer->render();
-    }
-
     for (auto& track : this->config.tracks) {
-        for (auto& block : track->blocks) {
-            for (auto& note : block.notes) {
-                if ((note.pos + block.pos) == this->tick) {
-                    track->instrument->trigger(note.note);
-                }
-                if ((note.pos + note.len + block.pos) == this->tick) {
-                    track->instrument->release(note.note);
+        if (track->instrument != nullptr) {
+            if (track->sequencer != nullptr) {
+                track->sequencer->render(*track->instrument);
+            }
+            else {
+                for (auto& block : track->blocks) {
+                    for (auto& note : block.notes) {
+                        if ((note.pos + block.pos) == this->tick) {
+                            track->instrument->trigger(note.note);
+                        }
+                        if ((note.pos + note.len + block.pos) == this->tick) {
+                            track->instrument->release(note.note);
+                        }
+                    }
                 }
             }
         }

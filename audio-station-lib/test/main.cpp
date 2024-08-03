@@ -292,17 +292,13 @@ void run_reverb_demo() {
 
 void run_sequencer_demo() {
     Drum drum;
-    Sequencer sequencer({ .output = &drum });
-    Track track = { .instrument = &drum };
-    Project project({ 
-        .tracks = { &track },
-        .sequencers = { &sequencer }
-    });
+    Sequencer sequencer;
+    Track track = { .sequencer = &sequencer, .instrument = &drum };
+    Project project({ .tracks = { &track }});
 
     AudioStation station;
     station.init();
     station.play(&project);
-    sequencer.trigger();
     sleep(5000);
     station.stop();
 }

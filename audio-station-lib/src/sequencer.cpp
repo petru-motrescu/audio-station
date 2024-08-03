@@ -49,12 +49,6 @@ bool Sequencer::is_live() const {
     return true; // TODO
 }
 
-void Sequencer::render() {
-    if (this->impl->config.output != nullptr) {
-        render(*this->impl->config.output);
-    }
-}
-
 void Sequencer::render(Playable& output) {
     for (auto& block : this->impl->config.blocks) {
         for (auto& note : block.notes) {

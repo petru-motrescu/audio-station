@@ -29,6 +29,7 @@ namespace audiostation {
 
     struct Track {
         std::string label;
+        Sequencer* sequencer;
         Instrument* instrument;
         std::vector<Effect*> effects;
         std::vector<TrackBlock> blocks;
@@ -36,7 +37,6 @@ namespace audiostation {
 
     struct ProjectConfig {
         std::vector<Track*> tracks;
-        std::vector<Sequencer*> sequencers;
     };
 
     class Project : public AudioSignalSource {
