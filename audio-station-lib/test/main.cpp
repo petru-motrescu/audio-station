@@ -15,6 +15,7 @@
 #include "oscillator.hpp"
 #include "project.hpp"
 #include "reverb.hpp"
+#include "sequencer.hpp"
 #include "synth.hpp"
 #include "test-suite.hpp"
 using namespace audiostation;
@@ -28,110 +29,89 @@ void sleep(int milliseconds) {
     std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
 }
 
-Track build_kick_track(Drum& kick) {
-    std::vector<TrackNote> kick_notes = { 
-        { .pos = 0 * bar }, 
-        { .pos = 2 * bar + half },
+Sequencer build_kick_sequencer() {
+    std::vector<SequenceNote> notes = { 
+        { .offset = 0 * bar }, 
+        { .offset = 2 * bar + half },
     };
 
-    Track kick_track = {
-        .label = "Kick",
-        .instrument = &kick,
+    return Sequencer({
+        .loop_enabled = false,
         .blocks = {
-            { .pos = 4 * bar * 0, .notes = kick_notes },
-            { .pos = 4 * bar * 1, .notes = kick_notes },
-            { .pos = 4 * bar * 2, .notes = kick_notes },
-            { .pos = 4 * bar * 3, .notes = kick_notes },
+            { .offset = 4 * bar * 0, .notes = notes },
+            { .offset = 4 * bar * 1, .notes = notes },
+            { .offset = 4 * bar * 2, .notes = notes },
+            { .offset = 4 * bar * 3, .notes = notes },
         }
-    };
-
-    return kick_track;
+    });
 }
 
-Track build_click_track(Drum& click, Delay& delay) {
-    std::vector<TrackNote> click_notes = { 
-        { .pos = 2 * bar }
+Sequencer build_click_sequencer() {
+    std::vector<SequenceNote> notes = { 
+        { .offset = 2 * bar }
     };
     
-    Track click_track = {
-        .label = "Click",
-        .instrument = &click,
-        .effects = { &delay },
+    return Sequencer({
+        .loop_enabled = false,
         .blocks = {
-            { .pos = 4 * bar * 2, .notes = click_notes },
-            { .pos = 4 * bar * 3, .notes = click_notes },
+            { .offset = 4 * bar * 2, .notes = notes },
+            { .offset = 4 * bar * 3, .notes = notes },
         }
-    };
-
-    return click_track;
+    });
 }
 
-Track build_hihat_track(Noise& hihat) {
-    std::vector<TrackNote> hihat_notes = { 
-        { .pos = 1 * bar + half, .len = 1 * eighth },
-        { .pos = 3 * bar + half, .len = 1 * eighth },
+Sequencer build_hihat_sequencer() {
+    std::vector<SequenceNote> notes = { 
+        { .offset = 1 * bar + half, .length = 1 * eighth },
+        { .offset = 3 * bar + half, .length = 1 * eighth },
     };
 
-    Track hihat_track = {
-        .label = "Hihat",
-        .instrument = &hihat,
+    return Sequencer({
+        .loop_enabled = false,
         .blocks = {
-            { .pos = 4 * bar * 2, .notes = hihat_notes },
-            { .pos = 4 * bar * 3, .notes = hihat_notes },
+            { .offset = 4 * bar * 2, .notes = notes },
+            { .offset = 4 * bar * 3, .notes = notes },
         }
-    };
-
-    return hihat_track;
+    });
 }
 
-Track build_bass_track(Synth& bass) {
-    std::vector<TrackNote> bass_notes = {
-        { .pos = 2 * bar + half, .len = 3 * quart, .note = Note::C2 },
-        { .pos = 3 * bar + 1 * quart, .len = 1 * quart, .note = Note::A1 },
-        { .pos = 3 * bar + 2 * quart, .len = 1 * eighth, .note = Note::A1 },
-        { .pos = 3 * bar + 3 * quart, .len = 1 * eighth, .note = Note::A1 },
+Sequencer build_bass_sequencer() {
+    std::vector<SequenceNote> notes = {
+        { .offset = 2 * bar + half,      .length = 3 * quart,  .note = Note::C2 },
+        { .offset = 3 * bar + 1 * quart, .length = 1 * quart,  .note = Note::A1 },
+        { .offset = 3 * bar + 2 * quart, .length = 1 * eighth, .note = Note::A1 },
+        { .offset = 3 * bar + 3 * quart, .length = 1 * eighth, .note = Note::A1 },
     };
 
-    Track bass_track = {
-        .label = "Bass",
-        .instrument = &bass,
+    return Sequencer({
+        .loop_enabled = false,
         .blocks = {
-            { .pos = 4 * bar * 0, .notes = bass_notes },
-            { .pos = 4 * bar * 1, .notes = bass_notes },
-            { .pos = 4 * bar * 2, .notes = bass_notes },
-            { .pos = 4 * bar * 3, .notes = bass_notes },
+            { .offset = 4 * bar * 0, .notes = notes },
+            { .offset = 4 * bar * 1, .notes = notes },
+            { .offset = 4 * bar * 2, .notes = notes },
+            { .offset = 4 * bar * 3, .notes = notes },
         }
-    };
-
-    return bass_track;
+    });
 }
 
-Track build_lead_track(Synth& lead, Reverb& reverb) {
-    std::vector<TrackNote> notes = {
-        { .pos = 0 * bar, .len = 1 * eighth, .note = Note::B3 },
+Sequencer build_lead_sequencer() {
+    std::vector<SequenceNote> notes = {
+        { .offset = 0 * bar, .length = 1 * eighth, .note = Note::B3 },
     };
 
-    Track track = {
-        .label = "Lead",
-        .instrument = &lead,
-        .effects = { &reverb },
+    return Sequencer({
+        .loop_enabled = false,
         .blocks = {
-            { .pos = 4 * bar * 0, .notes = notes }
+            { .offset = 4 * bar * 0, .notes = notes }
         }
-    };
-
-    return track;
+    });
 }
 
 void run_song_demo() {
     AudioStation station;
     station.init();
 
-    Drum kick({
-        .attack = { .wave = Wave::Triangle, .frequency = Frequency::A2, .amplitude = 0.5 },
-        .release = { .wave = Wave::Sine, .frequency = Frequency::B0, .amplitude = 1.0 },
-        .duration = 200,
-    });
+    Drum kick;
 
     Drum click({
         .attack = { .wave = Wave::Triangle, .frequency = 2000, .amplitude = 0.2 },
@@ -168,17 +148,30 @@ void run_song_demo() {
     Delay delay({ .time = 80, .level = 0.6, .feedback = 0.75 });
     Reverb reverb;
 
-    Track kick_track = build_kick_track(kick);
-    Track click_track = build_click_track(click, delay);
-    Track hihat_track = build_hihat_track(hihat);
-    Track bass_track = build_bass_track(bass);
-    Track lead_track = build_lead_track(lead, reverb);
+    Sequencer kick_sequencer = build_kick_sequencer();
+    Sequencer click_sequencer = build_click_sequencer();
+    Sequencer hihat_sequencer = build_hihat_sequencer();
+    Sequencer bass_sequencer = build_bass_sequencer();
+    Sequencer lead_sequencer = build_lead_sequencer();
 
-    Project project({ .tracks = { &kick_track, &click_track, &hihat_track, &bass_track, &lead_track } });
+    Track kick_track({ .sequencer = &kick_sequencer, .instrument = &kick });
+    Track click_track({ .sequencer = &click_sequencer, .instrument = &click, .effects = { &delay } });
+    Track hihat_track({ .sequencer = &hihat_sequencer, .instrument = &hihat });
+    Track bass_track({ .sequencer = &bass_sequencer, .instrument = &bass });
+    Track lead_track({ .sequencer = &lead_sequencer, .instrument = &lead, .effects = { &reverb } });
+
+    Project project({ 
+        .tracks = { 
+            &kick_track,
+            &click_track,
+            &hihat_track,
+            &bass_track,
+            &lead_track
+        }
+    });
 
     station.play(&project);
     sleep(9000);
-
     station.stop();
 }
 
@@ -306,11 +299,11 @@ void run_sequencer_demo() {
 int main() {
     TestSuite test_suite;
     test_suite.run_tests();
-    // run_song_demo();
+    run_song_demo();
     // run_noise_demo();
     // run_oscillator_demo();
     // run_delay_demo();
     // run_reverb_demo();
-    run_sequencer_demo();
+    // run_sequencer_demo();
     return 0;
 }

@@ -17,11 +17,7 @@ void run_song_demo() {
     AudioStation station;
     station.init();
 
-    Drum kick({
-        .attack = { .wave = Wave::Triangle, .frequency = Frequency::A2, .amplitude = 0.5 },
-        .release = { .wave = Wave::Sine, .frequency = Frequency::B0, .amplitude = 1.0 },
-        .duration = 200,
-    });
+    Drum kick;
 
     Drum click({
         .attack = { .wave = Wave::Triangle, .frequency = 2000, .amplitude = 0.2 },
@@ -58,17 +54,30 @@ void run_song_demo() {
     Delay delay({ .time = 80, .level = 0.6, .feedback = 0.75 });
     Reverb reverb;
 
-    Track kick_track = build_kick_track(kick);
-    Track click_track = build_click_track(click, delay);
-    Track hihat_track = build_hihat_track(hihat);
-    Track bass_track = build_bass_track(bass);
-    Track lead_track = build_lead_track(lead, reverb);
+    Sequencer kick_sequencer = build_kick_sequencer();
+    Sequencer click_sequencer = build_click_sequencer();
+    Sequencer hihat_sequencer = build_hihat_sequencer();
+    Sequencer bass_sequencer = build_bass_sequencer();
+    Sequencer lead_sequencer = build_lead_sequencer();
 
-    Project project({ .tracks = { &kick_track, &click_track, &hihat_track, &bass_track, &lead_track } });
+    Track kick_track({ .sequencer = &kick_sequencer, .instrument = &kick });
+    Track click_track({ .sequencer = &click_sequencer, .instrument = &click, .effects = { &delay } });
+    Track hihat_track({ .sequencer = &hihat_sequencer, .instrument = &hihat });
+    Track bass_track({ .sequencer = &bass_sequencer, .instrument = &bass });
+    Track lead_track({ .sequencer = &lead_sequencer, .instrument = &lead, .effects = { &reverb } });
+
+    Project project({ 
+        .tracks = { 
+            &kick_track,
+            &click_track,
+            &hihat_track,
+            &bass_track,
+            &lead_track
+        }
+    });
 
     station.play(&project);
     sleep(9000);
-
     station.stop();
 }
 ```
