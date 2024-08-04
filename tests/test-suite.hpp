@@ -1,6 +1,9 @@
 #ifndef AUDIO_STATION_TEST_SUITE_HPP
 #define AUDIO_STATION_TEST_SUITE_HPP
 
+#include <string>
+#include <functional>
+
 namespace audiostation {
 
     struct TestSuite {
