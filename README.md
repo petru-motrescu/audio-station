@@ -11,7 +11,7 @@ The project consists of two parts:
 
 Built on top of Core Audio, the audio library can generate audio signals and play them in real-time. The library is implemented in C++ and it features also a C api so that it can be easily used from any Swift of Objective-C app on Mac.
 
-Here's an example that creates a few instruments and organizes them in a track (see the full version [here](demos/main.cpp)):
+A tiny song example (see the full version [here](demos/main.cpp)):
 ```cpp
 void run_song_demo() {
     AudioStation station;
@@ -74,9 +74,8 @@ void run_song_demo() {
 
 To run the above example:
 ```bash
-cd audio-station-lib
-make build
-make run
+cd demos
+./run.sh
 ```
 
 
