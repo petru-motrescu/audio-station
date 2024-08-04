@@ -78,19 +78,16 @@ static double next_phase(double phase, double frequency, unsigned sample_rate) {
 
 struct audiostation::OscillatorImpl {
     OscillatorConfig config;
-    bool is_live;
 };
 
 audiostation::Oscillator::Oscillator(OscillatorConfig config) {
     this->impl = std::make_unique<OscillatorImpl>();
     this->impl->config = config;
-    this->impl->is_live = false;
 }
 
 Oscillator::Oscillator(const Oscillator& other) {
     this->impl = std::make_unique<OscillatorImpl>();
     this->impl->config = other.impl->config;
-    this->impl->is_live = other.impl->is_live;
 }
 
 audiostation::Oscillator::Oscillator(Oscillator&& other) : 
@@ -102,11 +99,11 @@ audiostation::Oscillator::~Oscillator() {
 }
 
 void audiostation::Oscillator::trigger(Note note) {
-    this->impl->is_live = true;
+    this->impl->config.is_live = true;
 }
 
 void audiostation::Oscillator::release(Note note) {
-    this->impl->is_live = false;
+    this->impl->config.is_live = false;
 }
 
 void audiostation::Oscillator::set_amplitude(double amplitude) {
@@ -134,11 +131,11 @@ double audiostation::Oscillator::get_phase() const {
 }
 
 bool audiostation::Oscillator::is_live() const {
-    return this->impl->is_live;
+    return this->impl->config.is_live;
 }
 
 double audiostation::Oscillator::render() {
-    if (!this->impl->is_live) {
+    if (!this->impl->config.is_live) {
         return 0;
     }
 

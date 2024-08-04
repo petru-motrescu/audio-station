@@ -7,19 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A01D78B2C4D9D7700E4B6DE /* noise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A01D78A2C4D9D7700E4B6DE /* noise.cpp */; };
-		0A4E96762C5D611800584FA3 /* sequencer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A4E96752C5D611800584FA3 /* sequencer.cpp */; };
-		0A69E9442C5A413D004F4BAD /* envelope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A69E9432C5A413D004F4BAD /* envelope.cpp */; };
-		0A7CED522C118A470020251E /* audio-station-c.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CED482C118A470020251E /* audio-station-c.cpp */; };
-		0A7CED532C118A470020251E /* audio-station.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CED492C118A470020251E /* audio-station.cpp */; };
-		0A7CED542C118A470020251E /* delay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CED4A2C118A470020251E /* delay.cpp */; };
-		0A7CED552C118A470020251E /* drum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CED4B2C118A470020251E /* drum.cpp */; };
-		0A7CED562C118A470020251E /* notes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CED4C2C118A470020251E /* notes.cpp */; };
-		0A7CED572C118A470020251E /* oscillator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CED4D2C118A470020251E /* oscillator.cpp */; };
-		0A7CED592C118A470020251E /* synth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CED4F2C118A470020251E /* synth.cpp */; };
-		0A8AEA452C5F630700FBFF81 /* mixer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A8AEA442C5F630700FBFF81 /* mixer.cpp */; };
-		0AAB8B212C1C39A700365EC5 /* reverb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB8B1F2C1C39A700365EC5 /* reverb.cpp */; };
-		0AAB8B222C1C39A700365EC5 /* utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB8B202C1C39A700365EC5 /* utils.cpp */; };
+		0A8AEA852C6005E700FBFF81 /* audio-station-c.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A8AEA772C6005E700FBFF81 /* audio-station-c.cpp */; };
+		0A8AEA862C6005E700FBFF81 /* audio-station.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A8AEA782C6005E700FBFF81 /* audio-station.cpp */; };
+		0A8AEA872C6005E700FBFF81 /* delay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A8AEA792C6005E700FBFF81 /* delay.cpp */; };
+		0A8AEA882C6005E700FBFF81 /* drum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A8AEA7A2C6005E700FBFF81 /* drum.cpp */; };
+		0A8AEA892C6005E700FBFF81 /* envelope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A8AEA7B2C6005E700FBFF81 /* envelope.cpp */; };
+		0A8AEA8A2C6005E700FBFF81 /* mixer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A8AEA7C2C6005E700FBFF81 /* mixer.cpp */; };
+		0A8AEA8B2C6005E700FBFF81 /* noise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A8AEA7D2C6005E700FBFF81 /* noise.cpp */; };
+		0A8AEA8C2C6005E700FBFF81 /* notes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A8AEA7E2C6005E700FBFF81 /* notes.cpp */; };
+		0A8AEA8D2C6005E700FBFF81 /* oscillator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A8AEA7F2C6005E700FBFF81 /* oscillator.cpp */; };
+		0A8AEA8E2C6005E700FBFF81 /* reverb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A8AEA802C6005E700FBFF81 /* reverb.cpp */; };
+		0A8AEA8F2C6005E700FBFF81 /* sequencer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A8AEA812C6005E700FBFF81 /* sequencer.cpp */; };
+		0A8AEA902C6005E700FBFF81 /* synth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A8AEA822C6005E700FBFF81 /* synth.cpp */; };
+		0A8AEA912C6005E700FBFF81 /* utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A8AEA832C6005E700FBFF81 /* utils.cpp */; };
 		0ABBE03C2BE554D100803057 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABBE03B2BE554D100803057 /* AudioToolbox.framework */; };
 		0ABBE03E2BE554D800803057 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABBE03D2BE554D800803057 /* AudioUnit.framework */; };
 		0AF426822BE2D8650028C5B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF426812BE2D8650028C5B3 /* AppDelegate.swift */; };
@@ -31,45 +31,45 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0A01D7892C4D9D6800E4B6DE /* noise.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = noise.hpp; sourceTree = "<group>"; };
-		0A01D78A2C4D9D7700E4B6DE /* noise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = noise.cpp; sourceTree = "<group>"; };
-		0A095EFA2C5D835F000CE889 /* playable.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = playable.hpp; sourceTree = "<group>"; };
-		0A4E96722C5D60FF00584FA3 /* sequencer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = sequencer.hpp; sourceTree = "<group>"; };
-		0A4E96752C5D611800584FA3 /* sequencer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sequencer.cpp; sourceTree = "<group>"; };
-		0A69E9432C5A413D004F4BAD /* envelope.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = envelope.cpp; sourceTree = "<group>"; };
-		0A7CED372C118A470020251E /* audio-station-c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "audio-station-c.h"; sourceTree = "<group>"; };
-		0A7CED382C118A470020251E /* audio-station.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "audio-station.hpp"; sourceTree = "<group>"; };
-		0A7CED392C118A470020251E /* config.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = config.hpp; sourceTree = "<group>"; };
-		0A7CED3A2C118A470020251E /* delay.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = delay.hpp; sourceTree = "<group>"; };
-		0A7CED3B2C118A470020251E /* drum.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = drum.hpp; sourceTree = "<group>"; };
-		0A7CED3C2C118A470020251E /* effect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = effect.hpp; sourceTree = "<group>"; };
-		0A7CED3D2C118A470020251E /* envelope.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = envelope.hpp; sourceTree = "<group>"; };
-		0A7CED3E2C118A470020251E /* frequency.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = frequency.hpp; sourceTree = "<group>"; };
-		0A7CED3F2C118A470020251E /* instrument.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = instrument.hpp; sourceTree = "<group>"; };
-		0A7CED402C118A470020251E /* note.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = note.hpp; sourceTree = "<group>"; };
-		0A7CED412C118A470020251E /* oscillator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = oscillator.hpp; sourceTree = "<group>"; };
-		0A7CED432C118A470020251E /* synth.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = synth.hpp; sourceTree = "<group>"; };
-		0A7CED452C118A470020251E /* utils.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = utils.hpp; sourceTree = "<group>"; };
-		0A7CED462C118A470020251E /* wave.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = wave.hpp; sourceTree = "<group>"; };
-		0A7CED482C118A470020251E /* audio-station-c.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "audio-station-c.cpp"; sourceTree = "<group>"; };
-		0A7CED492C118A470020251E /* audio-station.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "audio-station.cpp"; sourceTree = "<group>"; };
-		0A7CED4A2C118A470020251E /* delay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = delay.cpp; sourceTree = "<group>"; };
-		0A7CED4B2C118A470020251E /* drum.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = drum.cpp; sourceTree = "<group>"; };
-		0A7CED4C2C118A470020251E /* notes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = notes.cpp; sourceTree = "<group>"; };
-		0A7CED4D2C118A470020251E /* oscillator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = oscillator.cpp; sourceTree = "<group>"; };
-		0A7CED4F2C118A470020251E /* synth.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = synth.cpp; sourceTree = "<group>"; };
-		0A8AEA432C5F62FA00FBFF81 /* mixer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mixer.hpp; sourceTree = "<group>"; };
-		0A8AEA442C5F630700FBFF81 /* mixer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mixer.cpp; sourceTree = "<group>"; };
-		0AAB8B1E2C1C399900365EC5 /* reverb.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = reverb.hpp; sourceTree = "<group>"; };
-		0AAB8B1F2C1C39A700365EC5 /* reverb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = reverb.cpp; sourceTree = "<group>"; };
-		0AAB8B202C1C39A700365EC5 /* utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utils.cpp; sourceTree = "<group>"; };
-		0AB2A19C2C5EA82D00D26722 /* tick.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = tick.hpp; sourceTree = "<group>"; };
+		0A8AEA5E2C6005DD00FBFF81 /* audio-sample.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "audio-sample.hpp"; sourceTree = "<group>"; };
+		0A8AEA5F2C6005DD00FBFF81 /* audio-signal-source.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "audio-signal-source.hpp"; sourceTree = "<group>"; };
+		0A8AEA602C6005DD00FBFF81 /* audio-station-c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "audio-station-c.h"; sourceTree = "<group>"; };
+		0A8AEA612C6005DD00FBFF81 /* audio-station.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "audio-station.hpp"; sourceTree = "<group>"; };
+		0A8AEA622C6005DD00FBFF81 /* config.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = config.hpp; sourceTree = "<group>"; };
+		0A8AEA632C6005DD00FBFF81 /* control-sample.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "control-sample.hpp"; sourceTree = "<group>"; };
+		0A8AEA642C6005DD00FBFF81 /* control-signal-source.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "control-signal-source.hpp"; sourceTree = "<group>"; };
+		0A8AEA652C6005DD00FBFF81 /* delay.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = delay.hpp; sourceTree = "<group>"; };
+		0A8AEA662C6005DD00FBFF81 /* drum.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = drum.hpp; sourceTree = "<group>"; };
+		0A8AEA672C6005DD00FBFF81 /* effect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = effect.hpp; sourceTree = "<group>"; };
+		0A8AEA682C6005DD00FBFF81 /* envelope.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = envelope.hpp; sourceTree = "<group>"; };
+		0A8AEA692C6005DD00FBFF81 /* frequency.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = frequency.hpp; sourceTree = "<group>"; };
+		0A8AEA6A2C6005DD00FBFF81 /* instrument.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = instrument.hpp; sourceTree = "<group>"; };
+		0A8AEA6B2C6005DD00FBFF81 /* mixer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = mixer.hpp; sourceTree = "<group>"; };
+		0A8AEA6C2C6005DD00FBFF81 /* noise.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = noise.hpp; sourceTree = "<group>"; };
+		0A8AEA6D2C6005DD00FBFF81 /* note.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = note.hpp; sourceTree = "<group>"; };
+		0A8AEA6E2C6005DD00FBFF81 /* oscillator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = oscillator.hpp; sourceTree = "<group>"; };
+		0A8AEA6F2C6005DD00FBFF81 /* playable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = playable.hpp; sourceTree = "<group>"; };
+		0A8AEA702C6005DD00FBFF81 /* reverb.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = reverb.hpp; sourceTree = "<group>"; };
+		0A8AEA712C6005DD00FBFF81 /* sequencer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sequencer.hpp; sourceTree = "<group>"; };
+		0A8AEA722C6005DD00FBFF81 /* synth.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = synth.hpp; sourceTree = "<group>"; };
+		0A8AEA732C6005DD00FBFF81 /* tick.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = tick.hpp; sourceTree = "<group>"; };
+		0A8AEA742C6005DD00FBFF81 /* utils.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = utils.hpp; sourceTree = "<group>"; };
+		0A8AEA752C6005DD00FBFF81 /* wave.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = wave.hpp; sourceTree = "<group>"; };
+		0A8AEA772C6005E700FBFF81 /* audio-station-c.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "audio-station-c.cpp"; sourceTree = "<group>"; };
+		0A8AEA782C6005E700FBFF81 /* audio-station.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "audio-station.cpp"; sourceTree = "<group>"; };
+		0A8AEA792C6005E700FBFF81 /* delay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = delay.cpp; sourceTree = "<group>"; };
+		0A8AEA7A2C6005E700FBFF81 /* drum.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = drum.cpp; sourceTree = "<group>"; };
+		0A8AEA7B2C6005E700FBFF81 /* envelope.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = envelope.cpp; sourceTree = "<group>"; };
+		0A8AEA7C2C6005E700FBFF81 /* mixer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mixer.cpp; sourceTree = "<group>"; };
+		0A8AEA7D2C6005E700FBFF81 /* noise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = noise.cpp; sourceTree = "<group>"; };
+		0A8AEA7E2C6005E700FBFF81 /* notes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = notes.cpp; sourceTree = "<group>"; };
+		0A8AEA7F2C6005E700FBFF81 /* oscillator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = oscillator.cpp; sourceTree = "<group>"; };
+		0A8AEA802C6005E700FBFF81 /* reverb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = reverb.cpp; sourceTree = "<group>"; };
+		0A8AEA812C6005E700FBFF81 /* sequencer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sequencer.cpp; sourceTree = "<group>"; };
+		0A8AEA822C6005E700FBFF81 /* synth.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = synth.cpp; sourceTree = "<group>"; };
+		0A8AEA832C6005E700FBFF81 /* utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utils.cpp; sourceTree = "<group>"; };
 		0ABBE03B2BE554D100803057 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		0ABBE03D2BE554D800803057 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
-		0ACCF87D2C5E1BE60015713F /* audio-signal-source.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "audio-signal-source.hpp"; sourceTree = "<group>"; };
-		0ACCF87E2C5E1BE60015713F /* audio-sample.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "audio-sample.hpp"; sourceTree = "<group>"; };
-		0ACCF87F2C5E1F100015713F /* control-signal-source.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "control-signal-source.hpp"; sourceTree = "<group>"; };
-		0ACCF8802C5E1F100015713F /* control-sample.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "control-sample.hpp"; sourceTree = "<group>"; };
 		0AF4267E2BE2D8650028C5B3 /* AudioStation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioStation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AF426812BE2D8650028C5B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0AF426832BE2D8650028C5B3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -112,63 +112,63 @@
 		0A7CED362C118A1D0020251E /* AudioStationLib */ = {
 			isa = PBXGroup;
 			children = (
-				0A7CED472C118A470020251E /* inc */,
-				0A7CED512C118A470020251E /* src */,
+				0A8AEA762C6005DD00FBFF81 /* inc */,
+				0A8AEA842C6005E700FBFF81 /* src */,
 			);
 			name = AudioStationLib;
 			sourceTree = "<group>";
 		};
-		0A7CED472C118A470020251E /* inc */ = {
+		0A8AEA762C6005DD00FBFF81 /* inc */ = {
 			isa = PBXGroup;
 			children = (
-				0ACCF87E2C5E1BE60015713F /* audio-sample.hpp */,
-				0ACCF87D2C5E1BE60015713F /* audio-signal-source.hpp */,
-				0A7CED372C118A470020251E /* audio-station-c.h */,
-				0A7CED382C118A470020251E /* audio-station.hpp */,
-				0A7CED392C118A470020251E /* config.hpp */,
-				0ACCF8802C5E1F100015713F /* control-sample.hpp */,
-				0ACCF87F2C5E1F100015713F /* control-signal-source.hpp */,
-				0A7CED3A2C118A470020251E /* delay.hpp */,
-				0A7CED3B2C118A470020251E /* drum.hpp */,
-				0A7CED3C2C118A470020251E /* effect.hpp */,
-				0A7CED3D2C118A470020251E /* envelope.hpp */,
-				0A7CED3E2C118A470020251E /* frequency.hpp */,
-				0A7CED3F2C118A470020251E /* instrument.hpp */,
-				0A8AEA432C5F62FA00FBFF81 /* mixer.hpp */,
-				0A01D7892C4D9D6800E4B6DE /* noise.hpp */,
-				0A7CED402C118A470020251E /* note.hpp */,
-				0A7CED412C118A470020251E /* oscillator.hpp */,
-				0A095EFA2C5D835F000CE889 /* playable.hpp */,
-				0AAB8B1E2C1C399900365EC5 /* reverb.hpp */,
-				0A4E96722C5D60FF00584FA3 /* sequencer.hpp */,
-				0A7CED432C118A470020251E /* synth.hpp */,
-				0AB2A19C2C5EA82D00D26722 /* tick.hpp */,
-				0A7CED452C118A470020251E /* utils.hpp */,
-				0A7CED462C118A470020251E /* wave.hpp */,
+				0A8AEA5E2C6005DD00FBFF81 /* audio-sample.hpp */,
+				0A8AEA5F2C6005DD00FBFF81 /* audio-signal-source.hpp */,
+				0A8AEA602C6005DD00FBFF81 /* audio-station-c.h */,
+				0A8AEA612C6005DD00FBFF81 /* audio-station.hpp */,
+				0A8AEA622C6005DD00FBFF81 /* config.hpp */,
+				0A8AEA632C6005DD00FBFF81 /* control-sample.hpp */,
+				0A8AEA642C6005DD00FBFF81 /* control-signal-source.hpp */,
+				0A8AEA652C6005DD00FBFF81 /* delay.hpp */,
+				0A8AEA662C6005DD00FBFF81 /* drum.hpp */,
+				0A8AEA672C6005DD00FBFF81 /* effect.hpp */,
+				0A8AEA682C6005DD00FBFF81 /* envelope.hpp */,
+				0A8AEA692C6005DD00FBFF81 /* frequency.hpp */,
+				0A8AEA6A2C6005DD00FBFF81 /* instrument.hpp */,
+				0A8AEA6B2C6005DD00FBFF81 /* mixer.hpp */,
+				0A8AEA6C2C6005DD00FBFF81 /* noise.hpp */,
+				0A8AEA6D2C6005DD00FBFF81 /* note.hpp */,
+				0A8AEA6E2C6005DD00FBFF81 /* oscillator.hpp */,
+				0A8AEA6F2C6005DD00FBFF81 /* playable.hpp */,
+				0A8AEA702C6005DD00FBFF81 /* reverb.hpp */,
+				0A8AEA712C6005DD00FBFF81 /* sequencer.hpp */,
+				0A8AEA722C6005DD00FBFF81 /* synth.hpp */,
+				0A8AEA732C6005DD00FBFF81 /* tick.hpp */,
+				0A8AEA742C6005DD00FBFF81 /* utils.hpp */,
+				0A8AEA752C6005DD00FBFF81 /* wave.hpp */,
 			);
 			name = inc;
-			path = "../audio-station-lib/inc";
+			path = ../lib/inc;
 			sourceTree = "<group>";
 		};
-		0A7CED512C118A470020251E /* src */ = {
+		0A8AEA842C6005E700FBFF81 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				0A7CED482C118A470020251E /* audio-station-c.cpp */,
-				0A7CED492C118A470020251E /* audio-station.cpp */,
-				0A7CED4A2C118A470020251E /* delay.cpp */,
-				0A7CED4B2C118A470020251E /* drum.cpp */,
-				0A69E9432C5A413D004F4BAD /* envelope.cpp */,
-				0A8AEA442C5F630700FBFF81 /* mixer.cpp */,
-				0A01D78A2C4D9D7700E4B6DE /* noise.cpp */,
-				0A7CED4C2C118A470020251E /* notes.cpp */,
-				0A7CED4D2C118A470020251E /* oscillator.cpp */,
-				0AAB8B1F2C1C39A700365EC5 /* reverb.cpp */,
-				0A4E96752C5D611800584FA3 /* sequencer.cpp */,
-				0A7CED4F2C118A470020251E /* synth.cpp */,
-				0AAB8B202C1C39A700365EC5 /* utils.cpp */,
+				0A8AEA772C6005E700FBFF81 /* audio-station-c.cpp */,
+				0A8AEA782C6005E700FBFF81 /* audio-station.cpp */,
+				0A8AEA792C6005E700FBFF81 /* delay.cpp */,
+				0A8AEA7A2C6005E700FBFF81 /* drum.cpp */,
+				0A8AEA7B2C6005E700FBFF81 /* envelope.cpp */,
+				0A8AEA7C2C6005E700FBFF81 /* mixer.cpp */,
+				0A8AEA7D2C6005E700FBFF81 /* noise.cpp */,
+				0A8AEA7E2C6005E700FBFF81 /* notes.cpp */,
+				0A8AEA7F2C6005E700FBFF81 /* oscillator.cpp */,
+				0A8AEA802C6005E700FBFF81 /* reverb.cpp */,
+				0A8AEA812C6005E700FBFF81 /* sequencer.cpp */,
+				0A8AEA822C6005E700FBFF81 /* synth.cpp */,
+				0A8AEA832C6005E700FBFF81 /* utils.cpp */,
 			);
 			name = src;
-			path = "../audio-station-lib/src";
+			path = ../lib/src;
 			sourceTree = "<group>";
 		};
 		0ABBE03A2BE554D000803057 /* Frameworks */ = {
@@ -271,21 +271,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AF426842BE2D8650028C5B3 /* ViewController.swift in Sources */,
-				0A7CED542C118A470020251E /* delay.cpp in Sources */,
-				0A7CED552C118A470020251E /* drum.cpp in Sources */,
-				0A7CED562C118A470020251E /* notes.cpp in Sources */,
-				0A7CED572C118A470020251E /* oscillator.cpp in Sources */,
-				0A7CED532C118A470020251E /* audio-station.cpp in Sources */,
-				0A01D78B2C4D9D7700E4B6DE /* noise.cpp in Sources */,
-				0A7CED522C118A470020251E /* audio-station-c.cpp in Sources */,
-				0A7CED592C118A470020251E /* synth.cpp in Sources */,
-				0A4E96762C5D611800584FA3 /* sequencer.cpp in Sources */,
-				0A69E9442C5A413D004F4BAD /* envelope.cpp in Sources */,
+				0A8AEA8F2C6005E700FBFF81 /* sequencer.cpp in Sources */,
+				0A8AEA872C6005E700FBFF81 /* delay.cpp in Sources */,
+				0A8AEA8A2C6005E700FBFF81 /* mixer.cpp in Sources */,
+				0A8AEA902C6005E700FBFF81 /* synth.cpp in Sources */,
+				0A8AEA8C2C6005E700FBFF81 /* notes.cpp in Sources */,
+				0A8AEA882C6005E700FBFF81 /* drum.cpp in Sources */,
+				0A8AEA892C6005E700FBFF81 /* envelope.cpp in Sources */,
+				0A8AEA862C6005E700FBFF81 /* audio-station.cpp in Sources */,
+				0A8AEA8D2C6005E700FBFF81 /* oscillator.cpp in Sources */,
+				0A8AEA8B2C6005E700FBFF81 /* noise.cpp in Sources */,
+				0A8AEA912C6005E700FBFF81 /* utils.cpp in Sources */,
+				0A8AEA852C6005E700FBFF81 /* audio-station-c.cpp in Sources */,
+				0A8AEA8E2C6005E700FBFF81 /* reverb.cpp in Sources */,
 				0AF426822BE2D8650028C5B3 /* AppDelegate.swift in Sources */,
-				0AAB8B212C1C39A700365EC5 /* reverb.cpp in Sources */,
 				0AF71D662BE2E1D700348FDE /* Key.swift in Sources */,
-				0AAB8B222C1C39A700365EC5 /* utils.cpp in Sources */,
-				0A8AEA452C5F630700FBFF81 /* mixer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

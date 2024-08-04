@@ -11,7 +11,7 @@ The project consists of two parts:
 
 Built on top of Core Audio, the audio library can generate audio signals and play them in real-time. The library is implemented in C++ and it features also a C api so that it can be easily used from any Swift of Objective-C app on Mac.
 
-Here's an example that creates a few instruments and organizes them in a track (see the full version [here](audio-station-lib/test/main.cpp)):
+Here's an example that creates a few instruments and organizes them in a track (see the full version [here](demos/main.cpp)):
 ```cpp
 void run_song_demo() {
     AudioStation station;
@@ -30,7 +30,6 @@ void run_song_demo() {
     Synth bass({
         .wave = Wave::Triangle,
         .amplitude = 0.4,
-        .harmonics = 0,
         .envelope = {
             .attack_duration = 5, 
             .decay_duration = 20, 
@@ -42,7 +41,6 @@ void run_song_demo() {
     Synth lead({
         .wave = Wave::Sine,
         .amplitude = 0.2,
-        .harmonics = 0,
         .envelope = {
             .attack_duration = 5, 
             .decay_duration = 5, 
@@ -60,23 +58,15 @@ void run_song_demo() {
     Sequencer bass_sequencer = build_bass_sequencer();
     Sequencer lead_sequencer = build_lead_sequencer();
 
-    Track kick_track({ .sequencer = &kick_sequencer, .instrument = &kick });
-    Track click_track({ .sequencer = &click_sequencer, .instrument = &click, .effects = { &delay } });
-    Track hihat_track({ .sequencer = &hihat_sequencer, .instrument = &hihat });
-    Track bass_track({ .sequencer = &bass_sequencer, .instrument = &bass });
-    Track lead_track({ .sequencer = &lead_sequencer, .instrument = &lead, .effects = { &reverb } });
-
-    Project project({ 
-        .tracks = { 
-            &kick_track,
-            &click_track,
-            &hihat_track,
-            &bass_track,
-            &lead_track
-        }
+    Mixer mixer({ 
+        Track({ .sequencer = &kick_sequencer, .instrument = &kick }),
+        Track({ .sequencer = &click_sequencer, .instrument = &click, .effects = { &delay } }),
+        Track({ .sequencer = &hihat_sequencer, .instrument = &hihat }),
+        Track({ .sequencer = &bass_sequencer, .instrument = &bass }),
+        Track({ .sequencer = &lead_sequencer, .instrument = &lead, .effects = { &reverb } }),
     });
 
-    station.play(&project);
+    station.play(&mixer);
     sleep(9000);
     station.stop();
 }

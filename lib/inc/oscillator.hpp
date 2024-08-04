@@ -15,6 +15,7 @@ namespace audiostation {
         double frequency = Frequency::C4;
         double amplitude = 0.5;
         double phase = 0.0;
+        bool is_live = false;
         unsigned sample_rate = Config::SAMPLE_RATE;
     };
 

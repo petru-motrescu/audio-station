@@ -179,23 +179,18 @@ void run_noise_demo() {
     station.stop();
 }
 
-void run_oscillator_demo() {
-    std::vector<Oscillator> oscillators {
-        Oscillator({.wave = Wave::Sine, .amplitude = 0.5}),
-        Oscillator({.wave = Wave::Triangle, .amplitude = 0.4}),
-        Oscillator({.wave = Wave::Square, .amplitude = 0.08}),
-    };
-    
+void run_oscillator_demo() {    
+    Oscillator oscillator({
+        .wave = Wave::Sine,
+        .frequency = Frequency::C4,
+        .amplitude = 0.25,
+        .is_live = true,
+    });
+
     AudioStation station;
     station.init();
-    
-    for (auto& oscilator : oscillators) {
-        station.play(&oscilator);
-        oscilator.trigger(Note::C3);
-        sleep(2000);
-        oscilator.release(Note::C3);
-    }
-
+    station.play(&oscillator);
+    sleep(2000);
     station.stop();
 }
 
@@ -278,9 +273,9 @@ void run_sequencer_demo() {
 int main() {
     TestSuite test_suite;
     test_suite.run_tests();
-    run_song_demo();
+    // run_song_demo();
     // run_noise_demo();
-    // run_oscillator_demo();
+    run_oscillator_demo();
     // run_delay_demo();
     // run_reverb_demo();
     // run_sequencer_demo();
