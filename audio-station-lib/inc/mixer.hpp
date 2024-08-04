@@ -1,5 +1,5 @@
-#ifndef AUDIO_STATION_PROJECT_HPP
-#define AUDIO_STATION_PROJECT_HPP
+#ifndef AUDIO_STATION_MIXER_HPP
+#define AUDIO_STATION_MIXER_HPP
 
 #include <memory>
 #include <vector>
@@ -15,26 +15,21 @@
 namespace audiostation {
 
     struct Track {
-        std::string label;
         Sequencer* sequencer;
         Instrument* instrument;
         std::vector<Effect*> effects;
     };
 
-    struct ProjectConfig {
-        std::vector<Track*> tracks;
-    };
-
-    class Project : public AudioSignalSource {
+    class Mixer : public AudioSignalSource {
     public:
-        Project();
-        Project(ProjectConfig config);
+        Mixer();
+        Mixer(std::vector<Track> tracks);
         AudioSample render() override;
     
     private:
-        ProjectConfig config;
+        std::vector<Track> tracks;
         Tick tick;
     };
 }
 
-#endif // AUDIO_STATION_PROJECT_HPP
+#endif // AUDIO_STATION_MIXER_HPP

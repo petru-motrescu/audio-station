@@ -2,7 +2,6 @@
 #include "audio-station-c.h"
 #include "audio-station.hpp"
 #include "note.hpp"
-#include "project.hpp"
 #include "synth.hpp"
 using namespace audiostation;
 

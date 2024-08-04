@@ -11,9 +11,9 @@
 #include "delay.hpp"
 #include "drum.hpp"
 #include "frequency.hpp"
+#include "mixer.hpp"
 #include "noise.hpp"
 #include "oscillator.hpp"
-#include "project.hpp"
 #include "reverb.hpp"
 #include "sequencer.hpp"
 #include "synth.hpp"
@@ -124,7 +124,6 @@ void run_song_demo() {
     Synth bass({
         .wave = Wave::Triangle,
         .amplitude = 0.4,
-        .harmonics = 0,
         .envelope = {
             .attack_duration = 5, 
             .decay_duration = 20, 
@@ -136,7 +135,6 @@ void run_song_demo() {
     Synth lead({
         .wave = Wave::Sine,
         .amplitude = 0.2,
-        .harmonics = 0,
         .envelope = {
             .attack_duration = 5, 
             .decay_duration = 5, 
@@ -154,23 +152,15 @@ void run_song_demo() {
     Sequencer bass_sequencer = build_bass_sequencer();
     Sequencer lead_sequencer = build_lead_sequencer();
 
-    Track kick_track({ .sequencer = &kick_sequencer, .instrument = &kick });
-    Track click_track({ .sequencer = &click_sequencer, .instrument = &click, .effects = { &delay } });
-    Track hihat_track({ .sequencer = &hihat_sequencer, .instrument = &hihat });
-    Track bass_track({ .sequencer = &bass_sequencer, .instrument = &bass });
-    Track lead_track({ .sequencer = &lead_sequencer, .instrument = &lead, .effects = { &reverb } });
-
-    Project project({ 
-        .tracks = { 
-            &kick_track,
-            &click_track,
-            &hihat_track,
-            &bass_track,
-            &lead_track
-        }
+    Mixer mixer({ 
+        Track({ .sequencer = &kick_sequencer, .instrument = &kick }),
+        Track({ .sequencer = &click_sequencer, .instrument = &click, .effects = { &delay } }),
+        Track({ .sequencer = &hihat_sequencer, .instrument = &hihat }),
+        Track({ .sequencer = &bass_sequencer, .instrument = &bass }),
+        Track({ .sequencer = &lead_sequencer, .instrument = &lead, .effects = { &reverb } }),
     });
 
-    station.play(&project);
+    station.play(&mixer);
     sleep(9000);
     station.stop();
 }
@@ -217,16 +207,11 @@ void run_delay_demo() {
         .level = 0.75
     });
 
-    Track track = {
-        .instrument = &drum,
-        .effects = { &delay }
-    };
-
-    Project project({ .tracks = { &track } });
+    Mixer mixer({ { .instrument = &drum, .effects = { &delay } } });
 
     AudioStation station;
     station.init();
-    station.play(&project);
+    station.play(&mixer);
 
     for (int i = 0; i < 5; i++) {
         drum.trigger();
@@ -252,14 +237,16 @@ void run_reverb_demo() {
 
     Synth synth_1(config);
     Synth synth_2(config);
-
     Reverb reverb;
-    Track track_1 = { .instrument = &synth_1 };
-    Track track_2 = { .instrument = &synth_2, .effects = { &reverb } };
-    Project project({ .tracks = { &track_1, &track_2 } });
+
+    Mixer mixer({ 
+        Track({ .instrument = &synth_1 }), 
+        Track({ .instrument = &synth_2, .effects = { &reverb } })
+    });
+
     AudioStation station;
     station.init();
-    station.play(&project);
+    station.play(&mixer);
     
     for (int i = 0; i < 4; i++) {
         synth_1.trigger(Note::A3);
@@ -279,12 +266,11 @@ void run_reverb_demo() {
 void run_sequencer_demo() {
     Drum drum;
     Sequencer sequencer;
-    Track track = { .sequencer = &sequencer, .instrument = &drum };
-    Project project({ .tracks = { &track }});
+    Mixer mixer({ Track { .sequencer = &sequencer, .instrument = &drum } });
 
     AudioStation station;
     station.init();
-    station.play(&project);
+    station.play(&mixer);
     sleep(5000);
     station.stop();
 }
@@ -292,10 +278,10 @@ void run_sequencer_demo() {
 int main() {
     TestSuite test_suite;
     test_suite.run_tests();
-    // run_song_demo();
+    run_song_demo();
     // run_noise_demo();
     // run_oscillator_demo();
-    run_delay_demo();
+    // run_delay_demo();
     // run_reverb_demo();
     // run_sequencer_demo();
     return 0;

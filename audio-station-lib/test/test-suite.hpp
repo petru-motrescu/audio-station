@@ -10,9 +10,9 @@ namespace audiostation {
     private:
         void test(std::string test_name, const std::function<void()>& test_body);
         void run_delay_tests();
+        void run_mixer_tests();
         void run_noise_tests();
         void run_oscillator_tests();
-        void run_project_tests();
         void run_sequencer_tests();
         void run_synth_tests();
     
