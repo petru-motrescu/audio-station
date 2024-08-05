@@ -23,8 +23,8 @@ void drum_demo() {
     station.play(&drum);
 
     for (int i = 0; i < 8; i++) {
-        drum.trigger();
         sleep_for_millis(500);
+        drum.trigger();
     }
     
     station.stop();

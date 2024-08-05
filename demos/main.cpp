@@ -28,8 +28,10 @@ constexpr unsigned quart = bar / 4;
 constexpr unsigned eighth = bar / 8;
 
 extern void drum_demo();
+extern void mixer_demo();
 extern void noise_demo();
 extern void oscillator_demo();
+extern void synth_demo();
 
 Sequencer build_kick_sequencer() {
     std::vector<SequenceNote> notes = { 
@@ -247,7 +249,9 @@ int main() {
     // run_song_demo();
     // oscillator_demo();
     // noise_demo();
-    drum_demo();
+    // drum_demo();
+    // synth_demo();
+    mixer_demo();
     // run_delay_demo();
     // run_reverb_demo();
     // run_sequencer_demo();

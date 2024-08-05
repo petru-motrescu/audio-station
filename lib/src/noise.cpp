@@ -12,6 +12,8 @@ struct audiostation::NoiseImpl {
     NoiseConfig config;
 };
 
+audiostation::Noise::Noise() : Noise(NoiseConfig()) { }
+
 audiostation::Noise::Noise(NoiseConfig config) {
     this->impl = std::make_unique<NoiseImpl>();
     this->impl->config = config;

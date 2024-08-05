@@ -8,7 +8,7 @@
 namespace audiostation {
 
     struct NoiseConfig {
-        double amplitude = 0.25;
+        double amplitude = 0.05;
         bool is_live = false;
     };
 
@@ -16,6 +16,7 @@ namespace audiostation {
 
     class Noise : public Instrument {
     public:
+        Noise();
         Noise(NoiseConfig config);
         ~Noise();
 

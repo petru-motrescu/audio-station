@@ -9,7 +9,9 @@ clang++ -std=c++20 -Wall -O2 \
 	-o audiostation-demos \
 	drum-demo.cpp \
 	main.cpp \
+	mixer-demo.cpp \
 	noise-demo.cpp \
-	oscillator-demo.cpp
+	oscillator-demo.cpp \
+	synth-demo.cpp
 
 ./audiostation-demos
