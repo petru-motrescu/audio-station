@@ -2,8 +2,6 @@
 #include "noise.hpp"
 #include "utils.hpp"
 using namespace audiostation;
-using namespace std::chrono;
-using namespace std::this_thread;
 
 void noise_demo() {    
     Noise noise({ .amplitude = 0.1 });
