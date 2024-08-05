@@ -10,18 +10,30 @@
 
 namespace audiostation {
 
+    struct DrumSignal {
+        Wave wave = Wave::Sine;
+        double frequency = Frequency::C4;
+        double amplitude = 0.5;
+    };
+
     struct DrumConfig {
-        OscillatorConfig attack = {
+        DrumSignal opening_signal = {
             .wave = Wave::Triangle, 
             .frequency = Frequency::A2, 
             .amplitude = 0.5
         };
-        OscillatorConfig release = { 
+
+        DrumSignal closing_signal = { 
             .wave = Wave::Sine, 
             .frequency = Frequency::B0, 
             .amplitude = 1.0
         };
-        unsigned duration = 200;
+
+        unsigned attack_duration = 0;
+        unsigned sustain_duration = 0;
+        unsigned release_duration = 200;
+
+        // TODO Ratio
     };
 
     struct DrumImpl;

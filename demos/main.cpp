@@ -116,9 +116,9 @@ void run_song_demo() {
     Drum kick;
 
     Drum click({
-        .attack = { .wave = Wave::Triangle, .frequency = 2000, .amplitude = 0.2 },
-        .release = { .wave = Wave::Sine, .frequency = 2000, .amplitude = 0.1 },
-        .duration = 100,
+        .opening_signal = { .wave = Wave::Triangle, .frequency = 2000, .amplitude = 0.2 },
+        .closing_signal = { .wave = Wave::Sine, .frequency = 2000, .amplitude = 0.1 },
+        .release_duration = 100,
     });
 
     Noise hihat({ .amplitude = 0.1 });
@@ -244,10 +244,10 @@ void run_sequencer_demo() {
 }
 
 int main() {
-    run_song_demo();
+    // run_song_demo();
     // oscillator_demo();
     // noise_demo();
-    // drum_demo();
+    drum_demo();
     // run_delay_demo();
     // run_reverb_demo();
     // run_sequencer_demo();

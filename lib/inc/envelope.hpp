@@ -19,6 +19,7 @@ namespace audiostation {
 
     class Envelope : public ControlSignalSource {
     public:
+        Envelope();
         Envelope(EnvelopeConfig config);
         Envelope(const Envelope& other);
         Envelope(Envelope&& other);

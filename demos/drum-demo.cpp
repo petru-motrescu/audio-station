@@ -5,17 +5,17 @@ using namespace audiostation;
 
 void drum_demo() {    
     Drum drum({
-        .attack = { 
+        .opening_signal = { 
             .wave = Wave::Triangle, 
-            .frequency = 200, 
-            .amplitude = 0.4
+            .frequency = 120, 
+            .amplitude = 0.5
         },
-        .release = { 
+        .closing_signal = { 
             .wave = Wave::Sine, 
             .frequency = 40, 
-            .amplitude = 0.3
+            .amplitude = 0.6
         },
-        .duration = 300,
+        .release_duration = 250,
     });
 
     AudioStation station;
