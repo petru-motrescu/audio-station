@@ -9,6 +9,7 @@ namespace audiostation {
 
     struct NoiseConfig {
         double amplitude = 0.25;
+        bool is_live = false;
     };
 
     struct NoiseImpl;

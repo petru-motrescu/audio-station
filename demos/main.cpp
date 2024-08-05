@@ -17,16 +17,19 @@
 #include "reverb.hpp"
 #include "sequencer.hpp"
 #include "synth.hpp"
+#include "utils.hpp"
 using namespace audiostation;
+using namespace std::chrono;
+using namespace std::this_thread;
 
 constexpr unsigned bar = Config::SAMPLE_RATE / 2;
 constexpr unsigned half = bar / 2;
 constexpr unsigned quart = bar / 4;
 constexpr unsigned eighth = bar / 8;
 
-void sleep(int milliseconds) {
-    std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
-}
+extern void drum_demo();
+extern void noise_demo();
+extern void oscillator_demo();
 
 Sequencer build_kick_sequencer() {
     std::vector<SequenceNote> notes = { 
@@ -160,36 +163,7 @@ void run_song_demo() {
     });
 
     station.play(&mixer);
-    sleep(9000);
-    station.stop();
-}
-
-void run_noise_demo() {
-    AudioStation station;
-    station.init();
-
-    Noise noise({});
-    station.play(&noise);
-
-    noise.trigger();
-    sleep(2000);
-    noise.release();
-    
-    station.stop();
-}
-
-void run_oscillator_demo() {    
-    Oscillator oscillator({
-        .wave = Wave::Sine,
-        .frequency = Frequency::C4,
-        .amplitude = 0.25,
-        .is_live = true,
-    });
-
-    AudioStation station;
-    station.init();
-    station.play(&oscillator);
-    sleep(2000);
+    sleep_for(seconds(9));
     station.stop();
 }
 
@@ -209,7 +183,7 @@ void run_delay_demo() {
 
     for (int i = 0; i < 5; i++) {
         drum.trigger();
-        sleep(5000);
+        sleep_for(seconds(5));
     }
     
     station.stop();
@@ -244,14 +218,14 @@ void run_reverb_demo() {
     
     for (int i = 0; i < 4; i++) {
         synth_1.trigger(Note::A3);
-        sleep(note_duration);
+        sleep_for(milliseconds(note_duration));
         synth_1.release(Note::A3);
-        sleep(1000);
+        sleep_for(seconds(1));
 
         synth_2.trigger(Note::A3);
-        sleep(note_duration);
+        sleep_for(milliseconds(note_duration));
         synth_2.release(Note::A3);
-        sleep(15000);
+        sleep_for(seconds(10));
     }
     
     station.stop();
@@ -265,14 +239,15 @@ void run_sequencer_demo() {
     AudioStation station;
     station.init();
     station.play(&mixer);
-    sleep(5000);
+    sleep_for(seconds(5));
     station.stop();
 }
 
 int main() {
     run_song_demo();
-    // run_noise_demo();
-    // run_oscillator_demo();
+    // oscillator_demo();
+    // noise_demo();
+    // drum_demo();
     // run_delay_demo();
     // run_reverb_demo();
     // run_sequencer_demo();

@@ -1,89 +1,56 @@
 # Audio Station
 
-A toy digital audio station for Mac.
+A toy digital audio workstation for Mac.
 
-The project consists of two parts:
-- a library for generating and playing sounds
-- a DAW-like app that uses the library (coming soon)
+### Oscillator
 
+Generates a periodic, oscillating audio signal, in the form of a sine, square or triangle wave.
 
-### The audio library
-
-Built on top of Core Audio, the audio library can generate audio signals and play them in real-time. The library is implemented in C++ and it features also a C api so that it can be easily used from any Swift of Objective-C app on Mac.
-
-A tiny song example (see the full version [here](demos/main.cpp)):
 ```cpp
-void run_song_demo() {
+#include "audio-station.hpp"
+#include "oscillator.hpp"
+#include "utils.hpp"
+using namespace audiostation;
+
+void oscillator_demo() {    
+    Oscillator oscillator({
+        .wave = Wave::Sine,
+        .frequency = Frequency::C4,
+        .amplitude = 0.25,
+    });
+
     AudioStation station;
     station.init();
-
-    Drum kick;
-
-    Drum click({
-        .attack = { .wave = Wave::Triangle, .frequency = 2000, .amplitude = 0.2 },
-        .release = { .wave = Wave::Sine, .frequency = 2000, .amplitude = 0.1 },
-        .duration = 100,
-    });
-
-    Noise hihat({ .amplitude = 0.1 });
-
-    Synth bass({
-        .wave = Wave::Triangle,
-        .amplitude = 0.4,
-        .envelope = {
-            .attack_duration = 5, 
-            .decay_duration = 20, 
-            .sustain_level = 0.9, 
-            .release_duration = 400
-        }
-    });
-
-    Synth lead({
-        .wave = Wave::Sine,
-        .amplitude = 0.2,
-        .envelope = {
-            .attack_duration = 5, 
-            .decay_duration = 5, 
-            .sustain_level = 1.0, 
-            .release_duration = 40
-        }
-    });
-
-    Delay delay({ .time = 80, .level = 0.6, .feedback = 0.75 });
-    Reverb reverb;
-
-    Sequencer kick_sequencer = build_kick_sequencer();
-    Sequencer click_sequencer = build_click_sequencer();
-    Sequencer hihat_sequencer = build_hihat_sequencer();
-    Sequencer bass_sequencer = build_bass_sequencer();
-    Sequencer lead_sequencer = build_lead_sequencer();
-
-    Mixer mixer({ 
-        Track({ .sequencer = &kick_sequencer, .instrument = &kick }),
-        Track({ .sequencer = &click_sequencer, .instrument = &click, .effects = { &delay } }),
-        Track({ .sequencer = &hihat_sequencer, .instrument = &hihat }),
-        Track({ .sequencer = &bass_sequencer, .instrument = &bass }),
-        Track({ .sequencer = &lead_sequencer, .instrument = &lead, .effects = { &reverb } }),
-    });
-
-    station.play(&mixer);
-    sleep(9000);
+    station.play(&oscillator);
+    oscillator.trigger();
+    sleep_for_seconds(2);
     station.stop();
 }
 ```
 
-To run the above example:
-```bash
-cd demos
-./run.sh
+
+### Noise
+
+Generates a continous audio signal, in the form of a random wave.
+
+```cpp
+#include "audio-station.hpp"
+#include "noise.hpp"
+#include "utils.hpp"
+using namespace audiostation;
+using namespace std::chrono;
+using namespace std::this_thread;
+
+void noise_demo() {    
+    Noise noise({ .amplitude = 0.25 });
+    AudioStation station;
+    station.init();
+    station.play(&noise);
+    noise.trigger();
+    sleep_for(seconds(2));   
+    station.stop();
+}
 ```
-
-
-### The app
-
-<img src="screenshot.png" width="800"/>
-
-The app uses SceneKit for the graphics and the audio library to play some silly sounds. Very much a work in progress.
 
 
 ### References

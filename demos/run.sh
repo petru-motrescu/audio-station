@@ -7,6 +7,9 @@ clang++ -std=c++20 -Wall -O2 \
 	-framework AudioToolbox \
 	-l audiostation \
 	-o audiostation-demos \
-	main.cpp
+	drum-demo.cpp \
+	main.cpp \
+	noise-demo.cpp \
+	oscillator-demo.cpp
 
 ./audiostation-demos
