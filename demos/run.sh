@@ -12,6 +12,7 @@ clang++ -std=c++20 -Wall -O2 \
 	mixer-demo.cpp \
 	noise-demo.cpp \
 	oscillator-demo.cpp \
+	sequencer-demo.cpp \
 	synth-demo.cpp
 
 ./audiostation-demos

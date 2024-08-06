@@ -32,6 +32,7 @@ extern void mixer_demo();
 extern void noise_demo();
 extern void oscillator_demo();
 extern void synth_demo();
+extern void sequencer_demo();
 
 Sequencer build_kick_sequencer() {
     std::vector<SequenceNote> notes = { 
@@ -248,12 +249,12 @@ void run_sequencer_demo() {
 int main() {
     // run_song_demo();
     // oscillator_demo();
-    noise_demo();
+    // noise_demo();
     // drum_demo();
     // synth_demo();
     // mixer_demo();
     // run_delay_demo();
     // run_reverb_demo();
-    // run_sequencer_demo();
+    sequencer_demo();
     return 0;
 }

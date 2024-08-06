@@ -11,14 +11,14 @@
 namespace audiostation {
 
     struct SynthConfig {
-        Wave wave = Wave::Sine;
-        double amplitude = 0.5;
+        Wave wave = Wave::Triangle;
+        double amplitude = 0.2;
         unsigned harmonics = 0;
         EnvelopeConfig envelope = {
             .attack_duration = 10,
             .decay_duration = 20,
             .sustain_level = 0.9,
-            .release_duration = 1000,
+            .release_duration = 500,
         };
         unsigned sample_rate = Config::SAMPLE_RATE;
     };
