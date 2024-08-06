@@ -53,7 +53,7 @@ void noise_demo() {
 
 ### Drum
 
-Generates an audio signal which gradually changes its shape between 2 states.
+Generates an audio signal that gradually shifts its initial wave shape, frequency, and amplitude properties towards a final state. Can be used to mimic percussion instruments, like the kick drum in the following example.
 
 ```cpp
 #include "audio-station.hpp"
