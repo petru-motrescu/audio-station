@@ -18,11 +18,7 @@ namespace audiostation {
     };
 
     struct SequenceBlock {
-        std::vector<SequenceNote> notes = {
-            { .note = Note::C4 },
-            { .note = Note::A4, .offset = Config::SAMPLE_RATE / 2 },
-        };
-
+        std::vector<SequenceNote> notes = { SequenceNote() };
         Tick offset = 0;
     };
 

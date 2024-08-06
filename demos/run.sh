@@ -7,6 +7,7 @@ clang++ -std=c++20 -Wall -O2 \
 	-framework AudioToolbox \
 	-l audiostation \
 	-o audiostation-demos \
+	delay-demo.cpp \
 	drum-demo.cpp \
 	main.cpp \
 	mixer-demo.cpp \
