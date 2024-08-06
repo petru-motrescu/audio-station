@@ -32,6 +32,7 @@ extern void drum_demo();
 extern void mixer_demo();
 extern void noise_demo();
 extern void oscillator_demo();
+extern void reverb_demo();
 extern void sequencer_demo();
 extern void synth_demo();
 
@@ -113,7 +114,7 @@ Sequencer build_lead_sequencer() {
     });
 }
 
-void run_song_demo() {
+void song_demo() {
     AudioStation station;
     station.init();
 
@@ -171,92 +172,15 @@ void run_song_demo() {
     station.stop();
 }
 
-void run_delay_demo() {
-    Drum drum;
-    Delay delay({ 
-        .time = 250,
-        .feedback = 0.99,
-        .level = 0.75
-    });
-
-    Mixer mixer({ { .instrument = &drum, .effects = { &delay } } });
-
-    AudioStation station;
-    station.init();
-    station.play(&mixer);
-
-    for (int i = 0; i < 5; i++) {
-        drum.trigger();
-        sleep_for(seconds(5));
-    }
-    
-    station.stop();
-}
-
-void run_reverb_demo() {
-    unsigned note_duration = (unsigned) 16 * M_PI;
-
-    SynthConfig config({
-        .wave = Wave::Triangle,
-        .amplitude = 0.4,
-        .envelope = {
-            .attack_duration = 0, 
-            .decay_duration = 0, 
-            .sustain_level = 1.0,
-            .release_duration = note_duration
-        }
-    });
-
-    Synth synth_1(config);
-    Synth synth_2(config);
-    Reverb reverb;
-
-    Mixer mixer({ 
-        Track({ .instrument = &synth_1 }), 
-        Track({ .instrument = &synth_2, .effects = { &reverb } })
-    });
-
-    AudioStation station;
-    station.init();
-    station.play(&mixer);
-    
-    for (int i = 0; i < 4; i++) {
-        synth_1.trigger(Note::A3);
-        sleep_for(milliseconds(note_duration));
-        synth_1.release(Note::A3);
-        sleep_for(seconds(1));
-
-        synth_2.trigger(Note::A3);
-        sleep_for(milliseconds(note_duration));
-        synth_2.release(Note::A3);
-        sleep_for(seconds(10));
-    }
-    
-    station.stop();
-}
-
-void run_sequencer_demo() {
-    Drum drum;
-    Sequencer sequencer;
-    Mixer mixer({ Track { .sequencer = &sequencer, .instrument = &drum } });
-
-    AudioStation station;
-    station.init();
-    station.play(&mixer);
-    sleep_for(seconds(5));
-    station.stop();
-}
-
 int main() {
-    delay_demo();
-    // run_song_demo();
-    // oscillator_demo();
-    // noise_demo();
+    // delay_demo();
     // drum_demo();
-    // synth_demo();
     // mixer_demo();
-    // run_delay_demo();
-    // run_reverb_demo();
+    // noise_demo();
+    // oscillator_demo();
+    // reverb_demo();
+    song_demo();
     // sequencer_demo();
+    // synth_demo();
     return 0;
 }
