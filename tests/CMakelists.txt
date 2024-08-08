@@ -1,0 +1,16 @@
+add_executable(
+    audiostation-tests
+    asserts.cpp
+	delay-tests.cpp
+	main.cpp
+	mixer-tests.cpp
+	noise-tests.cpp
+	oscillator-tests.cpp
+	sequencer-tests.cpp
+	synth-tests.cpp
+	test-suite.cpp
+)
+
+target_include_directories(audiostation-tests PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
+target_link_libraries(audiostation-tests audiostation)

@@ -1,0 +1,23 @@
+add_library(
+    audiostation
+    src/audio-station-c.cpp
+	src/audio-station.cpp
+	src/delay.cpp
+	src/drum.cpp
+	src/envelope.cpp
+	src/mixer.cpp
+	src/noise.cpp
+	src/notes.cpp
+	src/oscillator.cpp
+	src/reverb.cpp
+	src/sequencer.cpp
+	src/synth.cpp
+	src/utils.cpp
+)
+
+target_include_directories(audiostation PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/inc)
+
+target_link_libraries(audiostation PUBLIC
+    "-framework AudioUnit"
+    "-framework AudioToolbox"
+)

@@ -95,6 +95,5 @@ iOSInjectionProject/
 .idea/
 .vscode/
 .DS_Store
-libaudiostation.a
-audiostation-demos
-audiostation-tests
+build/
+bin/

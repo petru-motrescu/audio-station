@@ -1,0 +1,14 @@
+add_executable(
+    audiostation-demos
+    delay-demo.cpp
+	drum-demo.cpp
+	main.cpp
+	mixer-demo.cpp
+	noise-demo.cpp
+	oscillator-demo.cpp
+	reverb-demo.cpp
+	sequencer-demo.cpp
+	synth-demo.cpp
+)
+
+target_link_libraries(audiostation-demos audiostation)
