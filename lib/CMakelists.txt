@@ -2,6 +2,7 @@ add_library(
     audiostation
     src/audio-station-c.cpp
 	src/audio-station.cpp
+	src/combo.cpp
 	src/delay.cpp
 	src/drum.cpp
 	src/envelope.cpp

@@ -18,7 +18,7 @@ namespace audiostation {
             .attack_duration = 10,
             .decay_duration = 20,
             .sustain_level = 0.9,
-            .release_duration = 500,
+            .release_duration = 200,
         };
         unsigned sample_rate = Config::SAMPLE_RATE;
     };

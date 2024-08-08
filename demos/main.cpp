@@ -27,6 +27,7 @@ constexpr unsigned half = bar / 2;
 constexpr unsigned quart = bar / 4;
 constexpr unsigned eighth = bar / 8;
 
+extern void combo_demo();
 extern void delay_demo();
 extern void drum_demo();
 extern void mixer_demo();
@@ -173,13 +174,14 @@ void song_demo() {
 }
 
 int main() {
+    combo_demo();
     // delay_demo();
     // drum_demo();
     // mixer_demo();
     // noise_demo();
     // oscillator_demo();
     // reverb_demo();
-    song_demo();
+    // song_demo();
     // sequencer_demo();
     // synth_demo();
     return 0;

@@ -1,5 +1,6 @@
 add_executable(
     audiostation-demos
+	combo-demo.cpp
     delay-demo.cpp
 	drum-demo.cpp
 	main.cpp
