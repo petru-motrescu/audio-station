@@ -7,7 +7,7 @@ rm -rf build
 mkdir bin
 mkdir build
 cd build
-cmake ..
+cmake -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ -DCMAKE_BUILD_TYPE=Release ..
 make
 cd ..
 cp build/demos/audiostation-demos bin/audiostation-demos
