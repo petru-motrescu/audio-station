@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <iomanip>
 #include <sstream>
+#include <vector>
 #include "asserts.hpp"
 using namespace audiostation;
 

@@ -174,14 +174,14 @@ void song_demo() {
 }
 
 int main() {
-    combo_demo();
+    // combo_demo();
     // delay_demo();
     // drum_demo();
     // mixer_demo();
     // noise_demo();
     // oscillator_demo();
     // reverb_demo();
-    // song_demo();
+    song_demo();
     // sequencer_demo();
     // synth_demo();
     return 0;

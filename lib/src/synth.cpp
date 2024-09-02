@@ -38,6 +38,7 @@ audiostation::Synth::Synth(SynthConfig config) {
             .wave = config.wave,
             .frequency = fundamental_frequency,
             .amplitude = config.amplitude,
+            .is_live = false,
         });
         oscillators.push_back(oscillator);
         
@@ -47,6 +48,7 @@ audiostation::Synth::Synth(SynthConfig config) {
                 .wave = config.wave,
                 .frequency = fundamental_frequency * (i + 2),
                 .amplitude = amplitude,
+                .is_live = false,
             });
             oscillators.push_back(oscillator);
             amplitude /= 2.0;
