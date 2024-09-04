@@ -7,9 +7,14 @@
 
 namespace audiostation {
 
+    enum class ReverbAlgo {
+        PRIMES
+    };
+
     struct ReverbConfig {
         double size = 0.5;
         double level = 0.25;
+        ReverbAlgo algo = ReverbAlgo::PRIMES;
     };
 
     struct ReverbImpl;
