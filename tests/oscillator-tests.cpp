@@ -4,12 +4,13 @@
 #include "oscillator.hpp"
 #include "asserts.hpp"
 #include "test-suite.hpp"
+#include "test.hpp"
 using namespace audiostation;
 
 constexpr double EPSILON = 0.00000000001;
 constexpr double PI = M_PI;
 
-void audiostation::TestSuite::run_oscillator_tests() {
+void audiostation::oscillator_tests() {
 
     test("Sine wave rendering", [] {
         Oscillator oscillator({ .wave = Wave::Sine, .amplitude = 1.0 });

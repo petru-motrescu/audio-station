@@ -1,6 +1,7 @@
 #include "sequencer.hpp"
 #include "asserts.hpp"
 #include "test-suite.hpp"
+#include "test.hpp"
 using namespace audiostation;
 
 struct DummyPlayable : public Playable {
@@ -24,7 +25,7 @@ struct DummyPlayable : public Playable {
     std::vector<std::pair<Note, bool>> calls;
 };
 
-void audiostation::TestSuite::run_sequencer_tests() {
+void audiostation::sequencer_tests() {
 
     test("Sequencer note hold", [] {
         DummyPlayable playable;

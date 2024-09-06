@@ -1,9 +1,10 @@
 #include "noise.hpp"
 #include "asserts.hpp"
 #include "test-suite.hpp"
+#include "test.hpp"
 using namespace audiostation;
 
-void audiostation::TestSuite::run_noise_tests() {
+void audiostation::noise_tests() {
 
     test("Noise is quiet by default", [] {
         Noise noise({ .amplitude = 1.0 });

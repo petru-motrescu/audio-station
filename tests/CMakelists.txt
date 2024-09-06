@@ -8,7 +8,7 @@ add_executable(
 	oscillator-tests.cpp
 	sequencer-tests.cpp
 	synth-tests.cpp
-	test-suite.cpp
+	test-runner.cpp
 )
 
 target_include_directories(audiostation-tests PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

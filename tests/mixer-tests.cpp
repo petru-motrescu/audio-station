@@ -8,9 +8,10 @@
 #include "mixer.hpp"
 #include "oscillator.hpp"
 #include "test-suite.hpp"
+#include "test.hpp"
 using namespace audiostation;
 
-void audiostation::TestSuite::run_mixer_tests() {
+void audiostation::mixer_tests() {
 
     test("Mixer with 1 track", [] {
         Oscillator oscillator({ .wave = Wave::Square, .amplitude = 0.5 });

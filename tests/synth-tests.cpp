@@ -7,9 +7,10 @@
 #include "synth.hpp"
 #include "asserts.hpp"
 #include "test-suite.hpp"
+#include "test.hpp"
 using namespace audiostation;
 
-void audiostation::TestSuite::run_synth_tests() {
+void audiostation::synth_tests() {
 
     test("Synth is quiet by default", [] {
         Synth synth;
