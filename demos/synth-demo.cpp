@@ -6,7 +6,7 @@ using namespace audiostation;
 void synth_demo() {    
     Synth synth({
         .wave = Wave::Triangle,
-        .amplitude = 0.4,
+        .amplitude = 0.3,
         .harmonics = 7,
         .envelope = {
             .attack_duration = 10,
