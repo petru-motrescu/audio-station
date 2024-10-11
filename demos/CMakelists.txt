@@ -9,6 +9,7 @@ add_executable(
 	oscillator-demo.cpp
 	reverb-demo.cpp
 	sequencer-demo.cpp
+	song-demo.cpp
 	synth-demo.cpp
 )
 
